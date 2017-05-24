@@ -1,0 +1,23 @@
+{
+  "name": "projectp002-multimedia-infostream-kiosksystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "private": true,
+  "dependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@repos.se.cispa.saarland:ezekiel_soremekun/projectp002-multimedia-infostream-kiosksystem.git"
+  },
+  "author": "Group002",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0"
+  }
+}
