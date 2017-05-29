@@ -3,20 +3,20 @@
 module.exports = function(grunt)
 {
 
-    grunt.loadNpmTasks("grunt-sass");
+    grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-copy");
 
     grunt.initConfig({
         pgk: grunt.file.readJSON("package.json"),
 
-        sass: {
+        less: {
             options: {
                 sourceMap: true
             },
             dist: {
                 files: {
-                    'www/main.css': 'src/sass/main.scss'
+                    'www/main.css': 'src/less/main.less'
                 }
             }
         },
@@ -26,7 +26,7 @@ module.exports = function(grunt)
                     {
                         expand: true,
                         cwd: "src/",
-                        src: ["js/**", "libs/**","pages/**","img/**", "index.html"],
+                        src: ["js/**", "libs/**","html/**", "fonts/**", "img/**","php/**", "index.html"],
                         dest: "www"
                     }
 
@@ -38,12 +38,12 @@ module.exports = function(grunt)
                 spawn: false,
                 livereload: true
             },
-            sass: {
+            less: {
                 files: [
-                    'src/sass/**',
-                    '!src/sass/*.map'
+                    'src/less/**',
+                    '!src/less/*.map'
                 ],
-                tasks: ['sass']
+                tasks: ['less']
             },
             others: {
                 files: [
@@ -55,7 +55,7 @@ module.exports = function(grunt)
 
     });
 
-    grunt.registerTask("default", ["sass", "copy:for_www", "watch"]);
-    grunt.registerTask("run", ["sass", "copy:for_www", "watch"]);
+    grunt.registerTask("default", ["less", "copy:for_www", "watch"]);
+    grunt.registerTask("run", ["less", "copy:for_www", "watch"]);
 
 };
