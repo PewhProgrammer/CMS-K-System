@@ -7,6 +7,8 @@ SE Project
 2. Install grunt-cli (npm install -g grunt-cli)
 3. Type "npm install"
 
+We use MAMP for the local webserver.
+
 ## Technology Stack
 
 * [jQuery]
