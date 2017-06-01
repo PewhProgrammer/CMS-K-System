@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Content Management System for CISPA monitors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="This is a content management system which provides
+a clean and intuitive system to manage the monitors at CISPA">
+    <meta name="author" content="esha,thinh,jonas,marc">
+
+    <!-- CSS FILE -->
+    <link href="../main.css" rel="stylesheet">
+
+</head>
+<body>
+
+<button type="button" class="btn btn-primary" id="urlSubmit">Enter a URL to display on IFrame!</button>
+<button type="button" class="btn btn-primary" id="urlAddDB">Save URL to the DB!</button>
+
+<div class="alert alert-success" style="display:none" id="successDB">
+    <strong>Success!</strong> Resource added to the database.
+</div>
+
+<div class="form-group">
+    <label for="resourceList">Resources in the database</label>
+    <select multiple class="form-control" id="resourceList">
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="urlInput">URL:</label>
+    <input type="text" class="form-control" id="urlInput" placeholder="e.g. https://www.w3schools.com">
+</div>
+
+<iframe id='iFrame' src="https://www.w3schools.com" style="width:100%;height:500px;display:none"></iframe>
+<!-- Main JS Script -->
+<script src="../libs/jquery-3.2.1.js"></script>
+<script src="../js/resourceManager.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

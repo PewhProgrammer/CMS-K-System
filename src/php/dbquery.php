@@ -5,9 +5,8 @@
  * Date: 01.06.2017
  * Time: 09:34
  */
-
-
 class Query{
+
     private $query;
     private $errorCode = "";
 
@@ -39,5 +38,6 @@ class Query{
             echo nl2br ("<<Error. ". $this->errorCode . $conn->error. "\n");
         }
     }
-
 }
+
+?>

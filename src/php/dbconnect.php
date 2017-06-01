@@ -9,7 +9,7 @@
 /** This should serve as a db connection wrapper to make sure connection
  * is open and if interrupted, will re-open again*/
 
-require 'dbqueries.php';
+require 'dbquery.php';
 
 class ConnectionFactory{
     private static $factory;
@@ -51,13 +51,6 @@ class ConnectionFactory{
 $query = new Query('CREATE DATABASE myDB');
 $query->executeQuery();
 
-/*// Create database
-$sql = "CREATE DATABASE myDB";
-if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully";
-} else {
-    echo "Error creating database: " . $conn->error;
-}*/
 
 ConnectionFactory::getFactory()->closeConnection();
 ?>
