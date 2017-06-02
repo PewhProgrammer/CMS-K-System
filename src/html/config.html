@@ -84,7 +84,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     <ul>
                         <li>
                             <label>
-                                <input type="checkbox" name="resource" value="impPDF">
+                                <input id="importantPDF" type="checkbox" name="resource" value="impPDF">
                                 ImportantPDF.pdf
                             </label>
                         </li>
@@ -96,7 +96,7 @@ a clean and intuitive system to manage the monitors at CISPA">
         <!-- /.panel-body -->
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="continueConfig" disabled>
             Continue
         </button>
 
@@ -112,8 +112,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                     <h2> Do you really want to apply the following changes:</h2>
                        <p> The resource "ImportantPDF.pdf" is going to be attached to monitor "Monitor 1"</p>
 
-                       <p> Preview:
-                           <i class="fa fa-television fa-4x" aria-hidden="true"></i></p>
+                       <p> Preview:</p>
+                           <i class="fa fa-television fa-5x" style="font-size:20em" aria-hidden="true"></i>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
