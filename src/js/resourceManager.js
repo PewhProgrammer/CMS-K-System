@@ -14,6 +14,14 @@ $( "#urlSubmit" ).click(function() {
     frame.src = $('#urlInput').val();
 });
 
+$( "#importantPDF" ).click(function() {
+    $("#continueConfig").removeAttr("disabled");
+    var frame = document.getElementById("successBox");
+    frame.style = 'block';
+    $("#successBox").show();
+
+});
+
 $( "#urlAddDB" ).click(function() {
     $("#successDB").show();
 });

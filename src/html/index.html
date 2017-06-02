@@ -99,6 +99,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <fieldset>
                     <ul>
                         <li>
+
                             <label>
                                 <input type="checkbox" name="monitor" value="mon-1">
                                 Monitor 1  <i class="fa fa-television fa-4x" aria-hidden="true"></i>
@@ -106,11 +107,17 @@ a clean and intuitive system to manage the monitors at CISPA">
                         </li>
                     </ul>
                 </fieldset>
-             <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-large btn-primary logout" href="#">
+                    <i class="fa fa-pencil" aria-hidden="true">  Edit</i>
+                </button>
             </form>
 
         </div>
         <!-- /.panel-body -->
+
+        <div id="successBox" style="display:none" class="alert alert-success">
+            <strong>Success!</strong> Added resource to monitor!
+        </div>
 
     </div>
 
