@@ -25,7 +25,7 @@ class ConnectionFactory{
     private $servername = "localhost";
     private $username = "root";
     private $password = "root";
-    private $dbname = "myDB";
+    private $dbname = "cms_k";
 
     public function getConnection(){
         if (is_null($this->db))
@@ -48,9 +48,10 @@ class ConnectionFactory{
     }
 }
 
-$query = new Query('CREATE DATABASE myDB');
+/*
+$query = new Query("INSERT INTO users (name, pass) VALUES ('admin', 'bla')");
 $query->executeQuery();
-
+*/
 
 ConnectionFactory::getFactory()->closeConnection();
 ?>

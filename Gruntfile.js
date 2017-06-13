@@ -49,7 +49,8 @@ module.exports = function(grunt)
                 files: [
                     'src/index.html',
                     'src/html/**',
-                    'src/js/**'
+                    'src/js/**',
+                    'src/php/**'
                 ],
                 tasks:['copy:for_www']
             }
