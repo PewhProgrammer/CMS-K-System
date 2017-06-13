@@ -8,6 +8,7 @@
 class Query{
 
     private $query;
+    private $result;
     private $errorCode = "";
 
     function __construct($sql) {
@@ -15,7 +16,22 @@ class Query{
     }
 
     public function getQuery(){
-        return $this->query;
+        // Create connection
+        try{
+            $conn = ConnectionFactory::getFactory()->getConnection();
+            echo nl2br ("<<DB connection established \n");
+        }catch (Exception $e){
+            echo $e ;
+            return;
+        }
+
+        if ($result = $conn->query($this->query)) {
+            ConnectionFactory::getFactory()->closeConnection();
+           return $result;
+        } else {
+            echo nl2br ("<<Error. ". $this->errorCode . $conn->error. "\n");
+        }
+
     }
 
     public function createErrorCode($code){
@@ -37,6 +53,7 @@ class Query{
         } else {
             echo nl2br ("<<Error. ". $this->errorCode . $conn->error. "\n");
         }
+        ConnectionFactory::getFactory()->closeConnection();
     }
 }
 

@@ -1,3 +1,14 @@
+<?php
+require '../php/dbconnect.php';
+
+$query = new Query("SELECT * FROM users");
+$result = $query->getQuery();
+
+while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["id"]. " name: " . $row["name"]. " pass:" . $row["pass"]. "<br>";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

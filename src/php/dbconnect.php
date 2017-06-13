@@ -47,11 +47,4 @@ class ConnectionFactory{
         }
     }
 }
-
-/*
-$query = new Query("INSERT INTO users (name, pass) VALUES ('admin', 'bla')");
-$query->executeQuery();
-*/
-
-ConnectionFactory::getFactory()->closeConnection();
 ?>
