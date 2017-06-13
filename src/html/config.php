@@ -1,12 +1,8 @@
 <?php
 require '../php/dbconnect.php';
 
-$query = new Query("SELECT * FROM users");
-$result = $query->getQuery();
-
-while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["id"]. " name: " . $row["name"]. " pass:" . $row["pass"]. "<br>";
-}
+$query = new Query("SELECT * FROM resources");
+$res = $query->getQuery();
 
 ?>
 <!DOCTYPE html>
@@ -35,7 +31,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">CMS-K Admin v0.1</a>
+            <a class="navbar-brand" href="index.php">CMS-K Admin v0.1</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -59,10 +55,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-television fa-fw"></i> Monitor Overview</a>
+                        <a href="index.php"><i class="fa fa-television fa-fw"></i> Monitor Overview</a>
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-folder fa-fw"></i> Resource Overview</a>
+                        <a href="index.php"><i class="fa fa-folder fa-fw"></i> Resource Overview</a>
                     </li>
 
 
@@ -93,12 +89,14 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <h3>Select the resource you want to add</h3>
                 <fieldset>
                     <ul>
-                        <li>
+                        <? while($row = $res->fetch_assoc()){ ?>
+                            <li>
                             <label class="k-selectable">
-                                <input id="importantPDF" type="checkbox" name="resource" value="impPDF">
-                                ImportantPDF.pdf
+                                <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource" value="<? echo $row["rID"] ?>">
+                              <? echo $row["name"] ?>
                             </label>
                         </li>
+                        <?}?>
                     </ul>
                 </fieldset>
             </form>
@@ -128,7 +126,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button onclick="location.href = 'index.html';" type="button" class="btn btn-primary">Save changes</button>
+                        <button onclick="location.href = 'index.php';" type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>

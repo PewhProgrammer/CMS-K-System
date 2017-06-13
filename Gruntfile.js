@@ -47,7 +47,7 @@ module.exports = function(grunt)
             },
             others: {
                 files: [
-                    'src/index.html',
+                    'src/index.php',
                     'src/html/**',
                     'src/js/**',
                     'src/php/**'

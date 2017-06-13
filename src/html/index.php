@@ -1,3 +1,10 @@
+<?php
+require '../php/dbconnect.php';
+
+$query = new Query("SELECT * FROM monitors");
+$mon = $query->getQuery();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,13 +105,15 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <h3>Select the monitor you want to change</h3>
                 <fieldset>
                     <ul>
+                        <? while($row = $mon->fetch_assoc()){ ?>
                         <li>
 
                             <label>
-                                <input type="checkbox" name="monitor" value="mon-1">
-                                Monitor 1  <i class="fa fa-television fa-4x" aria-hidden="true"></i>
+                                <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                <? echo $row["name"] ?>  <i class="fa fa-television fa-4x" aria-hidden="true"></i>
                             </label>
                         </li>
+                        <?}?>
                     </ul>
                 </fieldset>
                 <button type="submit" class="btn btn-large btn-primary logout" href="#">
