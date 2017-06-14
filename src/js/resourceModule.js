@@ -37,6 +37,7 @@
 
                 if(fileType > 1){
                     $("#urlForm").show();
+                    $("#fileForm").hide();
                     var urlHeaderText = '';
                     if(fileType === 2){
                         urlHeaderText += 'Enter a website URL';
@@ -45,6 +46,10 @@
                     }
 
                     $("#urlHeader").text(urlHeaderText);
+                }
+                else {
+                    $("#urlForm").hide();
+                    $("#fileForm").show();
                 }
             });
 

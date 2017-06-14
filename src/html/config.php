@@ -170,7 +170,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <input type="text" class="form-control" id="url">
                         </div>
 
-                        <input type="file" id="file_field" name="userfile"/>
+                        <div id="fileForm" style="display:none">
+                            <input type="file" id="file_field" name="userfile"/>
+                        </div >
+
 
                     </div>
                     <div class="alert alert-warning" id="warning" style="display:none">
