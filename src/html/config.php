@@ -105,12 +105,15 @@ a clean and intuitive system to manage the monitors at CISPA">
         <!-- /.panel-body -->
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="continueConfig" disabled="disabled">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadModal" id="addResource">
+            Add new resource
+        </button>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal" id="continueConfig" disabled="disabled">
             Continue
         </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <!-- Confirmation Modal -->
+        <div class="modal fade" id="confModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -131,6 +134,38 @@ a clean and intuitive system to manage the monitors at CISPA">
                 </div>
             </div>
         </div>
+        <!-- End Confirmation Modal -->
+
+        <!-- Upload Modal -->
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add new resource</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Filetype
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">PDF</a></li>
+                                <li><a href="#">Image</a></li>
+                                <li><a href="#">Website</a></li>
+                                <li><a href="#">RSS Feed</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button onclick="location.href = 'index.php';" type="button" class="btn btn-primary">Add resource</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Upload Modal -->
 
     </div>
 
