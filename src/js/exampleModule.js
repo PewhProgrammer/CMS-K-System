@@ -39,6 +39,8 @@
     jQuery.fn.exampleModule = function (options) {
         return this.each(function () {
             new jQuery.exampleModule(this, options);
+
+
         });
     };
 })(jQuery);

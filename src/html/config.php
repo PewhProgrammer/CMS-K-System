@@ -86,7 +86,7 @@ a clean and intuitive system to manage the monitors at CISPA">
             You have chosen Monitor 1  <i class="fa fa-television fa-4x" aria-hidden="true"></i>
 
             <form action="#">
-                <h3>Select the resource you want to add</h3>
+                <h3>Select the resource you want to attach to the monitor</h3>
                 <fieldset>
                     <ul>
                         <? while($row = $res->fetch_assoc()){ ?>
@@ -147,40 +147,40 @@ a clean and intuitive system to manage the monitors at CISPA">
                     <div class="modal-body">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Filetype
+                                File type
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">PDF</a></li>
+                            <ul id="fileTypeDrop" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a >PDF</a></li>
                                 <li><a href="#">Image</a></li>
                                 <li><a href="#">Website</a></li>
                                 <li><a href="#">RSS Feed</a></li>
                             </ul>
                         </div>
+
+                        <div class="form-group" id="urlForm" style="display:none">
+                            <label for="url" id="urlHeader">Name:</label>
+                            <input type="text" class="form-control" id="url">
+                        </div>
+                    </div>
+                    <div class="alert alert-warning" id="warning" style="display:none">
+                        <strong>Warning!</strong><p id="warningInput">Indicates a warning that might need attention.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button onclick="location.href = 'index.php';" type="button" class="btn btn-primary">Add resource</button>
+                        <button type="button" class="btn btn-primary" id="addResourceSubmit" >Add resource</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End Upload Modal -->
-
     </div>
-
-
-
-
-
-
-
 </div>
 
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
 <script src="../libs/bootstrap.js"></script>
-<script src="../js/resourceManager.js"></script>
+<script src="../js/resourceModule.js"></script>
 <script src="../js/exampleModule.js"></script>
 <script src="../js/main.js"></script>
 </body>
