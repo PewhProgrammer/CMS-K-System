@@ -6,6 +6,7 @@ module.exports = function(grunt)
     grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-mkdir");
 
     grunt.initConfig({
         pgk: grunt.file.readJSON("package.json"),
@@ -33,6 +34,13 @@ module.exports = function(grunt)
                 ]
             }
         },
+        mkdir: {
+            all: {
+                options: {
+                    create: ['www/uploads']
+                }
+            }
+        },
         watch: {
             options: {
                 spawn: false,
@@ -58,7 +66,7 @@ module.exports = function(grunt)
 
     });
 
-    grunt.registerTask("default", ["less", "copy:for_www", "watch"]);
-    grunt.registerTask("run", ["less", "copy:for_www", "watch"]);
+    grunt.registerTask("default", ["less", "copy:for_www", "mkdir", "watch"]);
+    grunt.registerTask("run", ["less", "copy:for_www", "mkdir", "watch"]);
 
 };

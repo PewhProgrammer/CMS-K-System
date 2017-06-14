@@ -83,20 +83,21 @@ a clean and intuitive system to manage the monitors at CISPA">
                 Choose resource to add
             </div>
             <!-- /.panel-heading -->
-            You have chosen Monitor 1  <i class="fa fa-television fa-4x" aria-hidden="true"></i>
+            You have chosen Monitor 1 <i class="fa fa-television fa-4x" aria-hidden="true"></i>
 
             <form action="#">
                 <h3>Select the resource you want to add</h3>
                 <fieldset>
                     <ul>
-                        <? while($row = $res->fetch_assoc()){ ?>
+                        <? while ($row = $res->fetch_assoc()) { ?>
                             <li>
-                            <label class="k-selectable">
-                                <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource" value="<? echo $row["rID"] ?>">
-                              <? echo $row["name"] ?>
-                            </label>
-                        </li>
-                        <?}?>
+                                <label class="k-selectable">
+                                    <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
+                                           value="<? echo $row["rID"] ?>">
+                                    <? echo $row["name"] ?>
+                                </label>
+                            </li>
+                        <? } ?>
                     </ul>
                 </fieldset>
             </form>
@@ -105,10 +106,12 @@ a clean and intuitive system to manage the monitors at CISPA">
         <!-- /.panel-body -->
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadModal" id="addResource">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadModal"
+                id="addResource">
             Add new resource
         </button>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal" id="continueConfig" disabled="disabled">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"
+                id="continueConfig" disabled="disabled">
             Continue
         </button>
 
@@ -117,19 +120,22 @@ a clean and intuitive system to manage the monitors at CISPA">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
                     </div>
                     <div class="modal-body">
-                    <h2> Do you really want to apply the following changes:</h2>
-                       <p> The resource "ImportantPDF.pdf" is going to be attached to monitor "Monitor 1"</p>
+                        <h2> Do you really want to apply the following changes:</h2>
+                        <p> The resource "ImportantPDF.pdf" is going to be attached to monitor "Monitor 1"</p>
 
-                       <p> Preview:</p>
-                           <i class="fa fa-television fa-5x" style="font-size:20em" aria-hidden="true"></i>
+                        <p> Preview:</p>
+                        <i class="fa fa-television fa-5x" style="font-size:20em" aria-hidden="true"></i>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button onclick="location.href = 'index.php';" type="button" class="btn btn-primary">Save changes</button>
+                        <button onclick="location.href = 'index.php';" type="button" class="btn btn-primary">Save
+                            changes
+                        </button>
                     </div>
                 </div>
             </div>
@@ -138,41 +144,42 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <!-- Upload Modal -->
         <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add new resource</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Filetype
-                                <span class="caret"></span>
+            <form action="../php/upload.php" method="post" enctype="multipart/form-data">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Add new resource</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <select class="selectpicker">
+                                <option>PDF</option>
+                                <option>Image</option>
+                                <option>Website</option>
+                                <option>RSS Feed</option>
+                            </select>
+
+
+                            <input type="text" id="text_field">
+                            <input type="file" id="file_field" name="userfile"/>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add
+                                resource
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">PDF</a></li>
-                                <li><a href="#">Image</a></li>
-                                <li><a href="#">Website</a></li>
-                                <li><a href="#">RSS Feed</a></li>
-                            </ul>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button onclick="location.href = 'index.php';" type="button" class="btn btn-primary">Add resource</button>
-                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <!-- End Upload Modal -->
 
     </div>
-
-
-
-
-
 
 
 </div>
@@ -180,6 +187,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
 <script src="../libs/bootstrap.js"></script>
+<script src="../libs/bootstrap-select.js"></script>
 <script src="../js/resourceManager.js"></script>
 <script src="../js/exampleModule.js"></script>
 <script src="../js/main.js"></script>
