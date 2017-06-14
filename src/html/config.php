@@ -144,7 +144,6 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <!-- Upload Modal -->
         <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <form action="../php/upload.php" method="post" enctype="multipart/form-data">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -170,9 +169,9 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <input type="text" class="form-control" id="url">
                         </div>
 
-                        <div id="fileForm" style="display:none">
-                            <input type="file" id="file_field" name="userfile"/>
-                        </div >
+                        <div id="fileForm">
+                            <form id="drop-my" action="../php/upload.php" class="dropzone"></form>
+                        </div>
 
 
                     </div>
@@ -185,7 +184,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                 </div>
             </div>
-            </form>
+
         </div>
         <!-- End Upload Modal -->
 
@@ -202,8 +201,10 @@ a clean and intuitive system to manage the monitors at CISPA">
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
 <script src="../libs/bootstrap.js"></script>
+<script src="../js/attachModule.js"></script>
 <script src="../js/resourceModule.js"></script>
 <script src="../js/exampleModule.js"></script>
+<script src="../js/dropzone.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>
