@@ -88,7 +88,7 @@ a clean and intuitive system to manage the monitors at CISPA">
             <form action="#">
                 <h3>Select the resource you want to attach to the monitor</h3>
                 <fieldset>
-                    <ul>
+                    <ul id="ressourceList">
                         <? while ($row = $res->fetch_assoc()) { ?>
                             <li>
                                 <label class="k-selectable">
