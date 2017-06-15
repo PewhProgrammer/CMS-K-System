@@ -82,6 +82,9 @@ a clean and intuitive system to manage the monitors at CISPA">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> All monitors in the CISPA building
                 <div class="pull-right">
+                    <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
+                        <i class="fa fa-pencil" aria-hidden="true">  Continue</i>
+                    </button>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                             Filter
@@ -101,24 +104,20 @@ a clean and intuitive system to manage the monitors at CISPA">
             </div>
             <!-- /.panel-heading -->
 
-            <form action="config.php">
+            <form action="config.php" id="monitorForm">
                 <h3>Select the monitor you want to change</h3>
                 <fieldset>
                     <ul>
                         <? while($row = $mon->fetch_assoc()){ ?>
                         <li>
-
                             <label>
                                 <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
-                                <? echo $row["name"] ?>  <i class="fa fa-television fa-4x" aria-hidden="true"></i>
+                                <i class="fa fa-television fa-4x" aria-hidden="true"></i><br><? echo $row["name"] ?>
                             </label>
                         </li>
                         <?}?>
                     </ul>
                 </fieldset>
-                <button type="submit" class="btn btn-large btn-primary logout" href="#">
-                    <i class="fa fa-pencil" aria-hidden="true">  Edit</i>
-                </button>
             </form>
 
         </div>
@@ -130,15 +129,15 @@ a clean and intuitive system to manage the monitors at CISPA">
 
     </div>
 
-
-
-
 </div>
 
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
 <script src="../libs/bootstrap.js"></script>
+<script src="../js/exampleModule.js"></script>
+<script src="../js/attachModule.js"></script>
 <script src="../js/resourceModule.js"></script>
+<script src="../js/monitorModule.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>
