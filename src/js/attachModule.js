@@ -43,6 +43,7 @@
             var url = "../php/attach.php";
             var ressourcesIncluded = [];
             var monitors = getParameterByName('monitor');
+            var endTime = '2030-06-13 19:30:11';
             console.log("Selected monitors: " + monitors);
             $("#ressourceList li input").change(function(){
                 var dbId = this.id.substring(4,5) ;
@@ -60,9 +61,6 @@
 
                 console.log("Updated resourceList: " +ressourcesIncluded);
 
-                $.post(url,{ resources:ressourcesIncluded, monitors: monitors }, function(data) {
-                    alert("Response: " + JSON.stringify(data));
-                });
 
                 //show/hide continue button
                 if(checked > 0) $("#continueConfig").prop('disabled', false);
@@ -74,6 +72,9 @@
             });
 
             $("#attachSubmit").on("click",function(){
+                $.post(url,{ resources:ressourcesIncluded, monitors: monitors,until: endTime }, function(data) {
+                    alert("Response: " + JSON.stringify(data));
+                });
             });
 
 

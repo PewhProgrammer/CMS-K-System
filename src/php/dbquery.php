@@ -19,7 +19,7 @@ class Query{
         // Create connection
         try{
             $conn = ConnectionFactory::getFactory()->getConnection();
-            echo nl2br ("<<DB connection established \n");
+            //echo nl2br ("<<DB connection established \n");
         }catch (Exception $e){
             echo $e ;
             return;
@@ -29,7 +29,8 @@ class Query{
             ConnectionFactory::getFactory()->closeConnection();
            return $result;
         } else {
-            echo nl2br ("<<Error. ". $this->errorCode . $conn->error. "\n");
+            echo nl2br ("<< Query ".$this->query);
+            echo nl2br ("<< Error. ". $this->errorCode . $conn->error. "\n");
         }
 
     }
@@ -42,7 +43,7 @@ class Query{
         // Create connection
         try{
             $conn = ConnectionFactory::getFactory()->getConnection();
-            echo nl2br ("<<DB connection established \n");
+            //echo nl2br ("<<DB connection established \n");
         }catch (Exception $e){
             echo $e ;
             return;

@@ -189,13 +189,6 @@ a clean and intuitive system to manage the monitors at CISPA">
         <!-- End Upload Modal -->
 
     </div>
-
-
-
-
-
-
-
 </div>
 
 <!-- Main JS Script -->
