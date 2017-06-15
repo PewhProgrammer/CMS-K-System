@@ -2,6 +2,6 @@ $(document).ready(function()
 {
     $(".page-header").exampleModule();
     $(".page-header").attachModule();
-    $(".page-header").resourceModule();
+    $("#uploadModal").resourceModule();
     console.log("Running");
 });

@@ -139,7 +139,6 @@ a clean and intuitive system to manage the monitors at CISPA">
 <script src="../libs/jquery-3.2.1.js"></script>
 <script src="../libs/bootstrap.js"></script>
 <script src="../js/resourceModule.js"></script>
-<script src="../libs/bootstrap-select.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>

@@ -21,10 +21,15 @@
             base.el = el;
             base.$el = jQuery(el);
 
-            base.$el.css("background-color", "white");
 
             var fileType = -1 ; // 0 = pdf ; 1 = Image ; 2 = Website ; 3 = RSS Feed AND -1 = none
 
+            Dropzone.options.dropMy = {
+                paramName: "userfile", // The name that will be used to transfer the file
+                maxFilesize: 2, // MB
+                autoProcessQueue: false,
+                dictDefaultMessage: "Hier reinziehen"
+            };
 
             $("#fileTypeDrop li").click(function(){
                 $("#warning").hide();
