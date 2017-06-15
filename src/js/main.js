@@ -1,9 +1,9 @@
 $(document).ready(function()
 {
+    $(".page-header").globalModule();
     $(".page-header").exampleModule();
     $(".page-header").attachModule();
-    $(".page-header").resourceModule();
     $("#monitorForm").monitorModule();
-    $("#uploadModal").resourceModule();
+    //$("#uploadModal").resourceModule();
     console.log("Running");
 });

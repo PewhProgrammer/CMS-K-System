@@ -23,26 +23,10 @@
 
             base.$el.css("background-color", "white");
 
-            function getParameterByName(name, url) {
-                if (!url) url = window.location.href;
-
-                name = name.replace(/[\[\]]/g, "\\$&");
-               /* var regex = new RegExp("[?&]" + name + "(=([^"+ name +"#]*)|&|#|$|)"),
-                    results = regex.exec(url);*/
-                var results = url.split(name+"=");
-                results.splice(0, 1);
-                for (var i = 0; i < results.length; i++) {
-                    results[i] = results[i].replace(/[^0-9.]/g, "");
-                }
-                if (!results) return null;
-                if (!results[1]) return '';
-                return results;
-            }
-
             var checked = 0 ;
             var url = "../php/attach.php";
             var ressourcesIncluded = [];
-            var monitors = getParameterByName('monitor');
+            var monitors = $.getParameterByName('monitor');
             var endTime = '2030-06-13 19:30:11';
             console.log("Selected monitors: " + monitors);
             $("#ressourceList li input").change(function(){
@@ -76,9 +60,6 @@
                     alert("Response: " + JSON.stringify(data));
                 });
             });
-
-
-
         }
 
 

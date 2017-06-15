@@ -37,6 +37,16 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <ul class="nav navbar-top-links navbar-right">
             <!-- right nav header content -->
+            <div class="alert alert-success" id="success-alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <h4 class="alert-heading">Success!</h4>
+                <p>The system has changed the resource of the monitors</p>
+            </div>
+            <div class="alert alert-warning" id="warning-alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <h4 class="alert-heading">Warning!</h4>
+                <p>Something went wrong there</p>
+            </div>
         </ul>
 
 
@@ -133,11 +143,12 @@ a clean and intuitive system to manage the monitors at CISPA">
 
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
+<script src="../js/main.js"></script>
 <script src="../libs/bootstrap.js"></script>
 <script src="../js/exampleModule.js"></script>
 <script src="../js/attachModule.js"></script>
-<script src="../js/resourceModule.js"></script>
+<!-- <script src="../js/resourceModule.js"></script> -->
 <script src="../js/monitorModule.js"></script>
-<script src="../js/main.js"></script>
+<script src="../js/globalModule.js"></script>
 </body>
 </html>

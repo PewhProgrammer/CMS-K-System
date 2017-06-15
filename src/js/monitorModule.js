@@ -34,6 +34,23 @@
                 }
             });
 
+            $("#success-alert").hide();
+            $("#warning-alert").hide();
+
+            var response = $.getParameterByName('attach');
+            if(response[0] === 'success'){
+                $("#success-alert").alert();
+
+                $("#success-alert").fadeTo(6000, 1000).slideUp(500, function(){
+                    $("#success-alert").slideUp(500);
+                });
+            } else {
+                $("#warning-alert").alert();
+
+                $("#warning-alert").fadeTo(6000, 1000).slideUp(500, function(){
+                    $("#warning-alert").slideUp(500);
+                });
+            }
         }
 
 
