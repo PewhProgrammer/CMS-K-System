@@ -45,6 +45,7 @@
                         urlHeaderText += 'Enter a RSS feed URL';
                     }
 
+
                     $("#urlHeader").text(urlHeaderText);
                 }
                 else {

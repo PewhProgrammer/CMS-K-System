@@ -23,13 +23,59 @@
 
             base.$el.css("background-color", "white");
 
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+
+                name = name.replace(/[\[\]]/g, "\\$&");
+               /* var regex = new RegExp("[?&]" + name + "(=([^"+ name +"#]*)|&|#|$|)"),
+                    results = regex.exec(url);*/
+                var results = url.split(name+"=");
+                results.splice(0, 1);
+                for (var i = 0; i < results.length; i++) {
+                    results[i] = results[i].replace(/[^0-9.]/g, "");
+                }
+                if (!results) return null;
+                if (!results[1]) return '';
+                return results;
+            }
+
+            var checked = 0 ;
+            var url = "../php/attach.php";
+            var ressourcesIncluded = [];
+            var monitors = getParameterByName('monitor');
+            console.log("Selected monitors: " + monitors);
             $("#ressourceList li input").change(function(){
-                console.log("checked");
+                var dbId = this.id.substring(4,5) ;
+                if(this.checked){
+                    checked ++;
+                    ressourcesIncluded.push(dbId)
+                }
+                else{
+                    checked --;
+                    var index = ressourcesIncluded.indexOf(dbId);
+                    if (index > -1) {
+                        ressourcesIncluded.splice(index, 1);
+                    }
+                }
+
+                console.log("Updated resourceList: " +ressourcesIncluded);
+
+                $.post(url,{ resources:ressourcesIncluded, monitors: monitors }, function(data) {
+                    alert("Response: " + JSON.stringify(data));
+                });
+
+                //show/hide continue button
+                if(checked > 0) $("#continueConfig").prop('disabled', false);
+                else $("#continueConfig").prop('disabled', true);
             });
 
-            $("#something").change( function(){
-                alert("state changed");
+            $("#continueConfig").on("click",function(){
+                //console.log("click");
             });
+
+            $("#attachSubmit").on("click",function(){
+            });
+
 
 
         }
@@ -47,18 +93,4 @@
     };
 })(jQuery);
 
-
-function checkURL(url){
-    var request;
-    if(window.XMLHttpRequest)
-        request = new XMLHttpRequest();
-    else
-        request = new ActiveXObject("Microsoft.XMLHTTP");
-    request.open('GET', 'http://www.mozilla.org', false);
-    request.send(); // there will be a 'pause' here until the response to come.
-// the object request will be actually modified
-    if (request.status === 404) {
-        alert("The page you are trying to reach is not available.");
-    }
-}
 
