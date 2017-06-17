@@ -28,6 +28,8 @@
             var ressourcesIncluded = [];
             var resourcesValIncluded = [];
             var monitors = $.getParameterByName('monitor');
+            var timeSpanCheck = $('#timeSpanCheck');
+            var timeSpan ;
             $('#chosenMonitor').text("You have chosen monitors " + monitors);
             var endTime = '2030-06-13 19:30:11'; //default indefinitely
             $("#ressourceList li input").change(function () {
@@ -66,6 +68,15 @@
             });
 
             $("#attachSubmit").on("click", function () {
+                if(timeSpanCheck.prop("checked")) {
+                    if($("#timeSpanText").val().length < 1){
+                        $("#alert-warning").show();
+                        return;
+                    }
+                    else{
+                        endTime = $("#timeSpanText").val() ;
+                    }
+                }
                 $.post(url, {resources: ressourcesIncluded, monitors: monitors, until: endTime})
                     .done(function (data) {
                         window.location.replace('index.php?attach=success');
@@ -77,8 +88,8 @@
 
             $('#datetimepicker1').datetimepicker();
 
-            $('#timeSpanCheck').on("click", function () {
-                var timeSpan = $('#timeSpan');
+            timeSpanCheck.on("click", function () {
+                timeSpan = $('#timeSpan');
                 if (this.checked) {
                     timeSpan.show();
                 } else {

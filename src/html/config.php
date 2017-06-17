@@ -138,7 +138,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     </div>
                                     <div class="form-group" style="display:none" id="timeSpan">
                                         <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control"  placeholder="MM/DD/YY H:MM AM or PM"/>
+                                            <input id="timeSpanText" type='text' class="form-control"  placeholder="MM/DD/YY H:MM AM or PM"/>
                                             <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -146,6 +146,12 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="alert alert-warning" id="warning-alert">
+                            <button type="button" class="close" data-dismiss="alert">x</button>
+                            <h4 class="alert-heading">Warning!</h4>
+                            <p>Something went wrong there</p>
                         </div>
 
                     </div>
