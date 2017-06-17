@@ -84,7 +84,7 @@ a clean and intuitive system to manage the monitors at CISPA">
             </div>
             <!-- /.panel-heading -->
             <i class="fa fa-television fa-4x" aria-hidden="true"></i>
-            <p id="chosenMonitor"> </p>
+            <p id="chosenMonitor"></p>
             <form action="#">
                 <h3>Select the resource you want to attach to the monitor</h3>
                 <fieldset>
@@ -127,12 +127,25 @@ a clean and intuitive system to manage the monitors at CISPA">
                     <div class="modal-body">
                         <h2> Following resource(s) will be applied:</h2>
                         <div id="modalResourceList">
-
-
                         </div>
 
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="">Add time span</label>
+                        <hr style="width:50%;border-width:0.1em;border-color:black">
+                        <div class="container">
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="timeSpanCheck">Add time span</label>
+                                    </div>
+                                    <div class="form-group" style="display:none" id="timeSpan">
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' class="form-control"  placeholder="MM/DD/YY H:MM AM or PM"/>
+                                            <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -152,17 +165,19 @@ a clean and intuitive system to manage the monitors at CISPA">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Add new resource</h4>
                     </div>
                     <div class="modal-body">
                         <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 File type
                                 <span class="caret"></span>
                             </button>
                             <ul id="fileTypeDrop" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a >PDF</a></li>
+                                <li><a>PDF</a></li>
                                 <li><a href="#">Image</a></li>
                                 <li><a href="#">Website</a></li>
                                 <li><a href="#">RSS Feed</a></li>
@@ -181,11 +196,12 @@ a clean and intuitive system to manage the monitors at CISPA">
 
                     </div>
                     <div class="alert alert-warning" id="warning" style="display:none">
-                        <strong>Warning!</strong><p id="warningInput">Indicates a warning that might need attention.</p>
+                        <strong>Warning!</strong>
+                        <p id="warningInput">Indicates a warning that might need attention.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="addResourceSubmit" >Add resource</button>
+                        <button type="submit" class="btn btn-primary" id="addResourceSubmit">Add resource</button>
                     </div>
                 </div>
             </div>
@@ -199,6 +215,8 @@ a clean and intuitive system to manage the monitors at CISPA">
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
 <script src="../libs/bootstrap.js"></script>
+<script src="../libs/vendor/datetimer/moment.js"></script>
+<script src="../libs/vendor/datetimer/bootstrap-datetimepicker.min.js"></script>
 <script src="../js/attachModule.js"></script>
 <!-- <script src="../js/resourceModule.js"></script> -->
 <script src="../js/monitorModule.js"></script>
