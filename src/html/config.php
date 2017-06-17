@@ -133,7 +133,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="attachSubmit" onclick="location.href = 'index.php';" type="button" class="btn btn-primary">Save
+                        <button id="attachSubmit" type="button" class="btn btn-primary">Save
                             changes
                         </button>
                     </div>

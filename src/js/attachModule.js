@@ -23,45 +23,48 @@
 
             base.$el.css("background-color", "white");
 
-            var checked = 0 ;
+            var checked = 0;
             var url = "../php/attach.php";
             var ressourcesIncluded = [];
             var monitors = $.getParameterByName('monitor');
             var endTime = '2030-06-13 19:30:11';
             console.log("Selected monitors: " + monitors);
-            $("#ressourceList li input").change(function(){
-                var dbId = this.id.substring(4,5) ;
-                if(this.checked){
-                    checked ++;
+            $("#ressourceList li input").change(function () {
+                var dbId = this.id.substring(4, 5);
+                if (this.checked) {
+                    checked++;
                     ressourcesIncluded.push(dbId)
                 }
-                else{
-                    checked --;
+                else {
+                    checked--;
                     var index = ressourcesIncluded.indexOf(dbId);
                     if (index > -1) {
                         ressourcesIncluded.splice(index, 1);
                     }
                 }
 
-                console.log("Updated resourceList: " +ressourcesIncluded);
+                console.log("Updated resourceList: " + ressourcesIncluded);
 
 
                 //show/hide continue button
-                if(checked > 0) $("#continueConfig").prop('disabled', false);
+                if (checked > 0) $("#continueConfig").prop('disabled', false);
                 else $("#continueConfig").prop('disabled', true);
             });
 
-            $("#continueConfig").on("click",function(){
+            $("#continueConfig").on("click", function () {
                 //console.log("click");
             });
 
-            $("#attachSubmit").on("click",function(){
-                $.post(url,{ resources:ressourcesIncluded, monitors: monitors,until: endTime }, function(data) {
-                    alert("Response: " + JSON.stringify(data));
-                });
+            $("#attachSubmit").on("click", function () {
+                $.post(url, {resources: ressourcesIncluded, monitors: monitors, until: endTime})
+                    .done(function (data) {
+                        window.location.replace('index.php?attach=success');
+                    })
+                    .fail(function () {
+                        // failed
+                    });
             });
         }
-
 
 
         // call init method
