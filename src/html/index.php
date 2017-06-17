@@ -37,16 +37,6 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <ul class="nav navbar-top-links navbar-right">
             <!-- right nav header content -->
-            <div class="alert alert-success" id="success-alert">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <h4 class="alert-heading">Success!</h4>
-                <p>The system has changed the resource of the monitors</p>
-            </div>
-            <div class="alert alert-warning" id="warning-alert">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <h4 class="alert-heading">Warning!</h4>
-                <p>Something went wrong there</p>
-            </div>
         </ul>
 
 
@@ -120,7 +110,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     <ul>
                         <? while($row = $mon->fetch_assoc()){ ?>
                         <li>
-                            <label>
+                            <label class="monitor_overview">
                                 <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
                                 <i class="fa fa-television fa-4x" aria-hidden="true"></i><br><? echo $row["name"] ?>
                             </label>
@@ -133,9 +123,18 @@ a clean and intuitive system to manage the monitors at CISPA">
         </div>
         <!-- /.panel-body -->
 
-        <div id="successBox" style="display:none" class="alert alert-success">
-            <strong>Success!</strong> Added resource to monitor!
+        <!-- Alerts -->
+        <div class="alert alert-success" id="success-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <h4 class="alert-heading">Success!</h4>
+            <p>The system has successfully changed the resource of the monitors</p>
         </div>
+        <div class="alert alert-warning" id="warning-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <h4 class="alert-heading">Warning!</h4>
+            <p>Something went wrong there</p>
+        </div>
+        <!-- /.Alerts -->
 
     </div>
 
@@ -149,6 +148,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 <script src="../js/attachModule.js"></script>
 <!-- <script src="../js/resourceModule.js"></script> -->
 <script src="../js/monitorModule.js"></script>
+<script src="../js/feedbackModule.js"></script>
 <script src="../js/globalModule.js"></script>
 </body>
 </html>
