@@ -83,8 +83,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                 Choose resource to add
             </div>
             <!-- /.panel-heading -->
-            You have chosen Monitor 1  <i class="fa fa-television fa-4x" aria-hidden="true"></i>
-
+            <i class="fa fa-television fa-4x" aria-hidden="true"></i>
+            <p id="chosenMonitor"> </p>
             <form action="#">
                 <h3>Select the resource you want to attach to the monitor</h3>
                 <fieldset>
@@ -93,7 +93,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <li>
                                 <label class="k-selectable">
                                     <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
-                                           value="<? echo $row["rID"] ?>">
+                                           value="<? echo $row["name"] ?>">
                                     <? echo $row["name"] ?>
                                 </label>
                             </li>
@@ -125,11 +125,16 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
                     </div>
                     <div class="modal-body">
-                        <h2> Do you really want to apply the following changes:</h2>
-                        <p> The resource "ImportantPDF.pdf" is going to be attached to monitor "Monitor 1"</p>
+                        <h2> Following resource(s) will be applied:</h2>
+                        <div id="modalResourceList">
 
-                        <p> Preview:</p>
-                        <i class="fa fa-television fa-5x" style="font-size:20em" aria-hidden="true"></i>
+
+                        </div>
+
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Add time span</label>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -195,7 +200,9 @@ a clean and intuitive system to manage the monitors at CISPA">
 <script src="../libs/jquery-3.2.1.js"></script>
 <script src="../libs/bootstrap.js"></script>
 <script src="../js/attachModule.js"></script>
-<script src="../js/resourceModule.js"></script>
+<!-- <script src="../js/resourceModule.js"></script> -->
+<script src="../js/monitorModule.js"></script>
+<script src="../js/feedbackModule.js"></script>
 <script src="../js/exampleModule.js"></script>
 <script src="../js/globalModule.js"></script>
 <script src="../js/dropzone.js"></script>
