@@ -80,15 +80,6 @@
             });
 
             $("#attachSubmit").on("click", function () {
-                if(timeSpanCheck.prop("checked")) {
-                    if($("#timeSpanText").val().length < 1){
-                        $("#alert-warning").show();
-                        return;
-                    }
-                    else{
-                        endTime = $("#timeSpanText").val() ;
-                    }
-                }
                 $.post(url, {resources: ressourcesIncluded, monitors: monitors, until: endTime})
                     .done(function (data) {
                         window.location.replace('index.php?attach=success');
@@ -105,6 +96,7 @@
                 if (this.checked) {
                     timeSpan.show();
                 } else {
+                    endTime = '2030-06-13 19:30:11';
                     timeSpan.hide();
                 }
             });
@@ -113,7 +105,7 @@
             //*               FUNCTION                *//
 
             function checkTimeFormat(timespan){
-                //date;hour time;formatter
+                //date;hour time;specifier
                 var whiteSplit = timespan.split(" ");
                 if(whiteSplit.length !== 3);
 
@@ -129,6 +121,13 @@
                 if(whiteSplit[2] !== 'PM' && whiteSplit[2] !== 'AM');
 
 
+
+                //time format
+                if(whiteSplit[2] === "PM") time[0] = time[0] + 12 ;
+                var timeFormated = time[0] + ':' + time[1] ;
+
+                //date format
+                var dateFormated = date[2] + date[1]  + date[0] ;
 
                 console.log(date);
                 console.log(time);
