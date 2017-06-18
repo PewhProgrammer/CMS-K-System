@@ -67,6 +67,18 @@
                 }
             });
 
+            $('#timeSpanText').on('change', function() {
+                var inputValue = $(this).val() ;
+                if(checkTimeFormat(inputValue)){
+
+                }
+                else {
+
+                }
+
+
+            });
+
             $("#attachSubmit").on("click", function () {
                 if(timeSpanCheck.prop("checked")) {
                     if($("#timeSpanText").val().length < 1){
@@ -97,7 +109,35 @@
                 }
             });
 
-        }
+
+            //*               FUNCTION                *//
+
+            function checkTimeFormat(timespan){
+                //date;hour time;formatter
+                var whiteSplit = timespan.split(" ");
+                if(whiteSplit.length !== 3);
+
+                var date = whiteSplit[0].split("/");
+                if(date.length !== 3);
+
+                var time = whiteSplit[1].split(":");
+                if(time.length !== 2);
+
+                //time constraint
+                if(parseInt(time[0]) > 12 || parseInt(time[0]) < 0);
+
+                if(whiteSplit[2] !== 'PM' && whiteSplit[2] !== 'AM');
+
+
+
+                console.log(date);
+                console.log(time);
+                console.log(whiteSplit[2]);
+                return false;
+            }
+
+
+        };
 
 
         // call init method

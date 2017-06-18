@@ -148,12 +148,6 @@ a clean and intuitive system to manage the monitors at CISPA">
                             </div>
                         </div>
 
-                        <div class="alert alert-warning" id="warning-alert">
-                            <button type="button" class="close" data-dismiss="alert">x</button>
-                            <h4 class="alert-heading">Warning!</h4>
-                            <p>Something went wrong there</p>
-                        </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
