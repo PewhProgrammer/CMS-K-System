@@ -4,6 +4,7 @@ $(document).ready(function()
     $(".page-header").exampleModule();
     $(".page-header").attachModule();
     $("#monitorForm").monitorModule();
+    $("#resForm").resFormModule();
     $(".nav").feedbackModule();
     //$("#uploadModal").resourceModule();
     console.log("Running");

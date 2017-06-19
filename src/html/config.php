@@ -85,7 +85,7 @@ a clean and intuitive system to manage the monitors at CISPA">
             <!-- /.panel-heading -->
             <i class="fa fa-television fa-4x" aria-hidden="true"></i>
             <p id="chosenMonitor"></p>
-            <form action="#">
+            <form action="#" id="resForm">
                 <h3>Select the resource you want to attach to the monitor</h3>
                 <fieldset>
                     <ul id="ressourceList">
@@ -220,6 +220,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 <script src="../js/attachModule.js"></script>
 <!-- <script src="../js/resourceModule.js"></script> -->
 <script src="../js/monitorModule.js"></script>
+<script src="../js/resFormModule.js"></script>
 <script src="../js/feedbackModule.js"></script>
 <script src="../js/exampleModule.js"></script>
 <script src="../js/globalModule.js"></script>
