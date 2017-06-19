@@ -129,7 +129,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <div id="modalResourceList">
                         </div>
 
-                        <hr style="width:50%;border-width:0.1em;border-color:black">
+                        <hr style="width:50%;border-width:0.1em;border-color:grey">
                         <div class="container">
                             <div class="row">
                                 <div class='col-sm-6'>

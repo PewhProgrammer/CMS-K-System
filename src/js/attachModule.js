@@ -30,6 +30,9 @@
             var monitors = $.getParameterByName('monitor');
             var timeSpanCheck = $('#timeSpanCheck');
             var timeSpan ;
+            var datepicker = $("#datetimepicker1") ;
+            var timeSpanText = $('#timeSpanText') ;
+            var attachSubmit = $('#attachSubmit') ;
             $('#chosenMonitor').text("You have chosen monitors " + monitors);
             var endTime = '2030-06-13 19:30:11'; //default indefinitely
             $("#ressourceList li input").change(function () {
@@ -67,19 +70,8 @@
                 }
             });
 
-            $('#timeSpanText').on('change', function() {
-                var inputValue = $(this).val() ;
-                if(checkTimeFormat(inputValue)){
 
-                }
-                else {
-
-                }
-
-
-            });
-
-            $("#attachSubmit").on("click", function () {
+            attachSubmit.on("click", function () {
                 $.post(url, {resources: ressourcesIncluded, monitors: monitors, until: endTime})
                     .done(function (data) {
                         window.location.replace('index.php?attach=success');
@@ -89,50 +81,71 @@
                     });
             });
 
-            $('#datetimepicker1').datetimepicker();
-
             timeSpanCheck.on("click", function () {
                 timeSpan = $('#timeSpan');
                 if (this.checked) {
                     timeSpan.show();
+                    validateFormat();
                 } else {
                     endTime = '2030-06-13 19:30:11';
+                    attachSubmit.prop('disabled',false);
                     timeSpan.hide();
                 }
             });
 
+            datepicker.datetimepicker();
+
+            datepicker.on("dp.change",function (e) { validateFormat();});
+
+            timeSpanText.on('change', function() { validateFormat(); });
+
 
             //*               FUNCTION                *//
+
+            function validateFormat(){
+                var inputValue = timeSpanText.val() ;
+                if(checkTimeFormat(inputValue)['status']){
+                    endTime = checkTimeFormat(inputValue)['msg'];
+                    console.log(endTime);
+                    attachSubmit.prop('disabled',false);
+                }
+                else {
+                    attachSubmit.prop('disabled',true);
+                }
+            }
 
             function checkTimeFormat(timespan){
                 //date;hour time;specifier
                 var whiteSplit = timespan.split(" ");
-                if(whiteSplit.length !== 3);
+                if(whiteSplit.length !== 3) return false;
 
                 var date = whiteSplit[0].split("/");
-                if(date.length !== 3);
+                if(date.length !== 3) return false;
 
                 var time = whiteSplit[1].split(":");
-                if(time.length !== 2);
+                if(time.length !== 2) return false;
 
                 //time constraint
-                if(parseInt(time[0]) > 12 || parseInt(time[0]) < 0);
+                if(parseInt(time[0]) > 12 || parseInt(time[0]) < 0) return false;
 
-                if(whiteSplit[2] !== 'PM' && whiteSplit[2] !== 'AM');
-
+                if(whiteSplit[2] !== 'PM' && whiteSplit[2] !== 'AM') return false;
 
 
                 //time format
-                if(whiteSplit[2] === "PM") time[0] = time[0] + 12 ;
-                var timeFormated = time[0] + ':' + time[1] ;
+                if(whiteSplit[2] === "PM") time[0] = " " + (parseInt(time[0]) + 12) ;
+                var timeFormated = time[0] + ':' + time[1] + ':00' ;
 
                 //date format
-                var dateFormated = date[2] + date[1]  + date[0] ;
+                var dateFormated = date[2] + '-' +  date[0] + '-' + date[1] ;
 
                 console.log(date);
                 console.log(time);
                 console.log(whiteSplit[2]);
-                return false;
+                var until = dateFormated + ' ' + timeFormated;
+                return {
+                    status:true,
+                    msg: until
+                };
             }
 
 
