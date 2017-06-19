@@ -92,6 +92,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <? while ($row = $res->fetch_assoc()) { ?>
                             <li>
                                 <label class="k-selectable">
+                                    <? if($row["type"] == "pdf") { ?>
+                                        <i class="fa fa-file-pdf-o" style="font-size: 2em;"></i>
+                                    <? } else if($row["type"] == "website") {?>
+                                        <i class="fa fa-file-word-o" style="font-size: 2em;"></i>
+                                    <? } else if($row["type"] == "image") {?>
+                                        <i class="fa fa-file-picture-o" style="font-size: 2em;"></i>
+                                    <? } ?>
                                     <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
                                            value="<? echo $row["name"] ?>">
                                     <? echo $row["name"] ?>
