@@ -28,7 +28,7 @@
             base.$fileForm.hide();
 
 
-            var fileType = -1 ; // 0 = pdf ; 1 = Image ; 2 = Website ; 3 = RSS Feed AND -1 = none
+            var fileType = -1 ; // 0 = pdf/image ; 1 = Website ; 2 = RSS Feed AND -1 = none
 
             Dropzone.options.droppy = {
                 paramName: "userfile", // The name that will be used to transfer the file
@@ -45,6 +45,8 @@
                         myDropzone.removeFile(file);
                         base.$fileForm.hide();
 
+                        $("#successInput").text('Upload successful');
+                        $("#success").show();
                     });
                 }
             };
@@ -58,11 +60,11 @@
                 btnSelector.val($(this).text());
                 btnSelector.append(' <span class="caret"></span> ');
 
-                if (fileType > 1){ //url
+                if (fileType > 0){ //url
                     base.$urlForm.show();
                     base.$fileForm.hide();
                     var urlHeaderText = '';
-                    if(fileType === 2){
+                    if(fileType === 1){
                         urlHeaderText += 'Enter a website URL';
                     }else{
                         urlHeaderText += 'Enter a RSS feed URL';
@@ -84,9 +86,22 @@
                 }
 
                 var resourceResponse = $("#url").val();
-                if(fileType > 1 && resourceResponse.length < 1){
+                if(fileType > 0 && resourceResponse.length < 1){
                     $("#warningInput").text('Please enter an URL');
                     $("#warning").show();
+                }
+                else {
+                    $.post('../php/add.php', {
+                        name: resourceResponse,
+                        type: (fileType === 1) ? 'website' : 'rss',
+                        path: resourceResponse
+                    }).done(function (data) {
+                        base.$urlForm.hide();
+                        $("#successInput").text('Entry successful');
+                        $("#success").show();
+                    }).fail(function () {
+
+                        });
                 }
 /*
                 if(checkURL(resourceResponse)){

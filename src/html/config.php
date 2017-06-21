@@ -184,8 +184,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                 <span class="caret"></span>
                             </button>
                             <ul id="fileTypeDrop" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a>PDF</a></li>
-                                <li><a href="#">Image</a></li>
+                                <li><a>PDF / Image</a></li>
                                 <li><a href="#">Website</a></li>
                                 <li><a href="#">RSS Feed</a></li>
                             </ul>
