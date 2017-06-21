@@ -20,15 +20,34 @@
             // Access to jQuery and DOM versions of element
             base.el = el;
             base.$el = jQuery(el);
+            base.$submitButton = $('#addResourceSubmit');
+            base.$urlForm = $('#urlForm');
+            base.$fileForm = $('#fileForm');
+
+            base.$urlForm.hide();
+            base.$fileForm.hide();
 
 
             var fileType = -1 ; // 0 = pdf ; 1 = Image ; 2 = Website ; 3 = RSS Feed AND -1 = none
 
-            Dropzone.options.dropMy = {
+            Dropzone.options.droppy = {
                 paramName: "userfile", // The name that will be used to transfer the file
                 maxFilesize: 2, // MB
                 autoProcessQueue: false,
-                dictDefaultMessage: "Hier reinziehen"
+                dictDefaultMessage: "Dateien hier reinziehen oder klicken",
+                addRemoveLinks: true,
+                init: function() {
+                    var myDropzone = this;
+                    base.$submitButton.on("click", function() {
+                        myDropzone.processQueue();
+                    });
+                    myDropzone.on("complete", function(file) {
+                        myDropzone.removeFile(file);
+                        base.$fileForm.hide();
+                        $("#successInput").text('Upload erfolgreich');
+                        $("#success").show();
+                    });
+                }
             };
 
             $("#fileTypeDrop li").click(function(){
@@ -40,44 +59,41 @@
                 btnSelector.val($(this).text());
                 btnSelector.append(' <span class="caret"></span> ');
 
-                if(fileType > 1){
-                    $("#urlForm").show();
-                    $("#fileForm").hide();
+                if (fileType > 1){ //url
+                    base.$urlForm.show();
+                    base.$fileForm.hide();
                     var urlHeaderText = '';
                     if(fileType === 2){
                         urlHeaderText += 'Enter a website URL';
                     }else{
                         urlHeaderText += 'Enter a RSS feed URL';
                     }
-
-
                     $("#urlHeader").text(urlHeaderText);
                 }
-                else {
-                    $("#urlForm").hide();
-                    $("#fileForm").show();
+                else { //file upload
+                    base.$urlForm.hide();
+                    base.$fileForm.show();
                 }
             });
 
-            $('#addResourceSubmit').on('click', function(event) {
+            base.$submitButton.on('click', function(event) {
+
+
                 if(fileType < 0) {
                     $("#warningInput").text('Please choose a file type');
                     $("#warning").show();
                 }
+
                 var resourceResponse = $("#url").val();
                 if(fileType > 1 && resourceResponse.length < 1){
                     $("#warningInput").text('Please enter an URL');
                     $("#warning").show();
                 }
-
-                if(fileType < 2){
-                    $("#warningInput").text('Not implemented yet');
-                    $("#warning").show();
-                }
-
+/*
                 if(checkURL(resourceResponse)){
                     console.log("Response: " + resourceResponse);
                 }
+                */
                 console.log("FileType: " + fileType);
             });
         };
@@ -93,7 +109,7 @@
     };
 })(jQuery);
 
-
+/*
 function checkURL(url){
     var request;
     if(window.XMLHttpRequest)
@@ -107,4 +123,4 @@ function checkURL(url){
         alert("The page you are trying to reach is not available.");
     }
 }
-
+*/
