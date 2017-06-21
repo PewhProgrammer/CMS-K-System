@@ -1,12 +1,14 @@
 <?php
+require 'dbconnect.php';
+//gets called for every file once
 $target_dir = "../uploads/";
 $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
 $uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
+if (isset($_POST["submit"])) {
     $check = getimagesize($_FILES["userfile"]["tmp_name"]);
-    if($check !== false) {
+    if ($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
@@ -25,8 +27,9 @@ if ($_FILES["userfile"]["size"] > 500000) {
     $uploadOk = 0;
 }
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
+if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif"  && $imageFileType != "pdf"
+) {
     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     $uploadOk = 0;
 }
@@ -36,9 +39,21 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["userfile"]["name"]). " has been uploaded.";
+        echo "The file " . basename($_FILES["userfile"]["name"]) . " has been uploaded.";
+
+        $name = $_FILES["userfile"]["name"];
+
+        if ($imageFileType == 'pdf') {
+            $fileType = 'pdf';
+        } else {
+            $fileType = 'image';
+        }
+
+        $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $name . "', '" . $fileType . "', '" . $name . "')");
+        $db = $query->getQuery();
+
     } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+    echo "Sorry, there was an error uploading your file.";
+}
 }
 ?>

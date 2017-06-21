@@ -44,8 +44,7 @@
                     myDropzone.on("complete", function(file) {
                         myDropzone.removeFile(file);
                         base.$fileForm.hide();
-                        $("#successInput").text('Upload erfolgreich');
-                        $("#success").show();
+
                     });
                 }
             };
