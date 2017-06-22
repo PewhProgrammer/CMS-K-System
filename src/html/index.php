@@ -142,6 +142,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
+<script src="../libs/dropzone.js"></script>
 <script src="../libs/bootstrap.js"></script>
 <script src="../libs/vendor/datetimer/moment.js"></script>
 <script src="../libs/vendor/datetimer/bootstrap-datetimepicker.min.js"></script>
@@ -153,6 +154,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 <script src="../js/exampleModule.js"></script>
 <script src="../js/globalModule.js"></script>
 <script src="../js/dropzone.js"></script>
+<script src="../js/modules.min.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>

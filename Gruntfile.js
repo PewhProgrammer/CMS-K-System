@@ -6,11 +6,17 @@ module.exports = function(grunt)
     grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks("grunt-mkdir");
 
     grunt.initConfig({
         pgk: grunt.file.readJSON("package.json"),
-
+        clean: {
+            build: {
+                src: ['www']
+            }
+        },
         less: {
             options: {
                 sourceMap: true
@@ -27,11 +33,26 @@ module.exports = function(grunt)
                     {
                         expand: true,
                         cwd: "src/",
-                        src: ["js/**", "libs/**","html/**", "fonts/**", "img/**","php/**", "index.html"],
+                        src: ["js/main.js", "libs/**","html/**", "fonts/**", "img/**","php/**", "index.html"],
                         dest: "www"
                     }
 
                 ]
+            }
+        },
+        uglify: {
+            options: {
+                sourceMapIncludeSources: true
+            },
+            development: {
+                options: {
+                    mangle: false,
+                    sourceMap: true,
+                    compress: false
+                },
+                files: {
+                    'www/js/modules.min.js': ['src/js/modules/*.js']
+                }
             }
         },
         mkdir: {
@@ -66,7 +87,7 @@ module.exports = function(grunt)
 
     });
 
-    grunt.registerTask("default", ["less", "copy:for_www", "mkdir", "watch"]);
-    grunt.registerTask("run", ["less", "copy:for_www", "mkdir", "watch"]);
+    grunt.registerTask("default", ["clean", "less", "copy:for_www", "mkdir", "uglify:development", "watch"]);
+    grunt.registerTask("run", ["clean", "less", "copy:for_www", "mkdir", "uglify:development", "watch"]);
 
 };
