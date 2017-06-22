@@ -155,6 +155,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             </div>
                         </div>
 
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -226,10 +227,10 @@ a clean and intuitive system to manage the monitors at CISPA">
 
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
-<script src="../js/dropzone.js"></script>
-<script src="../libs/bootstrap.js"></script>
 <script src="../libs/vendor/datetimer/moment.js"></script>
 <script src="../libs/vendor/datetimer/bootstrap-datetimepicker.min.js"></script>
+<script src="../libs/bootstrap.js"></script>
+<script src="../js/dropzone.js"></script>
 <script src="../js/attachModule.js"></script>
 <script src="../js/resourceModule.js"></script>
 <script src="../js/monitorModule.js"></script>

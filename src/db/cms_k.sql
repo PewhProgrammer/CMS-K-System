@@ -176,6 +176,7 @@ ALTER TABLE `monitorhasresource`
 ALTER TABLE `monitors`
   ADD PRIMARY KEY (`mID`);
 
+
 --
 -- Indizes für die Tabelle `resources`
 --

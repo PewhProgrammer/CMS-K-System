@@ -52,7 +52,7 @@
                     }
                 }
 
-                console.log(resourcesValIncluded);
+                //console.log(resourcesValIncluded);
 
                 //show/hide continue button
                 if (checked > 0) $("#continueConfig").prop('disabled', false);
@@ -93,7 +93,9 @@
                 }
             });
 
-            datepicker.datetimepicker();
+            datepicker.datetimepicker({
+                sideBySide: true
+            });
 
             datepicker.on("dp.change",function (e) { validateFormat();});
 
@@ -106,7 +108,7 @@
                 var inputValue = timeSpanText.val() ;
                 if(checkTimeFormat(inputValue)['status']){
                     endTime = checkTimeFormat(inputValue)['msg'];
-                    console.log(endTime);
+                    //console.log(endTime);
                     attachSubmit.prop('disabled',false);
                 }
                 else {
@@ -138,9 +140,9 @@
                 //date format
                 var dateFormated = date[2] + '-' +  date[0] + '-' + date[1] ;
 
-                console.log(date);
-                console.log(time);
-                console.log(whiteSplit[2]);
+                //console.log(date);
+                //console.log(time);
+                //console.log(whiteSplit[2]);
                 var until = dateFormated + ' ' + timeFormated;
                 return {
                     status:true,

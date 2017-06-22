@@ -126,8 +126,8 @@ a clean and intuitive system to manage the monitors at CISPA">
         <!-- Alerts -->
         <div class="alert alert-success" id="success-alert">
             <button type="button" class="close" data-dismiss="alert">x</button>
-            <h4 class="alert-heading">Success!</h4>
-            <p>The system has successfully changed the resource of the monitors</p>
+            <h4 class="alert-heading glyphicon glyphicon-ok"> Success!</h4>
+            <p>The system has updated the resource(s) of the monitor(s)</p>
         </div>
         <div class="alert alert-warning" id="warning-alert">
             <button type="button" class="close" data-dismiss="alert">x</button>
@@ -146,7 +146,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 <script src="../libs/vendor/datetimer/moment.js"></script>
 <script src="../libs/vendor/datetimer/bootstrap-datetimepicker.min.js"></script>
 <script src="../js/attachModule.js"></script>
-<!-- <script src="../js/resourceModule.js"></script> -->
+ <script src="../js/resourceModule.js"></script>
 <script src="../js/monitorModule.js"></script>
 <script src="../js/resFormModule.js"></script>
 <script src="../js/feedbackModule.js"></script>
