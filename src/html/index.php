@@ -4,6 +4,18 @@ require '../php/dbconnect.php';
 $query = new Query("SELECT * FROM monitors");
 $mon = $query->getQuery();
 
+$floorReq1 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 3");
+$groundFloor = $floorReq1->getQuery();
+
+$floorReq2 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 4");
+$firstFloor = $floorReq2->getQuery();
+
+$floorReq3 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 5");
+$secondFloor = $floorReq3->getQuery();
+
+$floorReq4 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6");
+$thirdFloor = $floorReq4->getQuery();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,23 +115,123 @@ a clean and intuitive system to manage the monitors at CISPA">
                 </div>
             </div>
             <!-- /.panel-heading -->
-
-            <form action="config.php" id="monitorForm">
+            <div id="monitorPanel" class="panel-body">
                 <h3>Select the monitor you want to change</h3>
-                <fieldset>
-                    <ul>
-                        <? while($row = $mon->fetch_assoc()){ ?>
-                        <li>
-                            <label class="monitor_overview">
-                                <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
-                                <i class="fa fa-television fa-4x" aria-hidden="true"></i><br><? echo $row["name"] ?>
-                            </label>
-                        </li>
-                        <?}?>
-                    </ul>
-                </fieldset>
-            </form>
+                <form action="config.php" id="monitorForm">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse1">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        Ground Floor</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <ul>
+                                            <? while($row = $groundFloor->fetch_assoc()){ ?>
+                                                <li>
+                                                    <label class="monitor_overview">
+                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
+                                                        <p><? echo $row["name"] ?></p>
+                                                    </label>
+                                                </li>
+                                            <?}?>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse2">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        1st Floor</a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <ul>
+                                            <? while($row = $firstFloor->fetch_assoc()){ ?>
+                                                <li>
+                                                    <label class="monitor_overview">
+                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
+                                                        <p><? echo $row["name"] ?></p>
+                                                    </label>
+                                                </li>
+                                            <?}?>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse3">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        2nd Floor</a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <ul>
+                                            <? while($row = $secondFloor->fetch_assoc()){ ?>
+                                                <li>
+                                                    <label class="monitor_overview">
+                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
+                                                        <p><? echo $row["name"] ?></p>
+                                                    </label>
+                                                </li>
+                                            <?}?>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse4">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        3rd Floor</a>
+                                </h4>
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <ul>
+                                            <? while($row = $thirdFloor->fetch_assoc()){ ?>
+                                                <li>
+                                                    <label class="monitor_overview">
+                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
+                                                        <p><? echo $row["name"] ?></p>
+                                                    </label>
+                                                </li>
+                                            <?}?>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div id="previewPanel" class="panel panel-default">
+                    <div class="panel-body">
+                        <h2>Details</h2>
 
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.panel-body -->
 
