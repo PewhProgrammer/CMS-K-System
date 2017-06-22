@@ -98,6 +98,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <i class="fa fa-file-word-o" style="font-size: 2em;"></i>
                                     <? } else if($row["type"] == "image") {?>
                                         <i class="fa fa-file-picture-o" style="font-size: 2em;"></i>
+                                    <? } else {?>
+                                        <i class="fa fa-file-o" style="font-size: 2em;"></i>
                                     <? } ?>
                                     <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
                                            value="<? echo $row["name"] ?>">

@@ -21,19 +21,34 @@
             base.el = el;
             base.$el = jQuery(el);
 
+            var selected = 0;
+
             base.$el.find(".monitor_overview").each(function () {
-                if ($(this).find("input").is(":checked"))
+                if ($(this).find("input").is(":checked")) {
                     $(this).css({"border-color": "#333333"});
+                    selected++;
+                }
             });
 
             base.$el.find(".monitor_overview").click(function () {
                 if ($(this).find("input").is(":checked")) {
                     $(this).css({"border-color": "#333333"});
+                    selected++;
+                    console.log(selected);
                 } else {
                     $(this).css({"border-color": "transparent"});
+                    selected--;
+                    console.log(selected);
                 }
             });
 
+            base.$el.find("a").click(function () {
+                if($(this).find("i").hasClass("fa-angle-down")) {
+                    $(this).find("i").removeClass("fa-angle-down").addClass("fa-angle-right");
+                } else {
+                    $(this).find("i").removeClass("fa-angle-right").addClass("fa-angle-down");
+                }
+            });
         };
         // call init method
         base.init();

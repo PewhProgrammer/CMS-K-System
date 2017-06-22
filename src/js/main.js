@@ -1,4 +1,4 @@
-$("#uploadModal").resourceModule();
+//$("#uploadModal").resourceModule();
 
 $(document).ready(function()
 {
