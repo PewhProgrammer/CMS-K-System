@@ -1,3 +1,5 @@
+$("#uploadModal").resourceModule();
+
 $(document).ready(function()
 {
     $(".page-header").globalModule();
@@ -6,6 +8,6 @@ $(document).ready(function()
     $("#monitorForm").monitorModule();
     $("#resForm").resFormModule();
     $(".nav").feedbackModule();
-    //$("#uploadModal").resourceModule();
+
     console.log("Running");
 });
