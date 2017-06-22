@@ -138,7 +138,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <div id="modalResourceList">
                         </div>
 
-                        <hr style="width:50%;border-width:0.1em;border-color:black">
+                        <hr style="width:50%;border-width:0.1em;border-color:grey">
                         <div class="container">
                             <div class="row">
                                 <div class='col-sm-6'>
@@ -186,8 +186,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                 <span class="caret"></span>
                             </button>
                             <ul id="fileTypeDrop" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a>PDF</a></li>
-                                <li><a href="#">Image</a></li>
+                                <li><a>PDF / Image</a></li>
                                 <li><a href="#">Website</a></li>
                                 <li><a href="#">RSS Feed</a></li>
                             </ul>
@@ -229,17 +228,10 @@ a clean and intuitive system to manage the monitors at CISPA">
 
 <!-- Main JS Script -->
 <script src="../libs/jquery-3.2.1.js"></script>
-<script src="../js/dropzone.js"></script>
-<script src="../libs/bootstrap.js"></script>
 <script src="../libs/vendor/datetimer/moment.js"></script>
 <script src="../libs/vendor/datetimer/bootstrap-datetimepicker.min.js"></script>
-<script src="../js/attachModule.js"></script>
-<script src="../js/resourceModule.js"></script>
-<script src="../js/monitorModule.js"></script>
-<script src="../js/resFormModule.js"></script>
-<script src="../js/feedbackModule.js"></script>
-<script src="../js/exampleModule.js"></script>
-<script src="../js/globalModule.js"></script>
+<script src="../libs/bootstrap.js"></script>
+<script src="../js/modules.min.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>
