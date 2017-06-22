@@ -102,7 +102,9 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
                                            value="<? echo $row["name"] ?>">
                                     <? echo $row["name"] ?>
+
                                 </label>
+                                <i class="fa fa-trash-o"></i>
                             </li>
                         <? } ?>
                     </ul>

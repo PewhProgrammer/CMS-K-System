@@ -21,11 +21,12 @@
             base.el = el;
             base.$el = jQuery(el);
 
+            /*
             base.$el.find(".k-selectable").each(function () {
                 if ($(this).find("input").is(":checked"))
                     $(this).css({"border-color": "#333333"});
             });
-
+*/
             base.$el.find(".k-selectable").click(function () {
                 if ($(this).find("input").is(":checked")) {
                     $(this).css({"border-color": "#333333"});

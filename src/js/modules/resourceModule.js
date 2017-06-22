@@ -51,7 +51,11 @@
                 }
             };
 
-            $("#fileTypeDrop li").click(function(){
+            base.$el.find(".fa-trash-o").click(function() {
+                console.log("deleting: " + this);
+            });
+
+            $("#fileTypeDrop label").click(function(){
                 $("#warning").hide();
                 fileType = $(this).index();
                 console.log("index : " + fileType);

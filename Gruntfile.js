@@ -81,7 +81,7 @@ module.exports = function(grunt)
                     'src/js/**',
                     'src/php/**'
                 ],
-                tasks:['copy:for_www']
+                tasks:['copy:for_www', "uglify"]
             }
         }
 
