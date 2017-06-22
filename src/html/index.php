@@ -146,15 +146,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 <script src="../libs/bootstrap.js"></script>
 <script src="../libs/vendor/datetimer/moment.js"></script>
 <script src="../libs/vendor/datetimer/bootstrap-datetimepicker.min.js"></script>
-<script src="../js/attachModule.js"></script>
- <script src="../js/resourceModule.js"></script>
-<script src="../js/monitorModule.js"></script>
-<script src="../js/resFormModule.js"></script>
-<script src="../js/feedbackModule.js"></script>
-<script src="../js/exampleModule.js"></script>
-<script src="../js/globalModule.js"></script>
-<script src="../js/dropzone.js"></script>
 <script src="../js/modules.min.js"></script>
 <script src="../js/main.js"></script>
 </body>
-</html>
+</html>J
