@@ -35,6 +35,21 @@
                 }
             });
 
+
+            base.$el.find(".fa-trash-o").click(function() {
+                console.log("deleting: " + $(this).data("id"));
+
+                $.post('../php/delete.php', {
+                    id: $(this).data("id")
+                }).done(function (data) {
+                    $("#successInput").text('Deleted');
+                    $("#success").show();
+                }).fail(function () {
+
+                });
+
+            });
+
         };
         // call init method
         base.init();
