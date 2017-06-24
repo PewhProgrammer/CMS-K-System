@@ -32,8 +32,6 @@
                 }
             });
 
-            console.log("Found " + monitors + " monitors.");
-
             for(var i=0; i < monitors; i++) {
                 $("#monInput-"+i).change(function() {
                     if (this.checked) {

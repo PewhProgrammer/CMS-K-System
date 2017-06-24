@@ -40,8 +40,11 @@ CREATE TABLE IF NOT EXISTS `labels` (
 
 INSERT INTO `labels` (`lID`, `name`, `custom`) VALUES
 (1, 'horizontal', 0),
-(2, 'vertical', 0);
-
+(2, 'vertical', 0),
+(3, 'ground floor', 0),
+(4, '1st floor', 0),
+(5, '2nd floor', 0),
+(6, '3rd floor', 0);
 -- --------------------------------------------------------
 
 --
@@ -61,7 +64,11 @@ INSERT INTO `monitorhaslabel` (`mID`, `lID`) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
-(4, 1);
+(4, 1),
+(1, 3),
+(2, 4),
+(3, 5),
+(4, 6);
 
 -- --------------------------------------------------------
 
