@@ -98,6 +98,9 @@
                 $(".monLi").hide();
                 $("."+$(this).text()).show();
             });
+            $("#filterAll").on("click" ,function(){
+                $(".monLi").show();
+            });
         };
         // call init method
         base.init();

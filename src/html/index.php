@@ -116,7 +116,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="#">Filter</a></li>
+                            <li><a id="filterAll" href="#">Show all</a></li>
                             <li class="divider"></li>
                             <? while($row = $label->fetch_assoc()){ ?>
                                 <li>
