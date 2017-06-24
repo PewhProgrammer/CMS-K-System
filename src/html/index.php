@@ -93,10 +93,12 @@ a clean and intuitive system to manage the monitors at CISPA">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> All monitors in the CISPA building
-                <div class="pull-right">
-                    <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
-                        <i class="fa fa-pencil" aria-hidden="true">  Continue</i>
-                    </button>
+            </div>
+            <!-- /.panel-heading -->
+            <div id="monitorPanel" class="panel-body">
+                <? $countMonitors = 0; ?>
+                <div id="headingDiv">
+                    <h3>Select the monitor you want to change</h3>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                             Filter
@@ -107,16 +109,12 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <li class="divider"></li>
                             <li><a href="#">1st floor</a>
                             </li><li><a href="#">2nd floor</a>
-                        </li>
+                            </li>
                             <li><a href="#">3rd floor</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </div>
-            <!-- /.panel-heading -->
-            <div id="monitorPanel" class="panel-body">
-                <h3>Select the monitor you want to change</h3>
                 <form action="config.php" id="monitorForm">
                     <div class="panel-group">
                         <div class="panel panel-default">
@@ -134,12 +132,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <? while($row = $groundFloor->fetch_assoc()){ ?>
                                                 <li>
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
-                                                </li>
-                                            <?}?>
+                                                </li> <?
+                                                $countMonitors++;
+                                            }?>
                                         </ul>
                                     </fieldset>
                                 </div>
@@ -160,12 +159,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <? while($row = $firstFloor->fetch_assoc()){ ?>
                                                 <li>
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
-                                                </li>
-                                            <?}?>
+                                                </li><?
+                                                $countMonitors++;
+                                            }?>
                                         </ul>
                                     </fieldset>
                                 </div>
@@ -186,12 +186,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <? while($row = $secondFloor->fetch_assoc()){ ?>
                                                 <li>
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
-                                                </li>
-                                            <?}?>
+                                                </li><?
+                                                $countMonitors++;
+                                            }?>
                                         </ul>
                                     </fieldset>
                                 </div>
@@ -212,12 +213,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <? while($row = $thirdFloor->fetch_assoc()){ ?>
                                                 <li>
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>">
+                                                        <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
-                                                </li>
-                                            <?}?>
+                                                </li><?
+                                                $countMonitors++;
+                                            }?>
                                         </ul>
                                     </fieldset>
                                 </div>
@@ -228,7 +230,9 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <div id="previewPanel" class="panel panel-default">
                     <div class="panel-body">
                         <h2>Details</h2>
-
+                        <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
+                            <i class="fa fa-pencil" aria-hidden="true">  Continue</i>
+                        </button>
                     </div>
                 </div>
             </div>
