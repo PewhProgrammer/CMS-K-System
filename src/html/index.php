@@ -148,7 +148,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 <li class="monLi groundFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li> <?
@@ -178,7 +178,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <li class="monLi firstFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li><?
@@ -208,7 +208,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <li class="monLi secondFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li><?
@@ -238,7 +238,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <li class="monLi thirdFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li><?

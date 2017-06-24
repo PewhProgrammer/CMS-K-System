@@ -12,9 +12,11 @@
     li {
       list-style-type: none;
       float: left;
-      margin-right: 70px;
+      margin-right: 3em;
+      margin-bottom: 2em;
       label {
         cursor: pointer;
+        height: 9em;
       }
     }
   }
@@ -26,7 +28,13 @@
   border: 2px solid transparent;
   border-radius: 5px;
   input[type=checkbox] {
-    opacity: 0;
+    //opacity: 0;
+    display: none;
+  }
+  .fa-television{
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
   }
 }
 
@@ -41,10 +49,10 @@
 
 label > p {
   width: 11em;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-align: center;
+  //white-space: nowrap;
+  //overflow: hidden;
+  //text-overflow: ellipsis;
 }
 
 #monitorPanel {
