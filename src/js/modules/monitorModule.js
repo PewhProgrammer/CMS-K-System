@@ -21,26 +21,41 @@
             base.el = el;
             base.$el = jQuery(el);
 
+            var monitors = 0;
             var selected = 0;
 
             base.$el.find(".monitor_overview").each(function () {
+                monitors++;
                 if ($(this).find("input").is(":checked")) {
                     $(this).css({"border-color": "#333333"});
                     selected++;
                 }
             });
 
-            base.$el.find(".monitor_overview").click(function () {
-                if ($(this).find("input").is(":checked")) {
-                    $(this).css({"border-color": "#333333"});
-                    selected++;
-                    console.log(selected);
-                } else {
-                    $(this).css({"border-color": "transparent"});
-                    selected--;
-                    console.log(selected);
-                }
-            });
+            console.log("Found " + monitors + " monitors.");
+
+            for(var i=0; i < monitors; i++) {
+                $("#monInput-"+i).change(function() {
+                    if (this.checked) {
+                        $(this).parent().css({"border-color": "#333333"});
+                        selected++;
+                    } else {
+                        $(this).parent().css({"border-color": "transparent"});
+                        selected--;
+                    }
+
+                    if (selected === 0) {
+                        $("#previewPanel").fadeOut();
+                        $("#monitorForm").delay(300).animate({width: "100%"});
+                    } else if (selected === 1) {
+                        $("#monitorForm").animate({width: "66%"});
+                        $("#previewPanel").delay(300).fadeIn();
+                        // add details for monitor preview here
+                    } else {
+                        // add details for multiple monitor preview here
+                    }
+                });
+            }
 
             base.$el.find("a").click(function () {
                 if($(this).find("i").hasClass("fa-angle-down")) {
