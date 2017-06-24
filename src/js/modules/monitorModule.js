@@ -64,6 +64,14 @@
                     $(this).find("i").removeClass("fa-angle-right").addClass("fa-angle-down");
                 }
             });
+
+            $("#selectAll").on("click",function(){
+                $(".monitor_overview input").each(function () {
+                    this.prop('checked',true);
+                    console.log("checked");
+                });
+            });
+
         };
         // call init method
         base.init();
