@@ -4,18 +4,8 @@ require 'dbconnect.php';
 $target_dir = "../uploads/";
 $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
 $uploadOk = 1;
-$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-if (isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["userfile"]["tmp_name"]);
-    if ($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-}
+$fileType = pathinfo($target_file, PATHINFO_EXTENSION);
+/*
 // Check if file already exists
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
@@ -27,12 +17,14 @@ if ($_FILES["userfile"]["size"] > 500000) {
     $uploadOk = 0;
 }
 // Allow certain file formats
-if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif"  && $imageFileType != "pdf"
+
+if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
+    && $fileType != "gif"  && $fileType != "pdf"
 ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    echo "Sorry, only JPG, JPEG, PNG, GIF and PDF files are allowed.";
     $uploadOk = 0;
 }
+*/
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
@@ -42,14 +34,17 @@ if ($uploadOk == 0) {
         echo "The file " . basename($_FILES["userfile"]["name"]) . " has been uploaded.";
 
         $name = $_FILES["userfile"]["name"];
+        $type = "";
 
-        if ($imageFileType == 'pdf') {
-            $fileType = 'pdf';
+        if ($fileType == 'pdf') {
+            $type = 'pdf';
         } else {
-            $fileType = 'image';
+            $type = 'image';
         }
 
-        $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $name . "', '" . $fileType . "', '" . $name . "')");
+        $path = $target_dir.$name;
+
+        $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $name . "', '" . $fileType . "', '" . $path . "')");
         $db = $query->getQuery();
 
     } else {

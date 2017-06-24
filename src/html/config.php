@@ -86,7 +86,7 @@ a clean and intuitive system to manage the monitors at CISPA">
             <i class="fa fa-television fa-4x" aria-hidden="true"></i>
             <p id="chosenMonitor"></p>
             <form action="#" id="resForm">
-                <h3 id="penis">Select the resource you want to attach to the monitor</h3>
+                <h3>Select the resource you want to attach to the monitor</h3>
                 <fieldset>
                     <ul id="ressourceList">
                         <? while ($row = $res->fetch_assoc()) { ?>

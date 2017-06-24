@@ -86,23 +86,27 @@
                 }
 
                 var resourceResponse = $("#url").val();
-                if(fileType > 0 && resourceResponse.length < 1){
-                    $("#warningInput").text('Please enter an URL');
-                    $("#warning").show();
-                }
-                else {
-                    $.post('../php/add.php', {
-                        name: resourceResponse,
-                        type: (fileType === 1) ? 'website' : 'rss',
-                        path: resourceResponse
-                    }).done(function (data) {
-                        base.$urlForm.hide();
-                        $("#successInput").text('Entry successful');
-                        $("#success").show();
-                    }).fail(function () {
+                if(fileType > 0){
+                    if (resourceResponse.length < 1){
+                        $("#warningInput").text('Please enter an URL');
+                        $("#warning").show();
+                    }
+                    else {
+                        $.post('../php/add.php', {
+                            name: resourceResponse,
+                            type: (fileType === 1) ? 'website' : 'rss',
+                            path: resourceResponse
+                        }).done(function (data) {
+                            base.$urlForm.hide();
+                            $("#successInput").text('Entry successful');
+                            $("#success").show();
+                        }).fail(function () {
 
                         });
+                    }
+
                 }
+
 /*
                 if(checkURL(resourceResponse)){
                     console.log("Response: " + resourceResponse);
