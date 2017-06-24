@@ -130,7 +130,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             </div>
                             <div id="collapse1" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <fieldset>
+                                    <fieldset class="monFieldset">
                                         <ul>
                                             <? while($row = $groundFloor->fetch_assoc()){ ?>
                                                 <li>
@@ -157,7 +157,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             </div>
                             <div id="collapse2" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <fieldset>
+                                    <fieldset class="monFieldset">
                                         <ul>
                                             <? while($row = $firstFloor->fetch_assoc()){ ?>
                                                 <li>
@@ -184,7 +184,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             </div>
                             <div id="collapse3" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <fieldset>
+                                    <fieldset class="monFieldset">
                                         <ul>
                                             <? while($row = $secondFloor->fetch_assoc()){ ?>
                                                 <li>
@@ -211,7 +211,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             </div>
                             <div id="collapse4" class="panel-collapse collapse in">
                                 <div class="panel-body">
-                                    <fieldset>
+                                    <fieldset class="monFieldset">
                                         <ul>
                                             <? while($row = $thirdFloor->fetch_assoc()){ ?>
                                                 <li>

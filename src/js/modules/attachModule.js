@@ -35,7 +35,7 @@
             var attachSubmit = $('#attachSubmit') ;
             $('#chosenMonitor').text("You have chosen monitors " + monitors);
             var endTime = '2030-06-13 19:30:11'; //default indefinitely
-            $("#ressourceList li input").change(function () {
+            $("#resourceTable ").find("input").change(function () {
                 var dbId = this.id.substring(4, 5);
                 if (this.checked) {
                     checked++;
@@ -54,9 +54,6 @@
 
                 //console.log(resourcesValIncluded);
 
-                //show/hide continue button
-                if (checked > 0) $("#continueConfig").prop('disabled', false);
-                else $("#continueConfig").prop('disabled', true);
             });
 
             $("#continueConfig").on("click", function () {
