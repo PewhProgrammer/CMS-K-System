@@ -45,10 +45,10 @@
 
                     if (selected === 0) {
                         $("#previewPanel").fadeOut();
-                        $("#monitorForm").delay(300).animate({width: "100%"});
+                        $("#monitorForm").delay(400).animate({width: "100%"});
                     } else if (selected === 1) {
                         $("#monitorForm").animate({width: "66%"});
-                        $("#previewPanel").delay(300).fadeIn();
+                        $("#previewPanel").delay(400).fadeIn();
                         // add details for monitor preview here
                     } else {
                         // add details for multiple monitor preview here

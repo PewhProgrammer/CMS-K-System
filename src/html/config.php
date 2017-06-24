@@ -58,7 +58,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <a href="index.php"><i class="fa fa-television fa-fw"></i> Monitor Overview</a>
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-folder fa-fw"></i> Resource Overview</a>
+                        <a href="config.php"><i class="fa fa-folder fa-fw"></i> Resource Overview</a>
                     </li>
 
 
@@ -80,39 +80,74 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                Choose resource to add
+                Choose resource(s) to add
             </div>
             <!-- /.panel-heading -->
-            <i class="fa fa-television fa-4x" aria-hidden="true"></i>
-            <p id="chosenMonitor"></p>
-            <form action="#" id="resForm">
-                <h3>Select the resource you want to attach to the monitor</h3>
-                <fieldset>
-                    <ul id="ressourceList">
-                        <? while ($row = $res->fetch_assoc()) { ?>
-                            <li>
-                                <label class="k-selectable">
-                                    <? if($row["type"] == "pdf") { ?>
-                                        <i class="fa fa-file-pdf-o" style="font-size: 2em;"></i>
-                                    <? } else if($row["type"] == "website") {?>
-                                        <i class="fa fa-file-word-o" style="font-size: 2em;"></i>
-                                    <? } else if($row["type"] == "image") {?>
-                                        <i class="fa fa-file-picture-o" style="font-size: 2em;"></i>
-                                    <? } else {?>
-                                        <i class="fa fa-file-o" style="font-size: 2em;"></i>
+            <div id="resourcePanel" class="panel-body">
+                <i class="fa fa-television fa-4x" aria-hidden="true"></i>
+                <p id="chosenMonitor"></p>
+                <form action="#" id="resForm">
+                    <div class="panel panel-default" id="tablePanel">
+                        <div class="panel-body">
+                            <h3 id="penis">Select the resource you want to attach to the monitor</h3>
+                            <fieldset>
+                                <table class="table table-condensed" id="resourceTable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Filename
+                                                <i class="fa fa-angle-down" aria-hidden="true" id="sortNameDown"></i>
+                                                <i class="fa fa-angle-up" aria-hidden="true" id="sortNameUp"></i>
+                                            </th>
+                                            <th>
+                                                Type
+                                                <i class="fa fa-angle-down" aria-hidden="true" id="sortTypeDown"></i>
+                                                <i class="fa fa-angle-up" aria-hidden="true" id="sortTypeUp"></i>
+                                            </th>
+                                            <th>
+                                                Delete
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <? while ($row = $res->fetch_assoc()) { ?>
+                                    <tr>
+                                        <td>
+                                            <label class="k-selectable resLabels">
+                                                <? if($row["type"] == "pdf") { ?>
+                                                    <i class="fa fa-file-pdf-o"></i>
+                                                <? } else if($row["type"] == "website") {?>
+                                                    <i class="fa fa-file-word-o"></i>
+                                                <? } else if($row["type"] == "image") {?>
+                                                    <i class="fa fa-file-picture-o"></i>
+                                                <? } else {?>
+                                                    <i class="fa fa-file-o"></i>
+                                                <? } ?>
+                                                <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
+                                                       value="<? echo $row["name"] ?>">
+                                                <p><? echo $row["name"] ?></p>
+                                            </label>
+                                        </td>
+                                        <td><? echo $row["type"] ?></td>
+                                        <td> <i class="fa fa-trash-o" data-id="<? echo $row["rID"] ?>"></i></td>
+                                    </tr>
                                     <? } ?>
-                                    <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
-                                           value="<? echo $row["name"] ?>">
-                                    <? echo $row["name"] ?>
-
-                                </label>
-                                <i class="fa fa-trash-o" data-id="<? echo $row["rID"] ?>"></i>
-                            </li>
-                        <? } ?>
-                    </ul>
-                </fieldset>
-            </form>
-
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+                <div id="previewPanel" class="panel panel-default">
+                    <div class="panel-body">
+                        <h2>Preview</h2>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"
+                                id="continueConfig">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.panel-body -->
 
@@ -120,10 +155,6 @@ a clean and intuitive system to manage the monitors at CISPA">
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadModal"
                 id="addResource">
             Add new resource
-        </button>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"
-                id="continueConfig" disabled="disabled">
-            Continue
         </button>
 
         <!-- Confirmation Modal -->
