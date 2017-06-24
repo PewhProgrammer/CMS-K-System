@@ -23,7 +23,8 @@
 
             var monitors = 0;
             var selected = 0;
-            var selectAllTrigger = true;
+            var deselectTrigger = false;
+            var selectTrigger = false;
 
             base.$el.find(".monitor_overview").each(function () {
                 monitors++;
@@ -33,15 +34,22 @@
                 }
             });
 
-            for(var i=0; i < monitors; i++) {
+            for(var i=2; i <= (monitors+1); i++) {
                 $("#monInput-"+i).change(function() {
                     if (this.checked) {
                         $(this).parent().css({"border-color": "#333333"});
                         selected++;
+                        console.log
+                        if(monitors === selected && !selectTrigger) $("#selectAllDescription").text(" Deselect All");
+                        else $("#selectAllDescription").text(" Select All");
                     } else {
                         $(this).parent().css({"border-color": "transparent"});
                         selected--;
+                        if(!deselectTrigger)
+                        $("#selectAllDescription").text(" Select All");
                     }
+
+                    //console.log("checked: " + selected + " monitors: " +monitors);
 
                     if (selected === 0) {
                         $("#previewPanel").fadeOut();
@@ -64,13 +72,29 @@
                 }
             });
 
+            //SELECTING/DESELECTING ALL MONITORS
             $("#selectAll").on("click",function(){
-                $(".monitor_overview input").each(function () {
-                    $(this).trigger('click');
+                $(".monitor_overview input").each(function (index) {
+                    var select = $("#selectAllDescription");
+                    if(select.text() === " Deselect All"){
+                        deselectTrigger = true;
+                        $(this).trigger('click');
+                    } else {
+                        selectTrigger = true;
+                        console.log("checked");
+                        if(!$(this).is(":checked")) $(this).trigger('click');
+                    }
+                    console.log("triggered:" + selected);
+                    if(selected === 0){
+                        console.log("put");
+                        deselectTrigger = false;
+                        select.text(" Select All");
+                    }
+                    if(index === (monitors-1) && selectTrigger) {
+                        selectTrigger = false;
+                        select.text(" Deselect All");
+                    }
                 });
-                if(selectAllTrigger) $("#selectAllDescription").text(" Deselect All");
-                else $("#selectAllDescription").text(" Select All");
-                selectAllTrigger = !selectAllTrigger;
             });
 
             //FILTERING OF ALL LABELS
