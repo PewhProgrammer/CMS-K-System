@@ -93,8 +93,11 @@
                 }
             });
 
+            var dateNow = new Date();
+            
             datepicker.datetimepicker({
-                sideBySide: true
+                sideBySide: true,
+                minDate: dateNow
             });
 
             datepicker.on("dp.change",function (e) { validateFormat();});

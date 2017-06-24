@@ -66,17 +66,18 @@
 
             $("#selectAll").on("click",function(){
                 $(".monitor_overview input").each(function () {
-                    //this.trigger('click');
                     $(this).trigger('click');
-                    //console.log(this);
                 });
                 if(selectAllTrigger) $("#selectAllDescription").text(" Deselect All");
                 else $("#selectAllDescription").text(" Select All");
-
                 selectAllTrigger = !selectAllTrigger;
-                console.log(selectAllTrigger);
             });
 
+            //FILTERING OF ALL LABELS
+            $(".filter").on("click" ,function(){
+                $(".monLi").hide();
+                $("."+$(this).text()).show();
+            });
         };
         // call init method
         base.init();

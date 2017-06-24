@@ -16,6 +16,14 @@ $secondFloor = $floorReq3->getQuery();
 $floorReq4 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6");
 $thirdFloor = $floorReq4->getQuery();
 
+//Retrieves all possible labels
+$labelQuery = new Query("SELECT * FROM labels WHERE lID < 3 || lID > 6");
+$label = $labelQuery->getQuery();
+
+//contains all monitors with labels
+$monClassQuery = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel");
+$monClass = $monClassQuery->getQuery();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,13 +116,14 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="#">Location</a></li>
+                            <li><a href="#">Filter</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">1st floor</a>
-                            </li><li><a href="#">2nd floor</a>
-                            </li>
-                            <li><a href="#">3rd floor</a>
-                            </li>
+                            <? while($row = $label->fetch_assoc()){ ?>
+                                <li>
+                                <a class="filter" id="filterLabel-<? echo $row["lID"] ?>"><? echo $row["name"] ?></a>
+                                </li> <?
+                                $countMonitors++;
+                            }?>
                         </ul>
                     </div>
                 </div>
@@ -133,7 +142,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <fieldset>
                                         <ul>
                                             <? while($row = $groundFloor->fetch_assoc()){ ?>
-                                                <li>
+                                               <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
+                                                    "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
+                                                $monClass = $monClassQuery->getQuery(); ?>
+                                                <li class="monLi groundFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
@@ -160,7 +172,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <fieldset>
                                         <ul>
                                             <? while($row = $firstFloor->fetch_assoc()){ ?>
-                                                <li>
+                                                <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
+                                                    "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
+                                                $monClass = $monClassQuery->getQuery(); ?>
+                                            <li class="monLi firstFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
@@ -187,7 +202,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <fieldset>
                                         <ul>
                                             <? while($row = $secondFloor->fetch_assoc()){ ?>
-                                                <li>
+                                                <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
+                                                    "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
+                                                $monClass = $monClassQuery->getQuery(); ?>
+                                            <li class="monLi secondFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
@@ -214,7 +232,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <fieldset>
                                         <ul>
                                             <? while($row = $thirdFloor->fetch_assoc()){ ?>
-                                                <li>
+                                                <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
+                                                    "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
+                                                $monClass = $monClassQuery->getQuery(); ?>
+                                            <li class="monLi thirdFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="monitor" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i><br>
