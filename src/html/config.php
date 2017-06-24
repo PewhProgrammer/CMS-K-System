@@ -58,7 +58,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <a href="index.php"><i class="fa fa-television fa-fw"></i> Monitor Overview</a>
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-folder fa-fw"></i> Resource Overview</a>
+                        <a href="config.php"><i class="fa fa-folder fa-fw"></i> Resource Overview</a>
                     </li>
 
 

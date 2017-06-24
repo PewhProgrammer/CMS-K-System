@@ -27,7 +27,7 @@
             var url = "../php/attach.php";
             var ressourcesIncluded = [];
             var resourcesValIncluded = [];
-            var monitors = $.getParameterByName('monitor');
+            var monitors = $.getParameterByName('m');
             var timeSpanCheck = $('#timeSpanCheck');
             var timeSpan ;
             var datepicker = $("#datetimepicker1") ;
