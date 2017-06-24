@@ -8,13 +8,16 @@ if (isset($_POST["id"])) {
     $query = new Query("SELECT * FROM resources WHERE rID=" . $_POST["id"]);
     $res = $query->getQuery();
 
-    if ($res->type == "pdf" || $res->type == "image"){ //delete also files from server
+    while ($row = $res->fetch_assoc()) {
+
+        if ($row["type"] == "pdf" || $row["type"] == "image"){ //delete also files from server
+            unlink($row["data"]);
+        }
+
+        $query = new Query("DELETE FROM resources WHERE rID=" . $_POST["id"]);
+        $db = $query->executeQuery();
 
     }
-
-    $query = new Query("DELETE FROM resources WHERE rID=" . $_POST["id"]);
-    $db = $query->executeQuery();
-
 
 }
 else
