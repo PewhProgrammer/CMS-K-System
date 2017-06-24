@@ -23,6 +23,7 @@
 
             var monitors = 0;
             var selected = 0;
+            var selectAllTrigger = true;
 
             base.$el.find(".monitor_overview").each(function () {
                 monitors++;
@@ -65,9 +66,15 @@
 
             $("#selectAll").on("click",function(){
                 $(".monitor_overview input").each(function () {
-                    this.prop('checked',true);
-                    console.log("checked");
+                    //this.trigger('click');
+                    $(this).trigger('click');
+                    //console.log(this);
                 });
+                if(selectAllTrigger) $("#selectAllDescription").text(" Deselect All");
+                else $("#selectAllDescription").text(" Select All");
+
+                selectAllTrigger = !selectAllTrigger;
+                console.log(selectAllTrigger);
             });
 
         };

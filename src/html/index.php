@@ -50,7 +50,7 @@ a clean and intuitive system to manage the monitors at CISPA">
         <ul class="nav navbar-top-links navbar-right">
             <!-- right nav header content -->
             <button id="selectAll" type="submit" class="btn btn-large btn-primary logout">
-                <i class="fa fa-pencil" aria-hidden="true">  Select all</i>
+                <i id="selectAllDescription" class="fa fa-pencil" aria-hidden="true">  Select all</i>
             </button>
         </ul>
 
