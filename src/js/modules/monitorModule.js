@@ -39,7 +39,6 @@
                     if (this.checked) {
                         $(this).parent().css({"border-color": "#333333"});
                         selected++;
-                        console.log
                         if(monitors === selected && !selectTrigger) $("#selectAllDescription").text(" Deselect All");
                         else $("#selectAllDescription").text(" Select All");
                     } else {
@@ -81,12 +80,9 @@
                         $(this).trigger('click');
                     } else {
                         selectTrigger = true;
-                        console.log("checked");
                         if(!$(this).is(":checked")) $(this).trigger('click');
                     }
-                    console.log("triggered:" + selected);
                     if(selected === 0){
-                        console.log("put");
                         deselectTrigger = false;
                         select.text(" Select All");
                     }
