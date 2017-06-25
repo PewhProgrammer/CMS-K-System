@@ -4,6 +4,9 @@ require '../php/dbconnect.php';
 $query = new Query("SELECT * FROM resources");
 $res = $query->getQuery();
 
+$monitorsQuery = new Query("SELECT * FROM monitors");
+$monitors = $monitorsQuery->getQuery();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,13 +82,11 @@ a clean and intuitive system to manage the monitors at CISPA">
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading attachModule">
                 Choose resource(s) to add
             </div>
             <!-- /.panel-heading -->
             <div id="resourcePanel" class="panel-body">
-                <i class="fa fa-television fa-4x" aria-hidden="true"></i>
-                <p id="chosenMonitor"></p>
                 <form action="#" id="resForm">
                     <div class="panel panel-default" id="tablePanel">
                         <div class="panel-body">
@@ -142,6 +143,11 @@ a clean and intuitive system to manage the monitors at CISPA">
                 </form>
                 <div id="previewPanel" class="panel panel-default">
                     <div class="panel-body">
+                        <h2>Selected Monitors:</h2>
+                            <? while($row = $monitors->fetch_assoc()){ ?>
+                        <span style="display:none" class="selectedMonitor <? echo $row["mID"] ?>" ><? echo $row["name"] ?>, </span>
+                        <? $countMonitors++; }?>
+
                         <h2>Preview</h2>
                         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"
                                 id="continueConfig">
@@ -173,7 +179,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <div id="modalResourceList">
                         </div>
 
-                        <hr style="width:50%;border-width:0.1em;border-color:grey">
+                        <hr style="width:65%;border-width:0.1em;border-color:grey">
                         <div class="container">
                             <div class="row">
                                 <div class='col-sm-6'>

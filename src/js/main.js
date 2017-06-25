@@ -4,7 +4,7 @@ $(document).ready(function()
 {
     $(".page-header").globalModule();
     $(".page-header").exampleModule();
-    $(".page-header").attachModule();
+    $(".attachModule").attachModule();
     $("#monitorForm").monitorModule();
     $("#resForm").resFormModule();
     $(".nav").feedbackModule();

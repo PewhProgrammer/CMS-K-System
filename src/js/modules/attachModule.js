@@ -27,13 +27,12 @@
             var url = "../php/attach.php";
             var ressourcesIncluded = [];
             var resourcesValIncluded = [];
-            var monitors = $.getParameterByName('m');
+            var monitors = "" + $.getParameterByName('m');
             var timeSpanCheck = $('#timeSpanCheck');
             var timeSpan ;
             var datepicker = $("#datetimepicker1") ;
             var timeSpanText = $('#timeSpanText') ;
             var attachSubmit = $('#attachSubmit') ;
-            $('#chosenMonitor').text("You have chosen monitors " + monitors);
             var endTime = '2030-06-13 19:30:11'; //default indefinitely
             $("#resourceTable ").find("input").change(function () {
                 var dbId = this.id.substring(4, 5);
@@ -51,9 +50,13 @@
                         ressourcesIncluded.splice(index, 1);
                     }
                 }
+            });
 
-                //console.log(resourcesValIncluded);
-
+            var monArray = monitors.split(",");
+            console.log(monArray);
+            $.each(monArray,function(index,value){
+               console.log( index + ": " + value );
+               $(".selectedMonitor."+value).show();
             });
 
             $("#continueConfig").on("click", function () {
@@ -62,7 +65,7 @@
                 for (var i = 0; i < resourcesValIncluded.length; i++) {
                     modalResourceList.append('<br>');
                     modalResourceList.append('<i class="fa fa-check" aria-hidden="true" style="color:green"></i>' +
-                        '<i style="font-weight:500;padding-left:2.5em; display: inline-block;">' +
+                        '<i style="font-weight:600;padding-left:1.5em; display: inline-block;">' +
                         resourcesValIncluded[i] + '</i>');
                 }
             });
