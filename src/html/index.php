@@ -17,7 +17,7 @@ $floorReq4 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHER
 $thirdFloor = $floorReq4->getQuery();
 
 //Retrieves all possible labels
-$labelQuery = new Query("SELECT * FROM labels WHERE lID < 3 || lID > 6");
+$labelQuery = new Query("SELECT * FROM labels ");
 $label = $labelQuery->getQuery();
 
 //contains all monitors with labels
@@ -145,7 +145,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
                                                     "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                 $monClass = $monClassQuery->getQuery(); ?>
-                                                <li class="monLi groundFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                                <li class="monLi Ground Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i>
@@ -175,7 +175,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
                                                     "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                 $monClass = $monClassQuery->getQuery(); ?>
-                                            <li class="monLi firstFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                            <li class="monLi 1st Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i>
@@ -205,7 +205,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
                                                     "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                 $monClass = $monClassQuery->getQuery(); ?>
-                                            <li class="monLi secondFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                            <li class="monLi 2nd Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i>
@@ -235,7 +235,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
                                                     "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                 $monClass = $monClassQuery->getQuery(); ?>
-                                            <li class="monLi thirdFloor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                            <li class="monLi 3rd Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true"></i>
