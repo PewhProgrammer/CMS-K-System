@@ -25,7 +25,7 @@
             var selected = 0;
             var deselectTrigger = false;
             var selectTrigger = false;
-            //var select = $("#selectAllDescription");
+            var select = $("#selectAllDescription");
 
             base.$el.find(".monitor_overview").each(function () {
                 monitors++;
@@ -76,6 +76,32 @@
                 } else {
                     $(this).find("i").removeClass("fa-angle-right").addClass("fa-angle-down");
                 }
+            });
+
+            //When collapsing is done
+            $('.panel-collapse').on('hidden.bs.collapse', function () {
+                var monitorSelector = $(".monitor_overview:visible input") ;
+                var visibleSelected = 0 ;
+                $(".monLi:visible").each(function() {
+                    if($(this).find("input").is(":checked")) visibleSelected++ ;
+                });
+
+                if(visibleSelected === monitorSelector.length && monitorSelector.length !== 0) {
+                    select.text(" Deselect All");
+                } else select.text(" Select All");
+            });
+
+            //When un-collapsing is done
+            $('.panel-collapse').on('shown.bs.collapse', function () {
+                var monitorSelector = $(".monitor_overview:visible input") ;
+                var visibleSelected = 0 ;
+                $(".monLi:visible").each(function() {
+                    if($(this).find("input").is(":checked")) visibleSelected++ ;
+                });
+                if(visibleSelected < (monitorSelector.length)) {
+                    select.text(" Select All");
+                }
+                else select.text(" Deselect All");
             });
 
             //SELECTING/DESELECTING ALL MONITORS
