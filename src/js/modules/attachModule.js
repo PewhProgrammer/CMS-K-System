@@ -62,8 +62,8 @@
                 for (var i = 0; i < resourcesValIncluded.length; i++) {
                     modalResourceList.append('<br>');
                     modalResourceList.append('<i class="fa fa-check" aria-hidden="true" style="color:green"></i>' +
-                        '<p style="padding-left:2.5em; display: inline-block;">' +
-                        resourcesValIncluded[i] + '</p>');
+                        '<i style="font-weight:500;padding-left:2.5em; display: inline-block;">' +
+                        resourcesValIncluded[i] + '</i>');
                 }
             });
 

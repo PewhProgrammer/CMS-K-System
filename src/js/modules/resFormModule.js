@@ -23,6 +23,8 @@
 
             var selected = 0;
 
+            //possible background-colors  LightSeaGreen,blanchedalmond,SeaGreen,SteelBlue,CadetBlue
+
             base.$el.find(".k-selectable").each(function () {
                 if ($(this).find("input").is(":checked")) {
                     $(this).parent().parent().css({"background-color": "blanchedalmond"});
@@ -32,7 +34,7 @@
 
             base.$el.find(".k-selectable").find("input").change(function () {
                 if (this.checked) {
-                    $(this).parent().parent().parent().css({"background-color": "blanchedalmond"});
+                    $(this).parent().parent().parent().css({"background-color": "LightCoral "});
                     selected++;
                 } else {
                     $(this).parent().parent().parent().css({"background-color": "transparent"});

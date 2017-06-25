@@ -96,13 +96,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <tr>
                                             <th>
                                                 Filename
-                                                <i class="fa fa-angle-down" aria-hidden="true" id="sortNameDown"></i>
-                                                <i class="fa fa-angle-up" aria-hidden="true" id="sortNameUp"></i>
+                                                <i class="fa fa-caret-down" aria-hidden="true" id="sortNameDown"></i>
+                                                <i class="fa fa-caret-up" aria-hidden="true" id="sortNameUp"></i>
                                             </th>
                                             <th>
                                                 Type
-                                                <i class="fa fa-angle-down" aria-hidden="true" id="sortTypeDown"></i>
-                                                <i class="fa fa-angle-up" aria-hidden="true" id="sortTypeUp"></i>
+                                                <i class="fa fa-caret-down" aria-hidden="true" id="sortTypeDown"></i>
+                                                <i class="fa fa-caret-up" aria-hidden="true" id="sortTypeUp"></i>
                                             </th>
                                             <th>
                                                 Delete
@@ -118,8 +118,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     <i class="fa fa-file-pdf-o"></i>
                                                 <? } else if($row["type"] == "website") {?>
                                                     <i class="fa fa-file-word-o"></i>
-                                                <? } else if($row["type"] == "image") {?>
-                                                    <i class="fa fa-file-picture-o"></i>
+                                                <? } else if($row["type"] == "jpg") {?>
+                                                    <i class="fa fa-picture-o"></i>
+                                                <? } else if($row["type"] == "rss") {?>
+                                                    <i class="fa fa-rss"></i>
                                                 <? } else {?>
                                                     <i class="fa fa-file-o"></i>
                                                 <? } ?>
@@ -176,7 +178,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <div class="row">
                                 <div class='col-sm-6'>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="timeSpanCheck">Add time span</label>
+                                        <label style="font-weight:bold"><input type="checkbox" id="timeSpanCheck">Add End Date</label>
                                     </div>
                                     <div class="form-group" style="display:none" id="timeSpan">
                                         <div class='input-group date' id='datetimepicker1'>
