@@ -106,8 +106,8 @@
 
             //SELECTING/DESELECTING ALL MONITORS
             $("#selectAll").on("click",function(){
-                $(".monitor_overview input").each(function (index) {
-                    var select = $("#selectAllDescription");
+                var monitorSelector = $(".monLi:not(.filter) .monitor_overview input") ;
+                monitorSelector.each(function (index) {
                     if(select.text() === " Deselect All"){
                         deselectTrigger = true;
                         $(this).trigger('click');
@@ -115,11 +115,11 @@
                         selectTrigger = true;
                         if(!$(this).is(":checked")) $(this).trigger('click');
                     }
-                    if(selected === 0){
+                    if(index === (monitorSelector.length-1) && deselectTrigger){
                         deselectTrigger = false;
                         select.text(" Select All");
                     }
-                    if(index === (monitors-1) && selectTrigger) {
+                    if(index === (monitorSelector.length-1) && selectTrigger) {
                         selectTrigger = false;
                         select.text(" Deselect All");
                     }
@@ -128,10 +128,18 @@
 
             //FILTERING OF ALL LABELS
             $(".filter").on("click" ,function(){
+                $(".monLi").addClass("filter");
                 $(".monLi").hide();
-                $("."+$(this).text()).show();
+                $("."+$(this).text().replace(" ",".")).show();
+                $("."+$(this).text().replace(" ",".")).removeClass("filter");
+                var monitorSelector = $(".monLi.filter .monitor_overview input") ;
+                monitorSelector.each(function () {
+                    console.log("hey");
+                    $(this).prop("checked",false);
+                });
             });
             $("#filterAll").on("click" ,function(){
+                $(".monLi").removeClass("filter");
                 $(".monLi").show();
             });
         };
