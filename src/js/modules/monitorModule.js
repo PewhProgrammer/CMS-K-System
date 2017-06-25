@@ -25,6 +25,7 @@
             var selected = 0;
             var deselectTrigger = false;
             var selectTrigger = false;
+            //var select = $("#selectAllDescription");
 
             base.$el.find(".monitor_overview").each(function () {
                 monitors++;
@@ -34,18 +35,24 @@
                 }
             });
 
-            for(var i=2; i <= (monitors+1); i++) {
+            for(var i=6; i <= (monitors+5); i++) {
                 $("#monInput-"+i).change(function() {
+                    var monitorSelector = $(".monitor_overview:visible input") ;
+                    var visibleSelected = 0 ;
+                    $(".monLi:visible").each(function() {
+                        if($(this).find("input").is(":checked")) visibleSelected++ ;
+                    });
+
                     if (this.checked) {
                         $(this).parent().css({"border-color": "#333333"});
                         selected++;
-                        if(monitors === selected && !selectTrigger) $("#selectAllDescription").text(" Deselect All");
+                        if(visibleSelected === monitorSelector.length && !selectTrigger) $("#selectAllDescription").text(" Deselect All");
                         else $("#selectAllDescription").text(" Select All");
                     } else {
                         $(this).parent().css({"border-color": "transparent"});
                         selected--;
                         if(!deselectTrigger)
-                        $("#selectAllDescription").text(" Select All");
+                            $("#selectAllDescription").text(" Select All");
                     }
 
                     //console.log("checked: " + selected + " monitors: " +monitors);
