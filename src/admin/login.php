@@ -16,7 +16,7 @@ include('../php/server_login.php');?>
 </head>
 <body>
 <div id="login" class="header">
-    <h1 align="center" class="text-primary"> Welcome to CMS-K</h1>
+    <br/><br/><br/><br/><br/><br/><h1 align="center" class="text-primary"> Welcome to CMS-K</h1>
     <form action="login.php" method="POST" class="input" align="center"><br/>
         <?php include('../php/errors.php'); ?>
         <h3><label>Username</label>
