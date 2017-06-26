@@ -33,7 +33,7 @@ module.exports = function(grunt)
                     {
                         expand: true,
                         cwd: "src/",
-                        src: ["js/main.js", "libs/**","admin/**", "fonts/**", "img/**","php/**", "index.html"],
+                        src: ["js/main.js", "libs/**","admin/**", "fonts/**", "img/**","php/**", "index.php"],
                         dest: "www"
                     }
 
@@ -76,7 +76,7 @@ module.exports = function(grunt)
             },
             others: {
                 files: [
-                    'src/index.html',
+                    'src/index.php',
                     'src/admin/**',
                     'src/js/**',
                     'src/php/**'

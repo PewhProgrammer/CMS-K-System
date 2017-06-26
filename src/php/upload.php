@@ -44,7 +44,7 @@ if ($uploadOk == 0) {
 
         $path = $target_dir.$name;
 
-        $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $name . "', '" . $fileType . "', '" . $path . "')");
+        $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $name . "', '" . $type . "', '" . $path . "')");
         $db = $query->getQuery();
 
     } else {
