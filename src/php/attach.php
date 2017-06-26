@@ -19,6 +19,7 @@ if(isset($_POST["resources"]) && isset($_POST["monitors"])) {
 
     //Check if array
     if(isIterable($monitors) && $monSize > 0){
+
         for($i = 0 ; $i < sizeof($monitors); $i++ ){
             //append Strings to build
             $mon = $monitors[$i];

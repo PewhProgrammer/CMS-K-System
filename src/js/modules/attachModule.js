@@ -55,7 +55,7 @@
             var monArray = monitors.split(",");
             console.log(monArray);
             $.each(monArray,function(index,value){
-               console.log( index + ": " + value );
+               //console.log( index + ": " + value );
                $(".selectedMonitor."+value).show();
             });
 
@@ -72,8 +72,10 @@
 
 
             attachSubmit.on("click", function () {
-                $.post(url, {resources: ressourcesIncluded, monitors: monitors, until: endTime})
+                //console.log(ressourcesIncluded +" "+monitors+" "+endTime);
+                $.post(url, {resources: ressourcesIncluded, monitors: monArray, until: endTime})
                     .done(function (data) {
+                        //console.log(data['msg']);
                         window.location.replace('index.php?attach=success');
                     })
                     .fail(function () {
