@@ -45,8 +45,14 @@
                         myDropzone.removeFile(file);
                         base.$fileForm.hide();
 
-                        $("#successInput").text('Upload successful');
-                        $("#success").show();
+                        base.$el.modal("hide");
+
+                        $("#success-alert").find("p").text('Upload successful');
+                        $("#success-alert").show();
+
+                        setTimeout(function(){
+                            location.reload();
+                        }, 2000);
                     });
                 }
             };
@@ -98,8 +104,13 @@
                             path: resourceResponse
                         }).done(function (data) {
                             base.$urlForm.hide();
-                            $("#successInput").text('Entry successful');
-                            $("#success").show();
+                            base.$el.modal("hide");
+                            $("#success-alert").find("p").text('Entry successful');
+                            $("#success-alert").show();
+
+                            setTimeout(function(){
+                                location.reload();
+                            }, 2000);
                         }).fail(function () {
 
                         });

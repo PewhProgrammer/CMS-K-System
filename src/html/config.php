@@ -240,19 +240,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <div id="fileForm">
                             <form id="droppy" action="../php/upload.php" class="dropzone"></form>
                         </div>
-
-                        <div class="alert alert-warning" id="warning" style="display:none">
-                            <strong>Warning!</strong>
-                            <p id="warningInput">Indicates a warning that might need attention.</p>
-                        </div>
-
-                        <div class="alert alert-success" id="success" style="display:none">
-                            <strong>Success!</strong>
-                            <p id="successInput">Indicates a success that might need attention.</p>
-                        </div>
-
                     </div>
-
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -263,6 +251,41 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         </div>
         <!-- End Upload Modal -->
+
+        <!-- Delete Confirmation Modal -->
+        <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+                    </div>
+                    <div class="modal-body">
+                    The following item will be deleted:
+                    <span id="deletedItem"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="delButton" type="button" class="btn btn-primary">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Delete Confirmation Modal -->
+
+        <!-- Alerts -->
+        <div class="alert alert-success" id="success-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <h4 class="alert-heading glyphicon glyphicon-ok"> Success!</h4>
+            <p>The system has updated the resource(s) of the monitor(s)</p>
+        </div>
+        <div class="alert alert-warning" id="warning-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <h4 class="alert-heading">Warning!</h4>
+            <p>Something went wrong there</p>
+        </div>
+        <!-- /.Alerts -->
 
     </div>
 </div>

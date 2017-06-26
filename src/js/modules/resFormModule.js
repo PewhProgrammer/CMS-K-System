@@ -54,25 +54,51 @@
             });
 
 
-            document.getElementById("sortNameDown").onclick = function() {sortTable(0, 'down');};
-            document.getElementById("sortNameUp").onclick = function() {sortTable(0, 'up');};
-            document.getElementById("sortTypeDown").onclick = function() {sortTable(1, 'down');};
-            document.getElementById("sortTypeUp").onclick = function() {sortTable(1, 'up');};
+            document.getElementById("sortNameDown").onclick = function () {
+                sortTable(0, 'down');
+            };
+            document.getElementById("sortNameUp").onclick = function () {
+                sortTable(0, 'up');
+            };
+            document.getElementById("sortTypeDown").onclick = function () {
+                sortTable(1, 'down');
+            };
+            document.getElementById("sortTypeUp").onclick = function () {
+                sortTable(1, 'up');
+            };
 
-            base.$el.find(".fa-trash-o").click(function() {
-                console.log("deleting: " + $(this).data("id"));
 
+            //Deleting items
+            var id =  -1,
+                name = "";
+            base.$el.find(".fa-trash-o").click(function () {
+
+                name = $(this).parents("tr").find(".res").val();
+                id = $(this).data("id");
+
+                $("#deletedItem").text(name);
+                $("#delModal").modal();
+
+            });
+
+
+            $("#delButton").click(function () {
+                console.log(id);
                 $.post('../php/delete.php', {
-                    id: $(this).data("id")
+                    id: id
                 }).done(function (data) {
-                    $("#successInput").text('Deleted');
-                    $("#success").show();
+                    $("#delModal").modal("hide");
+                    $("#success-alert").find("p").text('Item has been deleted');
+                    $("#success-alert").show();
+
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
                 }).fail(function () {
 
                 });
 
             });
-
         };
         // call init method
         base.init();
@@ -107,7 +133,7 @@ function sortTable(column, direction) {
             y = rows[i + 1].getElementsByTagName("TD")[column];
             //check if the two rows should switch place:
             var xInner, yInner;
-            if(column === 0) {
+            if (column === 0) {
                 xInner = x.getElementsByTagName("p")[0].innerHTML.toLowerCase();
                 yInner = y.getElementsByTagName("p")[0].innerHTML.toLowerCase();
             } else {
@@ -116,10 +142,10 @@ function sortTable(column, direction) {
             }
             if (direction === "down" && xInner > yInner) {
                 //if so, mark as a switch and break the loop:
-                shouldSwitch= true;
+                shouldSwitch = true;
                 break;
             } else if (direction === "up" && yInner > xInner) {
-                shouldSwitch= true;
+                shouldSwitch = true;
                 break;
             }
         }
