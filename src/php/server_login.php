@@ -14,8 +14,8 @@ $errors=array();
 $db=mysqli_connect('localhost','root', 'root', 'cms_k');
 
 if (isset($_POST['login'])) {
-    $username = $_POST(['username']);
-    $password = $_POST(['password']);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
     if (empty($username)) {
         array_push($errors, "Username is required");
     }
