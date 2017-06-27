@@ -134,6 +134,12 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <? } ?>
                                     </tbody>
                                 </table>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-lg addResource" data-toggle="modal" data-target="#uploadModal"
+                                        id="addResource">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+
+                                </button>
                             </fieldset>
                         </div>
                     </div>
@@ -149,8 +155,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                         </ul>
 
 
+                            <!-- Preview -->
                         <h3>Preview</h3>
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"
+                        <a href="http://placeholder.com"><img style="margin-left:10%;margin-bottom: 5%" src="http://via.placeholder.com/240x140"></a>
+                        <!-- <a href="http://placeholder.com"><img style="margin-left:28%;margin-bottom: 5%" src="http://via.placeholder.com/140x240"></a> -->
+                        <!-- /Preview -->
+
+                        <button style="margin-left:35%" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"
                                 id="continueConfig">
                             Continue
                         </button>
@@ -159,12 +170,6 @@ a clean and intuitive system to manage the monitors at CISPA">
             </div>
         <!-- </div> -->
         <!-- /.panel-body -->
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadModal"
-                id="addResource">
-            Add new resource
-        </button>
 
         <!-- Confirmation Modal -->
         <div class="modal fade" id="confModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
