@@ -4,7 +4,7 @@ require '../php/dbconnect.php';
 $query = new Query("SELECT * FROM resources");
 $res = $query->getQuery();
 
-$monitorsQuery = new Query("SELECT * FROM monitors");
+$monitorsQuery = new Query("SELECT * FROM monitors ORDER BY monitors.name ASC");
 $monitors = $monitorsQuery->getQuery();
 
 ?>
@@ -90,7 +90,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <form action="#" id="resForm">
                     <div class="panel panel-default" id="tablePanel">
                         <div class="panel-body">
-                            <h3 id="penis">Select the resource you want to attach to the monitor</h3>
+                            <h3>Select the resource you want to attach to the monitor</h3>
                             <fieldset>
                                 <table class="table table-condensed" id="resourceTable">
                                     <thead>
@@ -144,9 +144,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <div id="previewPanel" class="panel panel-default">
                     <div class="panel-body">
                         <h2>Selected Monitors:</h2>
+                        <ul class="doublecolumn"> <span class=""><!-- Alter ID accordingly --></span>
                             <? while($row = $monitors->fetch_assoc()){ ?>
-                        <span style="display:none" class="selectedMonitor <? echo $row["mID"] ?>" ><? echo $row["name"] ?>, </span>
-                        <? $countMonitors++; }?>
+                        <li style="display:none" class="selectedMonitor <? echo $row["mID"] ?>"><span><? echo $row["name"] ?></span>
+                        </li>
+                                <? $countMonitors++; }?>
+                        </ul>
+
 
                         <h2>Preview</h2>
                         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"

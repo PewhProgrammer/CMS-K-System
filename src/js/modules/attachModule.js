@@ -53,7 +53,7 @@
             });
 
             var monArray = monitors.split(",");
-            console.log(monArray);
+            //console.log(monArray);
             $.each(monArray,function(index,value){
                //console.log( index + ": " + value );
                $(".selectedMonitor."+value).show();

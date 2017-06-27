@@ -14,6 +14,22 @@
   float: left;
 }
 
+.doublecolumn{
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+
+  @max-width-doublecolumn: 10%;
+
+  -webkit-column-gap: @max-width-doublecolumn; /* Chrome, Safari, Opera */
+  -moz-column-gap: @max-width-doublecolumn; /* Firefox */
+  column-gap: @max-width-doublecolumn;
+}
+
+li{
+  list-style-type: square;
+}
+
 #resourcePanel {
   padding: 15px 15px 0px 15px;
 }
