@@ -28,6 +28,7 @@
             var ressourcesIncluded = [];
             var resourcesValIncluded = [];
             var monitors = "" + $.getParameterByName('m');
+            var overview = false ;
             var timeSpanCheck = $('#timeSpanCheck');
             var timeSpan ;
             var datepicker = $("#datetimepicker1") ;
@@ -56,7 +57,10 @@
             //console.log(monArray);
             $.each(monArray,function(index,value){
                //console.log( index + ": " + value );
-               $(".selectedMonitor."+value).show();
+                if(value !== '')
+                    $(".selectedMonitor."+value).show();
+                else
+                    overview = true;
             });
 
             $("#continueConfig").on("click", function () {

@@ -57,9 +57,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <ul class="nav navbar-top-links navbar-right">
             <!-- right nav header content -->
-            <button id="selectAll" type="submit" class="btn btn-large btn-primary logout">
-                <i id="selectAllDescription" class="fa fa-pencil" aria-hidden="true">  Select all</i>
-            </button>
+
         </ul>
 
 
@@ -96,22 +94,20 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Monitor Overview</h1>
+                <h2 class="page-header">Monitor Overview</h2>
             </div>
             <!-- /.col-lg-12 -->
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="fa fa-bar-chart-o fa-fw"></i> All monitors in the CISPA building
-            </div>
+        <!-- <div class="panel panel-default"> -->
             <!-- /.panel-heading -->
             <div id="monitorPanel" class="panel-body">
                 <? $countMonitors = 0; ?>
                 <div id="headingDiv">
-                    <h3>Select the monitor you want to change</h3>
+                    <h3><i class="fa fa-bar-chart-o fa-fw"></i> Select the monitor you want to change</h3>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-filter" aria-hidden="true"></i>
                             Filter
                             <span class="caret"></span>
                         </button>
@@ -126,6 +122,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                             }?>
                         </ul>
                     </div>
+                    &nbsp;
+                    <button id="selectAll" type="submit" class="btn btn-xs btn-primary logout">
+                        <i id="selectAllDescription" class="fa fa-pencil" aria-hidden="true">  Select all</i>
+                    </button>
                 </div>
                 <form action="config.php" id="monitorForm">
                     <div class="panel-group">
@@ -260,7 +260,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
         <!-- /.panel-body -->
 
         <!-- Alerts -->

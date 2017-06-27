@@ -76,17 +76,14 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Configuration</h1>
+                <h2 class="page-header page-config"></h2>
             </div>
             <!-- /.col-lg-12 -->
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading attachModule">
-                Choose resource(s) to add
-            </div>
+        <!-- <div class="panel panel-default"> -->
             <!-- /.panel-heading -->
-            <div id="resourcePanel" class="panel-body">
+            <div id="resourcePanel" class="panel-body attachModule">
                 <form action="#" id="resForm">
                     <div class="panel panel-default" id="tablePanel">
                         <div class="panel-body">
@@ -143,7 +140,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 </form>
                 <div id="previewPanel" class="panel panel-default">
                     <div class="panel-body">
-                        <h2>Selected Monitors:</h2>
+                        <h3>Selected Monitors:</h3>
                         <ul class="doublecolumn"> <span class=""><!-- Alter ID accordingly --></span>
                             <? while($row = $monitors->fetch_assoc()){ ?>
                         <li style="display:none" class="selectedMonitor <? echo $row["mID"] ?>"><span><? echo $row["name"] ?></span>
@@ -152,7 +149,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         </ul>
 
 
-                        <h2>Preview</h2>
+                        <h3>Preview</h3>
                         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"
                                 id="continueConfig">
                             Continue
@@ -160,7 +157,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
         <!-- /.panel-body -->
 
         <!-- Button trigger modal -->

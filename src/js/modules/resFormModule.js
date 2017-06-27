@@ -22,6 +22,16 @@
             base.$el = jQuery(el);
 
             var selected = 0;
+            var monitors = "" + $.getParameterByName('m');
+            var overview = false ;
+
+            if(monitors == ""){
+                $(".page-header.page-config").text("Overview");
+                overview =  true;
+            }
+            else {
+                $(".page-header.page-config").text("Configuration");
+            }
 
             //possible background-colors  LightSeaGreen,blanchedalmond,SeaGreen,SteelBlue,CadetBlue
 
@@ -41,14 +51,14 @@
                     selected--;
                 }
 
-                if (selected === 0) {
+                if (selected === 0 && !overview) {
                     $("#previewPanel").fadeOut();
                     $("#resForm").delay(400).animate({width: "100%"});
-                } else if (selected === 1) {
+                } else if (selected === 1 && !overview) {
                     $("#resForm").animate({width: "66%"});
                     $("#previewPanel").delay(400).fadeIn();
                     // add details for monitor preview here
-                } else {
+                } else if(!overview) {
                     // add details for multiple monitor preview here
                 }
             });
