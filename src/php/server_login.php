@@ -32,15 +32,14 @@ if (isset($_POST['login'])) {
             header('location:./index.php');
         }else{
             array_push($errors, "Incorrect username/password");
-            //header('location:./login.php');
         }
     }
 }
 
 //logout
-//if(isset($_GET['logout'])){
-   // session_destroy();
-    //unset($_SESSION['username']);
-    //header('location: login.html');
-//}
+if(isset($_GET['logout'])){
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: ../login.php');
+}
 ?>
