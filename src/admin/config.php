@@ -87,7 +87,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <form action="#" id="resForm">
                     <div class="panel panel-default" id="tablePanel">
                         <div class="panel-body">
-                            <h3>Select the resource you want to attach to the monitor</h3>
+                            <h3 id="header-form-overview"></h3>
                             <fieldset>
                                 <table class="table table-condensed" id="resourceTable">
                                     <thead>

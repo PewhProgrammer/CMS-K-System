@@ -27,10 +27,12 @@
 
             if(monitors == ""){
                 $(".page-header.page-config").text("Overview");
+                $("#header-form-overview").text("Select the resource(s) you want to edit");
                 overview =  true;
             }
             else {
                 $(".page-header.page-config").text("Configuration");
+                $("#header-form-overview").text("Select the resource(s) you want to attach to the monitor(s)");
             }
 
             //possible background-colors  LightSeaGreen,blanchedalmond,SeaGreen,SteelBlue,CadetBlue
