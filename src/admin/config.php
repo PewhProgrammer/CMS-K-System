@@ -7,6 +7,9 @@ $res = $query->getQuery();
 $monitorsQuery = new Query("SELECT * FROM monitors ORDER BY monitors.name ASC");
 $monitors = $monitorsQuery->getQuery();
 
+$previewQuery = new Query("SELECT * FROM resources, monitorhasresource WHERE monitorhasresource.mID ='" . $mon . "' AND resources.rID = monitorhasresource.rID");
+$preview = $previewQuery->getQuery();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
