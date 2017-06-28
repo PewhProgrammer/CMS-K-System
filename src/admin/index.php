@@ -1,5 +1,5 @@
 <?php
-require '../php/dbconnect.php';
+require '../php/dbquery.php';
 
 $query = new Query("SELECT * FROM monitors");
 $mon = $query->getQuery();
