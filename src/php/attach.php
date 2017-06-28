@@ -6,6 +6,7 @@ class Attach extends Query
 {
     private $responseCode = 200;
     private $resources = "";
+    private $resSize = 0;
     private $monitors = "";
     private $monSize = 0;
     private $monOutput = "";
@@ -20,6 +21,7 @@ class Attach extends Query
             $this->resources = $_POST["resources"];
             $this->monitors = $_POST["monitors"];
             $this->monSize = sizeof($this->monitors);
+            $this->resSize = sizeof($this->resources);
             $this->buildQuery();
         }
         else{
@@ -45,9 +47,13 @@ class Attach extends Query
                 $this->deleteBuild .= '`mID` = '.$mon.' ';
                 if(($i+1) != $this->monSize)
                     $this->deleteBuild .= 'OR ';
-                if($this->isIterable($this->resources) && sizeof($this->resources) > 0){
+                if($this->isIterable($this->resources) && $this->resSize > 0){
+                    $j = 0;
                     foreach($this->resources as $res){
                         $this->build .= "(".$mon.", ".$res.", '".$_POST["until"]."' ".")";
+                        if(($j+1) != $this->resSize) $this->build .= ", ";
+                        //else $this->build .= ";";
+                        $j++;
                     }
                 }
                 else $this->responseCode = 400;
@@ -73,6 +79,10 @@ class Attach extends Query
             //Add resources to monitors
             $query = new Query($this->build);
             $db = $query->getQuery();
+            echo array(
+                "status" => 200,
+                "msg" => $this->build
+            );
 
         }
         else {
