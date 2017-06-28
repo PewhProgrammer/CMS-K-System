@@ -1,74 +1,90 @@
 <?php
-require 'dbconnect.php';
-$responseCode = 200;
 
-function isIterable($obj){
-    return
-        $obj instanceof Traversable || is_array($obj);
-}
+require "dbquery.php";
 
-//Check if keys exists
-if(isset($_POST["resources"]) && isset($_POST["monitors"])) {
-    $resources = $_POST["resources"];
-    $monitors = $_POST["monitors"];
+class Attach extends Query
+{
+    private $responseCode = 200;
+    private $resources = "";
+    private $monitors = "";
+    private $monSize = 0;
+    private $monOutput = "";
+    private $build = 'INSERT INTO `monitorhasresource` (`mID`, `rID`, `until`) VALUES ';
+    private $deleteBuild = 'DELETE FROM `monitorhasresource` WHERE ' ;
 
-    //stringBuilder for queries
-    $build = 'INSERT INTO `monitorhasresource` (`mID`, `rID`, `until`) VALUES ';
-    $deleteBuild = 'DELETE FROM `monitorhasresource` WHERE ' ;
-    $monSize = sizeof($monitors);
+    function __construct()
+    {
+        //Check if keys exists
+        if (isset($_POST["resources"]) && isset($_POST["monitors"]))
+        {
+            $this->resources = $_POST["resources"];
+            $this->monitors = $_POST["monitors"];
+            $this->monSize = sizeof($this->monitors);
+            $this->buildQuery();
+        }
+        else{
+            $this->responseCode = 400;
+        }
 
-    //Check if array
-    if(isIterable($monitors) && $monSize > 0){
+    }
 
-        for($i = 0 ; $i < sizeof($monitors); $i++ ){
-            //append Strings to build
-            $mon = $monitors[$i];
-            $monOutput .= $mon.', ';
-            $deleteBuild .= '`mID` = '.$mon.' ';
-            if(($i+1) != $monSize)
-                $deleteBuild .= 'OR ';
-            if(isIterable($resources) && sizeof($resources) > 0){
-                foreach($resources as $res){
-                    $resOutput .= $res.', ';
-                    $build .= "(".$mon.", ".$res.", '".$_POST["until"]."' ".")";
+    public function isIterable($obj){
+        return
+            $obj instanceof Traversable || is_array($obj);
+    }
+
+    public function buildQuery(){
+
+        //Check if array
+        if($this->isIterable($this->monitors) && $this->monSize > 0){
+
+            for($i = 0 ; $i < sizeof($this->monitors); $i++ ){
+                //append Strings to build
+                $mon = $this->monitors[$i];
+                $this->monOutput .= $mon.', ';
+                $this->deleteBuild .= '`mID` = '.$mon.' ';
+                if(($i+1) != $this->monSize)
+                    $this->deleteBuild .= 'OR ';
+                if($this->isIterable($this->resources) && sizeof($this->resources) > 0){
+                    foreach($this->resources as $res){
+                        $this->build .= "(".$mon.", ".$res.", '".$_POST["until"]."' ".")";
+                    }
                 }
+                else $this->responseCode = 400;
+                if(($i+1) != $this->monSize) $this->build .= ", ";
+                else $this->build .= ";";
             }
-            else $responseCode = 400;
-            if(($i+1) != $monSize) $build .= ", ";
-            else $build .= ";";
+        }
+        else $this->responseCode = 400;
+
+        $this->execute();
+    }
+
+    public function execute(){
+
+        if ($this->responseCode == 200){
+
+            $this->deleteBuild .= ';';
+
+            //Remove all resources from given monitors
+            $query = new Query($this->deleteBuild);
+            $db = $query->getQuery();
+
+            //Add resources to monitors
+            $query = new Query($this->build);
+            $db = $query->getQuery();
+
+        }
+        else {
+            echo array(
+                "status" => 400,
+                "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
+            );
         }
     }
-    else $responseCode = 400;
 
-    $deleteBuild .= ';';
+}
 
-    //Remove all resources from given monitors
-    $query = new Query($deleteBuild);
-    $db = $query->getQuery();
+$a = new Attach();
 
-    //Add resources to monitors
-    $query = new Query($build);
-    $db = $query->getQuery();
-}
-else $responseCode = 400 ;
-
-// Check code
-if ($responseCode == 400) {
-    echo array(
-        "status" => 400,
-        "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
-        );
-}
-else if ($responseCode == 404){
-    echo array(
-        "status" => 404,
-        "msg" => "Sorry, the system could not find the resource. Contact the developers of the system. 404"
-    );
-}
-else {
-    echo array(
-        "status" => 404,
-        "msg" => "Your resource was successfully attached to the monitor"
-    );
-}
 ?>
