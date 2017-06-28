@@ -1,33 +1,51 @@
 <?php
-require 'dbconnect.php';
-$responseCode = 200;
 
-//Check if keys exists
-if(isset($_POST["name"]) && isset($_POST["type"]) && isset($_POST["path"])) {
+require "dbquery.php";
 
-    $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $_POST["name"] . "', '" . $_POST["type"] . "', '" . $_POST["path"] . "')");
-    $db = $query->getQuery();
+class Add extends Query
+{
+    private $responseCode = 200;
+    private $name = "";
+    private $type = "";
+    private $path = "";
+
+    function __construct()
+    {
+        //Check if keys exists
+        if (isset($_POST["name"]) && isset($_POST["type"]) && isset($_POST["path"]))
+        {
+            $this->name = $_POST["name"];
+            $this->type = $_POST["type"];
+            $this->path = $_POST["path"];
+        }
+        else{
+            $this->responseCode = 400;
+        }
+
+    }
+
+    public function addUrl(){
+
+        if ($this->responseCode == 200){
+            $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" .  $this->name . "', '" .  $this->type . "', '" .  $this->path . "')");
+            $db = $query->getQuery();
+
+            echo array(
+                "status" => 200,
+                "msg" => "Your resource was successfully attached to the monitor"
+            );
+        }
+        else {
+            echo array(
+                "status" => 400,
+                "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
+            );
+        }
+    }
 
 }
-else $responseCode = 400 ;
 
-// Check code
-if ($responseCode == 400) {
-    echo array(
-        "status" => 400,
-        "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
-    );
-}
-else if ($responseCode == 404){
-    echo array(
-        "status" => 404,
-        "msg" => "Sorry, the system could not find the resource. Contact the developers of the system. 404"
-    );
-}
-else {
-    echo array(
-        "status" => 404,
-        "msg" => "Your resource was successfully attached to the monitor"
-    );
-}
+$a = new Add();
+$a->addUrl();
+
 ?>

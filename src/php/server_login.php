@@ -1,46 +1,60 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Esha
- * Date: 6/26/2017
- * Time: 10:55 PM
- */
-session_start();
 
-$username="";
-$password="";
-$errors=array();
+require "dbquery.php";
 
-$db=mysqli_connect('localhost','root', 'root', 'cms_k');
+class Login extends Query
+{
+    private $responseCode = 200;
+    private $username = "";
+    private $password = "";
+    public static $errors = [];
 
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    if (empty($username)) {
-        array_push($errors, "Username is required");
+    function __construct()
+    {
+        //Check if keys exists
+        if (isset($_POST["login"])) {
+
+            $this->username = $_POST['username'];
+            $this->password = $_POST['password'];
+
+            if (empty($this->username)) {
+                array_push(self::$errors, "Username is required");
+            }
+            if (empty($this->password)) {
+                array_push(self::$errors, "Password is required");
+            }
+            if (count(self::$errors) == 0) {
+                $this->login();
+            }
+        } else if (isset($_GET["logout"])) {
+            session_destroy();
+            unset($_SESSION['username']);
+            header('location: ../login.php');
+        } else {
+            $this->responseCode = 400;
+        }
+
     }
-    if (empty($password)) {
-        array_push($errors, "Password is required");
-    }
 
-    if (count($errors) == 0) {
-        //$password = md5($password);
-        $query = "SELECT * FROM users WHERE name='$username' AND pass='$password'";
-        $result = mysqli_query($db, $query);
+    public function login()
+    {
+
+        $this->password = hash('sha256', $this->password);
+        $query = new Query("SELECT * FROM users WHERE name='" .$this->username. "' AND pass='" . $this->password . "'");
+        $result = $query->getQuery();
+
         if (mysqli_num_rows($result) == 1) {
             //$_SESSION['success']="You are now logged in";
             header('location:./index.php');
-        }else{
-            array_push($errors, "Incorrect username/password");
-            //header('location:./login.php');
+        } else {
+            array_push(self::$errors, "Incorrect username/password");
         }
-    }
+
+
 }
 
-//logout
-//if(isset($_GET['logout'])){
-   // session_destroy();
-    //unset($_SESSION['username']);
-    //header('location: login.html');
-//}
+}
+
+$a = new Login();
+
 ?>

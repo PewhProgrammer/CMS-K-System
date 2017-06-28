@@ -16,17 +16,28 @@ include('../php/server_login.php');?>
 </head>
 <body>
 <div id="login" class="header">
-    <br/><br/><br/><br/><br/><br/><h1 align="center" class="text-primary"> Welcome to CMS-K</h1>
-    <form action="login.php" method="POST" class="input" align="center"><br/>
-        <?php include('../php/errors.php'); ?>
-        <h3><label>Username</label>
-            <input type="text" name="username"></h3>
-
-        <h3><label>Password</label>
-            <input type="password" name="password"></h3>
-
-        <button type="submit" name ="login" class="btn btn-large btn-primary">Login</button>
-    </form>
+    <img src="https://cispa.saarland/wp-content/themes/cispa/images/cispa-logo.png" alt="logo" style="float: left;width: 150px;height: 90px;">
+    </br></br></br></br><h1 align="center" class="text-primary"> Welcome to CMS-K</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-body">
+                        <form action="login.php" method="POST" class="input" align="center"><br/>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                            </div>
+                            <?php include('../php/errors.php'); ?>
+                            <button type="submit" name ="login" class="btn btn-lg btn-block btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-require '../php/dbconnect.php';
+require '../php/dbquery.php';
 
 $query = new Query("SELECT * FROM monitors");
 $mon = $query->getQuery();
@@ -53,10 +53,11 @@ a clean and intuitive system to manage the monitors at CISPA">
             </button>
             <a class="navbar-brand" href="index.php">CMS-K Admin v0.1</a>
         </div>
-        <!-- /.navbar-header -->
+        <!-- /.navbar-header-->
 
         <ul class="nav navbar-top-links navbar-right">
             <!-- right nav header content -->
+            <div><a type="submit" class="btn btn-primary" href="login.php">Logout</a></div>
 
         </ul>
 
