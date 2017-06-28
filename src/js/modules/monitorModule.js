@@ -35,7 +35,7 @@
                 }
             });
 
-            for(var i=6; i <= (monitors+5); i++) {
+            for(var i = 0; i < monitors; i++) {
                 $("#monInput-"+i).change(function() {
                     var monitorSelector = $(".monitor_overview:visible input") ;
                     var visibleSelected = 0 ;
@@ -93,15 +93,7 @@
 
             //When un-collapsing is done
             $('.panel-collapse').on('shown.bs.collapse', function () {
-                var monitorSelector = $(".monitor_overview:visible input") ;
-                var visibleSelected = 0 ;
-                $(".monLi:visible").each(function() {
-                    if($(this).find("input").is(":checked")) visibleSelected++ ;
-                });
-                if(visibleSelected < (monitorSelector.length)) {
-                    select.text(" Select All");
-                }
-                else select.text(" Deselect All");
+                refreshSelectButton();
             });
 
             //SELECTING/DESELECTING ALL MONITORS
@@ -128,20 +120,47 @@
 
             //FILTERING OF ALL LABELS
             $(".filter").on("click" ,function(){
+                var btnSelector = $("#dropdownMenu") ;
+                btnSelector.text("");
+                btnSelector.append(' <i class="fa fa-filter" aria-hidden="true"></i> ');
+                btnSelector.append($(this).text());
+                btnSelector.val($(this).text());
+                btnSelector.append(' <span class="caret"></span> ');
                 $(".monLi").addClass("filter");
                 $(".monLi").hide();
                 $("."+$(this).text().replace(" ",".")).show();
                 $("."+$(this).text().replace(" ",".")).removeClass("filter");
                 var monitorSelector = $(".monLi.filter .monitor_overview input") ;
+                //select.text(" Select All");
                 monitorSelector.each(function () {
-                    console.log("hey");
-                    $(this).prop("checked",false);
+                    if($(this).is(":checked")) $(this).trigger('click');
+                    //$(this).prop("checked",false);
                 });
+                refreshSelectButton()
             });
             $("#filterAll").on("click" ,function(){
+                var btnSelector = $("#dropdownMenu") ;
+                btnSelector.append(' <i class="fa fa-filter" aria-hidden="true"></i>');
+                btnSelector.text("Filter");
+                btnSelector.val("Filter");
+                btnSelector.append(' <span class="caret"></span> ');
                 $(".monLi").removeClass("filter");
                 $(".monLi").show();
+                refreshSelectButton();
             });
+
+            function refreshSelectButton(){
+                var monitorSelector = $(".monitor_overview:visible input") ;
+                var visibleSelected = 0 ;
+                $(".monLi:visible").each(function() {
+                    if($(this).find("input").is(":checked")) visibleSelected++ ;
+                });
+                console.log("visible: " + visibleSelected + ", " + (monitorSelector.length));
+                if(visibleSelected < (monitorSelector.length)) {
+                    select.text(" Select All");
+                }
+                else select.text(" Deselect All");
+            }
         };
         // call init method
         base.init();

@@ -76,9 +76,10 @@
 
 
             attachSubmit.on("click", function () {
-                console.log(ressourcesIncluded +" "+monitors+" "+endTime);
+                //console.log(ressourcesIncluded +" "+monitors+" "+endTime);
                 $.post(url, {resources: ressourcesIncluded, monitors: monArray, until: endTime})
                     .done(function (data) {
+                        //console.log(data['msg']);
                         window.location.replace('index.php?attach=success');
                     })
                     .fail(function () {

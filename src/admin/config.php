@@ -160,7 +160,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 
                             <!-- Preview -->
                         <h3>Preview</h3>
-                        <a href="http://placeholder.com"><img style="margin-left:10%;margin-bottom: 5%" src="http://via.placeholder.com/240x140"></a>
+                        <a id="previewVertical"><img style="margin-left:10%;margin-bottom: 5%" src="http://via.placeholder.com/240x140"></a>
                         <!-- <a href="http://placeholder.com"><img style="margin-left:28%;margin-bottom: 5%" src="http://via.placeholder.com/140x240"></a> -->
                         <!-- /Preview -->
 

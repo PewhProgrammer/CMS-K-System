@@ -107,7 +107,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <div id="headingDiv">
                     <h3><i class="fa fa-bar-chart-o fa-fw"></i> Select the monitor you want to change</h3>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" id="dropdownMenu" data-toggle="dropdown">
                             <i class="fa fa-filter" aria-hidden="true"></i>
                             Filter
                             <span class="caret"></span>
@@ -119,7 +119,6 @@ a clean and intuitive system to manage the monitors at CISPA">
                                 <li>
                                 <a class="filter" id="filterLabel-<? echo $row["lID"] ?>"><? echo $row["name"] ?></a>
                                 </li> <?
-                                $countMonitors++;
                             }?>
                         </ul>
                     </div>
