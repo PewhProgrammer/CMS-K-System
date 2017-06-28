@@ -120,12 +120,7 @@
 
             //FILTERING OF ALL LABELS
             $(".filter").on("click" ,function(){
-                var btnSelector = $("#dropdownMenu") ;
-                btnSelector.text("");
-                btnSelector.append(' <i class="fa fa-filter" aria-hidden="true"></i> ');
-                btnSelector.append($(this).text());
-                btnSelector.val($(this).text());
-                btnSelector.append(' <span class="caret"></span> ');
+                keepFilterOption($(this).text());
                 $(".monLi").addClass("filter");
                 $(".monLi").hide();
                 $("."+$(this).text().replace(" ",".")).show();
@@ -139,15 +134,20 @@
                 refreshSelectButton()
             });
             $("#filterAll").on("click" ,function(){
-                var btnSelector = $("#dropdownMenu") ;
-                btnSelector.append(' <i class="fa fa-filter" aria-hidden="true"></i>');
-                btnSelector.text("Filter");
-                btnSelector.val("Filter");
-                btnSelector.append(' <span class="caret"></span> ');
+                keepFilterOption('Filter');
                 $(".monLi").removeClass("filter");
                 $(".monLi").show();
                 refreshSelectButton();
             });
+
+            function keepFilterOption(label){
+                var btnSelector = $("#dropdownMenu") ;
+                btnSelector.text("");
+                btnSelector.append(' <i class="fa fa-filter" aria-hidden="true"></i> ');
+                btnSelector.append(label);
+                btnSelector.val(label);
+                btnSelector.append(' <span class="caret"></span> ');
+            }
 
             function refreshSelectButton(){
                 var monitorSelector = $(".monitor_overview:visible input") ;
