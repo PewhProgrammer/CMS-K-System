@@ -31,7 +31,7 @@ class Add extends Query
             $db = $query->getQuery();
 
             echo array(
-                "status" => 404,
+                "status" => 200,
                 "msg" => "Your resource was successfully attached to the monitor"
             );
         }
