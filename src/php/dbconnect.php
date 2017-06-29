@@ -9,8 +9,6 @@
 /** This should serve as a db connection wrapper to make sure connection
  * is open and if interrupted, will re-open again*/
 
-require 'dbquery.php';
-
 class ConnectionFactory{
     private static $factory;
 

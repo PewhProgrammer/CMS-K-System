@@ -1,11 +1,14 @@
 <?php
-require '../php/dbconnect.php';
+require '../php/dbquery.php';
 
 $query = new Query("SELECT * FROM resources");
 $res = $query->getQuery();
 
 $monitorsQuery = new Query("SELECT * FROM monitors ORDER BY monitors.name ASC");
 $monitors = $monitorsQuery->getQuery();
+
+$previewQuery = new Query("SELECT * FROM resources");
+$preview = $previewQuery->getQuery();
 
 ?>
 <!DOCTYPE html>
@@ -46,17 +49,6 @@ a clean and intuitive system to manage the monitors at CISPA">
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
                     <li>
                         <a href="index.php"><i class="fa fa-television fa-fw"></i> Monitor Overview</a>
                     </li>
@@ -83,11 +75,11 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <!-- <div class="panel panel-default"> -->
             <!-- /.panel-heading -->
-            <div id="resourcePanel" class="panel-body attachModule">
+            <div id="resourcePanel" class="panel-body <? if(empty($_GET["m"])) echo ''; else echo attachModule ?>">
                 <form action="#" id="resForm">
                     <div class="panel panel-default" id="tablePanel">
                         <div class="panel-body">
-                            <h3>Select the resource you want to attach to the monitor</h3>
+                            <h3 id="header-form-overview"></h3>
                             <fieldset>
                                 <table class="table table-condensed" id="resourceTable">
                                     <thead>
@@ -116,15 +108,15 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     <i class="fa fa-file-pdf-o"></i>
                                                 <? } else if($row["type"] == "website") {?>
                                                     <i class="fa fa-file-word-o"></i>
-                                                <? } else if($row["type"] == "jpg") {?>
+                                                <? } else if($row["type"] == "image") {?>
                                                     <i class="fa fa-picture-o"></i>
                                                 <? } else if($row["type"] == "rss") {?>
                                                     <i class="fa fa-rss"></i>
                                                 <? } else {?>
                                                     <i class="fa fa-file-o"></i>
                                                 <? } ?>
-                                                <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
-                                                       value="<? echo $row["name"] ?>">
+                                                <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource" data-resType = "<? echo $row["type"] ?>"
+                                                       data-resData = "<? echo $row["data"] ?>" value="<? echo $row["name"] ?>">
                                                 <p><? echo $row["name"] ?></p>
                                             </label>
                                         </td>
@@ -157,7 +149,13 @@ a clean and intuitive system to manage the monitors at CISPA">
 
                             <!-- Preview -->
                         <h3>Preview</h3>
-                        <a href="http://placeholder.com"><img style="margin-left:10%;margin-bottom: 5%" src="http://via.placeholder.com/240x140"></a>
+                        <iframe id="previewFrame" style="height: 40rem;"
+                                height="100%"
+                                width="100%"
+                                src="../uploads/p2026-lessel_noted.pdf"
+                                frameborder="0"
+                                scrolling="no"
+                        ><p>Your browser does not support iframes.</p></iframe>
                         <!-- <a href="http://placeholder.com"><img style="margin-left:28%;margin-bottom: 5%" src="http://via.placeholder.com/140x240"></a> -->
                         <!-- /Preview -->
 

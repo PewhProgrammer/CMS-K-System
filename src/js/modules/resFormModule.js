@@ -26,23 +26,28 @@
             var overview = false ;
 
             if(monitors == ""){
-                $(".page-header.page-config").text("Overview");
+                $(".page-header.page-config").text("Resource Overview");
+                $("#header-form-overview").text("Select the resource(s) you want to edit");
+                $(".k-selectable.resLabels").css("cursor","auto");
                 overview =  true;
             }
             else {
                 $(".page-header.page-config").text("Configuration");
+                $("#header-form-overview").text("Select the resource(s) you want to attach to the monitor(s)");
             }
 
             //possible background-colors  LightSeaGreen,blanchedalmond,SeaGreen,SteelBlue,CadetBlue
 
             base.$el.find(".k-selectable").each(function () {
-                if ($(this).find("input").is(":checked")) {
-                    $(this).parent().parent().css({"background-color": "blanchedalmond"});
-                    selected++;
-                }
+                if(overview) return;
+                    if ($(this).find("input").is(":checked")) {
+                        $(this).parent().parent().css({"background-color": "blanchedalmond"});
+                        selected++;
+                    }
             });
 
             base.$el.find(".k-selectable").find("input").change(function () {
+                if(overview) return;
                 if (this.checked) {
                     $(this).parent().parent().parent().css({"background-color": "LightCoral "});
                     selected++;
@@ -51,14 +56,14 @@
                     selected--;
                 }
 
-                if (selected === 0 && !overview) {
+                if (selected === 0) {
                     $("#previewPanel").fadeOut();
                     $("#resForm").delay(400).animate({width: "100%"});
-                } else if (selected === 1 && !overview) {
+                } else if (selected === 1) {
                     $("#resForm").animate({width: "66%"});
                     $("#previewPanel").delay(400).fadeIn();
                     // add details for monitor preview here
-                } else if(!overview) {
+                } else{
                     // add details for multiple monitor preview here
                 }
             });

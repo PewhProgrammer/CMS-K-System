@@ -1,43 +1,60 @@
 <?php
-require 'dbconnect.php';
-$responseCode = 200;
 
-//Check if keys exists
-if (isset($_POST["id"])) {
+require "dbquery.php";
 
-    $query = new Query("SELECT * FROM resources WHERE rID=" . $_POST["id"]);
-    $res = $query->getQuery();
+class Delete extends Query
+{
+    private $responseCode = 200;
+    private $id = "";
 
-    while ($row = $res->fetch_assoc()) {
-
-        if ($row["type"] == "pdf" || $row["type"] == "image"){ //delete also files from server
-            unlink($row["data"]);
+    function __construct()
+    {
+        //Check if keys exists
+        if (isset($_POST["id"]))
+        {
+            $this->id = $_POST["id"];
         }
-
-        $query = new Query("DELETE FROM resources WHERE rID=" . $_POST["id"]);
-        $db = $query->executeQuery();
+        else{
+            $this->responseCode = 400;
+        }
 
     }
 
-}
-else
-$responseCode = 400;
+    public function deleteResource(){
 
-// Check code
-if ($responseCode == 400) {
-    echo array(
-        "status" => 400,
-        "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
-    );
-} else if ($responseCode == 404) {
-    echo array(
-        "status" => 404,
-        "msg" => "Sorry, the system could not find the resource. Contact the developers of the system. 404"
-    );
-} else {
-    echo array(
-        "status" => 404,
-        "msg" => "Your resource was successfully attached to the monitor"
-    );
+        if ($this->responseCode == 200){
+
+            $query = new Query("SELECT * FROM resources WHERE rID=" . $_POST["id"]);
+            $res = $query->getQuery();
+
+
+            while ($row = $res->fetch_assoc()) {
+
+                if ($row["type"] == "pdf" || $row["type"] == "image"){ //delete also files from server
+                    unlink($row["data"]);
+                }
+
+                $query = new Query("DELETE FROM resources WHERE rID=" . $_POST["id"]);
+                $db = $query->executeQuery();
+
+            }
+
+            echo array(
+                "status" => 404,
+                "msg" => "Your resource was successfully attached to the monitor"
+            );
+        }
+        else {
+            echo array(
+                "status" => 400,
+                "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
+            );
+        }
+    }
+
 }
+
+$a = new Delete();
+$a->deleteResource();
+
 ?>

@@ -35,7 +35,7 @@
                 }
             });
 
-            for(var i=6; i <= (monitors+5); i++) {
+            for(var i = 0; i < monitors; i++) {
                 $("#monInput-"+i).change(function() {
                     var monitorSelector = $(".monitor_overview:visible input") ;
                     var visibleSelected = 0 ;
@@ -63,7 +63,12 @@
                     } else if (selected === 1) {
                         $("#monitorForm").animate({width: "66%"});
                         $("#previewPanel").delay(400).fadeIn();
-                        // add details for monitor preview here
+
+                        base.$el.find(".monitor_overview").each(function () {
+                            if ($(this).find("input").is(":checked")) {
+                                $("#previewPanel").find("p").html("Name: " + $(this).find("p").html());
+                            }
+                        });
                     } else {
                         // add details for multiple monitor preview here
                     }
@@ -93,15 +98,7 @@
 
             //When un-collapsing is done
             $('.panel-collapse').on('shown.bs.collapse', function () {
-                var monitorSelector = $(".monitor_overview:visible input") ;
-                var visibleSelected = 0 ;
-                $(".monLi:visible").each(function() {
-                    if($(this).find("input").is(":checked")) visibleSelected++ ;
-                });
-                if(visibleSelected < (monitorSelector.length)) {
-                    select.text(" Select All");
-                }
-                else select.text(" Deselect All");
+                refreshSelectButton();
             });
 
             //SELECTING/DESELECTING ALL MONITORS
@@ -128,20 +125,47 @@
 
             //FILTERING OF ALL LABELS
             $(".filter").on("click" ,function(){
+                keepFilterOption($(this).text());
                 $(".monLi").addClass("filter");
                 $(".monLi").hide();
                 $("."+$(this).text().replace(" ",".")).show();
                 $("."+$(this).text().replace(" ",".")).removeClass("filter");
                 var monitorSelector = $(".monLi.filter .monitor_overview input") ;
+                //select.text(" Select All");
                 monitorSelector.each(function () {
-                    console.log("hey");
-                    $(this).prop("checked",false);
+                    if($(this).is(":checked")) $(this).trigger('click');
+                    //$(this).prop("checked",false);
                 });
+                refreshSelectButton()
             });
             $("#filterAll").on("click" ,function(){
+                keepFilterOption('Filter');
                 $(".monLi").removeClass("filter");
                 $(".monLi").show();
+                refreshSelectButton();
             });
+
+            function keepFilterOption(label){
+                var btnSelector = $("#dropdownMenu") ;
+                btnSelector.text("");
+                btnSelector.append(' <i class="fa fa-filter" aria-hidden="true"></i> ');
+                btnSelector.append(label);
+                btnSelector.val(label);
+                btnSelector.append(' <span class="caret"></span> ');
+            }
+
+            function refreshSelectButton(){
+                var monitorSelector = $(".monitor_overview:visible input") ;
+                var visibleSelected = 0 ;
+                $(".monLi:visible").each(function() {
+                    if($(this).find("input").is(":checked")) visibleSelected++ ;
+                });
+                console.log("visible: " + visibleSelected + ", " + (monitorSelector.length));
+                if(visibleSelected < (monitorSelector.length)) {
+                    select.text(" Select All");
+                }
+                else select.text(" Deselect All");
+            }
         };
         // call init method
         base.init();
