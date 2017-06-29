@@ -4,16 +4,16 @@ require '../php/dbquery.php';
 $query = new Query("SELECT * FROM monitors");
 $mon = $query->getQuery();
 
-$floorReq1 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 3");
+$floorReq1 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 3");
 $groundFloor = $floorReq1->getQuery();
 
-$floorReq2 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 4");
+$floorReq2 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 4");
 $firstFloor = $floorReq2->getQuery();
 
-$floorReq3 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 5");
+$floorReq3 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 5");
 $secondFloor = $floorReq3->getQuery();
 
-$floorReq4 = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6");
+$floorReq4 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 6");
 $thirdFloor = $floorReq4->getQuery();
 
 //Retrieves all possible labels
@@ -147,9 +147,19 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 $monClass = $monClassQuery->getQuery(); ?>
                                                 <li class="monLi Ground Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i>
-                                                        <p><? echo $row["name"] ?></p>
+                                                        <input type="checkbox" name="m" value="<? echo $row["monID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true">
+                                                            <? if($row["type"] == "pdf") { ?>
+                                                                <i class="fa fa-file-pdf-o"></i>
+                                                            <? } else if($row["type"] == "website") {?>
+                                                                <i class="fa fa-file-word-o"></i>
+                                                            <? } else if($row["type"] == "image") {?>
+                                                                <i class="fa fa-picture-o"></i>
+                                                            <? } else if($row["type"] == "rss") {?>
+                                                            <i class="fa fa-rss"></i>
+                                                            <? } ?>
+                                                        </i>
+                                                        <p><? echo $row["monName"] ?></p>
                                                     </label>
                                                 </li> <?
                                                 $countMonitors++;
@@ -177,9 +187,19 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 $monClass = $monClassQuery->getQuery(); ?>
                                             <li class="monLi 1st Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i>
-                                                        <p><? echo $row["name"] ?></p>
+                                                        <input type="checkbox" name="m" value="<? echo $row["monID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true">
+                                                            <? if($row["type"] == "pdf") { ?>
+                                                                <i class="fa fa-file-pdf-o"></i>
+                                                            <? } else if($row["type"] == "website") {?>
+                                                                <i class="fa fa-file-word-o"></i>
+                                                            <? } else if($row["type"] == "image") {?>
+                                                                <i class="fa fa-picture-o"></i>
+                                                            <? } else if($row["type"] == "rss") {?>
+                                                                <i class="fa fa-rss"></i>
+                                                            <? } ?>
+                                                        </i>
+                                                        <p><? echo $row["monName"] ?></p>
                                                     </label>
                                                 </li><?
                                                 $countMonitors++;
@@ -207,9 +227,19 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 $monClass = $monClassQuery->getQuery(); ?>
                                             <li class="monLi 2nd Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i>
-                                                        <p><? echo $row["name"] ?></p>
+                                                        <input type="checkbox" name="m" value="<? echo $row["monID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true">
+                                                            <? if($row["type"] == "pdf") { ?>
+                                                                <i class="fa fa-file-pdf-o"></i>
+                                                            <? } else if($row["type"] == "website") {?>
+                                                                <i class="fa fa-file-word-o"></i>
+                                                            <? } else if($row["type"] == "image") {?>
+                                                                <i class="fa fa-picture-o"></i>
+                                                            <? } else if($row["type"] == "rss") {?>
+                                                                <i class="fa fa-rss"></i>
+                                                            <? } ?>
+                                                        </i>
+                                                        <p><? echo $row["monName"] ?></p>
                                                     </label>
                                                 </li><?
                                                 $countMonitors++;
@@ -237,9 +267,19 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 $monClass = $monClassQuery->getQuery(); ?>
                                             <li class="monLi 3rd Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true"></i>
-                                                        <p><? echo $row["name"] ?></p>
+                                                        <input type="checkbox" name="m" value="<? echo $row["monID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                        <i class="fa fa-television fa-4x" aria-hidden="true">
+                                                            <? if($row["type"] == "pdf") { ?>
+                                                                <i class="fa fa-file-pdf-o"></i>
+                                                            <? } else if($row["type"] == "website") {?>
+                                                                <i class="fa fa-file-word-o"></i>
+                                                            <? } else if($row["type"] == "image") {?>
+                                                                <i class="fa fa-picture-o"></i>
+                                                            <? } else if($row["type"] == "rss") {?>
+                                                                <i class="fa fa-rss"></i>
+                                                            <? } ?>
+                                                        </i>
+                                                        <p><? echo $row["monName"] ?></p>
                                                     </label>
                                                 </li><?
                                                 $countMonitors++;
@@ -254,6 +294,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <div id="previewPanel" class="panel panel-default">
                     <div class="panel-body">
                         <h2>Details</h2>
+                        <p id="monDetails"></p>
                         <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
                             <i class="fa fa-pencil" aria-hidden="true">  Continue</i>
                         </button>
