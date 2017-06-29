@@ -4,7 +4,7 @@ require '../php/dbquery.php';
 $query = new Query("SELECT * FROM monitors");
 $mon = $query->getQuery();
 
-$floorReq1 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 3");
+$floorReq1 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 3");
 $groundFloor = $floorReq1->getQuery();
 
 $floorReq2 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 4");
@@ -144,22 +144,28 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <? while($row = $groundFloor->fetch_assoc()){ ?>
                                                <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
                                                     "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
-                                                $monClass = $monClassQuery->getQuery(); ?>
+                                                $monClass = $monClassQuery->getQuery();
+                                                $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                $resCount = $resCountQuery->getQuery(); ?>
                                                 <li class="monLi Ground Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["monID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                        <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true">
-                                                            <? if($row["type"] == "pdf") { ?>
+                                                            <? $counter = $resCount->fetch_assoc();
+                                                            if ($counter["counter"] > 1) { ?>
+                                                                <i class="fa fa fa-file-o"></i>
+                                                            <? }
+                                                            else if ($row["type"] == "pdf") { ?>
                                                                 <i class="fa fa-file-pdf-o"></i>
-                                                            <? } else if($row["type"] == "website") {?>
+                                                            <? } else if ($row["type"] == "website") { ?>
                                                                 <i class="fa fa-file-word-o"></i>
-                                                            <? } else if($row["type"] == "image") {?>
+                                                            <? } else if ($row["type"] == "image") { ?>
                                                                 <i class="fa fa-picture-o"></i>
-                                                            <? } else if($row["type"] == "rss") {?>
-                                                            <i class="fa fa-rss"></i>
+                                                            <? } else if ($row["type"] == "rss") { ?>
+                                                                <i class="fa fa-rss"></i>
                                                             <? } ?>
                                                         </i>
-                                                        <p><? echo $row["monName"] ?></p>
+                                                        <p><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li> <?
                                                 $countMonitors++;
