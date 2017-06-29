@@ -26,7 +26,7 @@
             var overview = false ;
 
             if(monitors == ""){
-                $(".page-header.page-config").text("Overview");
+                $(".page-header.page-config").text("Resource Overview");
                 $("#header-form-overview").text("Select the resource(s) you want to edit");
                 $(".k-selectable.resLabels").css("cursor","auto");
                 overview =  true;

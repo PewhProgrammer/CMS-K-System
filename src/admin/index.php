@@ -124,7 +124,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                     &nbsp;
                     <button id="selectAll" type="submit" class="btn btn-xs btn-primary logout">
-                        <i id="selectAllDescription" class="fa fa-pencil" aria-hidden="true">  Select all</i>
+                        <i id="selectAllDescription" class="fa fa-pencil" aria-hidden="true">  Select All</i>
                     </button>
                 </div>
                 <form action="config.php" id="monitorForm">

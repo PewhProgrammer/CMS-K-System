@@ -7,7 +7,7 @@ $res = $query->getQuery();
 $monitorsQuery = new Query("SELECT * FROM monitors ORDER BY monitors.name ASC");
 $monitors = $monitorsQuery->getQuery();
 
-$previewQuery = new Query("SELECT * FROM resources, monitorhasresource WHERE monitorhasresource.mID ='" . $mon . "' AND resources.rID = monitorhasresource.rID");
+$previewQuery = new Query("SELECT * FROM resources");
 $preview = $previewQuery->getQuery();
 
 ?>
@@ -49,17 +49,6 @@ a clean and intuitive system to manage the monitors at CISPA">
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
                     <li>
                         <a href="index.php"><i class="fa fa-television fa-fw"></i> Monitor Overview</a>
                     </li>
@@ -126,8 +115,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 <? } else {?>
                                                     <i class="fa fa-file-o"></i>
                                                 <? } ?>
-                                                <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource"
-                                                       value="<? echo $row["name"] ?>">
+                                                <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource" data-resType = "<? echo $row["type"] ?>"
+                                                       data-resData = "<? echo $row["data"] ?>" value="<? echo $row["name"] ?>">
                                                 <p><? echo $row["name"] ?></p>
                                             </label>
                                         </td>
@@ -160,7 +149,13 @@ a clean and intuitive system to manage the monitors at CISPA">
 
                             <!-- Preview -->
                         <h3>Preview</h3>
-                        <a id="previewVertical"><img style="margin-left:10%;margin-bottom: 5%" src="http://via.placeholder.com/240x140"></a>
+                        <iframe id="previewFrame" style="height: 40rem;"
+                                height="100%"
+                                width="100%"
+                                src="../uploads/p2026-lessel_noted.pdf"
+                                frameborder="0"
+                                scrolling="no"
+                        ><p>Your browser does not support iframes.</p></iframe>
                         <!-- <a href="http://placeholder.com"><img style="margin-left:28%;margin-bottom: 5%" src="http://via.placeholder.com/140x240"></a> -->
                         <!-- /Preview -->
 

@@ -29,11 +29,6 @@ class Add extends Query
         if ($this->responseCode == 200){
             $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" .  $this->name . "', '" .  $this->type . "', '" .  $this->path . "')");
             $db = $query->getQuery();
-
-            echo array(
-                "status" => 200,
-                "msg" => "Your resource was successfully attached to the monitor"
-            );
         }
         else {
             echo array(
