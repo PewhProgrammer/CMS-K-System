@@ -29,7 +29,7 @@
                 if (this.checked) {
                     var resType = $(this).attr("data-resType");
                     var resData = $(this).attr("data-resData");
-                    console.log(resType);
+                    //console.log(resType);
 
                     if(resType === 'pdf' || resType === 'image' || resType === 'website'){
                         $("iframe#previewFrame").attr("src",resData);

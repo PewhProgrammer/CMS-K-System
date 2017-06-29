@@ -108,7 +108,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     <i class="fa fa-file-pdf-o"></i>
                                                 <? } else if($row["type"] == "website") {?>
                                                     <i class="fa fa-file-word-o"></i>
-                                                <? } else if($row["type"] == "jpg") {?>
+                                                <? } else if($row["type"] == "image") {?>
                                                     <i class="fa fa-picture-o"></i>
                                                 <? } else if($row["type"] == "rss") {?>
                                                     <i class="fa fa-rss"></i>
