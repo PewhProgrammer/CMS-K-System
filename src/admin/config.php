@@ -43,6 +43,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <ul class="nav navbar-top-links navbar-right">
             <!-- right nav header content -->
+            <div><a type="submit" class="btn btn-primary" href="login.php">Logout</a></div>
         </ul>
 
 
