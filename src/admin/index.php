@@ -146,7 +146,9 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                 $monClass = $monClassQuery->getQuery();
                                                 $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
-                                                $resCount = $resCountQuery->getQuery(); ?>
+                                                $resCount = $resCountQuery->getQuery();
+                                                $resTypeQuery = new Query("SELECT type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                $resType = $resTypeQuery->getQuery();?>
                                                 <li class="monLi Ground Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
@@ -154,16 +156,18 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                             <? $counter = $resCount->fetch_assoc();
                                                             if ($counter["counter"] > 1) { ?>
                                                                 <i class="fa fa fa-file-o"></i>
-                                                            <? }
-                                                            else if ($row["type"] == "pdf") { ?>
-                                                                <i class="fa fa-file-pdf-o"></i>
-                                                            <? } else if ($row["type"] == "website") { ?>
-                                                                <i class="fa fa-file-word-o"></i>
-                                                            <? } else if ($row["type"] == "image") { ?>
-                                                                <i class="fa fa-picture-o"></i>
-                                                            <? } else if ($row["type"] == "rss") { ?>
-                                                                <i class="fa fa-rss"></i>
-                                                            <? } ?>
+                                                            <? } else if ($counter["counter"] == 1) {
+                                                                $type = $resType->fetch_assoc();
+                                                                if ($type["type"] == "pdf") { ?>
+                                                                    <i class="fa fa-file-pdf-o"></i>
+                                                                <? } else if ($type["type"] == "website") { ?>
+                                                                    <i class="fa fa-file-word-o"></i>
+                                                                <? } else if ($type()["type"] == "image") { ?>
+                                                                    <i class="fa fa-picture-o"></i>
+                                                                <? } else if ($type["type"] == "rss") { ?>
+                                                                    <i class="fa fa-rss"></i>
+                                                                <? }
+                                                            } ?>
                                                         </i>
                                                         <p><? echo $row["name"] ?></p>
                                                     </label>
