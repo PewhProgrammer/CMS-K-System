@@ -86,7 +86,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 
         <!-- <div class="panel panel-default"> -->
             <!-- /.panel-heading -->
-            <div id="resourcePanel" class="panel-body attachModule">
+            <div id="resourcePanel" class="panel-body <? if(empty($_GET["m"])) echo ''; else echo attachModule ?>">
                 <form action="#" id="resForm">
                     <div class="panel panel-default" id="tablePanel">
                         <div class="panel-body">
