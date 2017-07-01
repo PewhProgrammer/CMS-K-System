@@ -5,7 +5,8 @@
  * Date: 6/26/2017
  * Time: 10:55 PM
  */
-include('../php/server_login.php');?>
+//session_start();
+include_once('../php/server_login.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,13 +25,15 @@ include('../php/server_login.php');?>
                 <div class="login-panel panel panel-default">
                     <div class="panel-body">
                         <form action="login.php" method="POST" class="input" align="center"><br/>
+                            <?php foreach (Login::$errors as $error): ?>
+                                <h4 class="panel text-danger"><?php echo $error; ?></h4>
+                            <?php endforeach ?>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password" name="password" type="password" value="">
                             </div>
-                            <?php include('../php/errors.php'); ?>
                             <button type="submit" name ="login" class="btn btn-lg btn-block btn-primary">Login</button>
                         </form>
                     </div>
