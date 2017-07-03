@@ -54,28 +54,12 @@ a clean and intuitive system to manage the monitors at CISPA">
             <a class="navbar-brand" href="index.php">CMS-K Admin v0.1</a>
         </div>
         <!-- /.navbar-header-->
-
-        <ul class="nav navbar-top-links navbar-right">
-            <!-- right nav header content -->
-            <div><a type="submit" class="btn btn-primary" href="login.php">Logout</a></div>
-
-        </ul>
+        <a id="logoutButton" type="submit" class="btn btn-primary pull-right" href="login.php">Logout</a>
 
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
                     <li>
                         <a href="index.php"><i class="fa fa-television fa-fw"></i> Monitor Overview</a>
                     </li>
