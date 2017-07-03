@@ -66,7 +66,10 @@
 
                         base.$el.find(".monitor_overview").each(function () {
                             if ($(this).find("input").is(":checked")) {
-                                $("#previewPanel").find("p").html("Name: " + $(this).find("p").html());
+                                var html;
+                                html = "Name: <span style='font-weight: normal'>" + $(this).find(".monitorName").html() + "</span><br><br>";
+                                html = html + "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span>";
+                                $("#previewPanel").find("p").html(html);
                             }
                         });
                     } else {

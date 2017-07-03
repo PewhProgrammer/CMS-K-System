@@ -7,13 +7,13 @@ $mon = $query->getQuery();
 $floorReq1 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 3");
 $groundFloor = $floorReq1->getQuery();
 
-$floorReq2 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 4");
+$floorReq2 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 4");
 $firstFloor = $floorReq2->getQuery();
 
-$floorReq3 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 5");
+$floorReq3 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 5");
 $secondFloor = $floorReq3->getQuery();
 
-$floorReq4 = new Query("SELECT monitors.mID AS monID , monitors.name AS monName, type FROM monitors NATURAL JOIN monitorhaslabel LEFT JOIN monitorhasresource ON (monitors.mID = monitorhasresource.mID) LEFT JOIN resources ON (monitorhasresource.rID = resources.rID) WHERE lID = 6");
+$floorReq4 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6");
 $thirdFloor = $floorReq4->getQuery();
 
 //Retrieves all possible labels
@@ -131,7 +131,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 $monClass = $monClassQuery->getQuery();
                                                 $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                 $resCount = $resCountQuery->getQuery();
-                                                $resTypeQuery = new Query("SELECT type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                 $resType = $resTypeQuery->getQuery();?>
                                                 <li class="monLi Ground Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
@@ -140,6 +140,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                             <? $counter = $resCount->fetch_assoc();
                                                             if ($counter["counter"] > 1) { ?>
                                                                 <i class="fa fa fa-file-o"></i>
+                                                                <!-- write resource names in hidden <p> -->
+                                                                <p class="resourceContent"><? while($type = $resType->fetch_assoc()){ echo $type["name"].", "; }?></p>
                                                             <? } else if ($counter["counter"] == 1) {
                                                                 $type = $resType->fetch_assoc();
                                                                 if ($type["type"] == "pdf") { ?>
@@ -150,10 +152,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                     <i class="fa fa-picture-o"></i>
                                                                 <? } else if ($type["type"] == "rss") { ?>
                                                                     <i class="fa fa-rss"></i>
-                                                                <? }
-                                                            } ?>
+                                                                <? } ?>
+                                                                <p class="resourceContent"><?echo $type["name"].", "?></p>
+                                                            <? } else { ?>
+                                                                <p class="resourceContent"></p>
+                                                           <? } ?>
                                                         </i>
-                                                        <p><? echo $row["name"] ?></p>
+                                                        <p class="monitorName"><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li> <?
                                                 $countMonitors++;
@@ -176,24 +181,43 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <fieldset class="monFieldset">
                                         <ul>
                                             <? while($row = $firstFloor->fetch_assoc()){ ?>
-                                                <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
-                                                    "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
-                                                $monClass = $monClassQuery->getQuery(); ?>
-                                            <li class="monLi 1st Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
-                                                    <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["monID"] ?>" id="monInput-<?echo $countMonitors?>">
-                                                        <i class="fa fa-television fa-4x" aria-hidden="true">
-                                                            <? if($row["type"] == "pdf") { ?>
+                                        <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = " . ($countMonitors - 1) . ") " .
+                                            "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
+                                        $monClass = $monClassQuery->getQuery();
+                                        $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = " . $row["mID"]);
+                                        $resCount = $resCountQuery->getQuery();
+                                        $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = " . $row["mID"]);
+                                        $resType = $resTypeQuery->getQuery(); ?>
+                                            <li class="monLi 1st Floor  <? while ($label = $monClass->fetch_assoc()) {
+                                                echo $label["name"]; ?> <? } ?>">
+                                                <label class="monitor_overview">
+                                                    <input type="checkbox" name="m" value="<? echo $row["mID"] ?>"
+                                                           id="monInput-<? echo $countMonitors ?>">
+                                                    <i class="fa fa-television fa-4x" aria-hidden="true">
+                                                        <? $counter = $resCount->fetch_assoc();
+                                                        if ($counter["counter"] > 1) { ?>
+                                                            <i class="fa fa fa-file-o"></i>
+                                                            <!-- write resource names in hidden <p> -->
+                                                            <p class="resourceContent"><? while ($type = $resType->fetch_assoc()) {
+                                                                    echo $type["name"] . ", ";
+                                                                } ?></p>
+                                                        <? } else if ($counter["counter"] == 1) {
+                                                            $type = $resType->fetch_assoc();
+                                                            if ($type["type"] == "pdf") { ?>
                                                                 <i class="fa fa-file-pdf-o"></i>
-                                                            <? } else if($row["type"] == "website") {?>
+                                                            <? } else if ($type["type"] == "website") { ?>
                                                                 <i class="fa fa-file-word-o"></i>
-                                                            <? } else if($row["type"] == "image") {?>
+                                                            <? } else if ($type()["type"] == "image") { ?>
                                                                 <i class="fa fa-picture-o"></i>
-                                                            <? } else if($row["type"] == "rss") {?>
+                                                            <? } else if ($type["type"] == "rss") { ?>
                                                                 <i class="fa fa-rss"></i>
                                                             <? } ?>
+                                                            <p class="resourceContent"><? echo $type["name"] . ", " ?></p>
+                                                        <? } else { ?>
+                                                            <p class="resourceContent"></p>
+                                                        <? } ?>
                                                         </i>
-                                                        <p><? echo $row["monName"] ?></p>
+                                                        <p class="monitorName"><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li><?
                                                 $countMonitors++;
@@ -218,22 +242,37 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <? while($row = $secondFloor->fetch_assoc()){ ?>
                                                 <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
                                                     "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
-                                                $monClass = $monClassQuery->getQuery(); ?>
+                                                $monClass = $monClassQuery->getQuery();
+                                                $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                $resCount = $resCountQuery->getQuery();
+                                                $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                $resType = $resTypeQuery->getQuery();?>
                                             <li class="monLi 2nd Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["monID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                        <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true">
-                                                            <? if($row["type"] == "pdf") { ?>
-                                                                <i class="fa fa-file-pdf-o"></i>
-                                                            <? } else if($row["type"] == "website") {?>
-                                                                <i class="fa fa-file-word-o"></i>
-                                                            <? } else if($row["type"] == "image") {?>
-                                                                <i class="fa fa-picture-o"></i>
-                                                            <? } else if($row["type"] == "rss") {?>
-                                                                <i class="fa fa-rss"></i>
+                                                            <? $counter = $resCount->fetch_assoc();
+                                                            if ($counter["counter"] > 1) { ?>
+                                                                <i class="fa fa fa-file-o"></i>
+                                                                <!-- write resource names in hidden <p> -->
+                                                                <p class="resourceContent"><? while($type = $resType->fetch_assoc()){ echo $type["name"].", "; }?></p>
+                                                            <? } else if ($counter["counter"] == 1) {
+                                                                $type = $resType->fetch_assoc();
+                                                                if ($type["type"] == "pdf") { ?>
+                                                                    <i class="fa fa-file-pdf-o"></i>
+                                                                <? } else if ($type["type"] == "website") { ?>
+                                                                    <i class="fa fa-file-word-o"></i>
+                                                                <? } else if ($type()["type"] == "image") { ?>
+                                                                    <i class="fa fa-picture-o"></i>
+                                                                <? } else if ($type["type"] == "rss") { ?>
+                                                                    <i class="fa fa-rss"></i>
+                                                                <? } ?>
+                                                                <p class="resourceContent"><?echo $type["name"].", "?></p>
+                                                            <? } else { ?>
+                                                            <p class="resourceContent"></p>
                                                             <? } ?>
                                                         </i>
-                                                        <p><? echo $row["monName"] ?></p>
+                                                        <p class="monitorName"><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li><?
                                                 $countMonitors++;
@@ -258,22 +297,37 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             <? while($row = $thirdFloor->fetch_assoc()){ ?>
                                                 <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
                                                     "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
-                                                $monClass = $monClassQuery->getQuery(); ?>
+                                                $monClass = $monClassQuery->getQuery();
+                                                $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                $resCount = $resCountQuery->getQuery();
+                                                $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                $resType = $resTypeQuery->getQuery();?>
                                             <li class="monLi 3rd Floor  <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["monID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                        <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true">
-                                                            <? if($row["type"] == "pdf") { ?>
-                                                                <i class="fa fa-file-pdf-o"></i>
-                                                            <? } else if($row["type"] == "website") {?>
-                                                                <i class="fa fa-file-word-o"></i>
-                                                            <? } else if($row["type"] == "image") {?>
-                                                                <i class="fa fa-picture-o"></i>
-                                                            <? } else if($row["type"] == "rss") {?>
-                                                                <i class="fa fa-rss"></i>
+                                                            <? $counter = $resCount->fetch_assoc();
+                                                            if ($counter["counter"] > 1) { ?>
+                                                                <i class="fa fa fa-file-o"></i>
+                                                                <!-- write resource names in hidden <p> -->
+                                                                <p class="resourceContent"><? while($type = $resType->fetch_assoc()){ echo $type["name"].", "; }?></p>
+                                                            <? } else if ($counter["counter"] == 1) {
+                                                                $type = $resType->fetch_assoc();
+                                                                if ($type["type"] == "pdf") { ?>
+                                                                    <i class="fa fa-file-pdf-o"></i>
+                                                                <? } else if ($type["type"] == "website") { ?>
+                                                                    <i class="fa fa-file-word-o"></i>
+                                                                <? } else if ($type()["type"] == "image") { ?>
+                                                                    <i class="fa fa-picture-o"></i>
+                                                                <? } else if ($type["type"] == "rss") { ?>
+                                                                    <i class="fa fa-rss"></i>
+                                                                <? } ?>
+                                                                <p class="resourceContent"><?echo $type["name"].", "?></p>
+                                                            <? } else { ?>
+                                                            <p class="resourceContent"></p>
                                                             <? } ?>
                                                         </i>
-                                                        <p><? echo $row["monName"] ?></p>
+                                                        <p class="monitorName"><? echo $row["name"] ?></p>
                                                     </label>
                                                 </li><?
                                                 $countMonitors++;
@@ -290,7 +344,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <h2>Details</h2>
                         <p id="monDetails"></p>
                         <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
-                            <i class="fa fa-pencil" aria-hidden="true">  Continue</i>
+                            <i class="fa fa-pencil" aria-hidden="true"> Change Content</i>
                         </button>
                     </div>
                 </div>
