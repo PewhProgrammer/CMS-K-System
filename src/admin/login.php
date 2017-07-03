@@ -5,7 +5,6 @@
  * Date: 6/26/2017
  * Time: 10:55 PM
  */
-//session_start();
 include_once('../php/server_login.php'); ?>
 
 <!DOCTYPE html>

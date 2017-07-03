@@ -1,5 +1,5 @@
 <?php
-require 'php/dbconnect.php';
+require 'php/dbquery.php';
 $mon = $_GET["m"];
 
 $query = new Query("SELECT * FROM resources, monitorhasresource WHERE monitorhasresource.mID ='" . $mon . "' AND resources.rID = monitorhasresource.rID");

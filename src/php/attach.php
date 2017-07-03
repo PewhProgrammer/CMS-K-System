@@ -10,6 +10,7 @@ class Attach extends Query
     private $monitors = "";
     private $monSize = 0;
     private $monOutput = "";
+    private $until = "";
     private $build = 'INSERT INTO `monitorhasresource` (`mID`, `rID`, `until`) VALUES ';
     private $deleteBuild = 'DELETE FROM `monitorhasresource` WHERE ' ;
 
@@ -20,6 +21,7 @@ class Attach extends Query
         {
             $this->resources = $_POST["resources"];
             $this->monitors = $_POST["monitors"];
+            $this->until = $_POST["until"];
             $this->monSize = sizeof($this->monitors);
             $this->resSize = sizeof($this->resources);
             $this->buildQuery();
@@ -50,7 +52,7 @@ class Attach extends Query
                 if($this->isIterable($this->resources) && $this->resSize > 0){
                     $j = 0;
                     foreach($this->resources as $res){
-                        $this->build .= "(".$mon.", ".$res.", '".$_POST["until"]."' ".")";
+                        $this->build .= "(".$mon.", ".$res.", '". $this->until."' ".")";
                         if(($j+1) != $this->resSize) $this->build .= ", ";
                         //else $this->build .= ";";
                         $j++;

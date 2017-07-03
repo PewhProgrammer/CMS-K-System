@@ -28,8 +28,8 @@ class Login extends Query
             }
         } else if (isset($_GET["logout"])) {
             session_destroy();
-            unset($_SESSION['username']);
-            header('location: ../login.php');
+            unset($_SESSION['user']);
+            header('location: login.php');
         } else {
             $this->responseCode = 400;
         }
@@ -44,7 +44,7 @@ class Login extends Query
         $result = $query->getQuery();
 
         if (mysqli_num_rows($result) == 1) {
-            //$_SESSION['success']="You are now logged in";
+            $_SESSION['user'] = $this->username;
             header('location:./index.php');
         } else {
             array_push(self::$errors, "Incorrect username/password");

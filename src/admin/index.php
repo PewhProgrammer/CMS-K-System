@@ -1,6 +1,11 @@
 <?php
 require '../php/dbquery.php';
 
+if(!isset($_SESSION['user'])){
+    header('location: login.php');
+}
+else {
+
 $query = new Query("SELECT * FROM monitors");
 $mon = $query->getQuery();
 
@@ -379,3 +384,4 @@ a clean and intuitive system to manage the monitors at CISPA">
 <script src="../js/main.js"></script>
 </body>
 </html>
+<? } ?>
