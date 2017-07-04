@@ -49,7 +49,7 @@
             base.$el.find(".k-selectable").find("input").change(function () {
                 if(overview) return;
                 if (this.checked) {
-                    $(this).parent().parent().parent().css({"background-color": "LightCoral "});
+                    $(this).parent().parent().parent().css({"background-color": "#ADDFFF"});
                     selected++;
                 } else {
                     $(this).parent().parent().parent().css({"background-color": "transparent"});
