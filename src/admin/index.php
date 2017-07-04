@@ -59,7 +59,7 @@ a clean and intuitive system to manage the monitors at CISPA">
             <a class="navbar-brand" href="index.php">CMS-K Admin v0.1</a>
         </div>
         <!-- /.navbar-header-->
-        <a id="logoutButton" type="submit" class="btn btn-primary pull-right" href="login.php">Logout</a>
+        <a id="logoutButton" type="submit" class="btn btn-primary pull-right" href="login.php?logout=1">Logout</a>
 
 
         <div class="navbar-default sidebar" role="navigation">
