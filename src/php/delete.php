@@ -4,8 +4,8 @@ require "dbquery.php";
 
 class Delete extends Query
 {
-    private $responseCode = 200;
-    private $id = "";
+    private $response;
+    private $id = 0;
 
     function __construct()
     {
@@ -13,16 +13,17 @@ class Delete extends Query
         if (isset($_POST["id"]))
         {
             $this->id = $_POST["id"];
+            $this->response = new Response(200, "Success");
         }
         else{
-            $this->responseCode = 400;
+            $this->response = new Response(400, "Got no parameters.");
         }
 
     }
 
     public function deleteResource(){
 
-        if ($this->responseCode == 200){
+        if ($this->response->getCode() == 200){
 
             $query = new Query("SELECT * FROM resources WHERE rID=" . $_POST["id"]);
             $res = $query->getQuery();
@@ -39,17 +40,8 @@ class Delete extends Query
 
             }
 
-            echo array(
-                "status" => 404,
-                "msg" => "Your resource was successfully attached to the monitor"
-            );
         }
-        else {
-            echo array(
-                "status" => 400,
-                "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
-            );
-        }
+        return $this->response;
     }
 
 }

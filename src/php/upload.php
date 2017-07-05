@@ -1,14 +1,16 @@
 <?php
 
 require "dbquery.php";
+include_once "Resource.php";
 
 class Upload extends Query
 {
-    private $responseCode = 200;
+    private $response;
+    private $resource;
 
     //gets called for every file once
     private $target_dir = "../uploads/";
-    private $target_file = "../uploads/";
+    private $target_file = "";
     private $uploadOk = 0;
     private $fileType = "";
 
@@ -20,8 +22,10 @@ class Upload extends Query
             $this->target_file = $this->target_dir . basename($_FILES["userfile"]["name"]);
             $this->uploadOk = 1;
             $this->fileType = pathinfo($this->target_file, PATHINFO_EXTENSION);
+            $this->resource = new Resource();
+            $this->response = new Response(200, "Success");
         } else {
-            $this->responseCode = 400;
+            $this->response = new Response(400, "Got no parameters.");
         }
 
     }
@@ -53,7 +57,7 @@ class Upload extends Query
     public function uploadFiles()
     {
 
-        if ($this->responseCode == 200) {
+        if ($this->response->getCode() == 200) {
             if ($this->uploadOk == 0) {
                 echo "Sorry, your file was not uploaded.";
                 // if everything is ok, try to upload file
@@ -61,30 +65,28 @@ class Upload extends Query
                 if (move_uploaded_file($_FILES["userfile"]["tmp_name"], $this->target_file)) {
                     echo "The file " . basename($_FILES["userfile"]["name"]) . " has been uploaded.";
 
-                    $name = $_FILES["userfile"]["name"];
-                    $type = "";
+                    $this->resource->setName($_FILES["userfile"]["name"]);
 
                     if ($this->fileType == 'pdf') {
-                        $type = 'pdf';
+                        $this->resource->setType("pdf");
                     } else {
-                        $type = 'image';
+                        $this->resource->setType("image");
                     }
 
-                    $path = $this->target_dir . $name;
+                    $this->resource->setData($this->target_dir . $this->resource->getName());
 
-                    $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $name . "', '" . $type . "', '" . $path . "')");
+                    $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $this->resource->getName() . "', '" . $this->resource->getType() . "', '" . $this->resource->getData() . "')");
                     $db = $query->getQuery();
 
+
+
                 } else {
-                    echo "Sorry, there was an error uploading your file.";
+                    $this->response->setCode(404);
+                    $this->response->setMsg("Error occurred in uploading your files");
                 }
             }
-        } else {
-            echo array(
-                "status" => 400,
-                "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
-            );
         }
+        return $this->response;
     }
 
 }

@@ -6,12 +6,13 @@
  * Time: 09:34
  */
 require "dbconnect.php";
+include_once "Response.php";
 
 class Query extends ConnectionFactory {
 
     private $query;
     private $result;
-    private $errorCode = "";
+    private $errorCode = 0;
 
     function __construct($sql) {
         $this->query = $sql ;
@@ -27,9 +28,9 @@ class Query extends ConnectionFactory {
             return;
         }
 
-        if ($result = $conn->query($this->query)) {
+        if ($this->result = $conn->query($this->query)) {
             ConnectionFactory::getFactory()->closeConnection();
-           return $result;
+           return $this->result;
         } else {
             echo nl2br ("<< Query ".$this->query);
             echo nl2br ("<< Error. ". $this->errorCode . $conn->error. "\n");

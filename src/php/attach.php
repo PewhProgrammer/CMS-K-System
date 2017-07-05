@@ -4,7 +4,7 @@ require "dbquery.php";
 
 class Attach extends Query
 {
-    private $responseCode = 200;
+    private $response;
     private $resources = "";
     private $resSize = 0;
     private $monitors = "";
@@ -24,10 +24,11 @@ class Attach extends Query
             $this->until = $_POST["until"];
             $this->monSize = sizeof($this->monitors);
             $this->resSize = sizeof($this->resources);
+            $this->response = new Response(200, "Success");
             $this->buildQuery();
         }
         else{
-            $this->responseCode = 400;
+            $this->response = new Response(400, "Got no parameters.");
         }
 
     }
@@ -58,19 +59,24 @@ class Attach extends Query
                         $j++;
                     }
                 }
-                else $this->responseCode = 400;
+                else {
+                    $this->response->setCode(404);
+                    $this->response->setMsg("Error");
+                }
                 if(($i+1) != $this->monSize) $this->build .= ", ";
                 else $this->build .= ";";
             }
         }
-        else $this->responseCode = 400;
-
+        else {
+            $this->response->setCode(404);
+            $this->response->setMsg("Error");
+        }
         $this->execute();
     }
 
     public function execute(){
 
-        if ($this->responseCode == 200){
+        if ($this->response->getCode() == 200){
 
             $this->deleteBuild .= ';';
 
@@ -81,18 +87,11 @@ class Attach extends Query
             //Add resources to monitors
             $query = new Query($this->build);
             $db = $query->getQuery();
-            echo array(
-                "status" => 200,
-                "msg" => $this->build
-            );
+            $this->response->setMsg($this->build);
+
 
         }
-        else {
-            echo array(
-                "status" => 400,
-                "msg" => "Sorry, the system did something unexpected. Contact the developers of the system. 400"
-            );
-        }
+        return $this->response;
     }
 
 }
