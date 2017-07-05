@@ -10,5 +10,8 @@ $(document).ready(function()
     $("#resForm").resFormModule();
     $(".nav").feedbackModule();
 
+    //separate in own js
+    $("#monitorBody").deliverContentModule();
+
     console.log("Running");
 });

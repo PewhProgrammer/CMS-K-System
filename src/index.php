@@ -1,43 +1,3 @@
-<?php
-require 'php/dbquery.php';
-$mon = $_GET["m"];
-
-$query = new Query("SELECT * FROM resources, monitorhasresource WHERE monitorhasresource.mID ='" . $mon . "' AND resources.rID = monitorhasresource.rID");
-$res = $query->getQuery();
-
-$typeArr = ["pdf" => ["no" => 0, "path" => []], "image" => ["no" => 0, "path" => []], "website" => ["no" => 0, "path" => []], "rss" => ["no" => 0, "path" => []], "mensa" => 0, "bus" => 0];
-
-while ($row = $res->fetch_assoc()) {
-    echo $row["name"];
-
-    switch ($row["type"]) {
-        case "pdf":
-            $typeArr["pdf"]["no"]++;
-            array_push($typeArr["pdf"]["path"], $row["data"]);
-            break;
-        case "image":
-            $typeArr["image"]["no"]++;
-            array_push($typeArr["image"]["path"], $row["data"]);
-            break;
-        case "website":
-            $typeArr["website"]["no"]++;
-            array_push($typeArr["website"]["path"], $row["data"]);
-            break;
-        case "rss":
-            $typeArr["rss"]["no"]++;
-            array_push($typeArr["rss"]["path"], $row["data"]);
-            break;
-        case "mensa":
-            $typeArr["mensa"]++;
-            break;
-        case "bus":
-            $typeArr["bus"]++;
-            break;
-        default:
-            echo "Error: Resource has wrong file type.";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,38 +7,16 @@ while ($row = $res->fetch_assoc()) {
     <title>CMS-K</title>
 </head>
 
-<body>
+<body id="monitorBody" style="height: 100%; width: 100%; position: absolute;">
 Monitor page will be created here.
 <a href="./admin/">Go to admin panel</a>
+<div class="content" style="height: 100%;width: 100%;"></div>
 
-<?php if ($typeArr["website"]["no"] == 1) { ?>
-    <iframe
-            height="100%"
-            width="100%"
-            src="<?php echo $typeArr["website"]["path"][0]?>"
-            frameborder="0"
-            scrolling="no"
-    ></iframe>
-<?php } else if ($typeArr["pdf"]["no"] == 1) { ?>
-    <iframe
-            height="100%"
-            width="100%"
-            src="<?php echo $typeArr["pdf"]["path"][0]?>"
-            frameborder="0"
-            scrolling="no"
-    ></iframe>
-<?php } else if ($typeArr["image"]["no"] == 1) { ?>
-    <iframe
-            height="100%"
-            width="100%"
-            src="<?php echo $typeArr["image"]["path"][0]?>"
-            frameborder="0"
-            scrolling="no"
-    ></iframe>
-<?php } else if ($typeArr["rss"]["no"] == 1) { ?>
-   Show RSS feed
-<?php } ?>
 
+<!-- Main JS Script -->
+<script src="./libs/jquery-3.2.1.js"></script>
+<script src="./js/modules.min.js"></script>
+<script src="./js/main.js"></script>
 </body>
 
 </html>
