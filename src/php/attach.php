@@ -4,7 +4,6 @@ require "dbquery.php";
 
 class Attach extends Query
 {
-    private $response;
     private $resources = "";
     private $resSize = 0;
     private $monitors = "";

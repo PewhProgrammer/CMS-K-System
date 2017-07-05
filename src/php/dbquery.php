@@ -13,6 +13,7 @@ class Query extends ConnectionFactory {
     private $query;
     private $result;
     private $errorCode = 0;
+    protected $response;
 
     function __construct($sql) {
         $this->query = $sql ;

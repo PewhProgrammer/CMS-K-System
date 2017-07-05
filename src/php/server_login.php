@@ -3,9 +3,8 @@
 require "dbquery.php";
 include_once "User.php";
 
-class Login extends Query
+class UserHandler extends Query
 {
-    private $response;
     private $user;
     public static $errors = [];
 
@@ -24,7 +23,7 @@ class Login extends Query
             }
             if (count(self::$errors) == 0) {
                 $this->response = new Response(200, "Success");
-                $this->login();
+                $this->verifyLogin();
             }
 
         } else if (isset($_GET["logout"])) {
@@ -37,7 +36,7 @@ class Login extends Query
 
     }
 
-    public function login()
+    public function verifyLogin()
     {
 
         $this->user->setPassword(hash('sha256', $this->user->getPassword()));
@@ -55,6 +54,6 @@ class Login extends Query
 
 }
 
-$a = new Login();
+$a = new UserHandler();
 
 ?>

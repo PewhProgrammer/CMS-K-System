@@ -5,7 +5,7 @@ include_once "Resource.php";
 
 class Upload extends Query
 {
-    private $response;
+
     private $resource;
 
     //gets called for every file once

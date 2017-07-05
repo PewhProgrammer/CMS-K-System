@@ -4,7 +4,6 @@ require "dbquery.php";
 
 class Delete extends Query
 {
-    private $response;
     private $id = 0;
 
     function __construct()

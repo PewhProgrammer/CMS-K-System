@@ -5,7 +5,7 @@ include_once "Resource.php";
 
 class Add extends Query
 {
-    private $response;
+
     private $resource;
 
     function __construct()
