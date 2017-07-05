@@ -59,9 +59,9 @@
 
                     if (selected === 0) {
                         $("#previewPanel").fadeOut();
-                        $("#monitorForm").delay(400).animate({width: "100%"});
+                        $(".monitorContainer").delay(400).animate({width: "100%"});
                     } else if (selected === 1) {
-                        $("#monitorForm").animate({width: "66%"});
+                        $(".monitorContainer").animate({width: "66%"});
                         $("#previewPanel").delay(400).fadeIn();
 
                         base.$el.find(".monitor_overview").each(function () {
