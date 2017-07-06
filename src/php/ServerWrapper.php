@@ -12,10 +12,7 @@ abstract class ServerWrapper
     /**
      * ServerWrapper constructor.
      */
-    public function __construct()
-    {
-
-    }
+    abstract public function __construct();
 
     /**
      * @return Response The return value shall be a Response

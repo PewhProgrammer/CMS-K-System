@@ -1,9 +1,9 @@
 <?php
 
-require "dbquery.php";
+require "ServerWrapper.php";
 include_once "Resource.php";
 
-class Upload extends Query
+class Upload extends ServerWrapper
 {
 
     private $resource;
@@ -23,11 +23,39 @@ class Upload extends Query
             $this->uploadOk = 1;
             $this->fileType = pathinfo($this->target_file, PATHINFO_EXTENSION);
             $this->resource = new Resource();
-            $this->response = new Response(200, "Success");
-        } else {
-            $this->response = new Response(400, "Got no parameters.");
+            echo $this->execute();
+            return;
         }
 
+        echo "Wrong Param Format.";
+
+    }
+
+    /**
+     * @return Response The return value shall be a Response
+     */
+    public function execute()
+    {
+        $this->checkFiles();
+        if ($this->uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+            // if everything is ok, try to upload file
+        } else if (move_uploaded_file($_FILES["userfile"]["tmp_name"], $this->target_file)) {
+
+            echo "The file " . basename($_FILES["userfile"]["name"]) . " has been uploaded.";
+
+            $this->resource->setName($_FILES["userfile"]["name"]);
+
+            if ($this->fileType == 'pdf') $this->resource->setType("pdf");
+            else $this->resource->setType("image");
+
+            $this->resource->setData($this->target_dir . $this->resource->getName());
+            $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $this->resource->getName() . "', '" . $this->resource->getType() . "', '" . $this->resource->getData() . "')");
+            $query->executeQuery();
+
+            return $query->getResponse();
+        }
+        return new Response('404','The file could not be uploaded');
     }
 
     public function checkFiles()
@@ -53,46 +81,8 @@ class Upload extends Query
             }
         */
     }
-
-    public function uploadFiles()
-    {
-
-        if ($this->response->getCode() == 200) {
-            if ($this->uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
-                // if everything is ok, try to upload file
-            } else {
-                if (move_uploaded_file($_FILES["userfile"]["tmp_name"], $this->target_file)) {
-                    echo "The file " . basename($_FILES["userfile"]["name"]) . " has been uploaded.";
-
-                    $this->resource->setName($_FILES["userfile"]["name"]);
-
-                    if ($this->fileType == 'pdf') {
-                        $this->resource->setType("pdf");
-                    } else {
-                        $this->resource->setType("image");
-                    }
-
-                    $this->resource->setData($this->target_dir . $this->resource->getName());
-
-                    $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $this->resource->getName() . "', '" . $this->resource->getType() . "', '" . $this->resource->getData() . "')");
-                    $db = $query->getQuery();
-
-
-
-                } else {
-                    $this->response->setCode(404);
-                    $this->response->setMsg("Error occurred in uploading your files");
-                }
-            }
-        }
-        return $this->response;
-    }
-
 }
 
 $a = new Upload();
-$a->checkFiles();
-$a->uploadFiles();
 
 ?>

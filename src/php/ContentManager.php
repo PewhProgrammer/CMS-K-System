@@ -1,5 +1,5 @@
 <?php
-require "dbquery.php";
+require "ServerWrapper.php";
 
 /**
  * Created by PhpStorm.
@@ -7,7 +7,7 @@ require "dbquery.php";
  * Date: 05.07.2017
  * Time: 18:40
  */
-class ContentManager extends Query
+class ContentManager extends ServerWrapper
 {
     private $mID;
 
@@ -17,17 +17,21 @@ class ContentManager extends Query
         if (isset($_POST["mID"]))
         {
             $this->mID = $_POST["mID"];
-            $this->response = new Response(200, "Success");
+            $this->execute();
+            return;
         }
-        else{
-            $this->response = new Response(400, "Got no parameters.");
-        }
+
+        echo "Wrong Param Format.";
 
     }
 
-    public function getContent(){
-        $query = new Query("SELECT * FROM resources, monitorhasresource WHERE monitorhasresource.mID ='" . $this->mID . "' AND resources.rID = monitorhasresource.rID");
-        $res = $query->getQuery();
+    /**
+     * @return Response The return value shall be a Response
+     */
+    public function execute()
+    {
+        $this->query = new Query("SELECT * FROM resources, monitorhasresource WHERE monitorhasresource.mID ='" . $this->mID . "' AND resources.rID = monitorhasresource.rID");
+        $res = $this->query->getQuery();
 
         $typeArr = ["pdf" => ["no" => 0, "path" => []], "image" => ["no" => 0, "path" => []], "website" => ["no" => 0, "path" => []], "rss" => ["no" => 0, "path" => []], "mensa" => 0, "bus" => 0];
 
@@ -61,10 +65,10 @@ class ContentManager extends Query
         }
 
         echo json_encode($typeArr);
+        return $this->query->getResponse();
     }
 }
 
 $a = new ContentManager();
-$a->getContent();
 
 ?>

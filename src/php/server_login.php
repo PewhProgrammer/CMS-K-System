@@ -1,9 +1,9 @@
 <?php
 
-require "dbquery.php";
+require "ServerWrapper.php";
 include_once "User.php";
 
-class UserHandler extends Query
+class UserHandler extends ServerWrapper
 {
     private $user;
     public static $errors = [];
@@ -22,8 +22,8 @@ class UserHandler extends Query
                 array_push(self::$errors, "Password is required");
             }
             if (count(self::$errors) == 0) {
-                $this->response = new Response(200, "Success");
-                $this->verifyLogin();
+                $this->execute();
+                return;
             }
 
         } else if (isset($_GET["logout"])) {
@@ -31,17 +31,19 @@ class UserHandler extends Query
             unset($_SESSION['user']);
             header('location: login.php');
         } else {
-            $this->response = new Response(400, "Got no parameters.");
+            echo "Something went wrong here.";
         }
 
     }
 
-    public function verifyLogin()
+    /**
+     * @return Response The return value shall be a Response
+     */
+    public function execute()
     {
-
         $this->user->setPassword(hash('sha256', $this->user->getPassword()));
-        $query = new Query("SELECT * FROM users WHERE name='" .$this->user->getUsername(). "' AND pass='" . $this->user->getPassword() . "'");
-        $result = $query->getQuery();
+        $this->query = new Query("SELECT * FROM users WHERE name='" .$this->user->getUsername(). "' AND pass='" . $this->user->getPassword() . "'");
+        $result = $this->query->getQuery();
 
         if (mysqli_num_rows($result) == 1) {
             $_SESSION['user'] = $this->user->getUsername();
@@ -50,8 +52,8 @@ class UserHandler extends Query
             array_push(self::$errors, "Incorrect username/password");
         }
 
-}
-
+        return $this->query->getResponse();
+    }
 }
 
 $a = new UserHandler();

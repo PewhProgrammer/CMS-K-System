@@ -22,6 +22,8 @@ class Response
         $this->msg = $msg;
     }
 
+
+
     /**
      * @return mixed
      */
@@ -52,6 +54,11 @@ class Response
     public function setMsg($msg)
     {
         $this->msg = $msg;
+    }
+
+    public function __toString(){
+        return $this->msg;
+       //return array('code'=> $this->code, 'msg' => $this->msg);
     }
 
 }
