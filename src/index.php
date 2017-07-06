@@ -8,8 +8,6 @@
 </head>
 
 <body id="monitorBody" style="height: 100%; width: 100%; position: absolute;">
-Monitor page will be created here.
-<a href="./admin/">Go to admin panel</a>
 <div class="content" style="height: 100%;width: 100%;"></div>
 
 

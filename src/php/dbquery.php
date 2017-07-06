@@ -15,6 +15,7 @@ class Query extends ConnectionFactory {
     private $errorCode = 0;
     protected $response;
 
+
     function __construct($sql) {
         $this->query = $sql ;
     }
@@ -31,10 +32,10 @@ class Query extends ConnectionFactory {
 
         if ($this->result = $conn->query($this->query)) {
             ConnectionFactory::getFactory()->closeConnection();
+            $this->setResponse(200,$this->result);
            return $this->result;
         } else {
-            echo nl2br ("<< Query ".$this->query);
-            echo nl2br ("<< Error. ". $this->errorCode . $conn->error. "\n");
+            $this->setResponse(404,'SQLQuery format error: '.$this->query);
         }
 
     }
@@ -54,12 +55,29 @@ class Query extends ConnectionFactory {
         }
 
         if ($conn->query($this->query) === TRUE) {
-            echo "Query executed successfully ";
+            $this->setResponse(200,"");
         } else {
-            echo nl2br ("<<Error. ". $this->errorCode . $conn->error. "\n");
+            $this->setResponse(404,'SQLQuery format error: '.$this->query);
         }
         ConnectionFactory::getFactory()->closeConnection();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param mixed $response
+     */
+    public function setResponse($code, $msg)
+    {
+        $this->response = new Response($code, $msg);
+    }
+
 }
 
 ?>
