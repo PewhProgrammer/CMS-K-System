@@ -150,11 +150,12 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                     <p class="resourceContent"><? while($type = $resType->fetch_assoc()){ echo $type["name"].", "; }?></p>
                                                                 <? } else if ($counter["counter"] == 1) {
                                                                     $type = $resType->fetch_assoc();
+
                                                                     if ($type["type"] == "pdf") { ?>
                                                                         <i class="fa fa-file-pdf-o"></i>
                                                                     <? } else if ($type["type"] == "website") { ?>
                                                                         <i class="fa fa-file-word-o"></i>
-                                                                    <? } else if ($type()["type"] == "image") { ?>
+                                                                    <? } else if ($type["type"] == "image") { ?>
                                                                         <i class="fa fa-picture-o"></i>
                                                                     <? } else if ($type["type"] == "rss") { ?>
                                                                         <i class="fa fa-rss"></i>
@@ -213,7 +214,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                     <i class="fa fa-file-pdf-o"></i>
                                                                 <? } else if ($type["type"] == "website") { ?>
                                                                     <i class="fa fa-file-word-o"></i>
-                                                                <? } else if ($type()["type"] == "image") { ?>
+                                                                <? } else if ($type["type"] == "image") { ?>
                                                                     <i class="fa fa-picture-o"></i>
                                                                 <? } else if ($type["type"] == "rss") { ?>
                                                                     <i class="fa fa-rss"></i>
@@ -268,7 +269,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                         <i class="fa fa-file-pdf-o"></i>
                                                                     <? } else if ($type["type"] == "website") { ?>
                                                                         <i class="fa fa-file-word-o"></i>
-                                                                    <? } else if ($type()["type"] == "image") { ?>
+                                                                    <? } else if ($type["type"] == "image") { ?>
                                                                         <i class="fa fa-picture-o"></i>
                                                                     <? } else if ($type["type"] == "rss") { ?>
                                                                         <i class="fa fa-rss"></i>
@@ -323,7 +324,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                         <i class="fa fa-file-pdf-o"></i>
                                                                     <? } else if ($type["type"] == "website") { ?>
                                                                         <i class="fa fa-file-word-o"></i>
-                                                                    <? } else if ($type()["type"] == "image") { ?>
+                                                                    <? } else if ($type["type"] == "image") { ?>
                                                                         <i class="fa fa-picture-o"></i>
                                                                     <? } else if ($type["type"] == "rss") { ?>
                                                                         <i class="fa fa-rss"></i>
