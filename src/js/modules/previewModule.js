@@ -24,8 +24,6 @@
             base.$el.css("background-color", "white");
 
             $("#resourceTable ").find("input").change(function () {
-                var dbId = this.id.substring(4, 5);
-
                 if (this.checked) {
                     var resType = $(this).attr("data-resType");
                     var resData = $(this).attr("data-resData");
@@ -35,7 +33,7 @@
                         $("iframe#previewFrame").attr("src",resData);
                     }else if(resType === 'website' || resType === 'rss'){
                         var url = resData.split('/');
-                        console.log(url[0]);
+                        //console.log(url[0]);
                         $("iframe#previewFrame").attr("src",'http://'+url[0]);
                     }
 

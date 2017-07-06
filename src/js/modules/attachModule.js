@@ -36,7 +36,8 @@
             var attachSubmit = $('#attachSubmit') ;
             var endTime = '2030-06-13 19:30:11'; //default indefinitely
             $("#resourceTable ").find("input").change(function () {
-                var dbId = this.id.substring(4, 5);
+                var dbId = this.id.split("-")[1];
+                console.log(dbId);
                 if (this.checked) {
                     checked++;
                     ressourcesIncluded.push(dbId)
