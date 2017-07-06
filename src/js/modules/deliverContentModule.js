@@ -37,6 +37,7 @@
                 if(base.mID !== undefined){
                     $.post("../php/ContentManager.php", {mID: base.mID})
                         .done(function (data) {
+                            console.log(data);
                             var tmp = JSON.stringify(base.types);
                             base.types = JSON.parse(data);
                             var newData = JSON.stringify(base.types);
