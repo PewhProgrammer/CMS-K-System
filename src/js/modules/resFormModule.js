@@ -109,7 +109,7 @@
                         location.reload();
                     }, 2000);
                 }).fail(function () {
-                    $("#success-error").show();
+                    $("#error-alert").show();
                 });
 
             });
