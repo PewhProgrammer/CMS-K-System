@@ -31,8 +31,12 @@
                     var resData = $(this).attr("data-resData");
                     //console.log(resType);
 
-                    if(resType === 'pdf' || resType === 'image' || resType === 'website'){
+                    if(resType === 'pdf' || resType === 'image'){
                         $("iframe#previewFrame").attr("src",resData);
+                    }else if(resType === 'website' || resType === 'rss'){
+                        var url = resData.split('/');
+                        console.log(url[0]);
+                        $("iframe#previewFrame").attr("src",'http://'+url[0]);
                     }
 
                 }
