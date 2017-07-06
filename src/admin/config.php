@@ -155,9 +155,9 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <iframe id="previewFrame" style="height: 40rem;"
                                 height="100%"
                                 width="100%"
-                                src="../uploads/p2026-lessel_noted.pdf"
-                                frameborder="0"
-                                scrolling="no"
+                                src=""
+                                frameborder="1"
+                                scrolling="yes"
                         ><p>Your browser does not support iframes.</p></iframe>
                         <!-- <a href="http://placeholder.com"><img style="margin-left:28%;margin-bottom: 5%" src="http://via.placeholder.com/140x240"></a> -->
                         <!-- /Preview -->
