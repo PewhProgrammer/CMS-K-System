@@ -1,8 +1,8 @@
 <?php
 
-require "dbquery.php";
+require "ServerWrapper.php";
 
-class Delete extends Query
+class Delete extends ServerWrapper
 {
     private $id = 0;
 
@@ -12,40 +12,35 @@ class Delete extends Query
         if (isset($_POST["id"]))
         {
             $this->id = $_POST["id"];
-            $this->response = new Response(200, "Success");
+            $this->execute();
         }
         else{
-            $this->response = new Response(400, "Got no parameters.");
+           echo "No params set";
         }
 
     }
 
-    public function deleteResource(){
+    public function execute(){
 
-        if ($this->response->getCode() == 200){
-
-            $query = new Query("SELECT * FROM resources WHERE rID=" . $_POST["id"]);
-            $res = $query->getQuery();
+        $this->query = new Query("SELECT * FROM resources WHERE rID=" . $this->id);
+        $res = $this->query->getQuery();
 
 
-            while ($row = $res->fetch_assoc()) {
+        while ($row = $res->fetch_assoc()) {
 
-                if ($row["type"] == "pdf" || $row["type"] == "image"){ //delete also files from server
-                    unlink($row["data"]);
-                }
-
-                $query = new Query("DELETE FROM resources WHERE rID=" . $_POST["id"]);
-                $db = $query->executeQuery();
-
+            if ($row["type"] == "pdf" || $row["type"] == "image"){ //delete also files from server
+                unlink($row["data"]);
             }
 
+            $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
+            $this->query->executeQuery();
         }
-        return $this->response;
+
+        return $this->query->getResponse();
     }
 
 }
 
 $a = new Delete();
-$a->deleteResource();
 
 ?>
