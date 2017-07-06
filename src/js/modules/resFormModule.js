@@ -101,15 +101,15 @@
                 $.post('../php/delete.php', {
                     id: id
                 }).done(function (data) {
-                    console.log("delData" + data);
                     $("#delModal").modal("hide");
-                    $("#success-alert").find("p").text('Item has been deleted').show();
+                    $("#success-alert").find("p").text('Item has been deleted');
+                    $("#success-alert").show();
 
                     setTimeout(function(){
                         location.reload();
                     }, 2000);
                 }).fail(function () {
-
+                    $("#success-error").show();
                 });
 
             });
