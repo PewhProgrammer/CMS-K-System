@@ -72,6 +72,18 @@
                     console.log("website");
                     $(".content").html('<iframe height="100%" width="100%" src="' + base.types["website"]["path"][0] + '" frameborder="0" scrolling="no" ></iframe>');
                 }
+                else if (base.types["bus"]["no"] === 1){
+                    MensaBusModule().getBusData();
+                }
+                else if (base.types["mensa"]["no"] === 1){
+                    MensaBusModule().getMensaData();
+                }
+                else if (base.types["rss"]["no"] === 1){
+                    RSSModule().getContent(base.types["rss"]["path"]);
+                }
+                else if (base.types["caldav"]["no"] === 1){
+                    CalDAVModule().getRoomData(base.types["caldav"]["path"]);
+                }
             }
 
             function getUrlVars()
