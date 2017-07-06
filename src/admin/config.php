@@ -42,7 +42,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">CMS-K Admin v0.1</a>
+            <a class="navbar-brand" href="index.php">CMS-K Admin v0.2</a>
         </div>
         <!-- /.navbar-header -->
         <a id="logoutButton" type="submit" class="btn btn-primary pull-right" href="login.php?logout=1">Logout</a>

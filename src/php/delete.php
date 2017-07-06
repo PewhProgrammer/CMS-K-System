@@ -25,16 +25,16 @@ class Delete extends ServerWrapper
         $this->query = new Query("SELECT * FROM resources WHERE rID=" . $this->id);
         $res = $this->query->getQuery();
 
-
         while ($row = $res->fetch_assoc()) {
 
             if ($row["type"] == "pdf" || $row["type"] == "image"){ //delete also files from server
                 unlink($row["data"]);
             }
 
-            $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
-            $this->query->executeQuery();
         }
+
+        $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
+        $this->query->executeQuery();
 
         return $this->query->getResponse();
     }

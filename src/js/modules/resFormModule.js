@@ -98,13 +98,12 @@
 
 
             $("#delButton").click(function () {
-                console.log(id);
                 $.post('../php/delete.php', {
                     id: id
                 }).done(function (data) {
+                    console.log("delData" + data);
                     $("#delModal").modal("hide");
-                    $("#success-alert").find("p").text('Item has been deleted');
-                    $("#success-alert").show();
+                    $("#success-alert").find("p").text('Item has been deleted').show();
 
                     setTimeout(function(){
                         location.reload();
