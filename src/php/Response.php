@@ -23,7 +23,6 @@ class Response
     }
 
 
-
     /**
      * @return mixed
      */
@@ -57,8 +56,7 @@ class Response
     }
 
     public function __toString(){
-        return $this->msg;
-       //return array('code'=> $this->code, 'msg' => $this->msg);
+        return json_encode(["code" => $this->getCode(), "msg" => $this->getMsg()]);
     }
 
 }

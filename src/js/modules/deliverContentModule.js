@@ -27,7 +27,7 @@
             // Access to jQuery and DOM versions of element
             base.el = el;
             base.$el = jQuery(el);
-            base.mID = getUrlVars()["m"];
+            base.mID = getUrlVars()["mID"];
             base.types = {};
             base.interval = 10; //in seconds
 

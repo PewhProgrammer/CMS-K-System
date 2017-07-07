@@ -8,7 +8,7 @@ class Delete extends ServerWrapper
 
     function __construct()
     {
-        //Check if keys exists
+        //Check if param exists
         if (isset($_POST["id"]))
         {
             $this->id = $_POST["id"];
@@ -36,7 +36,7 @@ class Delete extends ServerWrapper
         $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
         $this->query->executeQuery();
 
-        return $this->query->getResponse();
+        echo $this->query->getResponse();
     }
 
 }

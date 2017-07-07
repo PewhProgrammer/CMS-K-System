@@ -101,13 +101,22 @@
                 $.post('../php/delete.php', {
                     id: id
                 }).done(function (data) {
-                    $("#delModal").modal("hide");
-                    $("#success-alert").find("p").text('Item has been deleted');
-                    $("#success-alert").show();
+                    var response = JSON.parse(data);
 
-                    setTimeout(function(){
-                        location.reload();
-                    }, 2000);
+                    if (response.code === 200){
+                        $("#delModal").modal("hide");
+                        $("#success-alert").find("p").text('Item has been deleted');
+                        $("#success-alert").show();
+
+                        setTimeout(function(){
+                            location.reload();
+                        }, 2000);
+                    }
+                    else {
+                        $("#error-alert").find("p").text(response.msg);
+                        $("#error-alert").show();
+                    }
+
                 }).fail(function () {
                     $("#error-alert").show();
                 });
