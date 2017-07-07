@@ -113,12 +113,13 @@
                         }, 2000);
                     }
                     else {
-                        $("#error-alert").find("p").text(response.msg);
-                        $("#error-alert").show();
+                        $("#delModal").modal("hide");
+                        $("#warning-alert").find("p").text(response.msg);
+                        $("#warning-alert").show();
                     }
 
                 }).fail(function () {
-                    $("#error-alert").show();
+                    $("#warning-alert").show();
                 });
 
             });
