@@ -31,7 +31,7 @@ class UserHandler extends ServerWrapper
             unset($_SESSION['user']);
             header('location: login.php');
         } else {
-            echo "Something went wrong here.";
+            echo "";
         }
 
     }

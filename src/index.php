@@ -8,7 +8,9 @@
 </head>
 
 <body id="monitorBody" style="height: 100%; width: 100%; position: absolute;">
-<div class="content" style="height: 100%;width: 100%;"></div>
+<div class="content" style="height: 100%;width: 100%;">
+    We have no registered monitor under this ID.
+</div>
 
 
 <!-- Main JS Script -->

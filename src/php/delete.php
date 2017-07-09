@@ -30,7 +30,6 @@ class Delete extends ServerWrapper
             if ($row["type"] == "pdf" || $row["type"] == "image"){ //delete also files from server
                 unlink($row["data"]);
             }
-
         }
 
         $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);

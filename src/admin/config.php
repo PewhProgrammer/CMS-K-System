@@ -115,6 +115,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     <i class="fa fa-picture-o"></i>
                                                 <? } else if($row["type"] == "rss") {?>
                                                     <i class="fa fa-rss"></i>
+                                                 <? } else if ($row["type"] == "caldav") { ?>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                                 <? } else {?>
                                                     <i class="fa fa-file-o"></i>
                                                 <? } ?>
@@ -237,6 +239,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                 <li><a>PDF / Image</a></li>
                                 <li><a href="#">Website</a></li>
                                 <li><a href="#">RSS Feed</a></li>
+                                <li><a href="#">CalDAV</a></li>
                             </ul>
                         </div>
 

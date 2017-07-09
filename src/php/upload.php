@@ -47,6 +47,7 @@ class Upload extends ServerWrapper
             $this->resource->setName($_FILES["userfile"]["name"]);
 
             if ($this->fileType == 'pdf') $this->resource->setType("pdf");
+            else if ($this->fileType == 'ics') $this->resource->setType("caldav");
             else $this->resource->setType("image");
 
             $this->resource->setData($this->target_dir . $this->resource->getName());

@@ -27,6 +27,8 @@
             base.$urlForm.hide();
             base.$fileForm.hide();
 
+            base.$dropzoned = false;
+
 
             var fileType = -1 ; // 0 = pdf/image ; 1 = Website ; 2 = RSS Feed AND -1 = none
 
@@ -57,7 +59,10 @@
                 }
             };
 
+            var urlHeaderText = ['Enter a website URL','Enter a RSS feed URL','How to access the CalDAV data?'];
+
             $("#fileTypeDrop li").click(function(){
+                base.$dropzoned = false;
                 $("#warning").hide();
                 fileType = $(this).index();
                 console.log("index : " + fileType);
@@ -69,19 +74,43 @@
                 if (fileType > 0){ //url
                     base.$urlForm.show();
                     base.$fileForm.hide();
-                    var urlHeaderText = '';
-                    if(fileType === 1){
-                        urlHeaderText += 'Enter a website URL';
-                    }else{
-                        urlHeaderText += 'Enter a RSS feed URL';
-                    }
-                    $("#urlHeader").text(urlHeaderText);
+
+                    if(fileType === 3) processCALDavHTML();
+                    else base.$urlForm.html('<label for="url" id="urlHeader">Name:</label> <input type="text" class="form-control" id="url">');
+                    $("#urlHeader").text(urlHeaderText[fileType-1]);
                 }
                 else { //file upload
+                    base.$dropzoned = true;
                     base.$urlForm.hide();
                     base.$fileForm.show();
                 }
             });
+
+            function processCALDavHTML(){
+                base.$urlForm.html('');
+                base.$urlForm
+                    .append('<label for="url" id="urlHeader">Name:</label>')
+                    .append('<div class="checkbox caldav"> <label><input id="caldavOpt0"  disabled type="checkbox"  value="">Access through API [Not implemented yet]</label> </div>')
+                    .append('<div class="checkbox caldav"> <label><input id="caldavOpt1"  type="checkbox" value="">Access through local storage</label> </div>')
+                    .append('<div id="calDavDiv"> </div>');
+                $(".checkbox.caldav").find("input").change(function () {
+                    var calDavDivSelector = $("#calDavDiv");
+                    calDavDivSelector.html('');
+                    if(!this.checked){
+                        base.$fileForm.hide();
+                        return ;
+                    }
+                    if($(this).attr('id') === 'caldavOpt0'){
+                        calDavDivSelector
+                            .append('<input type="text" class="form-control" id="url">');
+                    }
+                    else{
+                        base.$dropzoned = true;
+                        base.$fileForm.show();
+                    }
+                });
+            }
+
 
             base.$submitButton.on('click', function(event) {
 
@@ -92,7 +121,7 @@
                 }
 
                 var resourceResponse = $("#url").val();
-                if(fileType > 0){
+                if(!base.$dropzoned){
                     if (resourceResponse.length < 1){
                         $("#warningInput").text('Please enter an URL');
                         $("#warning").show();

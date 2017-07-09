@@ -27,7 +27,7 @@ class Query extends ConnectionFactory {
             //echo nl2br ("<<DB connection established \n");
         }catch (Exception $e){
             echo $e ;
-            return;
+            return null;
         }
 
         if ($this->result = $conn->query($this->query)) {

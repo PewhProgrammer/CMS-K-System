@@ -56,7 +56,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">CMS-K Admin v0.2</a>
+            <a class="navbar-brand" href="index.php">CMS-K Admin v0.1</a>
         </div>
         <!-- /.navbar-header-->
         <a id="logoutButton" type="submit" class="btn btn-primary pull-right" href="login.php?logout=1">Logout</a>
@@ -145,7 +145,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
                                                                 <? $counter = $resCount->fetch_assoc();
                                                                 if ($counter["counter"] > 1) { ?>
-                                                                    <i class="fa fa fa-file-o"></i>
+                                                                    <i class="fa fa-files-o" aria-hidden="true"></i>
                                                                     <!-- write resource names in hidden <p> -->
                                                                     <p class="resourceContent"><? while($type = $resType->fetch_assoc()){ echo $type["name"].", "; }?></p>
                                                                 <? } else if ($counter["counter"] == 1) {
@@ -154,11 +154,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                     if ($type["type"] == "pdf") { ?>
                                                                         <i class="fa fa-file-pdf-o"></i>
                                                                     <? } else if ($type["type"] == "website") { ?>
-                                                                        <i class="fa fa-file-word-o"></i>
+                                                                        <i class="fa fa-globe" aria-hidden="true"></i>
                                                                     <? } else if ($type["type"] == "image") { ?>
                                                                         <i class="fa fa-picture-o"></i>
                                                                     <? } else if ($type["type"] == "rss") { ?>
                                                                         <i class="fa fa-rss"></i>
+                                                                    <? } else if ($type["type"] == "caldav") { ?>
+                                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
                                                                     <? } ?>
                                                                     <p class="resourceContent"><?echo $type["name"].", "?></p>
                                                                 <? } else { ?>
@@ -203,7 +205,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true">
                                                             <? $counter = $resCount->fetch_assoc();
                                                             if ($counter["counter"] > 1) { ?>
-                                                                <i class="fa fa fa-file-o"></i>
+                                                                <i class="fa fa-files-o" aria-hidden="true"></i>
                                                                 <!-- write resource names in hidden <p> -->
                                                                 <p class="resourceContent"><? while ($type = $resType->fetch_assoc()) {
                                                                         echo $type["name"] . ", ";
@@ -213,10 +215,12 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                 if ($type["type"] == "pdf") { ?>
                                                                     <i class="fa fa-file-pdf-o"></i>
                                                                 <? } else if ($type["type"] == "website") { ?>
-                                                                    <i class="fa fa-file-word-o"></i>
+                                                                    <i class="fa fa-globe" aria-hidden="true"></i>
                                                                 <? } else if ($type["type"] == "image") { ?>
                                                                     <i class="fa fa-picture-o"></i>
                                                                 <? } else if ($type["type"] == "rss") { ?>
+                                                                    <i class="fa fa-rss"></i>
+                                                                <? } else if ($type["type"] == "caldav") { ?>
                                                                     <i class="fa fa-rss"></i>
                                                                 <? } ?>
                                                                 <p class="resourceContent"><? echo $type["name"] . ", " ?></p>
@@ -260,7 +264,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
                                                                 <? $counter = $resCount->fetch_assoc();
                                                                 if ($counter["counter"] > 1) { ?>
-                                                                    <i class="fa fa fa-file-o"></i>
+                                                                    <i class="fa fa-files-o" aria-hidden="true"></i>
                                                                     <!-- write resource names in hidden <p> -->
                                                                     <p class="resourceContent"><? while($type = $resType->fetch_assoc()){ echo $type["name"].", "; }?></p>
                                                                 <? } else if ($counter["counter"] == 1) {
@@ -268,11 +272,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                     if ($type["type"] == "pdf") { ?>
                                                                         <i class="fa fa-file-pdf-o"></i>
                                                                     <? } else if ($type["type"] == "website") { ?>
-                                                                        <i class="fa fa-file-word-o"></i>
+                                                                        <i class="fa fa-globe" aria-hidden="true"></i>
                                                                     <? } else if ($type["type"] == "image") { ?>
                                                                         <i class="fa fa-picture-o"></i>
                                                                     <? } else if ($type["type"] == "rss") { ?>
                                                                         <i class="fa fa-rss"></i>
+                                                                    <? } else if ($type["type"] == "caldav") { ?>
+                                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
                                                                     <? } ?>
                                                                     <p class="resourceContent"><?echo $type["name"].", "?></p>
                                                                 <? } else { ?>
@@ -315,7 +321,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
                                                                 <? $counter = $resCount->fetch_assoc();
                                                                 if ($counter["counter"] > 1) { ?>
-                                                                    <i class="fa fa fa-file-o"></i>
+                                                                    <i class="fa fa-files-o" aria-hidden="true"></i>
                                                                     <!-- write resource names in hidden <p> -->
                                                                     <p class="resourceContent"><? while($type = $resType->fetch_assoc()){ echo $type["name"].", "; }?></p>
                                                                 <? } else if ($counter["counter"] == 1) {
@@ -323,11 +329,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                     if ($type["type"] == "pdf") { ?>
                                                                         <i class="fa fa-file-pdf-o"></i>
                                                                     <? } else if ($type["type"] == "website") { ?>
-                                                                        <i class="fa fa-file-word-o"></i>
+                                                                        <i class="fa fa-globe" aria-hidden="true"></i>
                                                                     <? } else if ($type["type"] == "image") { ?>
                                                                         <i class="fa fa-picture-o"></i>
                                                                     <? } else if ($type["type"] == "rss") { ?>
                                                                         <i class="fa fa-rss"></i>
+                                                                    <? } else if ($type["type"] == "caldav") { ?>
+                                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
                                                                     <? } ?>
                                                                     <p class="resourceContent"><?echo $type["name"].", "?></p>
                                                                 <? } else { ?>
