@@ -160,6 +160,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                 src=""
                                 frameborder="1"
                                 scrolling="yes"
+                                sandbox="allow-forms allow-scripts"
                         ><p>Your browser does not support iframes.</p></iframe>
                         <!-- <a href="http://placeholder.com"><img style="margin-left:28%;margin-bottom: 5%" src="http://via.placeholder.com/140x240"></a> -->
                         <!-- /Preview -->
