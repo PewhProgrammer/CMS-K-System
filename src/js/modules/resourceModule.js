@@ -23,6 +23,8 @@
             base.$submitButton = $('#addResourceSubmit');
             base.$urlForm = $('#urlForm');
             base.$fileForm = $('#fileForm');
+            base.$warning = $("#warning-alert-config");
+            base.$success = $("#success-alert-config");
 
             base.$urlForm.hide();
             base.$fileForm.hide();
@@ -36,7 +38,7 @@
                 paramName: "userfile", // The name that will be used to transfer the file
                 maxFilesize: 2, // MB
                 autoProcessQueue: false,
-                dictDefaultMessage: "Dateien hier reinziehen oder klicken",
+                dictDefaultMessage: "Click or drag files on top of this field",
                 addRemoveLinks: true,
                 init: function() {
                     var myDropzone = this;
@@ -49,9 +51,6 @@
 
                         base.$el.modal("hide");
 
-                        $("#success-alert").find("p").text('Upload successful');
-                        $("#success-alert").show();
-
                         setTimeout(function(){
                             location.reload();
                         }, 2000);
@@ -62,21 +61,27 @@
             var urlHeaderText = ['Enter a website URL','Enter a RSS feed URL','How to access the CalDAV data?'];
 
             $("#fileTypeDrop li").click(function(){
-                base.$dropzoned = false;
+                base.$dropzoned = false; // is it type dropzone
                 $("#warning").hide();
                 fileType = $(this).index();
-                console.log("index : " + fileType);
+
+                /* Change DropDown Selection*/
                 var btnSelector = $("#dropdownMenu1") ;
                 btnSelector.text($(this).text());
                 btnSelector.val($(this).text());
                 btnSelector.append(' <span class="caret"></span> ');
+
+                $("#newResModalHeader").text('Submit a new resource');
 
                 if (fileType > 0){ //url
                     base.$urlForm.show();
                     base.$fileForm.hide();
 
                     if(fileType === 3) processCALDavHTML();
-                    else base.$urlForm.html('<label for="url" id="urlHeader">Name:</label> <input type="text" class="form-control" id="url">');
+                    else{
+                        $("#addResourceSubmit").prop('disabled',false);
+                        base.$urlForm.html('<label for="url" id="urlHeader">Name:</label> <input type="text" class="form-control" id="url">');
+                    }
                     $("#urlHeader").text(urlHeaderText[fileType-1]);
                 }
                 else { //file upload
@@ -87,6 +92,7 @@
             });
 
             function processCALDavHTML(){
+                $("#addResourceSubmit").prop('disabled',true);
                 base.$urlForm.html('');
                 base.$urlForm
                     .append('<label for="url" id="urlHeader">Name:</label>')
@@ -98,6 +104,7 @@
                     calDavDivSelector.html('');
                     if(!this.checked){
                         base.$fileForm.hide();
+                        $("#addResourceSubmit").prop('disabled',true);
                         return ;
                     }
                     if($(this).attr('id') === 'caldavOpt0'){
@@ -108,6 +115,7 @@
                         base.$dropzoned = true;
                         base.$fileForm.show();
                     }
+                    $("#addResourceSubmit").prop('disabled',false);
                 });
             }
 
@@ -116,15 +124,15 @@
 
 
                 if(fileType < 0) {
-                    $("#warningInput").text('Please choose a file type');
-                    $("#warning").show();
+                    base.$warning.find('p').text('Please choose a file type');
+                    base.$warning.show();
                 }
 
                 var resourceResponse = $("#url").val();
                 if(!base.$dropzoned){
                     if (resourceResponse.length < 1){
-                        $("#warningInput").text('Please enter an URL');
-                        $("#warning").show();
+                        base.$warning.find('p').text('Please enter an URL');
+                        base.$warning.show();
                     }
                     else {
                         $.post('../php/add.php', {
@@ -134,8 +142,8 @@
                         }).done(function (data) {
                             base.$urlForm.hide();
                             base.$el.modal("hide");
-                            $("#success-alert").find("p").text('Entry successful');
-                            $("#success-alert").show();
+                            base.$success.find("p").text('Entry successful');
+                            base.$success.show();
 
                             setTimeout(function(){
                                 location.reload();

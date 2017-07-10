@@ -227,7 +227,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add new resource</h4>
+                        <h4 class="modal-title" id="newResModalHeader">Please select a file type</h4>
                     </div>
                     <div class="modal-body">
                         <div class="dropdown">
@@ -243,7 +243,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                 <li><a href="#">CalDAV</a></li>
                             </ul>
                         </div>
-
+                        <div class="row">&nbsp;</div>
                         <div class="form-group" id="urlForm">
                             <label for="url" id="urlHeader">Name:</label>
                             <input type="text" class="form-control" id="url">
@@ -253,9 +253,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                         </div>
                     </div>
 
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="addResourceSubmit">Add resource</button>
+                        <button type="submit" class="btn btn-primary" disabled id="addResourceSubmit">Add resource</button>
                     </div>
                 </div>
             </div>
@@ -286,12 +287,12 @@ a clean and intuitive system to manage the monitors at CISPA">
         <!-- End Delete Confirmation Modal -->
 
         <!-- Alerts -->
-        <div class="alert alert-success" id="success-alert">
+        <div class="alert alert-success" id="success-alert-config">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <h4 class="alert-heading glyphicon glyphicon-ok"> Success!</h4>
             <p>The system has updated the resource(s) of the monitor(s)</p>
         </div>
-        <div class="alert alert-warning" id="warning-alert">
+        <div class="alert alert-warning" id="warning-alert-config">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <h4 class="alert-heading">Warning!</h4>
             <p>Something went wrong there</p>

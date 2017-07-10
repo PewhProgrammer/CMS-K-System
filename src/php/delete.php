@@ -32,6 +32,9 @@ class Delete extends ServerWrapper
             }
         }
 
+        $this->query = new Query("DELETE FROM monitorhasresource WHERE rID=" . $this->id);
+        $this->query->executeQuery();
+
         $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
         $this->query->executeQuery();
 

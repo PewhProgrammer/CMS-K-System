@@ -25,6 +25,9 @@
             var monitors = "" + $.getParameterByName('m');
             var overview = false ;
 
+            base.$warning = $("#warning-alert-config");
+            base.$success = $("#success-alert-config");
+
             if(monitors == ""){
                 $(".page-header.page-config").text("Resource Overview");
                 $("#header-form-overview").text("Select the resource(s) you want to edit");
@@ -105,8 +108,8 @@
 
                     if (response.code === 200){
                         $("#delModal").modal("hide");
-                        $("#success-alert").find("p").text('Item has been deleted');
-                        $("#success-alert").show();
+                        base.$success.find("p").text('Item has been deleted');
+                        base.$success.show();
 
                         setTimeout(function(){
                             location.reload();
@@ -114,12 +117,12 @@
                     }
                     else {
                         $("#delModal").modal("hide");
-                        $("#warning-alert").find("p").text(response.msg);
-                        $("#warning-alert").show();
+                        base.$warning.find("p").text(response.msg);
+                        base.$warning.show();
                     }
 
                 }).fail(function () {
-                    $("#warning-alert").show();
+                    base.$warning.show();
                 });
 
             });
