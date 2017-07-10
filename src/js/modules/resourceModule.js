@@ -117,7 +117,7 @@
                 base.$urlForm
                     .append('<label for="url" id="urlHeader">Name:</label>')
                     .append('<div class="checkbox caldav"> <label><input id="caldavOpt0"  disabled type="checkbox"  value="">Access through API [Not implemented yet]</label> </div>')
-                    .append('<div class="checkbox caldav"> <label><input id="caldavOpt1"  type="checkbox" value="">Access through local storage</label> </div>')
+                    .append('<div class="checkbox caldav"> <label><input id="caldavOpt1"  type="checkbox" value="">Access through local storage (.ics)</label> </div>')
                     .append('<div id="calDavDiv"> </div>');
                 $(".checkbox.caldav").find("input").change(function () {
                     var calDavDivSelector = $("#calDavDiv");

@@ -36,7 +36,7 @@
                 if(base.mID !== undefined){
                     $.post("../php/ContentManager.php", {mID: base.mID})
                         .done(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             var tmp = JSON.stringify(base.types);
                             base.types = JSON.parse(data);
                             var newData = JSON.stringify(base.types);
@@ -83,6 +83,7 @@
                 else if (base.types["caldav"]["no"] === 1){
                     console.log("caldav");
                     $(".content").html($.getRoomContent(base.types["caldav"]["path"]));
+                    $.initCalender(base.types["caldav"]["path"]);
                 }
             }
 
