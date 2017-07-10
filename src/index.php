@@ -9,7 +9,8 @@
 
 <body id="monitorBody" style="height: 100%; width: 100%; position: absolute;">
 <div class="content" style="height: 100%;width: 100%;">
-    We have no registered monitor under this ID.
+    There is currently no content attached to this monitor ID. <br>
+    I am looking for the URL param ?mID = ...
 </div>
 
 

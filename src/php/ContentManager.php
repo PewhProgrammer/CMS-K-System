@@ -33,7 +33,7 @@ class ContentManager extends ServerWrapper
         $this->query = new Query("SELECT * FROM resources, monitorhasresource WHERE monitorhasresource.mID ='" . $this->mID . "' AND resources.rID = monitorhasresource.rID");
         $res = $this->query->getQuery();
 
-        $typeArr = ["pdf" => ["no" => 0, "path" => []], "image" => ["no" => 0, "path" => []], "website" => ["no" => 0, "path" => []], "rss" => ["no" => 0, "path" => []], "mensa" => 0, "bus" => 0];
+        $typeArr = ["pdf" => ["no" => 0, "path" => []], "image" => ["no" => 0, "path" => []], "website" => ["no" => 0, "path" => []], "rss" => ["no" => 0, "path" => []], "mensa" => 0, "bus" => 0,"caldav" => ["no" => 0, "path" => []]];
 
         while ($row = $res->fetch_assoc()) {
             switch ($row["type"]) {
@@ -58,6 +58,9 @@ class ContentManager extends ServerWrapper
                     break;
                 case "bus":
                     $typeArr["bus"]++;
+                case "caldav":
+                    $typeArr["caldav"]["no"]++;
+                    array_push($typeArr["caldav"]["path"], $row["data"]);
                     break;
                 default:
                     echo "Error: Resource has wrong file type.";

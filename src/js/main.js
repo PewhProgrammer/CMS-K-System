@@ -12,6 +12,8 @@ $(document).ready(function()
 
     //separate in own js
     $("#monitorBody").deliverContentModule();
+    $("#monitorBody").CalDAVModule();
+
 
     console.log("Running");
 });

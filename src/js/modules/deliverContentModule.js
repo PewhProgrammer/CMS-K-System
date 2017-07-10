@@ -32,7 +32,6 @@
             base.interval = 10; //in seconds
 
             function postRequest(){
-                console.log(base.mID);
 
                 if(base.mID !== undefined){
                     $.post("../php/ContentManager.php", {mID: base.mID})
@@ -75,14 +74,15 @@
                 else if (base.types["bus"]["no"] === 1){
                     MensaBusModule().getBusData();
                 }
-                else if (base.types["mensa"]["no"] === 1){
+                else if (base.types["mensa"] === 1){
                     MensaBusModule().getMensaData();
                 }
-                else if (base.types["rss"]["no"] === 1){
+                else if (base.types["rss"] === 1){
                     RSSModule().getContent(base.types["rss"]["path"]);
                 }
                 else if (base.types["caldav"]["no"] === 1){
-                    CalDAVModule().getRoomData(base.types["caldav"]["path"]);
+                    console.log("caldav");
+                    $(".content").html($.getRoomContent(base.types["caldav"]["path"]));
                 }
             }
 

@@ -29,10 +29,17 @@
             base.$el = jQuery(el);
 
 
+
         };
 
         base.getRoomData = function(path){
 
+        };
+
+        //returns HTML content to display
+        jQuery.getRoomContent = function getRoomContent(path){
+            console.log("path: " + path);
+            return '<a>processing room data...</a>';
         };
 
         // call init method
