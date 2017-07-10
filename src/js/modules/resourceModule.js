@@ -60,7 +60,7 @@
 
             var urlHeaderText = ['Enter a website URL','Enter a RSS feed URL','How to access the CalDAV data?'];
 
-            $("#fileTypeDrop li").click(function(){
+            $("#fileTypeDrop").find('li').click(function(){
                 base.$dropzoned = false; // is it type dropzone
                 $("#warning").hide();
                 fileType = $(this).index();
@@ -80,7 +80,27 @@
                     if(fileType === 3) processCALDavHTML();
                     else{
                         $("#addResourceSubmit").prop('disabled',false);
-                        base.$urlForm.html('<label for="url" id="urlHeader">Name:</label> <input type="text" class="form-control" id="url">');
+                        base.$urlForm.html('<label for="url" id="urlHeader">Name:</label>' +
+                            '<div class="input-group"> <div class="input-group-btn">'+
+                            '<button type="button" value="0" id="dropdownMenuURL" class="btn btn-default dropdown-toggle" ' +
+                            'data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                            'http:// </button>'+
+                            '<ul id="urlPrefixDrop" class="dropdown-menu">'+
+                            '<li><a href="#">https:// </a></li></ul></div><!-- /btn-group -->'+
+                            '<input type="text" class="form-control" id="url" aria-label="...">'+
+                            '</div>' );
+
+                        $("#urlPrefixDrop").find('li').click(function(){
+
+                            /* Change DropDown Selection*/
+                            var btnSelector = $("#dropdownMenuURL") ;
+                            if(btnSelector.text().startsWith('https'))
+                            btnSelector.val(0); // 0 = http | 1 = https
+                            else btnSelector.val(1);
+                            var help = '<a href="#">'+ btnSelector.text() + '</a>';
+                            btnSelector.text($(this).text());
+                            $(this).html(help);
+                        });
                     }
                     $("#urlHeader").text(urlHeaderText[fileType-1]);
                 }
@@ -121,8 +141,6 @@
 
 
             base.$submitButton.on('click', function(event) {
-
-
                 if(fileType < 0) {
                     base.$warning.find('p').text('Please choose a file type');
                     base.$warning.show();
@@ -135,6 +153,10 @@
                         base.$warning.show();
                     }
                     else {
+                        //prepend http/s
+                        console.log("value: " +$("#dropdownMenuURL").val());
+                        if($("#dropdownMenuURL").val() === '0') resourceResponse = resourceResponse.replace(/^/,'http://');
+                        else resourceResponse = resourceResponse.replace(/^/,'https://');
                         $.post('../php/add.php', {
                             name: resourceResponse,
                             type: (fileType === 1) ? 'website' : 'rss',

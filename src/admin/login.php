@@ -33,7 +33,8 @@ include_once('../php/server_login.php'); ?>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password" name="password" type="password" value="">
                             </div>
-                            <button type="submit" name ="login" class="btn btn-lg btn-block btn-primary">Login</button>
+                            <button type="submit" name ="login" class="btn btn-lg btn-block btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i>
+                                Login</button>
                         </form>
                     </div>
                 </div>

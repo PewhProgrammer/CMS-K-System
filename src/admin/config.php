@@ -45,7 +45,8 @@ a clean and intuitive system to manage the monitors at CISPA">
             <a class="navbar-brand" href="index.php">CMS-K Admin v0.2</a>
         </div>
         <!-- /.navbar-header -->
-        <a id="logoutButton" type="submit" class="btn btn-primary pull-right" href="login.php?logout=1">Logout</a>
+        <a id="logoutButton" type="submit" class="btn btn-primary pull-right" href="login.php?logout=1"><i class="fa fa-sign-out" aria-hidden="true"></i>
+            Logout</a>
 
 
 
@@ -110,7 +111,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 <? if($row["type"] == "pdf") { ?>
                                                     <i class="fa fa-file-pdf-o"></i>
                                                 <? } else if($row["type"] == "website") {?>
-                                                    <i class="fa fa-file-word-o"></i>
+                                                    <i class="fa fa-globe" aria-hidden="true"></i>
                                                 <? } else if($row["type"] == "image") {?>
                                                     <i class="fa fa-picture-o"></i>
                                                 <? } else if($row["type"] == "rss") {?>
@@ -243,11 +244,24 @@ a clean and intuitive system to manage the monitors at CISPA">
                                 <li><a href="#">CalDAV</a></li>
                             </ul>
                         </div>
+
                         <div class="row">&nbsp;</div>
                         <div class="form-group" id="urlForm">
                             <label for="url" id="urlHeader">Name:</label>
-                            <input type="text" class="form-control" id="url">
+
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" id='dropdownMenuURL' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        http:// </button>
+                                    <ul id="urlPrefixDrop" class="dropdown-menu">
+                                        <li><a href="#">https:// </a></li>
+                                    </ul>
+                                </div><!-- /btn-group -->
+                                <input type="text" class="form-control" id="url" aria-label="...">
+                            </div><!-- /input-group -->
                         </div>
+
+
                         <div id="fileForm">
                             <form id="droppy" action="../php/upload.php" class="dropzone"></form>
                         </div>
