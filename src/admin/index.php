@@ -107,7 +107,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <li class="divider"></li>
                             <? while($row = $label->fetch_assoc()){ ?>
                                 <li>
-                                <a class="filter" id="filterLabel-<? echo $row["lID"] ?>"><? echo $row["name"] ?></a>
+                                <a class="filter option" id="filterLabel-<? echo $row["lID"] ?>"><? echo $row["name"] ?></a>
                                 </li> <?
                             }?>
                         </ul>
