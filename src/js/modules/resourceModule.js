@@ -39,6 +39,7 @@
                 maxFilesize: 2, // MB
                 autoProcessQueue: false,
                 dictDefaultMessage: "Click or drag files on top of this field",
+                acceptedFiles: "image/jpeg,image/png,image/gif,.pdf,.ics",
                 addRemoveLinks: true,
                 init: function() {
                     var myDropzone = this;
@@ -73,13 +74,13 @@
 
                 $("#newResModalHeader").text('Submit a new resource');
 
+                $("#addResourceSubmit").prop('disabled',false);
                 if (fileType > 0){ //url
                     base.$urlForm.show();
                     base.$fileForm.hide();
 
                     if(fileType === 3) processCALDavHTML();
                     else{
-                        $("#addResourceSubmit").prop('disabled',false);
                         base.$urlForm.html('<label for="url" id="urlHeader">Name:</label>' +
                             '<div class="input-group"> <div class="input-group-btn">'+
                             '<button type="button" value="0" id="dropdownMenuURL" class="btn btn-default dropdown-toggle" ' +
@@ -171,7 +172,7 @@
                                 location.reload();
                             }, 2000);
                         }).fail(function () {
-
+                            base.$warning.find("p").text('Entry failed');
                         });
                     }
 

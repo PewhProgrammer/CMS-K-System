@@ -36,7 +36,7 @@ class Upload extends ServerWrapper
      */
     public function execute()
     {
-        $this->checkFiles();
+        if(!$this->checkFiles()) return;
         if ($this->uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
@@ -45,10 +45,6 @@ class Upload extends ServerWrapper
             echo "The file " . basename($_FILES["userfile"]["name"]) . " has been uploaded.";
 
             $this->resource->setName($_FILES["userfile"]["name"]);
-
-            if ($this->fileType == 'pdf') $this->resource->setType("pdf");
-            else if ($this->fileType == 'ics') $this->resource->setType("caldav");
-            else $this->resource->setType("image");
 
             $this->resource->setData($this->target_dir . $this->resource->getName());
             $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $this->resource->getName() . "', '" . $this->resource->getType() . "', '" . $this->resource->getData() . "')");
@@ -61,6 +57,16 @@ class Upload extends ServerWrapper
 
     public function checkFiles()
     {
+
+        if ($this->fileType == 'pdf') $this->resource->setType("pdf");
+        else if ($this->fileType == 'ics') $this->resource->setType("caldav");
+        else if ($this->fileType == 'image') $this->resource->setType("image");
+        else {
+            echo "The file type is not supported.";
+            return false;
+        }
+
+        return true;
         /*
             // Check if file already exists
             if (file_exists($target_file)) {

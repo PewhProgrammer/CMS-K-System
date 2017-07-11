@@ -156,25 +156,68 @@
             });
 
             //FILTERING OF ALL LABELS
-            $(".filter").on("click" ,function(){
-                keepFilterOption($(this).text());
-                $(".monLi").addClass("filter");
-                $(".monLi").hide();
-                $("."+$(this).text().replace(" ",".")).show();
-                $("."+$(this).text().replace(" ",".")).removeClass("filter");
-                var monitorSelector = $(".monLi.filter .monitor_overview input") ;
-                //select.text(" Select All");
-                monitorSelector.each(function () {
-                    if($(this).is(":checked")) $(this).trigger('click');
-                    //$(this).prop("checked",false);
-                });
-                refreshSelectButton()
+            var filterChecked = {};
+            $(".filter.option").each(function(index){
+                filterChecked['filterLabel-'+(index+1)] = 0;
             });
+
+            $(".filter").on("click" ,function(){
+                var thisSelector = $("."+$(this).text().replace(" Floor",".Floor"));
+                //console.log("."+$(this).text().replace(" Floor",".Floor"));
+                //keepFilterOption($(this).text());
+                if(filterChecked[$(this).attr("id")] === 1){
+                    filterChecked[$(this).attr("id")] = 0;
+                    $(this).html($(this).text());
+                    thisSelector.hide();
+                    thisSelector.removeClass("filter");
+                    refreshFilterSelection();
+                }else{
+                    filterChecked[$(this).attr("id")] = 1;
+                    $(".monLi").removeClass("filter");
+                    thisSelector.addClass("filter");
+                    thisSelector.show();
+                    $(".monLi:not(.filter)").hide();
+                    $(this).append(' <i class="fa fa-check" style="color:green" aria-hidden="true"></i>');
+                    var monitorSelector = $(".monLi:not(.filter) .monitor_overview input") ;
+                    //select.text(" Select All");
+                    monitorSelector.each(function () {
+                        if($(this).is(":checked")) $(this).trigger('click');
+                        //$(this).prop("checked",false);
+                    });
+                }
+                refreshSelectButton();
+            });
+
+            function refreshFilterSelection(){
+                var filterOn = false;
+                $(".filter.option").each(function(index){
+                    if(filterChecked['filterLabel-'+(index+1)] === 1){
+                        filterOn = true;
+                        var monitorSelector = $('.'+$('#filterLabel-'+(index+1)).text());
+                        monitorSelector.addClass('filter');
+                        monitorSelector.show();
+                    }
+                });
+                if(!filterOn){
+                    $(".monLi").removeClass("filter");
+                    $(".monLi").show();
+                    refreshSelectButton();
+                }
+            }
+
             $("#filterAll").on("click" ,function(){
-                keepFilterOption('Filter');
+                //keepFilterOption('Filter');
                 $(".monLi").removeClass("filter");
                 $(".monLi").show();
                 refreshSelectButton();
+                for (var key in filterChecked) {
+                    if (filterChecked.hasOwnProperty(key)) {
+                        filterChecked[key] = 0 ;
+                    }
+                }
+                $(".filter.option").each(function(){
+                    $(this).html($(this).text());
+                });
             });
 
             function keepFilterOption(label){
@@ -192,7 +235,7 @@
                 $(".monLi:visible").each(function() {
                     if($(this).find("input").is(":checked")) visibleSelected++ ;
                 });
-                console.log("visible: " + visibleSelected + ", " + (monitorSelector.length));
+                //console.log("visible: " + visibleSelected + ", " + (monitorSelector.length));
                 if(visibleSelected < (monitorSelector.length)) {
                     select.text(" Select All");
                 }
