@@ -23,6 +23,8 @@
 
             var monitors = 0;
             var selected = 0;
+            var horizontal = 0;
+            var vertical = 0;
             var deselectTrigger = false;
             var selectTrigger = false;
             var select = $("#selectAllDescription");
@@ -45,12 +47,28 @@
 
                     if (this.checked) {
                         $(this).parent().css({"border-color": "#333333"});
+
+                        //count number of selected monitors and horizontal / vertical
                         selected++;
+                        if($(this).parent().parent().hasClass("vertical")) {
+                            vertical++;
+                        } else {
+                            horizontal++;
+                        }
+
                         if(visibleSelected === monitorSelector.length && !selectTrigger) $("#selectAllDescription").text(" Deselect All");
                         else $("#selectAllDescription").text(" Select All");
+
                     } else {
                         $(this).parent().css({"border-color": "transparent"});
+
                         selected--;
+                        if($(this).parent().parent().hasClass("vertical")) {
+                            vertical--;
+                        } else {
+                            horizontal--;
+                        }
+
                         if(!deselectTrigger)
                             $("#selectAllDescription").text(" Select All");
                     }
@@ -68,12 +86,23 @@
                             if ($(this).find("input").is(":checked")) {
                                 var html;
                                 html = "Name: <span style='font-weight: normal'>" + $(this).find(".monitorName").html() + "</span><br><br>";
-                                html = html + "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span>";
+                                html = html + "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span><br><br>";
+
+                                //find labels of the element
+                                var labels = "";
+                                var classList = $(this).parent().attr("class").split(" ");
+                                for(var i = 3; i < classList.length-1; i++) {
+                                    labels = labels + classList[i] + ", ";
+                                }
+                                labels = labels.slice(0, -2);
+
+                                html = html + "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
                                 $("#previewPanel").find("p").html(html);
                             }
                         });
                     } else {
-                        // add details for multiple monitor preview here
+                        $("#previewPanel").find("p").html("horizontal: <span style='font-weight: normal'>" + horizontal
+                            + "</span><br><br>vertical: <span style='font-weight: normal'>" + vertical + "</span>");
                     }
                 });
             }
