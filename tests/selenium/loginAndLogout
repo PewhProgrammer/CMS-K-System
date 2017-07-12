@@ -8,8 +8,7 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="testcases/testAddWebsite.html">testAddWebsite</a></td></tr>
-<tr><td><a href="testcases/testDeleteWebsite.html">testDeleteWebsite</a></td></tr>
+<tr><td><a href="testcases/testLoginAndLogout.html">testLoginAndLogout</a></td></tr>
 </tbody></table>
 </body>
 </html>
