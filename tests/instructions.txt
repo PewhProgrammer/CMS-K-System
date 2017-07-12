@@ -1,0 +1,5 @@
+For Selenium Tests:
+
+- install the "Selenium IDE" add-on for Firefox
+- install the "Selenium IDE: Flow Control" for Firefox (this prevents a bug on newer Firefox versions)
+- Open a testsuit file of your choice in the Selenium add-on from the "/tests/selenium/" folder
