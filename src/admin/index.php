@@ -140,7 +140,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $resCount = $resCountQuery->getQuery();
                                                     $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resType = $resTypeQuery->getQuery();?>
-                                                    <li class="monLi Ground Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                                    <li class="monLi filter Ground Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
                                                             <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
@@ -198,7 +198,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             $resCount = $resCountQuery->getQuery();
                                             $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = " . $row["mID"]);
                                             $resType = $resTypeQuery->getQuery(); ?>
-                                                <li class="monLi 1st Floor <? while ($label = $monClass->fetch_assoc()) {
+                                                <li class="monLi filter 1st Floor <? while ($label = $monClass->fetch_assoc()) {
                                                     echo $label["name"]; ?> <? } ?>">
                                                     <label class="monitor_overview">
                                                         <input type="checkbox" name="m" value="<? echo $row["mID"] ?>"
@@ -259,7 +259,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $resCount = $resCountQuery->getQuery();
                                                     $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resType = $resTypeQuery->getQuery();?>
-                                                <li class="monLi 2nd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                                <li class="monLi filter 2nd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
                                                             <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
@@ -316,7 +316,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $resCount = $resCountQuery->getQuery();
                                                     $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resType = $resTypeQuery->getQuery();?>
-                                                <li class="monLi 3rd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                                <li class="monLi filter 3rd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
                                                             <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">

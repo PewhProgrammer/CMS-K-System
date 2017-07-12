@@ -135,7 +135,7 @@
 
             //SELECTING/DESELECTING ALL MONITORS
             $("#selectAll").on("click",function(){
-                var monitorSelector = $(".monLi:not(.filter) .monitor_overview input") ;
+                var monitorSelector = $(".monLi.filter .monitor_overview input") ;
                 monitorSelector.each(function (index) {
                     if(select.text() === " Deselect All"){
                         deselectTrigger = true;
