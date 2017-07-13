@@ -171,8 +171,8 @@
                     $(this).html($(this).text());
 
                     thisSelector.removeClass("filter");
-                    refreshFilterSelection();
-                    filter();
+                    if(refreshFilterSelection())
+                        filter();
                 }else{
                     $(this).append(' <i class="fa fa-check" style="color:green" aria-hidden="true"></i>');
                     thisSelector.addClass("filter");
@@ -212,9 +212,12 @@
                     }
                 });
                 if(!filterOn){
-                    $(".monLi").removeClass("filter");
+                    console.log("entry");
+                    $(".monLi").addClass("filter");
                     refreshSelectButton();
+                    return false;
                 }
+                return true;
             }
 
             $("#filterAll").on("click" ,function(){
