@@ -58,6 +58,7 @@ class ContentManager extends ServerWrapper
                     break;
                 case "bus":
                     $typeArr["bus"]++;
+                    break;
                 case "caldav":
                     $typeArr["caldav"]["no"]++;
                     array_push($typeArr["caldav"]["path"], $row["data"]);

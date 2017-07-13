@@ -66,30 +66,44 @@
             }
 
             function updateView(){
-                if(base.types["pdf"]["no"] === 1){
+                base.$content.html("");
+                for (var i = 0; i < base.types["pdf"]["no"]; i++){
                     console.log("pdf");
-                    $(".content").html('<iframe height="100%" width="100%" src="' + base.types["pdf"]["path"][0] + '" frameborder="0" scrolling="no" ></iframe>');
+                    base.$content.append('<iframe height="100%" width="100%" src="' + base.types["pdf"]["path"][i] + '" frameborder="0" scrolling="no" ></iframe>');
                 }
-                else if (base.types["website"]["no"] === 1){
+
+                for (var j = 0; j < base.types["website"]["no"]; j++){
                     console.log("website");
-                    $(".content").html('<iframe height="100%" width="100%" src="' + base.types["website"]["path"][0] + '" frameborder="0" scrolling="no" ></iframe>');
+                    base.$content.append('<iframe height="100%" width="100%" src="' + base.types["website"]["path"][j] + '" frameborder="0" scrolling="no" ></iframe>');
                 }
-                else if (base.types["image"]["no"] === 1){
-                    $(".content").html('<p><a class="slideshowElements"  href="'+ base.types["image"]["path"][0] +'" title="SlideshowItem">1</a></p>');
-                    $(".slideshowElements").colorbox({rel:'slideshowElements', slideshow:true, open:true, closeButton: false, opacity: 1});
+
+                for (var k = 0; k < base.types["image"]["no"]; k++){
+                    console.log("images");
+                    base.$content.append('<p><a class="slideshowElements"  href="'+ base.types["image"]["path"][k] +'" title="SlideshowItem">item</a></p>');
+
+                    if( k === base.types["image"]["no"]-1){
+                        $(".slideshowElements").colorbox({rel:'slideshowElements', slideshow:true, open:true, closeButton: false, opacity: 1});
+                    }
+
                 }
-                else if (base.types["bus"]["no"] === 1){
-                    MensaBusModule().getBusData();
-                }
-                else if (base.types["mensa"] === 1){
-                    MensaBusModule().getMensaData();
-                }
-                else if (base.types["rss"]["no"] === 1){
+
+                for (var l = 0; l < base.types["rss"]["no"]; l++){
+                    console.log("rss");
                     base.$content.rssModule({path: base.types["rss"]["path"]});
                 }
-                else if (base.types["caldav"]["no"] === 1){
+                for (var m = 0; m < base.types["caldav"]["no"]; m++){
+                    console.log("caldav");
                     base.$content.CalDAVModule({path: base.types["caldav"]["path"]});
                 }
+
+                if (base.types["bus"]){
+                    MensaBusModule().getBusData();
+                }
+                if (base.types["mensa"]){
+                    MensaBusModule().getMensaData();
+                }
+
+
             }
 
             function getUrlVars()
