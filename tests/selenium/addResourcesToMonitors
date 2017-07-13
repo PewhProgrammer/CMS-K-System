@@ -8,9 +8,10 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="testcases/testLoginAndLogout.html">testLoginAndLogout</a></td></tr>
-<tr><td><a href="testcases/testWrongLogin.html">testWrongLogin</a></td></tr>
-<tr><td><a href="testcases/testAccessWithoutLogin.html">testAccessWithoutLogin</a></td></tr>
+<tr><td><a href="testcases/addOneResourceToOneMonitor.html">AddOneResourceToOneMonitor</a></td></tr>
+<tr><td><a href="testcases/addMultipleResourcesToOneMonitor.html">AddMultipleResourcesToOneMonitor</a></td></tr>
+<tr><td><a href="testcases/addOneResourceToMultipleMonitors.html">AddOneResourceToMultipleMonitors</a></td></tr>
+<tr><td><a href="testcases/addMultipleResourcesToMultipleMonitors.html">AddMultipleResourcesToMultipleMonitors</a></td></tr>
 </tbody></table>
 </body>
 </html>

@@ -4,12 +4,12 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost/" />
-<title>testLoginAndLogout</title>
+<title>AddOneResourceToMultipleMonitors</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">testLoginAndLogout</td></tr>
+<tr><td rowspan="1" colspan="3">AddOneResourceToMultipleMonitors</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -32,20 +32,41 @@
 	<td></td>
 </tr>
 <tr>
-	<td>assertLocation</td>
-	<td>http://localhost/admin/index.php</td>
+	<td>click</td>
+	<td>id=monInput-6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=monInput-7</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>id=logoutButton</td>
+	<td>id=editButton</td>
 	<td></td>
 </tr>
 <tr>
-	<td>assertLocation</td>
-	<td>http://localhost/admin/login.php</td>
+	<td>click</td>
+	<td>id=res-2</td>
 	<td></td>
 </tr>
+<tr>
+	<td>click</td>
+	<td>id=continueConfig</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=attachSubmit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=i.fa.fa-sign-out</td>
+	<td></td>
+</tr>
+
 </tbody></table>
 </body>
 </html>
