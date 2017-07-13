@@ -135,7 +135,7 @@
 
             //SELECTING/DESELECTING ALL MONITORS
             $("#selectAll").on("click",function(){
-                var monitorSelector = $(".monLi:not(.filter) .monitor_overview input") ;
+                var monitorSelector = $(".monLi.filter .monitor_overview input") ;
                 monitorSelector.each(function (index) {
                     if(select.text() === " Deselect All"){
                         deselectTrigger = true;
@@ -158,49 +158,61 @@
             //FILTERING OF ALL LABELS
             var filterChecked = {};
             $(".filter.option").each(function(index){
-                filterChecked['filterLabel-'+(index+1)] = 0;
+                filterChecked['filterLabel-'+(index+1)] = "";
             });
 
             $(".filter").on("click" ,function(){
                 var thisSelector = $("."+$(this).text().replace(" Floor",".Floor"));
                 //console.log("."+$(this).text().replace(" Floor",".Floor"));
                 //keepFilterOption($(this).text());
-                if(filterChecked[$(this).attr("id")] === 1){
-                    filterChecked[$(this).attr("id")] = 0;
+                $(".monLi").hide();
+                if(filterChecked[$(this).attr("id")] !== "" ){
+                    filterChecked[$(this).attr("id")] = "";
                     $(this).html($(this).text());
-                    thisSelector.hide();
+
                     thisSelector.removeClass("filter");
                     refreshFilterSelection();
+                    filter();
                 }else{
-                    filterChecked[$(this).attr("id")] = 1;
-                    $(".monLi").removeClass("filter");
-                    thisSelector.addClass("filter");
-                    thisSelector.show();
-                    $(".monLi:not(.filter)").hide();
                     $(this).append(' <i class="fa fa-check" style="color:green" aria-hidden="true"></i>');
-                    var monitorSelector = $(".monLi:not(.filter) .monitor_overview input") ;
-                    //select.text(" Select All");
-                    monitorSelector.each(function () {
+                    thisSelector.addClass("filter");
+
+                    filterChecked[$(this).attr("id")] = $(this).text().replace(" Floor",".Floor").replace(" ","");
+                    filter();
+                    $(".monLi:not(.filter) .monitor_overview input").each(function () {
                         if($(this).is(":checked")) $(this).trigger('click');
-                        //$(this).prop("checked",false);
                     });
                 }
+                $(".monLi.filter").show();
                 refreshSelectButton();
             });
+
+            //add class filter to all monitors not respecting the filter options
+            function filter(){
+                var selectionBuilder = '.monLi:not(';
+                for (var key in filterChecked) {
+                    if (filterChecked.hasOwnProperty(key)) {
+                        if(filterChecked[key] !== "")
+                        selectionBuilder += '.'+filterChecked[key].replace(" Floor",".Floor").replace(/ /g,'');
+                    }
+                }
+                selectionBuilder += ')';
+                //console.log("built: " +selectionBuilder);
+                $(selectionBuilder).removeClass("filter");
+            }
 
             function refreshFilterSelection(){
                 var filterOn = false;
                 $(".filter.option").each(function(index){
-                    if(filterChecked['filterLabel-'+(index+1)] === 1){
+
+                    if(filterChecked['filterLabel-'+(index+1)] !== ""){
                         filterOn = true;
-                        var monitorSelector = $('.'+$('#filterLabel-'+(index+1)).text());
+                        var monitorSelector = $('.'+$('#filterLabel-'+(index+1)).text().replace(" Floor",".Floor").replace(/ /g,''));
                         monitorSelector.addClass('filter');
-                        monitorSelector.show();
                     }
                 });
                 if(!filterOn){
                     $(".monLi").removeClass("filter");
-                    $(".monLi").show();
                     refreshSelectButton();
                 }
             }
@@ -212,22 +224,13 @@
                 refreshSelectButton();
                 for (var key in filterChecked) {
                     if (filterChecked.hasOwnProperty(key)) {
-                        filterChecked[key] = 0 ;
+                        filterChecked[key] = "" ;
                     }
                 }
                 $(".filter.option").each(function(){
                     $(this).html($(this).text());
                 });
             });
-
-            function keepFilterOption(label){
-                var btnSelector = $("#dropdownMenu") ;
-                btnSelector.text("");
-                btnSelector.append(' <i class="fa fa-filter" aria-hidden="true"></i> ');
-                btnSelector.append(label);
-                btnSelector.val(label);
-                btnSelector.append(' <span class="caret"></span> ');
-            }
 
             function refreshSelectButton(){
                 var monitorSelector = $(".monitor_overview:visible input") ;
