@@ -2,4 +2,11 @@ For Selenium Tests:
 
 - install the "Selenium IDE" add-on for Firefox
 - install the "Selenium IDE: Flow Control" for Firefox (this prevents a bug on newer Firefox versions)
-- Open a testsuit file of your choice in the Selenium add-on from the "/tests/selenium/" folder
+- Open the selenium add-on via firefox by clicking on 'Extras/Selenium' on the navigation bar
+- Open a testsuit file of your choice in the Selenium add-on from the "/tests/selenium/" folder. For example click on File > Open. Select the file 'tests/selenium/loginAndLogout'
+
+For PHPUnit Tests:
+
+- choose CLI Interpreter for php: File > Settings > Languages&Frameworks > PHP
+- Integrate PHPUnit into PHPStorm: File > Settings > Languages&Frameworks > PHP > PHPUnit. Then select 'Path to phpunit.phar' and choose the path to 'tests/phpunit.phar'.
+  After applying the changes, the system will re-index the structure and you'll have autocompletion on phpunit test classes.
