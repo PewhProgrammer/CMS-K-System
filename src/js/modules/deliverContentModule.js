@@ -30,13 +30,16 @@
             base.mID = getUrlVars()["mID"];
             base.types = {};
             base.interval = 10; //in seconds
+            base.$content = base.$el.find(".content");
+
+            console.log("deliverContentModule loaded");
 
             function postRequest(){
 
                 if(base.mID !== undefined){
                     $.post("../php/ContentManager.php", {mID: base.mID})
                         .done(function (data) {
-                            //console.log(data);
+                            console.log(data);
                             var tmp = JSON.stringify(base.types);
                             base.types = JSON.parse(data);
                             var newData = JSON.stringify(base.types);
@@ -77,8 +80,8 @@
                 else if (base.types["mensa"] === 1){
                     MensaBusModule().getMensaData();
                 }
-                else if (base.types["rss"] === 1){
-                    RSSModule().getContent(base.types["rss"]["path"]);
+                else if (base.types["rss"]["no"] === 1){
+                    base.$content.rssModule({path: base.types["rss"]["path"]});
                 }
                 else if (base.types["caldav"]["no"] === 1){
                     console.log("caldav");

@@ -30,6 +30,8 @@ class Query extends ConnectionFactory {
             return null;
         }
 
+        //$this->query = $this->sanitize($conn, $this->query);
+
         if ($this->result = $conn->query($this->query)) {
             ConnectionFactory::getFactory()->closeConnection();
             $this->setResponse(200,$this->result);
@@ -54,12 +56,18 @@ class Query extends ConnectionFactory {
             return;
         }
 
+        //$this->query = $this->sanitize($conn, $this->query);
+
         if ($conn->query($this->query) === TRUE) {
             $this->setResponse(200,"");
         } else {
             $this->setResponse(404,'SQLQuery format error: '.$this->query);
         }
         ConnectionFactory::getFactory()->closeConnection();
+    }
+
+    function sanitize($conn, $input){
+        return $conn->real_escape_string($input);
     }
 
     /**

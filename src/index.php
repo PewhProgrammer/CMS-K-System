@@ -21,6 +21,7 @@
 <script src="./libs/ical.js"></script>
 <script src="./libs/ical_events.js"></script>
 <script src="./libs/ical_fullcalendar.js"></script>
+<script src="./libs/jquery.rss.js"></script>
 <script src="./js/modules.min.js"></script>
 <script src="./js/main.js"></script>
 </body>
