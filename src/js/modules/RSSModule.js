@@ -59,7 +59,7 @@
                     // the server implementation is here: https://github.com/sdepold/feedr
                     // default: feedrapp.info
                     // valid values: any string
-                    host: 'feedrapp.info',
+                    //host: 'feedrapp.info',
 
                     // outer template for the html transformation
                     // default: "<ul>{entries}</ul>"
@@ -69,7 +69,7 @@
                     // inner template for each entry
                     // default: '<li><a href="{url}">[{author}@{date}] {title}</a><br/>{shortBodyPlain}</li>'
                     // valid values: any string
-                    entryTemplate: '<div class="media"> <div class="media-left media-middle"> <a href="{url}"> <img class="media-object" src="{teaserImageUrl}" alt="RSSImage"> </a> </div> <div class="media-body"> <h4 class="media-heading">{title}</h4>{body}</div> </div>',
+                    entryTemplate: '<div class="panel panel-info"> <div class="panel-heading"> <h3 class="panel-title"><a href="{url}">{title}</a> <div class="pull-right">{date}</div></h3>  </div> <div class="panel-body">{body} </div> </div>',
 
                     // additional token definition for in-template-usage
                     // default: {}
@@ -82,7 +82,7 @@
                     // formats the date with moment.js (optional)
                     // default: 'dddd MMM Do'
                     // valid values: see http://momentjs.com/docs/#/displaying/
-                    dateFormat: 'MMMM Do, YYYY',
+                    dateFormat: 'hh:mm, DD.MM.YYYY',
 
                     // localizes the date with moment.js (optional)
                     // default: 'en'
@@ -93,7 +93,7 @@
                     // this is useful if you want to format dates without moment.js.
                     // if you don't use moment.js and don't define a dateFormatFunction, the dates will
                     // not be formatted; they will appear exactly as the RSS feed gives them to you.
-                    dateFormatFunction: function(date){},
+                    //dateFormatFunction: function(date){ return date; },
 
                     // the effect, which is used to let the entries appear
                     // default: 'show'
