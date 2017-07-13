@@ -70,14 +70,14 @@
                     // inner template for each entry
                     // default: '<li><a href="{url}">[{author}@{date}] {title}</a><br/>{shortBodyPlain}</li>'
                     // valid values: any string
-                    entryTemplate: '<p>{title}</p>',
+                    entryTemplate: '<div class="media"> <div class="media-left media-middle"> <a href="{url}"> <img class="media-object" src="{teaserImageUrl}" alt="RSSImage"> </a> </div> <div class="media-body"> <h4 class="media-heading">{title}</h4>{body}</div> </div>',
 
                     // additional token definition for in-template-usage
                     // default: {}
                     // valid values: any object/hash
                     tokens: {
                         foo: 'bar',
-                        bar: function(entry, tokens) { return entry.title }
+                        bar: function(entry, tokens) { return tokens.date }
                     },
 
                     // formats the date with moment.js (optional)
@@ -99,11 +99,11 @@
                     // the effect, which is used to let the entries appear
                     // default: 'show'
                     // valid values: 'show', 'slide', 'slideFast', 'slideSynced', 'slideFastSynced'
-                    effect: 'slideFastSynced',
+                    effect: 'show',
 
                     // a callback, which gets triggered when an error occurs
                     // default: function() { throw new Error("jQuery RSS: url don't link to RSS-Feed") }
-                    error: function(){},
+                    //error: function(){},
 
                     // a callback, which gets triggered when everything was loaded successfully
                     // this is an alternative to the next parameter (callback function)
