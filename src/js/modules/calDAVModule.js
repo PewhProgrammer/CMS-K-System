@@ -22,30 +22,23 @@
          */
         base.init = function () {
             // merge given options with default options
-            jQuery.extend(base.options, options);
+            // merge given options with default options
+            base.options = $.extend({
+                path: 'empty'
+            }, options || {});
 
             // Access to jQuery and DOM versions of element
             base.el = el;
             base.$el = jQuery(el);
 
-
-
-        };
-
-        base.getRoomData = function(path){
-
-        };
-
-
-        //returns HTML content to display
-        jQuery.getRoomContent = function getRoomContent(path){
-            console.log("path: " + path);
-            return '<div id="calendar"></div>';
+            console.log("RSSModule loaded");
+            base.$el.html('<div id="calendar"></div>');
+            base.getContent(base.options.path);
         };
 
         //returns HTML content to display
-        jQuery.initCalender = function initCalender(path){
-
+        base.getContent = function(path){
+        console.log("path loaded: " +path);
             /** var ics_sources = [
                 {
                     url: path,
@@ -101,8 +94,8 @@
                 defaultView: 'agenda',
                 visibleRange: function(currentDate) {
                     return {
-                        start: currentDate.clone().subtract(1, 'days'),
-                        end: currentDate.clone().add(5, 'days') // exclusive end, so 5
+                        start: currentDate.clone().subtract(0, 'days'),
+                        end: currentDate.clone().add(7, 'days') // exclusive end, so 5
                     };
                 },
                 header: {

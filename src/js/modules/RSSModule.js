@@ -33,7 +33,6 @@
             console.log("RSSModule loaded");
             base.$el.html('<div id="rss-feeds"></div>');
             base.getContent(base.options.path);
-
         };
 
         base.getContent = function(path){
