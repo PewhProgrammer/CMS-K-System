@@ -84,9 +84,10 @@
                     base.$content.rssModule({path: base.types["rss"]["path"]});
                 }
                 else if (base.types["caldav"]["no"] === 1){
-                    console.log("caldav");
-                    $(".content").html($.getRoomContent(base.types["caldav"]["path"]));
-                    $.initCalender(base.types["caldav"]["path"]);
+                    base.$content.CalDAVModule({path: base.types["caldav"]["path"]});
+
+                    //$(".content").html($.getRoomContent(base.types["caldav"]["path"]));
+                    //$.initCalender(base.types["caldav"]["path"]);
                 }
             }
 
