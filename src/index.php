@@ -13,7 +13,6 @@
     I am looking for the URL param ?mID = ...
 </div>
 
-
 <!-- Main JS Script -->
 <script src="./libs/jquery-3.2.1.js"></script>
 <script src="./libs/vendor/datetimer/moment.js"></script>
@@ -22,6 +21,7 @@
 <script src="./libs/ical_events.js"></script>
 <script src="./libs/ical_fullcalendar.js"></script>
 <script src="./libs/jquery.rss.js"></script>
+<script src="./libs/jquery.colorbox.js"></script>
 <script src="./js/modules.min.js"></script>
 <script src="./js/main.js"></script>
 </body>

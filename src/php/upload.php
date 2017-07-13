@@ -60,7 +60,7 @@ class Upload extends ServerWrapper
 
         if ($this->fileType == 'pdf') $this->resource->setType("pdf");
         else if ($this->fileType == 'ics') $this->resource->setType("caldav");
-        else if ($this->fileType == 'image') $this->resource->setType("image");
+        else if (($this->fileType == 'jpg') || ($this->fileType == 'jpeg')|| ($this->fileType == 'png')|| ($this->fileType == 'gif')) $this->resource->setType("image");
         else {
             echo "The file type is not supported.";
             return false;

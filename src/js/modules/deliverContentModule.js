@@ -74,6 +74,10 @@
                     console.log("website");
                     $(".content").html('<iframe height="100%" width="100%" src="' + base.types["website"]["path"][0] + '" frameborder="0" scrolling="no" ></iframe>');
                 }
+                else if (base.types["image"]["no"] === 1){
+                    $(".content").html('<p><a class="slideshowElements"  href="'+ base.types["image"]["path"][0] +'" title="SlideshowItem">1</a></p>');
+                    $(".slideshowElements").colorbox({rel:'slideshowElements', slideshow:true, open:true, closeButton: false, opacity: 1});
+                }
                 else if (base.types["bus"]["no"] === 1){
                     MensaBusModule().getBusData();
                 }
@@ -85,9 +89,6 @@
                 }
                 else if (base.types["caldav"]["no"] === 1){
                     base.$content.CalDAVModule({path: base.types["caldav"]["path"]});
-
-                    //$(".content").html($.getRoomContent(base.types["caldav"]["path"]));
-                    //$.initCalender(base.types["caldav"]["path"]);
                 }
             }
 

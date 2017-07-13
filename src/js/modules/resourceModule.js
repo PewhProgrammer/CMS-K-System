@@ -39,7 +39,7 @@
                 maxFilesize: 2, // MB
                 autoProcessQueue: false,
                 dictDefaultMessage: "Click or drag files on top of this field",
-                acceptedFiles: "image/jpeg,image/png,image/gif,.pdf,.ics",
+                acceptedFiles: ".jpeg,.jpg,.png,.gif,.pdf,.ics",
                 addRemoveLinks: true,
                 init: function() {
                     var myDropzone = this;
