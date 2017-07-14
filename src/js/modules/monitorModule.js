@@ -91,14 +91,14 @@
                                 //find labels of the element
                                 var labels = "";
                                 var classList = $(this).parent().attr("class").split(" ");
-                                for(var i = 3; i < classList.length-1; i++) {
+                                for(var i = 4; i < classList.length-1; i++) {
                                     labels = labels + classList[i] + ", ";
                                 }
                                 labels = labels.slice(0, -2);
-
-                                html = html + "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
                                 $("#previewPanel").find("p").html(html);
                             }
+
+                            html = html + "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
                         });
                     } else {
                         $("#previewPanel").find("p").html("horizontal: <span style='font-weight: normal'>" + horizontal

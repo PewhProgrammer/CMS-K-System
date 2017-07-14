@@ -39,8 +39,12 @@ class Delete extends ServerWrapper
         $this->query->executeQuery();
 
         echo $this->query->getResponse();
+        return new Response(200, "Resource deleted");
     }
 
+    public function setResource($id) {
+        $this->id = $id;
+    }
 }
 
 $a = new Delete();

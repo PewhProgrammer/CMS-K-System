@@ -77,6 +77,14 @@ class Attach extends ServerWrapper
             $obj instanceof Traversable || is_array($obj);
     }
 
+    public function setResources($resources, $monitors, $until) {
+        $this->resources = $resources;
+        $this->monitors = $monitors;
+        $this->until = $until;
+        $this->monSize = sizeof($this->monitors);
+        $this->resSize = sizeof($this->resources);
+    }
+
 }
 
 $a = new Attach();

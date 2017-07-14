@@ -21,6 +21,7 @@ class Query extends ConnectionFactory {
     }
 
     public function getQuery(){
+        $this ->setResponse(300,"labber");
         // Create connection
         try{
             $conn = ConnectionFactory::getFactory()->getConnection();
@@ -31,6 +32,7 @@ class Query extends ConnectionFactory {
         }
 
         //$this->query = $this->sanitize($conn, $this->query);
+
 
         if ($this->result = $conn->query($this->query)) {
             ConnectionFactory::getFactory()->closeConnection();
