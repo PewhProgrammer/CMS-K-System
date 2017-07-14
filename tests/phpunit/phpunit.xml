@@ -26,6 +26,7 @@
 	<file>../../src/php/ServerWrapper.php</file>
 	<file>../../src/php/Response.php</file>
 	<file>../../src/php/ContentManager.php</file>
+	<file>../../src/php/server_login.php</file>
   </whitelist>
 </filter>
 </phpunit>

@@ -1,6 +1,6 @@
 <?php
 
-require "ServerWrapper.php";
+require_once("ServerWrapper.php");
 include_once "User.php";
 
 class UserHandler extends ServerWrapper
@@ -41,6 +41,7 @@ class UserHandler extends ServerWrapper
      */
     public function execute()
     {
+        if(!$this->verify()) return new Response('404','No user found');
         $this->user->setPassword(hash('sha256', $this->user->getPassword()));
         $this->query = new Query("SELECT * FROM users WHERE name='" .$this->user->getUsername(). "' AND pass='" . $this->user->getPassword() . "'");
         $result = $this->query->getQuery();
@@ -53,6 +54,14 @@ class UserHandler extends ServerWrapper
         }
 
         return $this->query->getResponse();
+    }
+
+    private function verify(){
+        return !$this->user === null;
+    }
+
+    public function initTestData($usr){
+        $this->user = $usr;
     }
 }
 

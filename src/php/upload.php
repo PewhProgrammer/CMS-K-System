@@ -36,7 +36,7 @@ class Upload extends ServerWrapper
      */
     public function execute()
     {
-        if(!$this->checkFiles()) return null;
+        if(!$this->checkFiles()) return new Response('404','Files are corrupt');
         if ($this->uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
@@ -87,6 +87,14 @@ class Upload extends ServerWrapper
                 $uploadOk = 0;
             }
         */
+    }
+
+    public function initTestData($type,$file){
+        $this->target_file = $file;
+        $this->fileType = $type;
+
+        $this->uploadOk = 1;
+        $this->resource = new Resource('','','');
     }
 }
 

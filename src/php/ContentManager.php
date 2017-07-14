@@ -19,7 +19,6 @@ class ContentManager extends ServerWrapper
         {
             $this->mID = $_POST["mID"];
         }
-
     }
 
     /**
@@ -77,6 +76,10 @@ class ContentManager extends ServerWrapper
            return false;
         }
         return true;
+    }
+
+    public function initTestData($id){
+        $this->mID = $id;
     }
 }
 

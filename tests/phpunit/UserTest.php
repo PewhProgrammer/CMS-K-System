@@ -8,10 +8,17 @@
 
 use PHPUnit\Framework\TestCase;
 
+require_once('../../src/php/User.php');
 
 class UserTest extends TestCase
 {
-    public function testReason(){
-        $this->assertEquals(1,2,'Not same number');
+    public function testFunctionModule(){
+        $user = new User('John','bolton');
+        $this->assertEquals('John',$user->getUsername(),'Wrong Username returned');
+        $this->assertEquals('bolton',$user->getPassword(),'Wrong Username returned');
+        $user->setUsername('Mike');
+        $this->assertEquals('Mike',$user->getUsername(),'Wrong Username returned');
+        $user->setPassword('ramsay');
+        $this->assertEquals('ramsay',$user->getPassword(),'Wrong Username returned');
     }
 }
