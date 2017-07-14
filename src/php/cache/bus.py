@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from www import fetch_url
 from bs4 import BeautifulSoup
 import datetime
 from www import fetch_url
