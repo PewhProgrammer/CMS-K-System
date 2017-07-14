@@ -7,6 +7,6 @@ For Selenium Tests:
 
 For PHPUnit Tests:
 
-- choose CLI Interpreter for php: File > Settings > Languages&Frameworks > PHP
+- choose CLI Interpreter for php: File > Settings > Languages&Frameworks > PHP. Select the Path to your php.exe
 - Integrate PHPUnit into PHPStorm: File > Settings > Languages&Frameworks > PHP > PHPUnit. Then select 'Path to phpunit.phar' and choose the path to 'tests/phpunit.phar'.
   After applying the changes, the system will re-index the structure and you'll have autocompletion on phpunit test classes.
