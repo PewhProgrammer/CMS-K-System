@@ -1,6 +1,6 @@
 <?php
 
-require "ServerWrapper.php";
+require_once("ServerWrapper.php");
 include_once "Resource.php";
 
 class Upload extends ServerWrapper

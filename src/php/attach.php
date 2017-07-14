@@ -1,6 +1,6 @@
 <?php
 
-require "ServerWrapper.php";
+require_once("ServerWrapper.php");
 
 class Attach extends ServerWrapper
 {
@@ -30,7 +30,7 @@ class Attach extends ServerWrapper
             }
 
         }
-        echo "Wrong Param Format.";
+        //echo "Wrong Param Format.";
 
     }
 

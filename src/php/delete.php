@@ -1,6 +1,6 @@
 <?php
 
-require "ServerWrapper.php";
+require_once("ServerWrapper.php");
 
 class Delete extends ServerWrapper
 {

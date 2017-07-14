@@ -1,12 +1,13 @@
 <?php
 
-require "ServerWrapper.php";
-include_once "Resource.php";
+require_once("ServerWrapper.php");
+require_once "Resource.php";
 
 class Add extends ServerWrapper
 {
 
     private $resource;
+
 
     function __construct()
     {
@@ -16,7 +17,7 @@ class Add extends ServerWrapper
             $this->execute();
             return;
         }
-        echo "Wrong Param Format.";
+        //echo "Wrong Param Format.";
 
     }
 

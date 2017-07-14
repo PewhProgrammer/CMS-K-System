@@ -6,11 +6,9 @@
  * Time: 21:23
  */
 
-use PHPUnit\Framework\TestCase;
+require_once('../../src/php/delete.php');
 
-require '../../src/php/delete.php';
-
-class DeleteTest extends TestCase
+class DeleteTest extends \PHPUnit\Framework\TestCase
 {
     public function testReason()
     {

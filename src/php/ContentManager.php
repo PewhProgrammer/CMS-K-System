@@ -1,5 +1,5 @@
 <?php
-require "ServerWrapper.php";
+require_once("ServerWrapper.php");
 
 /**
  * Created by PhpStorm.

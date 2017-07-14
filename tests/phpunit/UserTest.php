@@ -8,7 +8,10 @@
 
 use PHPUnit\Framework\TestCase;
 
+
 class UserTest extends TestCase
 {
-
+    public function testReason(){
+        $this->assertEquals(1,2,'Not same number');
+    }
 }
