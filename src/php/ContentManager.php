@@ -7,6 +7,7 @@ require "ServerWrapper.php";
  * Date: 05.07.2017
  * Time: 18:40
  */
+
 class ContentManager extends ServerWrapper
 {
     private $mID;
@@ -17,11 +18,7 @@ class ContentManager extends ServerWrapper
         if (isset($_POST["mID"]))
         {
             $this->mID = $_POST["mID"];
-            $this->execute();
-            return;
         }
-
-        echo "Wrong Param Format.";
 
     }
 
@@ -30,6 +27,8 @@ class ContentManager extends ServerWrapper
      */
     public function execute()
     {
+        if(!$this->verify()) return new Response('404','No mID found');
+
         $this->query = new Query("SELECT * FROM resources, monitorhasresource WHERE monitorhasresource.mID ='" . $this->mID . "' AND resources.rID = monitorhasresource.rID");
         $res = $this->query->getQuery();
 
@@ -71,8 +70,17 @@ class ContentManager extends ServerWrapper
         echo json_encode($typeArr);
         return $this->query->getResponse();
     }
+
+    private function verify(){
+        if($this->mID === null)
+        {
+           return false;
+        }
+        return true;
+    }
 }
 
 $a = new ContentManager();
+$a->execute();
 
 ?>

@@ -27,6 +27,11 @@ class ConnectionFactory{
     private $dbname = "cms_k";
 
     public function getConnection(){
+        if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
+            echo 'We don\'t have mysqli!';
+            return null;
+        }
+
         if (is_null($this->db))
             $this->db = new mysqli($this->servername, $this->username, $this->password,$this->dbname);
         if ($this->db->connect_error) {

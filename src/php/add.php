@@ -29,6 +29,11 @@ class Add extends ServerWrapper
         $this->query->getQuery();
         return $this->query->getResponse();
     }
+
+
+    public function setResource($res){
+        $this->resource = $res;
+    }
 }
 
 $a = new Add();

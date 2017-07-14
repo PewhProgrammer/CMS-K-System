@@ -59,7 +59,7 @@ class Query extends ConnectionFactory {
         //$this->query = $this->sanitize($conn, $this->query);
 
         if ($conn->query($this->query) === TRUE) {
-            $this->setResponse(200,"");
+            $this->setResponse(200,"true");
         } else {
             $this->setResponse(404,'SQLQuery format error: '.$this->query);
         }

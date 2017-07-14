@@ -13,10 +13,15 @@ class AddTest extends \PHPUnit\Framework\TestCase
 
     public function testReason(){
         $add = new Add();
+        $add->setResource(new Resource("test","test","test"));
         $response = $add->execute();
-        echo $response;
 
-        $this->assertEquals(0,1,"It was right");
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+    }
+
+
+    public function tearDown(){
+        echo 'rofl';
     }
 
 }
