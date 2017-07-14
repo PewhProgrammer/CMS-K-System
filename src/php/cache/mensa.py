@@ -28,13 +28,13 @@ class Mensa:
 
     def load_menu_from_cache(self):
         try:
-            with open("cache/mensa.json", "rt") as f:
+            with open("mensa_1.json", "rt") as f:
                 return json.load(f)
         except FileNotFoundError:
             return None
 
     def save_menu_to_cache(self, menu):
-        with open("cache/mensa.json", "wt") as f:
+        with open("mensa_1.json", "wt") as f:
             json.dump(menu, f)
 
     def fetch_menu(self):

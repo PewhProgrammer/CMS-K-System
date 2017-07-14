@@ -35,7 +35,7 @@
         base.getMensaData = function(){
             $.ajax({
                 dataType: "json",
-                url: "/api/mensa",
+                url: "../php/mensa.php",
                 data: "",
                 success: function(data) {
                     console.log("Received mensa data");
@@ -47,7 +47,7 @@
         base.getBusData = function(){
             $.ajax({
                 dataType: "json",
-                url: "/api/bus",
+                url: "../php/bus.php",
                 data: "",
                 success: function(data) {
                     console.log("Received bus data");
