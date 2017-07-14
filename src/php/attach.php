@@ -85,6 +85,18 @@ class Attach extends ServerWrapper
         $this->resSize = sizeof($this->resources);
     }
 
+    public function getResources() {
+        return $this->resources;
+    }
+
+    public function getMonitors() {
+        return $this->monitors;
+    }
+
+    public function getUntil() {
+        return $this->until;
+    }
+
 }
 
 $a = new Attach();

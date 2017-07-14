@@ -13,6 +13,7 @@ class DeleteTest extends \PHPUnit\Framework\TestCase
     public function testReason()
     {
         $delete = new Delete();
+        $this->assertEquals(0, $delete->getResource(), "Id should be 0");
 
         $query = new Query("SELECT * FROM resources WHERE name = 'test'");
         $res = $query->getQuery();
@@ -23,4 +24,11 @@ class DeleteTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(200, $response->getCode(), "Response code was wrong");
     }
+
+    public function deleteNormalConstructor() {
+        $_POST["id"] = 5;
+        $delete = new Delete();
+        $this->assertEquals(5, $delete->getResource(), "Id should be 5");
+    }
+
 }

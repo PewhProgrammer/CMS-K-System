@@ -45,6 +45,10 @@ class Delete extends ServerWrapper
     public function setResource($id) {
         $this->id = $id;
     }
+
+    public function getResource() {
+        return $this->id;
+    }
 }
 
 $a = new Delete();

@@ -17,8 +17,6 @@ class Add extends ServerWrapper
             $this->execute();
             return;
         }
-        //echo "Wrong Param Format.";
-
     }
 
     /**
@@ -34,6 +32,10 @@ class Add extends ServerWrapper
 
     public function setResource($res){
         $this->resource = $res;
+    }
+
+    public function getResource() {
+        return $this->resource;
     }
 }
 

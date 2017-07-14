@@ -13,9 +13,21 @@ class AddTest extends \PHPUnit\Framework\TestCase
 
     public function testReason(){
         $add = new Add();
+        $this->assertEquals(null, $add->getResource(), "There is a resource where there shouldn't be one");
+
         $add->setResource(new Resource("test","test","test"));
         $response = $add->execute();
 
         $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+    }
+
+    public function testConstructor() {
+        $_POST["name"] = "Test.txt";
+        $_POST["type"] = "NoType";
+        $_POST["path"] = "C:\Users\Marc\Desktop\Test.txt";
+        $add = new Add();
+        $this->assertEquals("Test.txt", $add->getResource()->getName(), "Wrong resource name");
+        $this->assertEquals("NoType", $add->getResource()->getType(), "Wrong resource name");
+        $this->assertEquals("C:\Users\Marc\Desktop\Test.txt", $add->getResource()->getData(), "Wrong resource name");
     }
 }
