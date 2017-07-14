@@ -6,6 +6,9 @@ SE Project
 1. Install node (download from website)
 2. Install grunt-cli (npm install -g grunt-cli)
 3. Type "npm install"
+4. MAMP already has python installed, set the folder with exe as env path
+5. install pip(download get-pip.py from website)
+6. install packages in Scripts folder(pip install beautifulsoup4, python_dateutil, urllib)
 
 We use MAMP for the local webserver.
 
@@ -16,6 +19,7 @@ We use MAMP for the local webserver.
 * [Grunt]
 * [PHP]
 * [MySQL]
+* [Python]
 
 ## Timeline
 
