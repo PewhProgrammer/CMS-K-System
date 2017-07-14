@@ -18,9 +18,8 @@ class ContentManager extends ServerWrapper
         if (isset($_POST["mID"]))
         {
             $this->mID = $_POST["mID"];
-            $this->execute();
-            return;
         }
+
     }
 
     /**
@@ -28,6 +27,7 @@ class ContentManager extends ServerWrapper
      */
     public function execute()
     {
+
         if($this->mID === null)
         {
             return new Response('404','No mID found');
@@ -77,5 +77,6 @@ class ContentManager extends ServerWrapper
 }
 
 $a = new ContentManager();
+$a->execute();
 
 ?>

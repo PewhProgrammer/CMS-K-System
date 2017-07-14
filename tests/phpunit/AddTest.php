@@ -19,9 +19,6 @@ class AddTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(200,$response->getCode(),"Response code was wrong");
     }
 
-    public function testReasonNo(){
-        echo 'hey';
-    }
 
     public function tearDown(){
         echo 'rofl';
