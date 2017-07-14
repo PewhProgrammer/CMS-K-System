@@ -17,7 +17,7 @@ include_once('../php/server_login.php'); ?>
 <body>
 <div id="login" class="header">
     <img src="https://cispa.saarland/wp-content/themes/cispa/images/cispa-logo.png" alt="logo" style="float: left;width: 150px;height: 90px;">
-    </br></br></br></br><h1 align="center" class="text-primary"> Welcome to CMS-K</h1>
+    </br></br></br></br><h1 align="center" class="text-primary"> Welcome to CMS-K <?php phpinfo() ?></h1>
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
