@@ -25,13 +25,13 @@ class SaarVV:
 
     def load_schedule_from_cache(self):
         try:
-            with open("cache/bus.json", "rt") as f:
+            with open("bus_1.json", "rt") as f:
                 return json.load(f)
         except FileNotFoundError:
             return None
 
     def save_schedule_to_cache(self, schedule):
-        with open("cache/bus.json", "wt") as f:
+        with open("bus_1.json", "wt") as f:
             json.dump(schedule, f)
 
     def filter_schedule(self, schedule, now):
