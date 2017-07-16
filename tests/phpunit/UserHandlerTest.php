@@ -20,9 +20,13 @@ class UserHandlerTest extends TestCase
         $response = $login->execute();
         $this->assertEquals(404,$response->getCode(),"Response code was wrong");
 
-        $login->initTestData(new User('curd','a1cf52f3879ca4ee972837d4115a335eb5e77bb52abd15ee89c5c51bb5663c70'));
+        $login->initTestData(new User('curd','wrongPW'));
         $response = $login->execute();
-        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong: ");
+
+        $login->initTestData(new User('curd','curd'));
+        $response = $login->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ");
     }
 
 }

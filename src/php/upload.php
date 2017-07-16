@@ -10,9 +10,11 @@ class Upload extends ServerWrapper
 
     //gets called for every file once
     private $target_dir = "../uploads/";
-    private $target_file = "";
+    private $target_file;
     private $uploadOk = 0;
-    private $fileType = "";
+    private $fileType;
+    private $tempFile;
+    private $file;
 
 
     function __construct()
@@ -20,9 +22,11 @@ class Upload extends ServerWrapper
         //Check if keys exists
         if (isset($_FILES["userfile"]["name"])) {
             $this->target_file = $this->target_dir . basename($_FILES["userfile"]["name"]);
+            $this->tempFile = $_FILES["userfile"]["tmp_name"];
+            $this->file = $_FILES["userfile"]["name"];
             $this->uploadOk = 1;
             $this->fileType = pathinfo($this->target_file, PATHINFO_EXTENSION);
-            $this->resource = new Resource();
+            $this->resource = new Resource('','','');
             echo $this->execute();
             return;
         }
@@ -40,11 +44,11 @@ class Upload extends ServerWrapper
         if ($this->uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
-        } else if (move_uploaded_file($_FILES["userfile"]["tmp_name"], $this->target_file)) {
+        } else if (move_uploaded_file($this->tempFile, $this->target_file)) {
 
-            echo "The file " . basename($_FILES["userfile"]["name"]) . " has been uploaded.";
+            echo "The file " . basename($this->file) . " has been uploaded.";
 
-            $this->resource->setName($_FILES["userfile"]["name"]);
+            $this->resource->setName($this->file);
 
             $this->resource->setData($this->target_dir . $this->resource->getName());
             $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $this->resource->getName() . "', '" . $this->resource->getType() . "', '" . $this->resource->getData() . "')");
@@ -89,9 +93,13 @@ class Upload extends ServerWrapper
         */
     }
 
-    public function initTestData($type,$file){
+    public function initTestData($type,$file,$baseFile){
         $this->target_file = $file;
         $this->fileType = $type;
+        $this->tempFile = $baseFile ;
+        $this->file =  $baseFile;
+
+        echo 'echo: '.$type;
 
         $this->uploadOk = 1;
         $this->resource = new Resource('','','');

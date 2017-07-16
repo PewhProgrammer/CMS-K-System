@@ -61,8 +61,6 @@ class ContentManager extends ServerWrapper
                     $typeArr["caldav"]["no"]++;
                     array_push($typeArr["caldav"]["path"], $row["data"]);
                     break;
-                default:
-                    echo "Error: Resource has wrong file type.";
             }
         }
 

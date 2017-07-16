@@ -44,10 +44,6 @@ class Query extends ConnectionFactory {
 
     }
 
-    public function createErrorCode($code){
-        $this->errorCode = $code ;
-    }
-
     function executeQuery(){
         // Create connection
         try{
@@ -68,9 +64,9 @@ class Query extends ConnectionFactory {
         ConnectionFactory::getFactory()->closeConnection();
     }
 
-    function sanitize($conn, $input){
+    /*function sanitize($conn, $input){
         return $conn->real_escape_string($input);
-    }
+    }*/
 
     /**
      * @return mixed

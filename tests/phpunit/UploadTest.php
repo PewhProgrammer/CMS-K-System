@@ -17,9 +17,17 @@ class UploadTest extends TestCase
         $response = $upload->execute();
         $this->assertEquals(404,$response->getCode(),"Response code was wrong");
 
-        $upload->initTestData('image','maikelele.png');
+        $upload->initTestData('jpg','maikelele.jpg','maikelele.jpg');
         $response = $upload->execute();
-        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+
+        $upload->initTestData('ics','maikelele.ics','maikelele.jpg');
+        $response = $upload->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+
+        $upload->initTestData('pdf','maikelele.pdf','maikelele.jpg');
+        $response = $upload->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
 
     }
 

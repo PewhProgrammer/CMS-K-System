@@ -14,11 +14,21 @@ class ContentManagerTest extends TestCase
 {
 
     public function testExecute(){
+        $_POST["mID"] = 1;
         $cM = new ContentManager();
         $response = $cM->execute();
-        $this->assertEquals(404,$response->getCode(),"Response code was wrong");
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
 
-        $cM->initTestData(1);
+        $cM->initTestData(2);
+        $response = $cM->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+        $cM->initTestData(3);
+        $response = $cM->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+        $cM->initTestData(4);
+        $response = $cM->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+        $cM->initTestData(5);
         $response = $cM->execute();
         $this->assertEquals(200,$response->getCode(),"Response code was wrong");
     }

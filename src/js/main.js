@@ -13,5 +13,5 @@ $(document).ready(function()
     //separate in own js
     $("#monitorBody").deliverContentModule();
 
-    console.log("Running");
+    console.log("Running.");
 });

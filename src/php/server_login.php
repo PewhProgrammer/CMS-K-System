@@ -6,6 +6,7 @@ include_once "User.php";
 class UserHandler extends ServerWrapper
 {
     private $user;
+    private $testData;
     public static $errors = [];
 
     function __construct()
@@ -33,8 +34,9 @@ class UserHandler extends ServerWrapper
         } else {
             echo "";
         }
-
     }
+
+
 
     /**
      * @return Response The return value shall be a Response
@@ -48,19 +50,22 @@ class UserHandler extends ServerWrapper
 
         if (mysqli_num_rows($result) == 1) {
             $_SESSION['user'] = $this->user->getUsername();
+            if(!$this->testData)
             header('location:./index.php');
         } else {
             array_push(self::$errors, "Incorrect username/password");
+            return new Response('404','Incorrect username/password');
         }
 
         return $this->query->getResponse();
     }
 
     private function verify(){
-        return !$this->user === null;
+        return !($this->user === null);
     }
 
     public function initTestData($usr){
+        $this->testData = true;
         $this->user = $usr;
     }
 }
