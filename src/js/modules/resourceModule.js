@@ -91,17 +91,7 @@
                             '<input type="text" class="form-control" id="url" aria-label="...">'+
                             '</div>' );
 
-                        $("#urlPrefixDrop").find('li').click(function(){
-
-                            /* Change DropDown Selection*/
-                            var btnSelector = $("#dropdownMenuURL") ;
-                            if(btnSelector.text().startsWith('https'))
-                            btnSelector.val(0); // 0 = http | 1 = https
-                            else btnSelector.val(1);
-                            var help = '<a href="#">'+ btnSelector.text() + '</a>';
-                            btnSelector.text($(this).text());
-                            $(this).html(help);
-                        });
+                        initHttpListener();
                     }
                     $("#urlHeader").text(urlHeaderText[fileType-1]);
                 }
@@ -112,12 +102,13 @@
                 }
             });
 
+
             function processCALDavHTML(){
                 $("#addResourceSubmit").prop('disabled',true);
                 base.$urlForm.html('');
                 base.$urlForm
                     .append('<label for="url" id="urlHeader">Name:</label>')
-                    .append('<div class="checkbox caldav"> <label><input id="caldavOpt0"  disabled type="checkbox"  value="">Access through API [Not implemented yet]</label> </div>')
+                    .append('<div class="checkbox caldav"> <label><input id="caldavOpt0"  type="checkbox"  value="">Access through API [Web URL]</label> </div>')
                     .append('<div class="checkbox caldav"> <label><input id="caldavOpt1"  type="checkbox" value="">Access through local storage (.ics)</label> </div>')
                     .append('<div id="calDavDiv"> </div>');
                 $(".checkbox.caldav").find("input").change(function () {
@@ -129,14 +120,38 @@
                         return ;
                     }
                     if($(this).attr('id') === 'caldavOpt0'){
+                        $('#caldavOpt1').prop('checked',false);
+                        base.$dropzoned = false;
+                        base.$fileForm.hide();
                         calDavDivSelector
-                            .append('<input type="text" class="form-control" id="url">');
+                            .append('<div class="form-group" id="urlForm"> <label for="url" id="urlHeader">Name:</label> ' +
+                                '<div class="input-group"> <div class="input-group-btn"> ' +
+                                '<button type="button" id="dropdownMenuURL" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        'http:// </button> <ul id="urlPrefixDrop" class="dropdown-menu"> <li><a href="#">https:// </a></li> </ul> ' +
+                        '</div><!-- /btn-group --> <input type="text" class="form-control" id="url" aria-label="..."> </div><!-- /input-group --> ' +
+                        '</div>');
+                        initHttpListener();
                     }
                     else{
+                        $('#caldavOpt0').prop('checked',false);
                         base.$dropzoned = true;
                         base.$fileForm.show();
                     }
                     $("#addResourceSubmit").prop('disabled',false);
+                });
+            }
+
+            function initHttpListener(){
+                $("#urlPrefixDrop").find('li').click(function(){
+
+                    /* Change DropDown Selection*/
+                    var btnSelector = $("#dropdownMenuURL") ;
+                    if(btnSelector.text().startsWith('https'))
+                        btnSelector.val(0); // 0 = http | 1 = https
+                    else btnSelector.val(1);
+                    var help = '<a href="#">'+ btnSelector.text() + '</a>';
+                    btnSelector.text($(this).text());
+                    $(this).html(help);
                 });
             }
 
@@ -149,6 +164,7 @@
 
                 var resourceResponse = $("#url").val();
                 if(!base.$dropzoned){
+                    console.log("skip");
                     if (resourceResponse.length < 1){
                         base.$warning.find('p').text('Please enter an URL');
                         base.$warning.show();
@@ -158,9 +174,11 @@
                         console.log("value: " +$("#dropdownMenuURL").val());
                         if($("#dropdownMenuURL").val() === '0') resourceResponse = resourceResponse.replace(/^/,'http://');
                         else resourceResponse = resourceResponse.replace(/^/,'https://');
+                        var fType = (fileType === 1) ? 'website' : 'rss';
+                        if(fileType === 3) fType = 'caldav';
                         $.post('../php/add.php', {
                             name: resourceResponse,
-                            type: (fileType === 1) ? 'website' : 'rss',
+                            type: fType,
                             path: resourceResponse
                         }).done(function (data) {
                             base.$urlForm.hide();
