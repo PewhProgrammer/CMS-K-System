@@ -47,6 +47,8 @@
                         myDropzone.processQueue();
                     });
                     myDropzone.on("complete", function(file) {
+
+                        if(!file['accepted']) return;
                         myDropzone.removeFile(file);
                         base.$fileForm.hide();
 
