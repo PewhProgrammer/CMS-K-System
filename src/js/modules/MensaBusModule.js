@@ -27,9 +27,20 @@
             // Access to jQuery and DOM versions of element
             base.el = el;
             base.$el = jQuery(el);
+            base.module = options;
 
+            console.log("MensaBusModule loaded");
+            base.$el.html('<div id="MensaBusPlan"></div>');
 
-
+            if(base.module === "mensa") {
+                base.$el.html('<div id="mensa_panel"></div>');
+                console.log("gathering Mensa data");
+                base.getMensaData();
+            } else if(base.module === "bus") {
+                base.$el.html('<div id="bus_panel"></div>');
+                console.log("gathering Bus data");
+                base.getBusData();
+            }
         };
 
         base.getMensaData = function(){
@@ -85,14 +96,14 @@
                     dom_busses.append(dom_bus);
                 }
             });
-            $("#bus_panel").html(dom_busses)
+            $("#bus_panel").html(dom_busses);
         }
 
         function render_mensa(mensa_data) {
             var dom_counters = $("<div>");
             $.each(mensa_data.counters, function(_, counter) {
                var dom_counter = $("<div class='counter'>");
-                //dom_counter.append($("<div class='counter-bar' style='background-color: rgb(" + counter.color.r + ", " + counter.color.r + ", " + counter.color.r + ")'>"));
+                dom_counter.append($("<div class='counter-bar' style='background-color: rgb(" + counter.color.r + ", " + counter.color.r + ", " + counter.color.r + ")'>"));
 
                 var dom_counter_content = $("<div class='counter-content'></div>");
                 dom_counter_content.append($("<div class='counter-header' style='background-color: rgba(" + counter.color.r + ", " + counter.color.g + ", " + counter.color.b + ", 0.8)'><span class='counter-title'>" + counter.displayName + "</span><span class='counter-description'>" + counter.description + "</div>"));
@@ -126,8 +137,7 @@
                 dom_counter.append(dom_counter_content);
                 dom_counters.append(dom_counter);
             });
-
-            $("#mensa_panel").html(dom_counters)
+            $("#mensa_panel").html(dom_counters);
         }
         // call init method
         base.init();
@@ -136,7 +146,6 @@
     jQuery.fn.MensaBusModule = function (options) {
         return this.each(function () {
             new jQuery.MensaBusModule(this, options);
-
 
         });
     };

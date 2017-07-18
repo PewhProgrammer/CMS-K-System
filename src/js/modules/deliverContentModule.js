@@ -138,10 +138,10 @@
                 }
 
                 if (base.types["bus"]){
-                    MensaBusModule().getBusData();
+                    base.$content.MensaBusModule("bus");
                 }
                 if (base.types["mensa"]){
-                    MensaBusModule().getMensaData();
+                    base.$content.MensaBusModule("mensa");
                 }
 
 
