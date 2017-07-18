@@ -132,34 +132,35 @@ INSERT INTO `monitorhasresource` (`mID`, `rID`, `until`) VALUES
 CREATE TABLE IF NOT EXISTS `monitors` (
   `mID` int(3) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `mac` varchar(17) NOT NULL
+  `mac` varchar(17) NOT NULL,
+  `new` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `monitors`
 --
 
-INSERT INTO `monitors` (`mID`, `name`, `mac`) VALUES
-(1, 'Showroom-1', ''),
-(2, 'Showroom-2', ''),
-(3, 'Showroom-3', ''),
-(4, 'Showroom-4', ''),
-(5, 'Showroom-5', ''),
-(6, 'Showroom-6', ''),
-(7, 'Showroom-7', ''),
-(8, 'Building plan/people - 1', ''),
-(9, 'Building plan/people - 2', ''),
-(10, 'Info - 1', ''),
-(11, 'Info - 2', ''),
-(12, 'Info - 3', ''),
-(13, 'Info - 4', ''),
-(14, 'Kitchen - 1', ''),
-(15, 'Office', ''),
-(16, 'Kitchen - 2', ''),
-(17, 'Meeting Room - 1', ''),
-(18, 'Kitchen - 3', ''),
-(19, 'Meeting Room - 2', ''),
-(20, 'Meeting Room - 3', '');
+INSERT INTO `monitors` (`mID`, `name`, `mac`, `new`) VALUES
+(1, 'Showroom-1', '',FALSE ),
+(2, 'Showroom-2', '',FALSE ),
+(3, 'Showroom-3', '',FALSE ),
+(4, 'Showroom-4', '',FALSE ),
+(5, 'Showroom-5', '',FALSE ),
+(6, 'Showroom-6', '',FALSE ),
+(7, 'Showroom-7', '',FALSE ),
+(8, 'Building plan/people - 1', '',FALSE ),
+(9, 'Building plan/people - 2', '',FALSE ),
+(10, 'Info - 1', '',FALSE ),
+(11, 'Info - 2', '',FALSE ),
+(12, 'Info - 3', '',FALSE ),
+(13, 'Info - 4', '',FALSE ),
+(14, 'Kitchen - 1', '',FALSE ),
+(15, 'Office', '',FALSE ),
+(16, 'Kitchen - 2', '',FALSE ),
+(17, 'Meeting Room - 1', '',FALSE ),
+(18, 'Kitchen - 3', '',FALSE ),
+(19, 'Meeting Room - 2', '',FALSE ),
+(20, 'Meeting Room - 3', '',FALSE );
 
 -- --------------------------------------------------------
 

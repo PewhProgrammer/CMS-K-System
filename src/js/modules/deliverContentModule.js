@@ -45,11 +45,25 @@
                             if(JSON.parse(data)['code'] !== 200){
                                 if(JSON.stringify(JSON.parse(data)['msg']) === '"No mID found"'){
                                     base.$content.html('<div class="bs-callout bs-callout-warning"> ' +
-                                        '<h4 id="bs-header">This monitor ID is not registered in the system</h4> ' +
-                                        '<p>You can register this monitor with its unique <code class="highlighter-rouge">mID</code> by clicking on the button below</p>' +
+                                        '<h4 id="bs-header">The monitor ID '+base.mID+' is not registered in the system</h4> ' +
+                                        '<p>You can register this monitor with its unique <code class="highlighter-rouge">mID = '+base.mID+'</code> by clicking on the button below</p>' +
                                         '<div class="row">&nbsp;</div>' +
-                                        '<button type="button" class="btn btn-default" data-dismiss="modal">add Monitor</button>'+
+                                        '<button id="addMonitor" type="button" class="btn btn-default" data-dismiss="modal">add Monitor</button>'+
                                         '</div>');
+                                    $("#addMonitor").on('click',function(){
+                                        var url = "../php/newMonitor.php";
+                                        $.post(url, {mID: base.mID})
+                                            .done(function (data) {
+                                                console.log(data);
+                                                location.reload();
+                                                //window.location.replace('index.php?attach=success');
+                                            })
+                                            .fail(function (data) {
+                                                console.log('it failed');
+                                                console.log(data);
+                                                // failed
+                                            });
+                                    });
                                 }
                                 return;
                             }
