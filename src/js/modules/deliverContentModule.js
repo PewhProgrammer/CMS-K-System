@@ -36,10 +36,11 @@
 
             function postRequest(){
 
-                if(base.mID !== null){
+                console.log('baseID: ' +base.mID);
+                if(base.mID !== undefined){
                     $.post("../php/ContentManager.php", {mID: base.mID})
                         .done(function (data) {
-                            console.log(JSON.parse(data)['msg']);
+                            //console.log(JSON.parse(data)['msg']);
 
                             if(JSON.parse(data)['code'] !== 200){
                                 if(JSON.stringify(JSON.parse(data)['msg']) === '"No mID found"'){
@@ -67,7 +68,7 @@
                 }else{
                     base.$content.html('<div class="bs-callout bs-callout-warning"> ' +
                         '<h4 id="bs-header">The system could not find the monitor ID</h4> ' +
-                        '<p>Ensure that you have set up the URL parameters correctly: <code class="highlighter-rouge">?mID=</code>[Insert Monitor ID]</p>'+
+                        '<p>Ensure that you have set up the URL parameters correctly: <code class="highlighter-rouge">/?mID=</code>[Insert Monitor ID]</p>'+
                         '</div>');
                 }
             }
