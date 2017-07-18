@@ -9,8 +9,6 @@
 
 <body id="monitorBody" style="height: 100%; width: 100%; position: absolute;">
 <div class="content" style="height: 100%;width: 100%;">
-    There is currently no content attached to this monitor ID. <br>
-    I am looking for the URL param ?mID = ...
 </div>
 
 <!-- Main JS Script -->

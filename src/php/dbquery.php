@@ -8,7 +8,7 @@
 require "dbconnect.php";
 include_once "Response.php";
 
-class Query extends ConnectionFactory {
+class Query {
 
     private $query;
     private $result;

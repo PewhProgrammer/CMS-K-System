@@ -8,7 +8,9 @@ session_start();
  */
 
 /** This should serve as a db connection wrapper to make sure connection
- * is open and if interrupted, will re-open again*/
+ * is open and if interrupted, will re-open again
+ * Addtionally, check if multiple connection exists
+ */
 
 class ConnectionFactory{
     private static $factory;
@@ -25,8 +27,13 @@ class ConnectionFactory{
     private $username = "root";
     private $password = "root";
     private $dbname = "cms_k";
+    private $lock = false;
 
     public function getConnection(){
+        while($this->lock){
+            sleep(1);
+        }
+        $this->lock = true;
         if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
             echo 'We don\'t have mysqli!';
             return null;
@@ -45,6 +52,7 @@ class ConnectionFactory{
     }
 
     public function closeConnection(){
+        $this->lock = false;
         if (!is_null($this->db)) {
             $this->db->close();
             $this->db = null;

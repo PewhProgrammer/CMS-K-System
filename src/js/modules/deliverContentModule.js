@@ -49,10 +49,15 @@
                             }
 
                         })
-                        .fail(function () {
-                            // failed
+                        .fail(function (data) {
+                            base.$content.html(JSON.stringify(JSON.parse(data)));
                         });
                 }
+                base.$content.html('<div class="bs-callout bs-callout-warning"> ' +
+                    '<h4 id="bs-header">The system could not find the monitor ID</h4> ' +
+                    '<p>Ensure that you have set up the URL parameters correctly: <code class="highlighter-rouge">?mID=</code>[Insert Monitor ID]</p>'+
+                    '</div>');
+
 
             }
 
@@ -67,6 +72,16 @@
 
             function updateView(){
                 base.$content.html("");
+
+                if(!(0 < base.types["pdf"]["no"] || 0 < base.types["website"]["no"] || 0 < base.types["image"]["no"] || 0 < base.types["rss"]["no"] ||
+                    0 <  base.types["caldav"]["no"] || base.types["bus"] || base.types["mensa"])) {
+                    base.$content.html("Go to the admin panel and attach a content to this monitor!");
+                    base.$content.html('<div class="bs-callout bs-callout-warning"> ' +
+                        '<h4 id="bs-header">This monitor does not yet have a content attached</h4> ' +
+                        '<p>Go to the admin panel <code class="highlighter-rouge">/admin</code> and attach a content to this monitor!</p>'+
+                        '</div>');
+                    return;
+                }
                 for (var i = 0; i < base.types["pdf"]["no"]; i++){
                     console.log("pdf");
                     base.$content.append('<iframe height="100%" width="100%" src="' + base.types["pdf"]["path"][i] + '" frameborder="0" scrolling="no" ></iframe>');
