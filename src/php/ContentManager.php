@@ -64,7 +64,8 @@ class ContentManager extends ServerWrapper
             }
         }
 
-        echo json_encode($typeArr);
+        //echo json_encode($typeArr);
+        $this->query->setResponse(200,json_encode($typeArr));
         return $this->query->getResponse();
     }
 
@@ -73,6 +74,14 @@ class ContentManager extends ServerWrapper
         {
            return false;
         }
+        $this->query = new Query("SELECT * FROM `monitors` WHERE mID =" . $this->mID);
+        $res = $this->query->getQuery();
+        $break = true;
+        while ($row = $res->fetch_assoc()) {
+            $break = false;
+        }
+        if($break) return false;
+        //echo 'rows:'.json_encode($res->fetch_assoc());
         return true;
     }
 
@@ -82,6 +91,6 @@ class ContentManager extends ServerWrapper
 }
 
 $a = new ContentManager();
-$a->execute();
+echo $a->execute();
 
 ?>

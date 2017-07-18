@@ -39,9 +39,22 @@
                 if(base.mID !== null){
                     $.post("../php/ContentManager.php", {mID: base.mID})
                         .done(function (data) {
-                            //console.log(data);
+                            console.log(JSON.parse(data)['msg']);
+
+                            if(JSON.parse(data)['code'] !== 200){
+                                if(JSON.stringify(JSON.parse(data)['msg']) === '"No mID found"'){
+                                    base.$content.html('<div class="bs-callout bs-callout-warning"> ' +
+                                        '<h4 id="bs-header">This monitor ID is not registered in the system</h4> ' +
+                                        '<p>You can register this monitor with its unique <code class="highlighter-rouge">mID</code> by clicking on the button below</p>' +
+                                        '<div class="row">&nbsp;</div>' +
+                                        '<button type="button" class="btn btn-default" data-dismiss="modal">add Monitor</button>'+
+                                        '</div>');
+                                }
+                                return;
+                            }
+
                             var tmp = JSON.stringify(base.types);
-                            base.types = JSON.parse(data);
+                            base.types = JSON.parse(JSON.parse(data)['msg']);
                             var newData = JSON.stringify(base.types);
 
                             if(tmp.localeCompare(newData) !== 0) { //update view only on changes
