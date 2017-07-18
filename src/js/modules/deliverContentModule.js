@@ -27,8 +27,8 @@
             // Access to jQuery and DOM versions of element
             base.el = el;
             base.$el = jQuery(el);
-            base.mID = getUrlVars()["mID"];
             base.types = {};
+            base.mID = getUrlVars()["mID"];
             base.interval = 10; //in seconds
             base.$content = base.$el.find(".content");
 
@@ -36,7 +36,7 @@
 
             function postRequest(){
 
-                if(base.mID !== undefined){
+                if(base.mID !== null){
                     $.post("../php/ContentManager.php", {mID: base.mID})
                         .done(function (data) {
                             //console.log(data);
@@ -47,18 +47,16 @@
                             if(tmp.localeCompare(newData) !== 0) { //update view only on changes
                                 updateView();
                             }
-
                         })
                         .fail(function (data) {
                             base.$content.html(JSON.stringify(JSON.parse(data)));
                         });
+                }else{
+                    base.$content.html('<div class="bs-callout bs-callout-warning"> ' +
+                        '<h4 id="bs-header">The system could not find the monitor ID</h4> ' +
+                        '<p>Ensure that you have set up the URL parameters correctly: <code class="highlighter-rouge">?mID=</code>[Insert Monitor ID]</p>'+
+                        '</div>');
                 }
-                base.$content.html('<div class="bs-callout bs-callout-warning"> ' +
-                    '<h4 id="bs-header">The system could not find the monitor ID</h4> ' +
-                    '<p>Ensure that you have set up the URL parameters correctly: <code class="highlighter-rouge">?mID=</code>[Insert Monitor ID]</p>'+
-                    '</div>');
-
-
             }
 
 
