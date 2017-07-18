@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
-from www import fetch_url
+# coding=utf-8
 from bs4 import BeautifulSoup
 import datetime
-from www import fetch_url
+from cache.www import fetch_url
 import json
 import dateutil.parser
+import os
 
 
 class SaarVV:
@@ -12,7 +12,8 @@ class SaarVV:
         self.n = 12
 
     def get_schedule(self):
-        schedule = self.load_schedule_from_cache()
+        path=os.path.abspath(__file__+ "/../")
+        schedule = self.load_schedule_from_cache(path)
         if (schedule):
             now = datetime.datetime.now()
             schedule = self.filter_schedule(schedule, now)
@@ -21,19 +22,16 @@ class SaarVV:
                 schedule["from_cache"] = True
                 return schedule
         schedule = self.fetch_schedule()
-        self.save_schedule_to_cache(schedule)
+        self.save_schedule_to_cache(schedule,path)
         schedule["from_cache"] = False
         return schedule
 
-    def load_schedule_from_cache(self):
-        try:
-            with open("bus_1.json", "rt") as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return None
+    def load_schedule_from_cache(self, path):
+        with open(path+"/modules/bus_1.json", "rt") as f:
+            return json.load(f)
 
-    def save_schedule_to_cache(self, schedule):
-        with open("bus_1.json", "wt") as f:
+    def save_schedule_to_cache(self, schedule, path):
+        with open(path+"/modules/bus_1.json", "wt") as f:
             json.dump(schedule, f)
 
     def filter_schedule(self, schedule, now):
@@ -69,7 +67,7 @@ class SaarVV:
             #    delay = "cancelled"
             else:
                 #print(list(field_delay.span.stripped_strings))
-                s_delay = field_delay.span.string.split()[0];
+                s_delay = field_delay.span.string.split()[0]
                 try:
                     delay = int(s_delay)
                 except ValueError:
@@ -86,7 +84,7 @@ class SaarVV:
                     stops.append({"stop": stop, "time": parse_time(line).isoformat()})
 
             #print(list(row["Fahrt"].stripped_strings))
-        
+
             busses.append(dict(
                 time = parse_time(row["Zeit"].string.strip()).isoformat(),
                 delay = delay,
