@@ -94,7 +94,7 @@
                 name = $(this).parents("tr").find(".res").val();
                 id = $(this).data("id");
 
-                $("#deletedItem").text(name);
+                $("#deletedItem").html('<b>'+name);
                 $("#delModal").modal();
 
             });
