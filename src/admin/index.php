@@ -29,6 +29,10 @@ $label = $labelQuery->getQuery();
 $monClassQuery = new Query("SELECT * FROM monitors NATURAL JOIN monitorhaslabel");
 $monClass = $monClassQuery->getQuery();
 
+//contains all unregistered monitors
+$newMonQuery = new Query("SELECT * FROM monitors WHERE new <> 0");
+$newMon = $newMonQuery->getQuery();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +66,30 @@ a clean and intuitive system to manage the monitors at CISPA">
         <a id="logoutButton" type="submit" class="btn btn-primary pull-right" href="login.php?logout=1"><i class="fa fa-sign-out" aria-hidden="true"></i>
             Logout</a>
 
+        <ul class="nav navbar-top-links navbar-right">
+            <!-- /.dropdown -->
+            <li class="dropdown" id="newMon">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i> <span class="badge"><?echo mysqli_num_rows($newMon)?></span>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <? while($row = $newMon->fetch_assoc()){ ?>
+                        <li>
+                            <a href="#" class='unregisteredMonitors' id="newMon-<? echo $row['mID']?>" data-value="<? echo $row['mID']?>" data-time="<? echo $row['new']?>">
+                                <div>
+                                    <i class="fa fa-television fa-fw"> </i> New monitor with id <? echo $row['mID']?>
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <?
+                    }?>
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
@@ -368,6 +396,49 @@ a clean and intuitive system to manage the monitors at CISPA">
             </div>
         <!-- </div> -->
         <!-- /.panel-body -->
+
+        <!-- Register New Monitor Modal -->
+        <div class="modal fade" id="newMonitorModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Registering a new monitor</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>A new monitor with <code class="highlighter-rouge">id <span id="newMonitorIDModal"></span></code> will be registered in the database. <br> Complete the following form.</p>
+                        <div class="row">&nbsp;</div>
+                        <label for="url" id="urlHeader">Monitor Display Name:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="url" aria-label="...">
+                        </div><!-- /input-group -->
+                        <div class="row">&nbsp;</div>
+                        <label for="url" id="urlHeader">Location:</label>
+                        <div class="input-group-btn">
+                            <button type="button" id='dropdownMenuNewMon' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fa fa-caret-down"></i> </button>
+                            <ul id="newMonPrefixDrop" class="dropdown-menu">
+                                <li><a href="#">Ground Floor </a></li>
+                                <li><a href="#">1st Floor </a></li>
+                                <li><a href="#">2nd Floor </a></li>
+                                <li><a href="#">3rd Floor </a></li>
+                            </ul>
+                        </div><!-- /btn-group -->
+
+                        <div class="row">&nbsp;</div>
+                        <label for="url" id="urlHeader">Monitor Alignment:</label>
+                        <div class="input-group-btn">
+                            <button type="button" id='dropdownMenuAlignment' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">vertical</button>
+                        </div><!-- /btn-group -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="delButton" type="button" class="btn btn-primary">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Alerts -->
         <div class="alert alert-success" id="success-alert">

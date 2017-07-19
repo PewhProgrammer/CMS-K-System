@@ -7,6 +7,7 @@ $(document).ready(function()
     $(".attachModule").attachModule();
     $(".attachModule").previewModule();
     $("#monitorForm").monitorModule();
+    $("#newMon").newMonitorModule();
     $("#resForm").resFormModule();
     $(".nav").feedbackModule();
 
