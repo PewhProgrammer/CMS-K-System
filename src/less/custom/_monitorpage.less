@@ -31,3 +31,187 @@
   background-color: #f0f7fd;
   border-color: #d0e3f0;
 }
+
+
+#mensa_panel, #bus_panel{
+  background-color: white;
+  font-size: 12pt;
+  font-family: "Avenir Next", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+.hide-scroll {
+  overflow: hidden;
+}
+
+.viewport {
+  overflow: auto;
+  max-height: 100%;
+  margin-right: -100px;
+  padding-right: 100px;
+  width: 1920px;
+  height: 1080px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #186474;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  font-size: 32px;
+  margin: 0;
+  height: 38px;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.panel {
+  width: 1920px;
+  padding-top: 74px;
+  padding-bottom: 38px;
+}
+
+.panel > .panel-heading {
+  background-color: #186474;
+  text-align: center;
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  height: 58px;
+  position: fixed;
+  top: 0px;
+}
+
+.panel-indicator {
+  display: inline;
+  color: #fff;
+  font-size: 16px;
+  width: 200px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.panel-indicator.active {
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.panel > .panel-body {
+  color: #000;
+  text-align: left;
+  font-weight: normal;
+  font-size: 32px;
+  margin: 0;
+  width: 100%;
+}
+
+
+.bus {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.bus:nth-child(odd) {
+  background-color: rgb(255, 255, 255);
+}
+.bus:nth-child(even) {
+  background-color: rgb(224, 224, 224);
+}
+
+.bus-timing {
+  text-align: center;
+  width: 400px;
+  float: left;
+}
+
+.bus-time {
+  font-size: 28px;
+}
+
+.bus-delay {
+  font-size: 16px;
+  color: #a00;
+}
+
+.bus-route {
+  float: left;
+  padding-left: 200px;
+}
+
+.bus-line {
+  color: #04566E;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.bus-destination {
+  font-size: 32px;
+}
+
+
+.counter {
+  padding: 8px;
+}
+
+.counter-title {
+  font-size: 40px;
+}
+
+.counter-description {
+  font-size: 32px;
+  font-style: italic;
+  padding-left: 16px;
+}
+
+.pricing {
+  float: right;
+  font-size: 12px;
+  font-style: italic;
+  color: #04566E;
+  text-align: right;
+}
+
+.pricing > * {
+  padding: 1px;
+  display: inline;
+}
+
+.pricing-key {
+  text-transform: uppercase;
+}
+
+.meal {
+  padding: 8px;
+  font-size: 24px;
+}
+
+.meal-category {
+  padding-right: 8px;
+}
+
+.component {
+  display: inline;
+  font-size: 16px;
+  font-style: italic;
+  color: #04566E;
+}
+
+.component:after {
+  content: ", ";
+}
+
+.component:last-child:after {
+  content: "";
+}
+
