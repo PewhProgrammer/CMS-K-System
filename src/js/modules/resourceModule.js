@@ -85,11 +85,9 @@
                     else{
                         base.$urlForm.html('<label for="url" id="urlHeader">Name:</label>' +
                             '<div class="input-group"> <div class="input-group-btn">'+
-                            '<button type="button" value="0" id="dropdownMenuURL" class="btn btn-default dropdown-toggle" ' +
+                            '<button type="button" value="0" id="dropdownMenuURL" class="btn btn-default" ' +
                             'data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
-                            'http:// </button>'+
-                            '<ul id="urlPrefixDrop" class="dropdown-menu">'+
-                            '<li><a href="#">https:// </a></li></ul></div><!-- /btn-group -->'+
+                            'http:// </button></div><!-- /btn-group -->'+
                             '<input type="text" class="form-control" id="url" aria-label="...">'+
                             '</div>' );
 
@@ -143,17 +141,20 @@
                 });
             }
 
+
             function initHttpListener(){
-                $("#urlPrefixDrop").find('li').click(function(){
+                $("#dropdownMenuURL").click(function(e){
 
                     /* Change DropDown Selection*/
                     var btnSelector = $("#dropdownMenuURL") ;
-                    if(btnSelector.text().startsWith('https'))
+                    if(btnSelector.text().startsWith('https')) {
                         btnSelector.val(0); // 0 = http | 1 = https
-                    else btnSelector.val(1);
-                    var help = '<a href="#">'+ btnSelector.text() + '</a>';
-                    btnSelector.text($(this).text());
-                    $(this).html(help);
+                        btnSelector.text('http://');
+                    }
+                    else {
+                        btnSelector.val(1);
+                        btnSelector.text('https://');
+                    }
                 });
             }
 
@@ -185,12 +186,26 @@
                         }).done(function (data) {
                             base.$urlForm.hide();
                             base.$el.modal("hide");
-                            base.$success.find("p").text('Entry successful');
-                            base.$success.show();
+                            var readTime = 1000;
+
+                            data = JSON.parse(data);
+                            var header = '';
+                            if(data['msg'] !== null) header = data['msg'].toLowerCase();
+
+                            if(header === 'sameorigin' || header === 'deny' || header === 'allow-from'){
+                                base.$warning.find("p").text('IFrame might not be able to show the content of '+resourceResponse+' due to same origin constraint. The page will refresh itself now...');
+                                base.$warning.show();
+                                readTime = 5000;
+                            }else{
+                                base.$success.find("p").text('Entry successful. The page will refresh itself now...');
+                                base.$success.show();
+                            }
+
+                            //console.log(data['msg']);
 
                             setTimeout(function(){
                                 location.reload();
-                            }, 2000);
+                            }, readTime);
                         }).fail(function () {
                             base.$warning.find("p").text('Entry failed');
                         });

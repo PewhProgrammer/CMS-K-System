@@ -110,12 +110,12 @@
                 }
                 for (var i = 0; i < base.types["pdf"]["no"]; i++){
                     console.log("pdf");
-                    base.$content.append('<iframe height="100%" width="100%" src="' + base.types["pdf"]["path"][i] + '" frameborder="0" scrolling="no" ></iframe>');
+                    base.$content.append(getIFrameHTML(base.types["pdf"]["path"][i]));
                 }
 
                 for (var j = 0; j < base.types["website"]["no"]; j++){
                     console.log("website");
-                    base.$content.append('<iframe height="100%" width="100%" src="' + base.types["website"]["path"][j] + '" frameborder="0" scrolling="no" ></iframe>');
+                    base.$content.append(getIFrameHTML(base.types["website"]["path"][j]));
                 }
 
                 for (var k = 0; k < base.types["image"]["no"]; k++){
@@ -143,8 +143,10 @@
                 if (base.types["mensa"]){
                     base.$content.MensaBusModule("mensa");
                 }
+            }
 
-
+            function getIFrameHTML(path){
+                return '<iframe height="100%" width="100%" src="' + path + '" frameborder="0" scrolling="no" >Your browser does not support IFrame.</iframe>';
             }
 
             function getUrlVars()
