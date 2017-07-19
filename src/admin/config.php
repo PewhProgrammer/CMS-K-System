@@ -85,6 +85,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <div class="panel-body">
                             <h3 id="header-form-overview"></h3>
                             <fieldset>
+                                <div id="scrollDiv">
                                 <table class="table table-condensed" id="resourceTable">
                                     <thead>
                                         <tr>
@@ -105,33 +106,34 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     </thead>
                                     <tbody>
                                     <? while ($row = $res->fetch_assoc()) { ?>
-                                    <tr>
-                                        <td>
-                                            <label class="k-selectable resLabels">
-                                                <? if($row["type"] == "pdf") { ?>
-                                                    <i class="fa fa-file-pdf-o"></i>
-                                                <? } else if($row["type"] == "website") {?>
-                                                    <i class="fa fa-globe" aria-hidden="true"></i>
-                                                <? } else if($row["type"] == "image") {?>
-                                                    <i class="fa fa-picture-o"></i>
-                                                <? } else if($row["type"] == "rss") {?>
-                                                    <i class="fa fa-rss"></i>
-                                                 <? } else if ($row["type"] == "caldav") { ?>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                <? } else {?>
-                                                    <i class="fa fa-file-o"></i>
-                                                <? } ?>
-                                                <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource" data-resType = "<? echo $row["type"] ?>"
-                                                       data-resData = "<? echo $row["data"] ?>" value="<? echo $row["name"] ?>">
-                                                <p><? echo $row["name"] ?></p>
-                                            </label>
-                                        </td>
-                                        <td><? echo $row["type"] ?></td>
-                                        <td> <i class="fa fa-trash-o" data-id="<? echo $row["rID"] ?>"></i></td>
-                                    </tr>
-                                    <? } ?>
+                                        <tr>
+                                            <td>
+                                                <label class="k-selectable resLabels">
+                                                    <? if($row["type"] == "pdf") { ?>
+                                                        <i class="fa fa-file-pdf-o"></i>
+                                                    <? } else if($row["type"] == "website") {?>
+                                                        <i class="fa fa-globe" aria-hidden="true"></i>
+                                                    <? } else if($row["type"] == "image") {?>
+                                                        <i class="fa fa-picture-o"></i>
+                                                    <? } else if($row["type"] == "rss") {?>
+                                                        <i class="fa fa-rss"></i>
+                                                     <? } else if ($row["type"] == "caldav") { ?>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    <? } else {?>
+                                                        <i class="fa fa-file-o"></i>
+                                                    <? } ?>
+                                                    <input id="res-<? echo $row["rID"] ?>" class="res" type="checkbox" name="resource" data-resType = "<? echo $row["type"] ?>"
+                                                           data-resData = "<? echo $row["data"] ?>" value="<? echo $row["name"] ?>">
+                                                    <p><? echo $row["name"] ?></p>
+                                                </label>
+                                            </td>
+                                            <td><? echo $row["type"] ?></td>
+                                            <td> <i class="fa fa-trash-o" data-id="<? echo $row["rID"] ?>"></i></td>
+                                        </tr>
+                                        <? } ?>
                                     </tbody>
                                 </table>
+                                </div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-lg addResource" data-toggle="modal" data-target="#uploadModal"
                                         id="addResource">
