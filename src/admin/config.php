@@ -251,8 +251,11 @@ a clean and intuitive system to manage the monitors at CISPA">
 
                             <div class="input-group">
                                 <div class="input-group-btn">
-                                    <button type="button" id='dropdownMenuURL' class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button type="button" id='dropdownMenuURL' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         http:// </button>
+                                    <ul id="urlPrefixDrop" class="dropdown-menu">
+                                        <li><a href="#">https:// </a></li>
+                                    </ul>
                                 </div><!-- /btn-group -->
                                 <input type="text" class="form-control" id="url" aria-label="...">
                             </div><!-- /input-group -->

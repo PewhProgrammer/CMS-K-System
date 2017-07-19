@@ -83,13 +83,7 @@
 
                     if(fileType === 3) processCALDavHTML();
                     else{
-                        base.$urlForm.html('<label for="url" id="urlHeader">Name:</label>' +
-                            '<div class="input-group"> <div class="input-group-btn">'+
-                            '<button type="button" value="0" id="dropdownMenuURL" class="btn btn-default" ' +
-                            'data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
-                            'http:// </button></div><!-- /btn-group -->'+
-                            '<input type="text" class="form-control" id="url" aria-label="...">'+
-                            '</div>' );
+                        base.$urlForm.html(renderInputField());
 
                         initHttpListener();
                     }
@@ -124,12 +118,7 @@
                         base.$dropzoned = false;
                         base.$fileForm.hide();
                         calDavDivSelector
-                            .append('<div class="form-group" id="urlForm"> <label for="url" id="urlHeader">Name:</label> ' +
-                                '<div class="input-group"> <div class="input-group-btn"> ' +
-                                '<button type="button" id="dropdownMenuURL" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-                        'http:// </button> <ul id="urlPrefixDrop" class="dropdown-menu"> <li><a href="#">https:// </a></li> </ul> ' +
-                        '</div><!-- /btn-group --> <input type="text" class="form-control" id="url" aria-label="..."> </div><!-- /input-group --> ' +
-                        '</div>');
+                            .append(renderInputField());
                         initHttpListener();
                     }
                     else{
@@ -139,6 +128,16 @@
                     }
                     $("#addResourceSubmit").prop('disabled',false);
                 });
+            }
+
+            function renderInputField(){
+                return '<label for="url" id="urlHeader">Name:</label>' +
+                    '<div class="input-group"> <div class="input-group-btn">'+
+                    '<button type="button" value="0" id="dropdownMenuURL" class="btn btn-default" ' +
+                    'data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+                    'http:// </button></div><!-- /btn-group -->'+
+                    '<input type="text" class="form-control" id="url" aria-label="...">'+
+                    '</div>'
             }
 
 
