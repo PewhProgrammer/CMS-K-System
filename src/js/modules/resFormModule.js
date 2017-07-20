@@ -65,9 +65,6 @@
                 } else if (selected === 1) {
                     $("#resForm").animate({width: "66%"});
                     $("#previewPanel").delay(400).fadeIn();
-                    // add details for monitor preview here
-                } else{
-                    // add details for multiple monitor preview here
                 }
             });
 

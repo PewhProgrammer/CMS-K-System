@@ -391,6 +391,22 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
                             <i class="fa fa-pencil" aria-hidden="true"> Change Content</i>
                         </button>
+                        <div class="dropup">
+                            <button class="btn btn-primary btn-large dropdown-toggle" type="button" data-toggle="dropdown">Add Label
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" style="width: 200px;">
+                                <? $label = $labelQuery->getQuery();
+                                while ($row = $label->fetch_assoc()) { ?>
+                                    <li><a href="#"><?echo $row["name"]?></li>
+                               <? } ?>
+                                <li>
+                                    <form>
+                                        <input class="form-control" style="display: inline-block; float: left; width: 80%" placeholder="New Label..." name="newlabel" type="text" autofocus>
+                                        <button class="btn btn-primary" type="submit" method="post"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
