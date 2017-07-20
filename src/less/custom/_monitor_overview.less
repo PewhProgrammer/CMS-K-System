@@ -45,10 +45,16 @@
   }
 }
 
-#editButton {
-  margin:0 auto;
+#editButton, .dropup {
+  margin-left: 22.5%;
   margin-top: 50px;
   display:block;
+  float: left;
+}
+
+.dropup {
+  margin-top: 50px;
+  margin-left: 10px;
 }
 
 #monitorForm {
@@ -120,4 +126,27 @@ label > p {
   float:left;
   border: 1px solid #ddd;
   border-radius: 10px;
+}
+
+.labelbox {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  display: inline-block;
+  margin-right: 5px;
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+.labelRemoveBox {
+  border-left: 1px solid black;
+  display: inline-block;
+  margin-left: 5px;
+  padding-left: 5px;
+
+  i {
+    cursor: pointer;
+  }
 }

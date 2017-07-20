@@ -97,13 +97,13 @@
                                 var labels = "";
                                 var classList = $(this).parent().attr("class").split(" ");
                                 for(var i = 4; i < classList.length-1; i++) {
-                                    labels = labels + classList[i] + ", ";
+                                    labels = labels + "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i>"
+                                        + classList[i]
+                                        + "<div class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div></div>";
                                 }
-                                labels = labels.slice(0, -2);
+                                html = html + "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
                                 $("#previewPanel").find("p").html(html);
                             }
-
-                            html = html + "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
                         });
                     } else {
                         $("#previewPanel").find("p").html("horizontal: <span style='font-weight: normal'>" + horizontal
