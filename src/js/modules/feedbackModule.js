@@ -23,16 +23,43 @@
 
             //language=JQuery-CSS
             var successAlertID = $("#success-alert");
+            var warningAlertID = $("#warning-alert");
             successAlertID.hide();
             $("#warning-alert").hide();
 
             var response = $.getParameterByName('attach');
             if (response[0] === 'success') {
-                console.log('alert');
+                //console.log('alert');
                 successAlertID.alert();
+                $("#alertText").text('The system has updated the resource(s) of the monitor(s)');
 
                 successAlertID.fadeTo(6000, 1000).slideUp(500, function () {
                     successAlertID.slideUp(500);
+                });
+            }else{
+                warningAlertID.alert();
+                $("#alertText").text('The system could not update the content of the monitors');
+
+                warningAlertID.fadeTo(6000, 1000).slideUp(500, function () {
+                    warningAlertID.slideUp(500);
+                });
+            }
+
+            response = $.getParameterByName('newMonitor');
+            if (response[0] === 'success') {
+                //console.log('alert');
+                successAlertID.alert();
+                $("#alertText").text('The system has successfully registered the new monitor');
+
+                successAlertID.fadeTo(6000, 1000).slideUp(500, function () {
+                    successAlertID.slideUp(500);
+                });
+            }else{
+                warningAlertID.alert();
+                $("#alertText").text('The system could not register the new monitor');
+
+                warningAlertID.fadeTo(6000, 1000).slideUp(500, function () {
+                    warningAlertID.slideUp(500);
                 });
             }
         };

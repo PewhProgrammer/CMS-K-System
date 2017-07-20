@@ -427,18 +427,18 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <div class="row">&nbsp;</div>
                         <label for="url" id="urlHeader">Monitor Display Name:</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="url" aria-label="...">
+                            <input type="text" class="form-control" id="newMonitorInput" aria-label="...">
                         </div><!-- /input-group -->
                         <div class="row">&nbsp;</div>
                         <label for="url" id="urlHeader">Location:</label>
                         <div class="input-group-btn">
                             <button type="button" id='dropdownMenuNewMon' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 <i class="fa fa-caret-down"></i> </button>
+                                 Ground Floor <i class="fa fa-caret-down"></i> </button>
                             <ul id="newMonPrefixDrop" class="dropdown-menu">
-                                <li><a href="#">Ground Floor </a></li>
-                                <li><a href="#">1st Floor </a></li>
-                                <li><a href="#">2nd Floor </a></li>
-                                <li><a href="#">3rd Floor </a></li>
+                                <li><a href="#" data-value="3">Ground Floor </a></li>
+                                <li><a href="#" data-value="4">1st Floor </a></li>
+                                <li><a href="#" data-value="5">2nd Floor </a></li>
+                                <li><a href="#" data-value="6">3rd Floor </a></li>
                             </ul>
                         </div><!-- /btn-group -->
 
@@ -450,7 +450,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button id="delButton" type="button" class="btn btn-primary">Confirm</button>
+                        <button id="newMonitorSubmit" type="button" class="btn btn-primary">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -460,7 +460,7 @@ a clean and intuitive system to manage the monitors at CISPA">
         <div class="alert alert-success" id="success-alert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <h4 class="alert-heading glyphicon glyphicon-ok"> Success!</h4>
-            <p>The system has updated the resource(s) of the monitor(s)</p>
+            <p id="alertText"></p>
         </div>
         <div class="alert alert-warning" id="warning-alert">
             <button type="button" class="close" data-dismiss="alert">x</button>

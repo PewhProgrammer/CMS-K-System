@@ -21,6 +21,10 @@
             base.el = el;
             base.$el = jQuery(el);
 
+            base.$alignment = 2;
+            base.$location = 3;
+            base.$mID;
+
             //console.log("new Monitor running");
 
             $(".unregisteredMonitors").on('click',function(data){
@@ -28,24 +32,51 @@
                console.log('date: ' + $(this).attr('data-time'));
 
                $('#newMonitorIDModal').text($(this).attr('data-value'));
+               base.$mID = $(this).attr('data-value');
                $('#newMonitorModal').modal();
             });
 
             $("#newMonPrefixDrop").find('li').find('a').click(function () {
-               console.log('clicked: ' + $(this).text());
+               console.log('clicked: ' + $(this).attr('data-value'));
+               base.$location = $(this).attr('data-value');
 
                var btnSelector = $("#dropdownMenuNewMon");
                btnSelector.text($(this).text());
                btnSelector.append(' <i class="fa fa-caret-down"></i>');
             });
 
+            $("#newMonitorSubmit").click(function(){
+                console.log("new monitor submitted");
+                var monName = $("#newMonitorInput").val() ;
+                if(monName.length < 1) {
+                    console.log('its fault');
+                    return;
+                }
+                else console.log('good job');
+
+                console.log('align: ' + base.$alignment +"; location: " + base.$location);
+                $.post("../php/newMonitor.php", {alignment:base.$alignment,location:base.$location,name:monName,mID:base.$mID})
+                    .done(function (data) {
+                        //console.log(JSON.parse(data)['code'] === 200);
+                        if(JSON.parse(data)['code'] === 200){
+                            window.location.replace('index.php?newMonitor=success');
+                        }
+                        else
+                        window.location.replace('index.php?newMonitor=failed');
+
+                    })
+                    .fail(function () {
+                        window.location.replace('index.php?newMonitor=failed');
+                    });
+            });
+
             $("#dropdownMenuAlignment").click(function(){
                 if($(this).text().replace(" ","").startsWith('vertical')) {
-                    $(this).val(0); // 0 = vertical | 1 = horizontal
+                    base.$alignment = 2;
                     $(this).text('horizontal');
                 }
                 else {
-                    $(this).val(1);
+                    base.$alignment = 1;
                     $(this).text('vertical');
                 }
 
