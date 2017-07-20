@@ -35,7 +35,7 @@
                 overview =  true;
             }
             else {
-                $(".page-header.page-config").text("Configuration");
+                $(".page-header.page-config").html('<a class="btn btn-default" href="index.php?'+ $.getParameters() +'"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a> Configuration');
                 $("#header-form-overview").text("Select the resource(s) you want to attach to the monitor(s)");
             }
 

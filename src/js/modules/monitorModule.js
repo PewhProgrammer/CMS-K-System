@@ -28,13 +28,18 @@
             var deselectTrigger = false;
             var selectTrigger = false;
             var select = $("#selectAllDescription");
+            var monitorParam = "" + $.getParameterByName('m');
 
             base.$el.find(".monitor_overview").each(function () {
                 monitors++;
+
+                //TODO: Do we really need that code here?
                 if ($(this).find("input").is(":checked")) {
                     $(this).css({"border-color": "#333333"});
                     selected++;
                 }
+
+                console.log(selected);
             });
 
             for(var i = 0; i < monitors; i++) {
@@ -73,7 +78,7 @@
                             $("#selectAllDescription").text(" Select All");
                     }
 
-                    //console.log("checked: " + selected + " monitors: " +monitors);
+                    console.log("checked: " + selected + " monitors: " +monitors);
 
                     if (selected === 0) {
                         $("#previewPanel").fadeOut();
@@ -105,6 +110,12 @@
                             + "</span><br><br>vertical: <span style='font-weight: normal'>" + vertical + "</span>");
                     }
                 });
+            }
+
+            //check monitors from url parameters
+            var monArray = monitorParam.split(",");
+            for(var l = 0; l < monArray.length; l++){
+                $('input[value="'+monArray[l]+'"]').prop("checked", true).trigger('change');
             }
 
             base.$el.find("a").click(function () {

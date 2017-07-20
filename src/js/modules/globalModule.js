@@ -33,8 +33,13 @@
                     results[i] = results[i].replace(/[^a-zA-Z0-9.]/g, "");
                 if (!results) return null;
                 return results;
+            };
+
+            jQuery.getParameters = function getParameters() {
+                var url = window.location.href;
+                return url.split("?")[1];
             }
-        }
+        };
 
         // call init method
         base.init();
