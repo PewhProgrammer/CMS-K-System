@@ -1,9 +1,12 @@
 <?php
 require '../php/dbquery.php';
 
-if(!isset($_SESSION['user'])){
-    header('location: login.php');
+$q = new Query("SELECT * FROM users WHERE name='" .$_SESSION['user']. "'");
+$r = $q->getQuery();
+if((!isset($_SESSION['user']))||($_SESSION['session_id']==$r->fetch_array()['session_id'])){
+    header('location: login.php?logout=1');
 }
+
 else {
 
 $query = new Query("SELECT * FROM resources");
