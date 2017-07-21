@@ -31,6 +31,8 @@
             base.mID = getUrlVars()["mID"];
             base.interval = 10; //in seconds
             base.$content = base.$el.find(".content");
+            base.contentArr = [];
+            base.tOut = {};
 
             console.log("deliverContentModule loaded");
 
@@ -98,6 +100,7 @@
 
             function updateView(){
                 base.$content.html("");
+                base.contentArr = [];
 
                 if(!(0 < base.types["pdf"]["no"] || 0 < base.types["website"]["no"] || 0 < base.types["image"]["no"] || 0 < base.types["rss"]["no"] ||
                     0 <  base.types["caldav"]["no"] || base.types["bus"] || base.types["mensa"])) {
@@ -108,45 +111,103 @@
                         '</div>');
                     return;
                 }
+
+                //append PDF as iFrame to the page
                 for (var i = 0; i < base.types["pdf"]["no"]; i++){
                     console.log("pdf");
-                    base.$content.append(getIFrameHTML(base.types["pdf"]["path"][i]));
+                    var $pdf_iframe = getIFrameObj(base.types["pdf"]["path"][i]);
+                    appendContent($pdf_iframe);
                 }
 
+                //append websites as iFrame to the page
                 for (var j = 0; j < base.types["website"]["no"]; j++){
                     console.log("website");
-                    base.$content.append(getIFrameHTML(base.types["website"]["path"][j]));
+                    var $website_iframe = getIFrameObj(base.types["website"]["path"][j]);
+                    appendContent($website_iframe);
                 }
 
+                //append images as slideshow to the page
                 for (var k = 0; k < base.types["image"]["no"]; k++){
                     console.log("images");
-                    base.$content.append('<p><a class="slideshowElements"  href="'+ base.types["image"]["path"][k] +'" title="SlideshowItem">item</a></p>');
+                    if (k === 0){ //exec code only once at the first iteration
+                        var $slideshow = $('<div id="slideshow"></div>');
+                    }
 
-                    if( k === base.types["image"]["no"]-1){
-                        $(".slideshowElements").colorbox({rel:'slideshowElements', slideshow:true, open:true, closeButton: false, opacity: 1});
+                    $slideshow.append('<a class="slideshowElements"  href="'+ base.types["image"]["path"][k] +'" title="SlideshowItem">item</a>');
+
+                    if (k === base.types["image"]["no"]-1){ //exec code only once at the last iteration
+                        $slideshow.colorbox({rel:'slideshowElements', slideshow:true, open:true, closeButton: false, opacity: 1});
+                        appendContent($slideshow);
+                        //TODO: add colorbox overlay to contentArr cause that's gonna be switched
                     }
 
                 }
 
                 for (var l = 0; l < base.types["rss"]["no"]; l++){
                     console.log("rss");
+                    var $rss = $('<div id="rss-feeds"></div>');
+                    appendContent($rss);
+                    //init rss
                     base.$content.rssModule({path: base.types["rss"]["path"]});
                 }
                 for (var m = 0; m < base.types["caldav"]["no"]; m++){
                     console.log("caldav");
+                    var $calDav = $('<div id="calendar"></div>');
+                    appendContent($calDav);
+                    //init calDav
                     base.$content.CalDAVModule({path: base.types["caldav"]["path"]});
                 }
 
                 if (base.types["bus"]){
+                    var $bus = $('<div id="mensa_panel"></div>');
+                    appendContent($bus);
+                    //init bus
                     base.$content.MensaBusModule("bus");
                 }
                 if (base.types["mensa"]){
+                    var $mensa = $('<div id="bus_panel"></div>');
+                    appendContent($mensa);
+                    //init mensa
                     base.$content.MensaBusModule("mensa");
                 }
+
+                //switching between multiple content
+                if (base.contentArr.length > 1) {
+                    clearTimeout(base.tOut); //stop previous timeout
+                    switching(base.contentArr, 0);
+                }
+                else { //only single content
+                    base.contentArr[0].show();
+                }
+
+
             }
 
-            function getIFrameHTML(path){
-                return '<iframe height="100%" width="100%" src="' + path + '" frameborder="0" scrolling="no" >Your browser does not support IFrame.</iframe>';
+            function getIFrameObj(path){
+                return $('<iframe height="100%" width="100%" src="' + path + '" frameborder="0" scrolling="no" >Your browser does not support IFrame.</iframe>');
+            }
+
+            function appendContent($obj){
+                $obj.hide();
+                base.contentArr.push($obj);
+                base.$content.append($obj);
+            }
+
+            function switching(arr, pos){
+                console.log("switching over following content:" + arr + pos);
+                if (pos === 0){
+                    arr[arr.length-1].hide();
+                }
+                else {
+                    arr[pos-1].hide();
+                }
+
+                arr[pos].fadeIn();
+
+               base.tOut = setTimeout(function(){
+                    var newPos = (arr.length-1 > pos)? ++pos : 0; //limit positions to array
+                    switching(arr, newPos);
+                }, base.interval * 1000);
             }
 
             function getUrlVars()
