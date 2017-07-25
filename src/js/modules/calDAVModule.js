@@ -33,7 +33,6 @@ var ics_sources;
             base.$el = jQuery(el);
 
             //console.log("CalDAVModule loaded");
-            base.$el.html('<div id="calendar"></div>');
             base.getContent(base.options.path);
         };
 

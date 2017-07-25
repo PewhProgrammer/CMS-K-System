@@ -1,13 +1,14 @@
 <?php
 
-require_once("ServerWrapper.php");
-include_once "User.php";
+require("ServerWrapper.php");
+include "User.php";
 
 class UserHandler extends ServerWrapper
 {
     private $user;
     private $testData;
     public static $errors = [];
+
 
     function __construct()
     {
@@ -28,6 +29,8 @@ class UserHandler extends ServerWrapper
             }
 
         } else if (isset($_GET["logout"])) {
+            $query2 = new Query("UPDATE users SET session_id='".null."' WHERE name='" .$_SESSION['user']. "'");
+            $result3= $query2->getQuery();
             session_destroy();
             unset($_SESSION['user']);
             header('location: login.php');
@@ -36,8 +39,6 @@ class UserHandler extends ServerWrapper
         }
     }
 
-
-
     /**
      * @return Response The return value shall be a Response
      */
@@ -45,16 +46,29 @@ class UserHandler extends ServerWrapper
     {
         if(!$this->verify()) return new Response('404','No user found');
         $this->user->setPassword(hash('sha256', $this->user->getPassword()));
-        $this->query = new Query("SELECT * FROM users WHERE name='" .$this->user->getUsername(). "' AND pass='" . $this->user->getPassword() . "'");
+
+        $this->query = new Query("SELECT * FROM users WHERE name='" . $this->user->getUsername() . "' AND pass='" . $this->user->getPassword() . "'");
         $result = $this->query->getQuery();
 
         if (mysqli_num_rows($result) == 1) {
-            $_SESSION['user'] = $this->user->getUsername();
-            if(!$this->testData)
-            header('location:./index.php');
+            if($result->fetch_array()['session_id']==null) {
+                session_regenerate_id(true);
+                $t=session_id();
+                $query2 = new Query("UPDATE users SET session_id='".$t."' WHERE name='" .$this->user->getUsername(). "'");
+                $result3= $query2->getQuery();
+                $_SESSION['user'] = $this->user->getUsername();
+                $_SESSION['session_id']=$t;
+                if (!$this->testData)
+                    header('location:./index.php');
+            } else{
+                $query2 = new Query("UPDATE users SET session_id='".null."' WHERE name='" .$this->user->getUsername(). "'");
+                $result3= $query2->getQuery();
+                array_push(self::$errors, "Previous session was not logged out properly/ New Session has been started elsewhere. Please try again now");
+                return new Response('404', 'Incorrect session logout');
+            }
         } else {
             array_push(self::$errors, "Incorrect username/password");
-            return new Response('404','Incorrect username/password');
+            return new Response('404', 'Incorrect username/password');
         }
 
         return $this->query->getResponse();
