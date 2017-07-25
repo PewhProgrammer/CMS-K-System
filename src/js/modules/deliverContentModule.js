@@ -33,6 +33,7 @@
             base.$content = base.$el.find(".content");
             base.contentArr = [];
             base.tOut = {};
+            base.colorboxOptions = {rel:'slideshowElements', slideshowSpeed: base.interval * 1000, slideshow:true, open:true, closeButton: false, opacity: 1, height: '100%'};
 
             console.log("deliverContentModule loaded");
 
@@ -136,12 +137,12 @@
                     $slideshow.append('<a class="slideshowElements"  href="'+ base.types["image"]["path"][k] +'" title="SlideshowItem">item</a>');
 
                     if (k === base.types["image"]["no"]-1){ //exec code only once at the last iteration
-                        $slideshow.colorbox({rel:'slideshowElements', slideshow:true, open:true, closeButton: false, opacity: 1});
                         appendContent($slideshow);
-                        //TODO: add colorbox overlay to contentArr cause that's gonna be switched
+                        $slideshow.children().colorbox(base.colorboxOptions);
                     }
 
                 }
+                console.log(base.contentArr);
 
                 for (var l = 0; l < base.types["rss"]["no"]; l++){
                     console.log("rss");
@@ -195,19 +196,39 @@
 
             function switching(arr, pos){
                 console.log("switching over following content:" + arr + pos);
+
+                var $prev = null,
+                    $next = null,
+                    interval = base.interval;
+
                 if (pos === 0){
-                    arr[arr.length-1].hide();
+                   $prev = arr[arr.length-1];
                 }
                 else {
-                    arr[pos-1].hide();
+                   $prev = arr[pos-1];
                 }
+                $next = arr[pos];
 
-                arr[pos].fadeIn();
+                if (isSlideshow($prev)){
+                    $.colorbox.close();
+                }
+                $prev.hide();
+
+                if (isSlideshow($next)){
+                    $next.children().colorbox(base.colorboxOptions);
+                    interval = base.types["image"]["no"] * base.interval;
+                }
+                $next.fadeIn();
+
 
                base.tOut = setTimeout(function(){
                     var newPos = (arr.length-1 > pos)? ++pos : 0; //limit positions to array
                     switching(arr, newPos);
-                }, base.interval * 1000);
+                }, interval * 1000);
+            }
+
+            function isSlideshow(obj){
+                return (obj.is("#slideshow"));
             }
 
             function getUrlVars()
