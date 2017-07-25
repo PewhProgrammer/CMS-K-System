@@ -31,14 +31,14 @@
             if (response[0] === 'success') {
                 //console.log('alert');
                 successAlertID.alert();
-                $("#alertText").text('The system has updated the resource(s) of the monitor(s)');
+                $("#alertSuccessText").text('The system has updated the resource(s) of the monitor(s)');
 
                 successAlertID.fadeTo(6000, 1000).slideUp(500, function () {
                     successAlertID.slideUp(500);
                 });
-            }else{
+            }else if(response[0] === 'failure'){
                 warningAlertID.alert();
-                $("#alertText").text('The system could not update the content of the monitors');
+                $("#alertWarningText").text('The system could not update the content of the monitors');
 
                 warningAlertID.fadeTo(6000, 1000).slideUp(500, function () {
                     warningAlertID.slideUp(500);
@@ -49,14 +49,14 @@
             if (response[0] === 'success') {
                 //console.log('alert');
                 successAlertID.alert();
-                $("#alertText").text('The system has successfully registered the new monitor');
+                $("#alertSuccessText").text('The system has successfully registered the new monitor');
 
                 successAlertID.fadeTo(6000, 1000).slideUp(500, function () {
                     successAlertID.slideUp(500);
                 });
-            }else{
+            }else if(response[0] === 'failure'){
                 warningAlertID.alert();
-                $("#alertText").text('The system could not register the new monitor');
+                $("#alertWarningText").text('The system could not register the new monitor');
 
                 warningAlertID.fadeTo(6000, 1000).slideUp(500, function () {
                     warningAlertID.slideUp(500);

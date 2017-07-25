@@ -462,12 +462,12 @@ a clean and intuitive system to manage the monitors at CISPA">
         <div class="alert alert-success" id="success-alert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <h4 class="alert-heading glyphicon glyphicon-ok"> Success!</h4>
-            <p id="alertText"></p>
+            <p id="alertSuccessText"></p>
         </div>
         <div class="alert alert-warning" id="warning-alert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             <h4 class="alert-heading">Warning!</h4>
-            <p>Something went wrong there</p>
+            <p id="alertWarningText">Something went wrong there</p>
         </div>
         <!-- /.Alerts -->
 
