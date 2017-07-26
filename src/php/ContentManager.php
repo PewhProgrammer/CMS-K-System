@@ -33,35 +33,51 @@ class ContentManager extends ServerWrapper
 
         $typeArr = ["pdf" => ["no" => 0, "path" => []], "image" => ["no" => 0, "path" => []], "website" => ["no" => 0, "path" => []], "rss" => ["no" => 0, "path" => []], "mensa" => 0, "bus" => 0,"caldav" => ["no" => 0, "path" => []]];
 
+        $now = new DateTime(null, new DateTimeZone('Europe/Berlin'));
+        $nowTS = $now->getTimestamp() + $now->getOffset();
+
         while ($row = $res->fetch_assoc()) {
-            switch ($row["type"]) {
-                case "pdf":
-                    $typeArr["pdf"]["no"]++;
-                    array_push($typeArr["pdf"]["path"], $row["data"]);
-                    break;
-                case "image":
-                    $typeArr["image"]["no"]++;
-                    array_push($typeArr["image"]["path"], $row["data"]);
-                    break;
-                case "website":
-                    $typeArr["website"]["no"]++;
-                    array_push($typeArr["website"]["path"], $row["data"]);
-                    break;
-                case "rss":
-                    $typeArr["rss"]["no"]++;
-                    array_push($typeArr["rss"]["path"], $row["data"]);
-                    break;
-                case "mensa":
-                    $typeArr["mensa"]++;
-                    break;
-                case "bus":
-                    $typeArr["bus"]++;
-                    break;
-                case "caldav":
-                    $typeArr["caldav"]["no"]++;
-                    array_push($typeArr["caldav"]["path"], $row["data"]);
-                    break;
+
+            $until = new DateTime($row["until"], new DateTimeZone('Europe/Berlin'));
+            $untilTS = $until->getTimestamp() + $until->getOffset();
+
+            if ($nowTS < $untilTS){ //check if resource is still attached first
+                switch ($row["type"]) {
+                    case "pdf":
+                        $typeArr["pdf"]["no"]++;
+                        array_push($typeArr["pdf"]["path"], $row["data"]);
+                        break;
+                    case "image":
+                        $typeArr["image"]["no"]++;
+                        array_push($typeArr["image"]["path"], $row["data"]);
+                        break;
+                    case "website":
+                        $typeArr["website"]["no"]++;
+                        array_push($typeArr["website"]["path"], $row["data"]);
+                        break;
+                    case "rss":
+                        $typeArr["rss"]["no"]++;
+                        array_push($typeArr["rss"]["path"], $row["data"]);
+                        break;
+                    case "mensa":
+                        $typeArr["mensa"]++;
+                        break;
+                    case "bus":
+                        $typeArr["bus"]++;
+                        break;
+                    case "caldav":
+                        $typeArr["caldav"]["no"]++;
+                        array_push($typeArr["caldav"]["path"], $row["data"]);
+                        break;
+                }
             }
+            else { //delete all attached resources for that monitor
+                $this->query = new Query("DELETE FROM monitorhasresource WHERE mID ='" . $this->mID . "'");
+                $res = $this->query->executeQuery();
+                break;
+            }
+
+
         }
 
         //echo json_encode($typeArr);

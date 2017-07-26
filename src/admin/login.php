@@ -24,9 +24,12 @@ include_once('../php/server_login.php'); ?>
                 <div class="login-panel panel panel-default">
                     <div class="panel-body">
                         <form action="login.php" method="POST" class="input" align="center"><br/>
-                            <?php foreach (UserHandler::$errors as $error): ?>
+                            <?php if(isset($_GET['error'])){?>
+                            <h4 class="panel text-danger"><?php echo "You are logged in elsewhere. Please check";?></h4>
+                                <?php } unset($_GET['error']);
+                            foreach (UserHandler::$errors as $error): ?>
                                 <h4 class="panel text-danger"><?php echo $error; ?></h4>
-                            <?php endforeach ?>
+                            <?php endforeach;?>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
                             </div>
