@@ -185,7 +185,7 @@
             }
 
             function getIFrameObj(path){
-                return $('<iframe height="100%" width="100%" src="' + path + '" frameborder="0" scrolling="no" >Your browser does not support IFrame.</iframe>');
+                return $('<iframe height="100%" width="100%" src="' + path + '" frameborder="0" scrolling="no" >Your browser does not support IFrame.</iframe>'); //#view=fitH
             }
 
             function appendContent($obj){

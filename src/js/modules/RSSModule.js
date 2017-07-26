@@ -29,9 +29,21 @@
             // Access to jQuery and DOM versions of element
             base.el = el;
             base.$el = jQuery(el);
+            base.interval = 300 * 1000; //check for updates every 5 minutes
 
             console.log("RSSModule loaded");
-            base.getContent(base.options.path);
+
+            function intervallCall(){
+                $("#rss-feeds").html('');
+                base.getContent(base.options.path);
+
+                setTimeout(function(){
+                    intervallCall();
+                }, base.interval);
+            }
+
+            intervallCall();
+
         };
 
         base.getContent = function(path){
@@ -81,7 +93,7 @@
                     // formats the date with moment.js (optional)
                     // default: 'dddd MMM Do'
                     // valid values: see http://momentjs.com/docs/#/displaying/
-                    dateFormat: 'hh:mm, DD.MM.YYYY',
+                    dateFormat: 'HH:mm, DD.MM.YYYY',
 
                     // localizes the date with moment.js (optional)
                     // default: 'en'
