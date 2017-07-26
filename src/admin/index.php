@@ -1,9 +1,18 @@
 <?php
 require '../php/dbquery.php';
-$q = new Query("SELECT * FROM users WHERE name='" .$_SESSION['user']. "'");
-$r = $q->getQuery();
-if((!isset($_SESSION['user']))||($_SESSION['session_id']==$r->fetch_array()['session_id'])){
-    header('location: login.php?logout=1');
+
+session_start();
+$chk = new Query("SELECT * FROM users WHERE name='" .$_SESSION['user']. "'");
+$res=$chk->getQuery();
+$sess = $res->fetch_array()['session_id'];
+if(!isset($_SESSION['user'])) {
+    header('location: login.php');
+    exit();
+}elseif ($sess!=$_COOKIE['sess']){
+    setcookie('sess','val',time()-(120),"/");
+    session_unset();
+    session_destroy();
+    header('location: login.php?error=1');
 }
 
 else {

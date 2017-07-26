@@ -193,15 +193,16 @@ INSERT INTO `resources` (`rID`, `name`, `type`, `data`, `created_by`) VALUES
 CREATE TABLE IF NOT EXISTS `users` (
   `uID` int(3) NOT NULL,
   `name` varchar(20) NOT NULL,
-  `pass` varchar(64) NOT NULL COMMENT 'SHA256'
+  `pass` varchar(64) NOT NULL COMMENT 'SHA256',
+  `session_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `users`
 --
 
-INSERT INTO `users` (`uID`, `name`, `pass`) VALUES
-(1, 'curd', 'a1cf52f3879ca4ee972837d4115a335eb5e77bb52abd15ee89c5c51bb5663c70');
+INSERT INTO `users` (`uID`, `name`, `pass`,`session_id`) VALUES
+(1, 'curd', 'a1cf52f3879ca4ee972837d4115a335eb5e77bb52abd15ee89c5c51bb5663c70','');
 
 --
 -- Indizes der exportierten Tabellen
