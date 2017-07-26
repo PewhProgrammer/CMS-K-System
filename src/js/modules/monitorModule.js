@@ -196,7 +196,21 @@
                 }
                 $(".monLi.filter").show();
                 refreshSelectButton();
+                displayWarning();
             });
+            var warningAlertID = $("#warning-alert");
+
+            function displayWarning(){
+                if($(".monLi.filter").length === 0){
+                    //display warning
+                    warningAlertID.alert();
+                    $("#alertWarningText").text('There are no monitors with the applied filter options.');
+
+                    warningAlertID.fadeTo(6000, 1000).slideUp(500, function () {
+                        warningAlertID.slideUp(500);
+                    });
+                }
+            }
 
             //add class filter to all monitors not respecting the filter options
             function filter(){
