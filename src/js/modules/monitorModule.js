@@ -233,7 +233,7 @@
 
             $("#filterAll").on("click" ,function(){
                 //keepFilterOption('Filter');
-                $(".monLi").removeClass("filter");
+                $(".monLi").addClass("filter");
                 $(".monLi").show();
                 refreshSelectButton();
                 for (var key in filterChecked) {

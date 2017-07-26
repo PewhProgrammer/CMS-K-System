@@ -8,19 +8,19 @@ if((!isset($_SESSION['user']))||($_SESSION['session_id']==$r->fetch_array()['ses
 
 else {
 
-$query = new Query("SELECT * FROM monitors");
+$query = new Query("SELECT * FROM monitors WHERE new = 0");
 $mon = $query->getQuery();
 
-$floorReq1 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 3");
+$floorReq1 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 3 AND new = 0");
 $groundFloor = $floorReq1->getQuery();
 
-$floorReq2 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 4");
+$floorReq2 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 4 AND new = 0");
 $firstFloor = $floorReq2->getQuery();
 
-$floorReq3 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 5");
+$floorReq3 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 5 AND new = 0");
 $secondFloor = $floorReq3->getQuery();
 
-$floorReq4 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6");
+$floorReq4 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6 AND new = 0");
 $thirdFloor = $floorReq4->getQuery();
 
 //Retrieves all possible labels
