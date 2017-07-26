@@ -91,6 +91,7 @@
                             if ($(this).find("input").is(":checked")) {
                                 var html;
                                 html = "Name: <span style='font-weight: normal'>" + $(this).find(".monitorName").html() + "</span><br><br>";
+                                html = html + "Monitor ID: <span style='font-weight: normal'>" + $(this).find(".monitorID").html() + "</span><br><br>";
                                 html = html + "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span><br><br>";
 
                                 //find labels of the element
@@ -272,6 +273,18 @@
                 }
                 else select.text(" Deselect All");
             }
+
+            $("#submitLabelButton").click(function() {
+               var newLabel = $(this).parent().find("input").val();
+               console.log("processing addLabel " + newLabel);
+                $.post('../php/add.php', {
+                    newLabel: newLabel
+                }).done(function (data) {
+                    location.reload();
+                }).fail(function () {
+                    console.log("failed");
+                });;
+            });
         };
         // call init method
         base.init();

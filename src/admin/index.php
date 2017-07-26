@@ -208,6 +208,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                <? } ?>
                                                             </i>
                                                             <p class="monitorName"><? echo $row["name"] ?></p>
+                                                            <p class="monitorID" style="display: none"><? echo $row["mID"] ?></p>
                                                         </label>
                                                     </li> <?
                                                     $countMonitors++;
@@ -269,6 +270,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                             <? } ?>
                                                             </i>
                                                             <p class="monitorName"><? echo $row["name"] ?></p>
+                                                            <p class="monitorID" style="display: none"><? echo $row["mID"] ?></p>
                                                         </label>
                                                     </li><?
                                                     $countMonitors++;
@@ -326,6 +328,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                 <? } ?>
                                                             </i>
                                                             <p class="monitorName"><? echo $row["name"] ?></p>
+                                                            <p class="monitorID" style="display: none"><? echo $row["mID"] ?></p>
                                                         </label>
                                                     </li><?
                                                     $countMonitors++;
@@ -353,7 +356,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resCount = $resCountQuery->getQuery();
-                                                    $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                    $resTypeQuery = new Query("SELECT name, type, until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resType = $resTypeQuery->getQuery();?>
                                                 <li class="monLi filter 3rd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
@@ -383,6 +386,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                 <? } ?>
                                                             </i>
                                                             <p class="monitorName"><? echo $row["name"] ?></p>
+                                                            <p class="monitorID" style="display: none"><? echo $row["mID"] ?></p>
                                                         </label>
                                                     </li><?
                                                     $countMonitors++;
@@ -411,10 +415,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <li><a href="#"><?echo $row["name"]?></li>
                                <? } ?>
                                 <li>
-                                    <form>
-                                        <input class="form-control" style="display: inline-block; float: left; width: 80%" placeholder="New Label..." name="newlabel" type="text" autofocus>
-                                        <button class="btn btn-primary" type="submit" method="post"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                    </form>
+                                    <input class="form-control" style="display: inline-block; float: left; width: 80%" placeholder="New Label..." name="newlabel" type="text" autofocus>
+                                    <button id="submitLabelButton" class="btn btn-primary" type="submit" method="post"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                 </li>
                             </ul>
                         </div>
