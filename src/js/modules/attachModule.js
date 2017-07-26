@@ -24,7 +24,7 @@
             base.$el.css("background-color", "white");
 
             var checked = 0;
-            var url = "../php/attach.php";
+            var url = "../php/Attach.php";
             var ressourcesIncluded = [];
             var resourcesValIncluded = [];
             var monitors = "" + $.getParameterByName('m');

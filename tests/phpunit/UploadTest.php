@@ -6,7 +6,7 @@
  * Time: 21:23
  */
 
-require_once('../../src/php/upload.php');
+require_once('../../src/php/Upload.php');
 use PHPUnit\Framework\TestCase;
 
 class UploadTest extends TestCase

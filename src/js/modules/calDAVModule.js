@@ -23,7 +23,6 @@ var ics_sources;
          */
         base.init = function () {
             // merge given options with default options
-            // merge given options with default options
             base.options = $.extend({
                 path: 'empty'
             }, options || {});

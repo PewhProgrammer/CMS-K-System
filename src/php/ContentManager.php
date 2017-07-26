@@ -1,5 +1,5 @@
 <?php
-require_once("ServerWrapper.php");
+require_once("Events.php");
 
 /**
  * Created by PhpStorm.
@@ -8,7 +8,7 @@ require_once("ServerWrapper.php");
  * Time: 18:40
  */
 
-class ContentManager extends ServerWrapper
+class ContentManager extends Events
 {
     private $mID;
 
@@ -85,7 +85,7 @@ class ContentManager extends ServerWrapper
         return $this->query->getResponse();
     }
 
-    private function verify(){
+    protected function verify(){
         if($this->mID === null)
         {
            return false;

@@ -5,7 +5,7 @@
  * Date: 6/26/2017
  * Time: 10:55 PM
  */
-include_once('../php/server_login.php'); ?>
+include_once('../php/UserHandler.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">

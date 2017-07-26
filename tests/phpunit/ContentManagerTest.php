@@ -13,7 +13,7 @@ require_once('../../src/php/ContentManager.php');
 class ContentManagerTest extends TestCase
 {
 
-    public function testExecute(){
+    public function testID(){
         $_POST["mID"] = 1;
         $cM = new ContentManager();
         $response = $cM->execute();
@@ -21,15 +21,30 @@ class ContentManagerTest extends TestCase
 
         $cM->initTestData(2);
         $response = $cM->execute();
-        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
         $cM->initTestData(3);
         $response = $cM->execute();
-        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
         $cM->initTestData(4);
         $response = $cM->execute();
-        $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
         $cM->initTestData(5);
         $response = $cM->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+    }
+
+    public function testNoID(){
+        $_POST["mID"] = null;
+        $cM = new ContentManager();
+        $response = $cM->execute();
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong");
+    }
+
+    public function testUntil(){
+        $_POST["mID"] = 1;
+        $cM = new ContentManager();
+        $response = $cM->execute();
+        $cM->initTestData(6);
         $this->assertEquals(200,$response->getCode(),"Response code was wrong");
     }
 

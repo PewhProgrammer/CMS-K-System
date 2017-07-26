@@ -55,7 +55,7 @@
                 else console.log('good job');
 
                 console.log('align: ' + base.$alignment +"; location: " + base.$location);
-                $.post("../php/newMonitor.php", {alignment:base.$alignment,location:base.$location,name:monName,mID:base.$mID})
+                $.post("../php/NewMonitor.php", {alignment:base.$alignment,location:base.$location,name:monName,mID:base.$mID})
                     .done(function (data) {
                         //console.log(JSON.parse(data)['code'] === 200);
                         if(JSON.parse(data)['code'] === 200){

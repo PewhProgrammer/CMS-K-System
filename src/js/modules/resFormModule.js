@@ -98,7 +98,7 @@
 
 
             $("#delButton").click(function () {
-                $.post('../php/delete.php', {
+                $.post('../php/Delete.php', {
                     id: id
                 }).done(function (data) {
                     var response = JSON.parse(data);

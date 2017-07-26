@@ -6,16 +6,16 @@
  * Date: 13.07.2017
  * Time: 17:48
  */
-require_once('../../src/php/add.php');
+require_once('../../src/php/Add.php');
 
 class AddTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function testReason(){
+    public function testSuccess(){
         $add = new Add();
         $this->assertEquals(null, $add->getResource(), "There is a resource where there shouldn't be one");
 
-        $add->setResource(new Resource("test","test","test"));
+        $add->setResource(new Resource("google","www.google.de","website"));
         $response = $add->execute();
 
         $this->assertEquals(200,$response->getCode(),"Response code was wrong");
