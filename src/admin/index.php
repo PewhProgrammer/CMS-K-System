@@ -172,7 +172,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <fieldset class="monFieldset">
                                             <ul>
                                                 <? while($row = $groundFloor->fetch_assoc()){ ?>
-                                                   <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors+1).") ".
+                                                   <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".$row["mID"].") ".
                                                         "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
@@ -230,7 +230,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <fieldset class="monFieldset">
                                             <ul>
                                                 <? while($row = $firstFloor->fetch_assoc()){ ?>
-                                            <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = " . ($countMonitors - 1) . ") " .
+                                            <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = " . $row["mID"] . ") " .
                                                 "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                             $monClass = $monClassQuery->getQuery();
                                             $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = " . $row["mID"]);
@@ -291,7 +291,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <fieldset class="monFieldset">
                                             <ul>
                                                 <? while($row = $secondFloor->fetch_assoc()){ ?>
-                                                    <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
+                                                    <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".$row["mID"].") ".
                                                         "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
@@ -348,7 +348,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <fieldset class="monFieldset">
                                             <ul>
                                                 <? while($row = $thirdFloor->fetch_assoc()){ ?>
-                                                    <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
+                                                    <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".$row["mID"].") ".
                                                         "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
