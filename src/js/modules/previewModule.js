@@ -34,7 +34,7 @@
                     }else if(resType === 'website' || resType === 'rss'){
                         $("iframe#previewFrame").attr("src",resData);
                     }
-
+                $("#previewResource").text($(this).val());
                 }
             });
 

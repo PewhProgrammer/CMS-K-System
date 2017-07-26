@@ -17,19 +17,19 @@ if(!isset($_SESSION['user'])) {
 
 else {
 
-$query = new Query("SELECT * FROM monitors");
+$query = new Query("SELECT * FROM monitors WHERE new = 0");
 $mon = $query->getQuery();
 
-$floorReq1 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 3");
+$floorReq1 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 3 AND new = 0");
 $groundFloor = $floorReq1->getQuery();
 
-$floorReq2 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 4");
+$floorReq2 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 4 AND new = 0");
 $firstFloor = $floorReq2->getQuery();
 
-$floorReq3 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 5");
+$floorReq3 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 5 AND new = 0");
 $secondFloor = $floorReq3->getQuery();
 
-$floorReq4 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6");
+$floorReq4 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6 AND new = 0");
 $thirdFloor = $floorReq4->getQuery();
 
 //Retrieves all possible labels
@@ -172,7 +172,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <fieldset class="monFieldset">
                                             <ul>
                                                 <? while($row = $groundFloor->fetch_assoc()){ ?>
-                                                   <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors+1).") ".
+                                                   <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".$row["mID"].") ".
                                                         "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
@@ -208,6 +208,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                <? } ?>
                                                             </i>
                                                             <p class="monitorName"><? echo $row["name"] ?></p>
+                                                            <p class="monitorID" style="display: none"><? echo $row["mID"] ?></p>
                                                         </label>
                                                     </li> <?
                                                     $countMonitors++;
@@ -230,7 +231,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <fieldset class="monFieldset">
                                             <ul>
                                                 <? while($row = $firstFloor->fetch_assoc()){ ?>
-                                            <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = " . ($countMonitors - 1) . ") " .
+                                            <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = " . $row["mID"] . ") " .
                                                 "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                             $monClass = $monClassQuery->getQuery();
                                             $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = " . $row["mID"]);
@@ -269,6 +270,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                             <? } ?>
                                                             </i>
                                                             <p class="monitorName"><? echo $row["name"] ?></p>
+                                                            <p class="monitorID" style="display: none"><? echo $row["mID"] ?></p>
                                                         </label>
                                                     </li><?
                                                     $countMonitors++;
@@ -291,7 +293,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <fieldset class="monFieldset">
                                             <ul>
                                                 <? while($row = $secondFloor->fetch_assoc()){ ?>
-                                                    <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
+                                                    <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".$row["mID"].") ".
                                                         "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
@@ -326,6 +328,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                 <? } ?>
                                                             </i>
                                                             <p class="monitorName"><? echo $row["name"] ?></p>
+                                                            <p class="monitorID" style="display: none"><? echo $row["mID"] ?></p>
                                                         </label>
                                                     </li><?
                                                     $countMonitors++;
@@ -348,12 +351,12 @@ a clean and intuitive system to manage the monitors at CISPA">
                                         <fieldset class="monFieldset">
                                             <ul>
                                                 <? while($row = $thirdFloor->fetch_assoc()){ ?>
-                                                    <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".($countMonitors-1).") ".
+                                                    <? $monClassQuery = new Query("SELECT * FROM (SELECT lID FROM monitors NATURAL JOIN monitorhaslabel WHERE mID = ".$row["mID"].") ".
                                                         "AS labelid NATURAL JOIN labels WHERE lID < 3 OR lID > 6");
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resCount = $resCountQuery->getQuery();
-                                                    $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                    $resTypeQuery = new Query("SELECT name, type, until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resType = $resTypeQuery->getQuery();?>
                                                 <li class="monLi filter 3rd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
@@ -383,6 +386,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                 <? } ?>
                                                             </i>
                                                             <p class="monitorName"><? echo $row["name"] ?></p>
+                                                            <p class="monitorID" style="display: none"><? echo $row["mID"] ?></p>
                                                         </label>
                                                     </li><?
                                                     $countMonitors++;
@@ -411,10 +415,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <li><a href="#"><?echo $row["name"]?></li>
                                <? } ?>
                                 <li>
-                                    <form>
-                                        <input class="form-control" style="display: inline-block; float: left; width: 80%" placeholder="New Label..." name="newlabel" type="text" autofocus>
-                                        <button class="btn btn-primary" type="submit" method="post"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                    </form>
+                                    <input class="form-control" style="display: inline-block; float: left; width: 80%" placeholder="New Label..." name="newlabel" type="text" autofocus>
+                                    <button id="submitLabelButton" class="btn btn-primary" type="submit" method="post"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                 </li>
                             </ul>
                         </div>

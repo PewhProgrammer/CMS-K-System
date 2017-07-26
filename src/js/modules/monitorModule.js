@@ -91,6 +91,7 @@
                             if ($(this).find("input").is(":checked")) {
                                 var html;
                                 html = "Name: <span style='font-weight: normal'>" + $(this).find(".monitorName").html() + "</span><br><br>";
+                                html = html + "Monitor ID: <span style='font-weight: normal'>" + $(this).find(".monitorID").html() + "</span><br><br>";
                                 html = html + "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span><br><br>";
 
                                 //find labels of the element
@@ -196,7 +197,21 @@
                 }
                 $(".monLi.filter").show();
                 refreshSelectButton();
+                displayWarning();
             });
+            var warningAlertID = $("#warning-alert");
+
+            function displayWarning(){
+                if($(".monLi.filter").length === 0){
+                    //display warning
+                    warningAlertID.alert();
+                    $("#alertWarningText").text('There are no monitors with the applied filter options.');
+
+                    warningAlertID.fadeTo(6000, 1000).slideUp(500, function () {
+                        warningAlertID.slideUp(500);
+                    });
+                }
+            }
 
             //add class filter to all monitors not respecting the filter options
             function filter(){
@@ -233,7 +248,7 @@
 
             $("#filterAll").on("click" ,function(){
                 //keepFilterOption('Filter');
-                $(".monLi").removeClass("filter");
+                $(".monLi").addClass("filter");
                 $(".monLi").show();
                 refreshSelectButton();
                 for (var key in filterChecked) {
@@ -258,6 +273,18 @@
                 }
                 else select.text(" Deselect All");
             }
+
+            $("#submitLabelButton").click(function() {
+               var newLabel = $(this).parent().find("input").val();
+               console.log("processing addLabel " + newLabel);
+                $.post('../php/add.php', {
+                    newLabel: newLabel
+                }).done(function (data) {
+                    location.reload();
+                }).fail(function () {
+                    console.log("failed");
+                });;
+            });
         };
         // call init method
         base.init();
