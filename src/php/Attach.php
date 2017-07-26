@@ -36,6 +36,7 @@ class Attach extends Events
 
     public function execute()
     {
+        if(!$this->verify()) return new Response('404','Verification went wrong.');
         $this->buildQuery();
         $this->deleteBuild .= ';';
 
@@ -103,7 +104,7 @@ class Attach extends Events
      */
     protected function verify()
     {
-        // TODO: Implement verify() method.
+        return true;
     }
 }
 

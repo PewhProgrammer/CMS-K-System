@@ -31,6 +31,12 @@ class ContentManagerTest extends TestCase
         $cM->initTestData(5);
         $response = $cM->execute();
         $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+        $cM->initTestData(6);
+        $response = $cM->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+        $cM->initTestData(7);
+        $response = $cM->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
     }
 
     public function testNoID(){

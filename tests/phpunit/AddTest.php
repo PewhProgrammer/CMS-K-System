@@ -21,13 +21,23 @@ class AddTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(200,$response->getCode(),"Response code was wrong");
     }
 
+    public function testAddNewLabel(){
+        $_POST['newLabel'] = 'testLabel';
+        $add = new Add();
+
+        $query = new Query("DELETE FROM labels WHERE name = 'testLabel'");
+        $query->executeQuery();
+        $response = $query->getResponse();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+    }
+
     public function testConstructor() {
         $_POST["name"] = "Test.txt";
         $_POST["type"] = "NoType";
-        $_POST["path"] = "C:\Users\Marc\Desktop\Test.txt";
+        $_POST["path"] = 'C:\Users\Thinh-Laptop\Desktop\Test.txt';
         $add = new Add();
         $this->assertEquals("Test.txt", $add->getResource()->getName(), "Wrong resource name");
         $this->assertEquals("NoType", $add->getResource()->getType(), "Wrong resource name");
-        $this->assertEquals("C:\Users\Marc\Desktop\Test.txt", $add->getResource()->getData(), "Wrong resource name");
+        $this->assertEquals("C:\Users\Thinh-Laptop\Desktop\Test.txt", $add->getResource()->getData(), "Wrong resource name");
     }
 }

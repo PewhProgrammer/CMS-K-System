@@ -11,7 +11,6 @@ class Upload extends Events
     //gets called for every file once
     private $target_dir = "../uploads/";
     private $target_file;
-    private $uploadOk = 0;
     private $fileType;
     private $tempFile;
     private $file;
@@ -41,15 +40,11 @@ class Upload extends Events
     public function execute()
     {
         if(!$this->verify()) return new Response('404','Files are corrupt');
-        if ($this->uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
-        } else if (move_uploaded_file($this->tempFile, $this->target_file)) {
+        if (move_uploaded_file($this->tempFile, $this->target_file)) {
 
             echo "The file " . basename($this->file) . " has been uploaded.";
 
             $this->resource->setName($this->file);
-
             $this->resource->setData($this->target_dir . $this->resource->getName());
             $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $this->resource->getName() . "', '" . $this->resource->getType() . "', '" . $this->resource->getData() . "')");
             $query->executeQuery();
@@ -61,7 +56,6 @@ class Upload extends Events
 
     protected function verify()
     {
-
         if ($this->fileType == 'pdf') $this->resource->setType("pdf");
         else if ($this->fileType == 'ics') $this->resource->setType("caldav");
         else if (($this->fileType == 'jpg') || ($this->fileType == 'jpeg')|| ($this->fileType == 'png')|| ($this->fileType == 'gif')) $this->resource->setType("image");

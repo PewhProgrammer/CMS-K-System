@@ -17,7 +17,7 @@ class UploadTest extends TestCase
         $response = $upload->execute();
         $this->assertEquals(404,$response->getCode(),"Response code was wrong");
 
-        $upload->initTestData('jpg','maikelele.jpg','maikelele.jpg');
+        $upload->initTestData('jpg','C:\Users\Thinh-Laptop\Desktop\Test.jpg','C:\Users\Thinh-Laptop');
         $response = $upload->execute();
         $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
 
@@ -28,7 +28,14 @@ class UploadTest extends TestCase
         $upload->initTestData('pdf','maikelele.pdf','maikelele.jpg');
         $response = $upload->execute();
         $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+    }
 
+    public function testConstructor(){
+        $_FILES["userfile"]["name"] =  'C:\Users\Thinh-Laptop\Desktop\Test.txt';
+        $_FILES["userfile"]["tmp_name"] = 'C:\Users\Thinh-Laptop\Desktop\Test.txt';
+        $upload = new Upload();
+        $response = $upload->execute();
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong");
     }
 
 }

@@ -167,7 +167,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <? while($row = $monitors->fetch_assoc()){ ?>
                         <li style="display:none" class="selectedMonitor <? echo $row["mID"] ?>"><span><? echo $row["name"] ?></span>
                         </li>
-                                <? $countMonitors++; }?>
+                                <? }?>
                         </ul>
 
 
