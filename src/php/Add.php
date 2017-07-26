@@ -16,6 +16,9 @@ class Add extends Events
             $this->resource = new Resource($_POST["name"], $_POST["path"], $_POST["type"]);
             echo $this->execute();
             return;
+        } else if(isset($_POST["newLabel"])) {
+            echo $this->addNewLabel();
+            return;
         }
     }
 
@@ -38,6 +41,12 @@ class Add extends Events
         return $this->query->getResponse();
     }
 
+    public function addNewLabel() {
+        $this->query = new Query("INSERT INTO labels (name) VALUES ('".$_POST['newLabel']."')");
+        $this->query->getQuery();
+        return $this->query->getResponse();
+        if($this->query->getResponse()->getCode() <> '200') return $this->query->getResponse();
+    }
 
     public function setResource($res){
         $this->resource = $res;
