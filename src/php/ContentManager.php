@@ -71,6 +71,11 @@ class ContentManager extends ServerWrapper
                         break;
                 }
             }
+            else { //delete all attached resources for that monitor
+                $this->query = new Query("DELETE FROM monitorhasresource WHERE mID ='" . $this->mID . "'");
+                $res = $this->query->executeQuery();
+                break;
+            }
 
 
         }
