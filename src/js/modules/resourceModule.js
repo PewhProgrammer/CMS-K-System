@@ -184,7 +184,7 @@
                         console.log("value: " +$("#dropdownMenuURL").val());
                         if($("#dropdownMenuURL").val() === '0') resourceResponse = resourceResponse.replace(/^/,'http://');
                         else resourceResponse = resourceResponse.replace(/^/,'https://');
-                        var fType = (fileType === 1) ? 'website' : 'rss';
+                        var fType = (fileType === 1) ? 'website' : 'rss'; //TODO: refactor
                         if(fileType === 3) fType = 'caldav';
                         $.post('../php/Add.php', {
                             name: resourceResponse,
@@ -198,7 +198,7 @@
 
                             data = JSON.parse(data);
                             var header = '';
-                            if(data['msg'] !== null) header = data['msg'].toLowerCase();
+                            if(data['msg'] !== null) header = data['msg'].toString().toLowerCase();
 
                             if(header === 'sameorigin' || header === 'deny' || header === 'allow-from'){
                                 base.$warning.find("p").text('IFrame might not be able to show the content of '+resourceResponse+' due to same origin constraint. The page will refresh itself now...');
@@ -208,8 +208,6 @@
                                 base.$success.find("p").text('Entry successful. The page will refresh itself now...');
                                 base.$success.show();
                             }
-
-                            //console.log(data['msg']);
 
                             setTimeout(function(){
                                 location.reload();
