@@ -28,15 +28,33 @@
             base.el = el;
             base.$el = jQuery(el);
             base.module = options;
+            base.mensaInterval = 600 * 1000; //get new data every 10 minutes
+            base.busInterval = 300 * 1000; //get new data every 5 minutes
 
             console.log("MensaBusModule loaded");
 
-            if(base.module === "mensa") {
+            function mensaIntervallCall(){
                 console.log("gathering Mensa data");
                 base.getMensaData();
-            } else if(base.module === "bus") {
+
+                setTimeout(function(){
+                    mensaIntervallCall();
+                }, base.mensaInterval);
+            }
+
+            function busIntervallCall(){
                 console.log("gathering Bus data");
                 base.getBusData();
+
+                setTimeout(function(){
+                    busIntervallCall();
+                }, base.busInterval);
+            }
+
+            if(base.module === "mensa") {
+                mensaIntervallCall();
+            } else if(base.module === "bus") {
+                busIntervallCall();
             }
         };
 
