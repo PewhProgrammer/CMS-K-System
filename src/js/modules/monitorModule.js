@@ -179,6 +179,9 @@
                                     $("#monDetails").html(editName + id + res + lab);
 
                                     $("#submitNewMonName").click(function() {
+                                        if($("#newMonName").val().length < 1 || $("#newMonName").val().length > 255){
+                                            return;
+                                        }
                                         $.post('../php/update.php', {
                                             monID: base.$monID,
                                             newName: $("#newMonName").val()
@@ -369,7 +372,7 @@
             }
 
             $("#submitLabelButton").click(function(e) {
-                if($('#labelNameInput').val().length < 1){
+                if($('#labelNameInput').val().length < 1 || $('#labelNameInput').val().length > 255){
                     return;
                 }
                var newLabel = $(this).parent().find("input").val();
