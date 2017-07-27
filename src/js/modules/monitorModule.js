@@ -174,7 +174,7 @@
 
                                 $("#editNameButton").click(function() {
                                     var editName = "<p style='float: left; margin-right: 10px;'>Name: </p><span style='font-weight: normal'>"
-                                        + "<input id='newMonName' class='form-control' value='"+ monName +"' name='newmonname' type='text' autofocus>"
+                                        + "<input id='newMonName' class='form-control' value='"+ monName +"' name='newmonname' maxlength='255' type='text' autofocus>"
                                         + "<button id='submitNewMonName' class='btn btn-primary' type='submit' method='post'><i class='glyphicon glyphicon-ok' aria-hidden='true'></i></button>" + "</span><br><br>";
                                     $("#monDetails").html(editName + id + res + lab);
 

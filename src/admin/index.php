@@ -446,7 +446,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <?php endif; ?>
                                <? } ?>
                                 <li>
-                                    <input id='labelNameInput' class="form-control" placeholder="New Label..." name="newlabel" type="text" autofocus>
+                                    <input id='labelNameInput' class="form-control" placeholder="New Label..." name="newlabel" type="text" maxlength="255" autofocus>
                                     <button id="submitLabelButton" class="btn btn-primary" type="submit" method="post"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                 </li>
                             </ul>
