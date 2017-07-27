@@ -20,6 +20,12 @@ class Delete extends Events
                 if(file_exists($row["data"])){
                     unlink($row["data"]);
                 }else{
+                    $this->query = new Query("DELETE FROM monitorhasresource WHERE rID=" . $this->id);
+                    $this->query->executeQuery();
+
+                    $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
+                    $this->query->executeQuery();
+
                     return new Response(404,'File not found on the webserver');
                 }
             }

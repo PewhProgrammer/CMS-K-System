@@ -116,6 +116,10 @@
                         $("#delModal").modal("hide");
                         base.$warning.find("p").text(response.msg);
                         base.$warning.show();
+
+                        setTimeout(function(){
+                            location.reload();
+                        }, 2000);
                     }
 
                 }).fail(function () {
