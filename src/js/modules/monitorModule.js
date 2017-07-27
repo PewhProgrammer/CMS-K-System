@@ -102,6 +102,7 @@
                                         + "<div id='removeLabelID"+i+"' class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div></div>";
                                 }
                                 var lab = "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
+
                                 $("#monDetails").html(name + id + res + lab);
 
                                 for(var j = 4; i < classList.length-1; i++) {
@@ -142,7 +143,7 @@
                             }
                         });
                     } else {
-                        $("#previewPanel").find("p").html("horizontal: <span style='font-weight: normal'>" + horizontal
+                        $("#monDetails").html("horizontal: <span style='font-weight: normal'>" + horizontal
                             + "</span><br><br>vertical: <span style='font-weight: normal'>" + vertical + "</span>");
                     }
 
