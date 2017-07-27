@@ -6,7 +6,6 @@ session_start();
 $chk = new Query("SELECT * FROM users WHERE name='" .$_SESSION['user']. "'");
 $res=$chk->getQuery();
 $sess = $res->fetch_array()['session_id'];
-//echo $_SESSION['user']."\n".session_id();
 if(!isset($_SESSION['user'])) {
     header('location: login.php');
     exit();
