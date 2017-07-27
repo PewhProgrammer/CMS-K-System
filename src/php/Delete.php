@@ -45,6 +45,9 @@ class Delete extends Events
         {
             $this->id = $_POST["id"];
             return true;
+        } else if (isset($_POST["monID"])){
+            $this->id = $_POST["monID"];
+            return true;
         }
         return false;
     }

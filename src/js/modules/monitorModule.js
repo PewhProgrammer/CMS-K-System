@@ -78,8 +78,6 @@
                             $("#selectAllDescription").text(" Select All");
                     }
 
-                    console.log("checked: " + selected + " monitors: " +monitors);
-
                     if (selected === 0) {
                         $("#previewPanel").fadeOut();
                         $(".monitorContainer").delay(400).animate({width: "100%"});
@@ -101,10 +99,28 @@
                                 for(var i = 4; i < classList.length-1; i++) {
                                     labels = labels + "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i>"
                                         + classList[i]
-                                        + "<div class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div></div>";
+                                        + "<div id='removeLabelID"+i+"' class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div></div>";
                                 }
                                 var lab = "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
                                 $("#monDetails").html(name + id + res + lab);
+
+                                for(var j = 4; i < classList.length-1; i++) {
+                                    $("#removeLabelID"+j).click(function() {
+                                        var labelName = $(this).parent().val();
+                                        $(this).parent().parent().parent().parent().find("li").each(function() {
+                                            if($(this).find("a").val() === labelName) {
+                                                $.post('../php/delete.php', {
+                                                    monID: monID,
+                                                    lID: $(this).find("p")
+                                                }).done(function (data) {
+                                                    location.reload();
+                                                }).fail(function () {
+                                                    console.log("New MonitorName failed");
+                                                });
+                                            }
+                                        })
+                                    });
+                                }
 
                                 $("#editNameButton").click(function() {
                                     var editName = "<p style='float: left; margin-right: 10px;'>Name: </p><span style='font-weight: normal'>"
@@ -113,7 +129,6 @@
                                     $("#monDetails").html(editName + id + res + lab);
 
                                     $("#submitNewMonName").click(function() {
-                                        console.log(monID + $("#newMonName").val());
                                         $.post('../php/update.php', {
                                             monID: monID,
                                             newName: $("#newMonName").val()
