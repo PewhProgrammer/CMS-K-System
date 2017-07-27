@@ -31,6 +31,8 @@
             var monitorParam = "" + $.getParameterByName('m');
             var selectedID;
 
+            base.$monID = -1000;
+
             base.$el.find(".monitor_overview").each(function () {
                 monitors++;
 
@@ -48,7 +50,7 @@
                     mID: selectedID,
                     lID: lID
                 }).done(function (data) {
-                    location.reload();
+                    window.location.replace('index.php?m='+base.$monID);
                 }).fail(function () {
                     console.log("New MonitorName failed");
                 });
@@ -99,11 +101,11 @@
 
                         base.$el.find(".monitor_overview").each(function () {
                             if ($(this).find("input").is(":checked")) {
-                                var monID = $(this).find(".monitorID").html();
-                                selectedID =  monID;
+                                base.$monID = $(this).find(".monitorID").html();
+                                selectedID =  base.$monID;
                                 var monName = $(this).find(".monitorName").html();
                                 var name = "Name: <span class='detailsName' style='font-weight: normal'>" + monName + "</span> <i id='editNameButton' class='glyphicon glyphicon-pencil'></i><br><br>";
-                                var id = "Monitor ID: <span style='font-weight: normal'>" + monID + "</span><br><br>";
+                                var id = "Monitor ID: <span style='font-weight: normal'>" + base.$monID + "</span><br><br>";
                                 var until ='';
                                 var date = $(this).find("input").attr("data-until");
                                 console.log(date);
@@ -159,7 +161,7 @@
 
                                     $("#submitNewMonName").click(function() {
                                         $.post('../php/update.php', {
-                                            monID: monID,
+                                            monID: base.$monID,
                                             newName: $("#newMonName").val()
                                         }).done(function (data) {
                                             location.reload();
@@ -340,14 +342,22 @@
                 else select.text(" Deselect All");
             }
 
-            $("#submitLabelButton").click(function() {
+            //console.log('cold: ' + monArray[1]);
+            if(monArray[1] === 'addLabel'){
+                console.log("lol");
+                $('#buttonAddLabel').click();
+            }
+
+            $("#submitLabelButton").click(function(e) {
+
                var newLabel = $(this).parent().find("input").val();
                console.log("processing addLabel " + newLabel);
                 $.post('../php/add.php', {
                     newLabel: newLabel
                 }).done(function (data) {
-                    $(".dropdown-menu#addLabel").prepend('<li><a class="labelOption" href="#">'+newLabel+'</a></li>');
+                    //$(".dropdown-menu#addLabel").prepend('<li><a class="labelOption" href="#">'+newLabel+'</a></li>');
                     //location.reload();
+                    window.location.replace('index.php?m='+base.$monID+"&m=addLabel");
                 }).fail(function () {
                     console.log("New Label failed");
                 });
