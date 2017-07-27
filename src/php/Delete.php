@@ -9,35 +9,40 @@ class Delete extends Events
     function __construct(){}
 
     public function execute(){
+        if(isset($_POST["id"])) {
+            if (!$this->verify()) return new Response(404, 'The id was wrong');
+            $this->query = new Query("SELECT * FROM resources WHERE rID=" . $this->id);
+            $res = $this->query->getQuery();
 
-        if(!$this->verify()) return new Response(404,'The id was wrong');
-        $this->query = new Query("SELECT * FROM resources WHERE rID=" . $this->id);
-        $res = $this->query->getQuery();
+            while ($row = $res->fetch_assoc()) {
 
-        while ($row = $res->fetch_assoc()) {
+                if ($row["type"] == "pdf" || $row["type"] == "image") { //delete also files from server
+                    if (file_exists($row["data"])) {
+                        unlink($row["data"]);
+                    } else {
+                        $this->query = new Query("DELETE FROM monitorhasresource WHERE rID=" . $this->id);
+                        $this->query->executeQuery();
 
-            if ($row["type"] == "pdf" || $row["type"] == "image"){ //delete also files from server
-                if(file_exists($row["data"])){
-                    unlink($row["data"]);
-                }else{
-                    $this->query = new Query("DELETE FROM monitorhasresource WHERE rID=" . $this->id);
-                    $this->query->executeQuery();
+                        $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
+                        $this->query->executeQuery();
 
-                    $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
-                    $this->query->executeQuery();
-
-                    return new Response(404,'File not found on the webserver');
+                        return new Response(404, 'File not found on the webserver');
+                    }
                 }
             }
+
+            $this->query = new Query("DELETE FROM monitorhasresource WHERE rID=" . $this->id);
+            $this->query->executeQuery();
+
+            $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
+            $this->query->executeQuery();
+
+            return $this->query->getResponse();
+        } else if(isset($_POST["mID"])) {
+            $this->query = new Query("DELETE FROM monitorhaslabel WHERE mID=".$this->id."AND lID=".$_POST["lID"]);
+            $this->query->executeQuery();
+            return $this->query->getResponse();
         }
-
-        $this->query = new Query("DELETE FROM monitorhasresource WHERE rID=" . $this->id);
-        $this->query->executeQuery();
-
-        $this->query = new Query("DELETE FROM resources WHERE rID=" . $this->id);
-        $this->query->executeQuery();
-
-        return $this->query->getResponse();
     }
 
     /**
@@ -51,8 +56,8 @@ class Delete extends Events
         {
             $this->id = $_POST["id"];
             return true;
-        } else if (isset($_POST["monID"])){
-            $this->id = $_POST["monID"];
+        } else if (isset($_POST["mID"])){
+            $this->id = $_POST["mID"];
             return true;
         }
         return false;

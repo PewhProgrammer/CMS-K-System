@@ -129,18 +129,18 @@
 
                                 $("#monDetails").html(name + id + res + until + lab);
 
-                                for(var j = 4; i < classList.length-1; i++) {
-                                    $("#removeLabelID"+j).click(function() {
-                                        var labelName = $(this).parent().val();
+                                for(var j = 5; i < classList.length; i++) {
+                                    $("#removeLabelID"+j).on('click', function() {
+                                        var labelName = $(this).parent().text();
                                         $(this).parent().parent().parent().parent().find("li").each(function() {
-                                            if($(this).find("a").val() === labelName) {
+                                            if($(this).find("a").text() === labelName) {
                                                 $.post('../php/delete.php', {
-                                                    monID: monID,
-                                                    lID: $(this).find("p")
+                                                    mID: monID,
+                                                    lID: $(this).find("p").text()
                                                 }).done(function (data) {
                                                     location.reload();
                                                 }).fail(function () {
-                                                    console.log("New MonitorName failed");
+                                                    console.log("Deleting label from monitor failed");
                                                 });
                                             }
                                         })
