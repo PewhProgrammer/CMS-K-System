@@ -89,10 +89,11 @@
 
                         base.$el.find(".monitor_overview").each(function () {
                             if ($(this).find("input").is(":checked")) {
-                                var html;
-                                html = "Name: <span style='font-weight: normal'>" + $(this).find(".monitorName").html() + "</span><br><br>";
-                                html = html + "Monitor ID: <span style='font-weight: normal'>" + $(this).find(".monitorID").html() + "</span><br><br>";
-                                html = html + "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span><br><br>";
+                                var monID = $(this).find(".monitorID").html();
+
+                                var name = "Name: <span style='font-weight: normal'>" + $(this).find(".monitorName").html() + "</span> <i id='editNameButton' class='glyphicon glyphicon-pencil'></i><br><br>";
+                                var id = "Monitor ID: <span style='font-weight: normal'>" + monID + "</span><br><br>";
+                                var res = "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span><br><br>";
 
                                 //find labels of the element
                                 var labels = "";
@@ -102,8 +103,27 @@
                                         + classList[i]
                                         + "<div class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div></div>";
                                 }
-                                html = html + "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
-                                $("#previewPanel").find("p").html(html);
+                                var lab = "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
+                                $("#monDetails").html(name + id + res + lab);
+
+                                $("#editNameButton").click(function() {
+                                    var editName = "<p style='float: left; margin-right: 10px;'>Name: </p><span style='font-weight: normal'>"
+                                        + "<input id='newMonName' class='form-control' placeholder='New Name...' name='newmonname' type='text' autofocus>"
+                                        + "<button id='submitNewMonName' class='btn btn-primary' type='submit' method='post'><i class='glyphicon glyphicon-pencil' aria-hidden='true'></i></button>" + "</span><br><br>";
+                                    $("#monDetails").html(editName + id + res + lab);
+
+                                    $("#submitNewMonName").click(function() {
+                                        console.log(monID + $("#newMonName").val());
+                                        $.post('../php/update.php', {
+                                            monID: monID,
+                                            newName: $("#newMonName").val()
+                                        }).done(function (data) {
+                                            location.reload();
+                                        }).fail(function () {
+                                            console.log("New MonitorName failed");
+                                        });
+                                    });
+                                });
                             }
                         });
                     } else {
@@ -284,8 +304,8 @@
                 }).done(function (data) {
                     location.reload();
                 }).fail(function () {
-                    console.log("failed");
-                });;
+                    console.log("New Label failed");
+                });
             });
         };
         // call init method

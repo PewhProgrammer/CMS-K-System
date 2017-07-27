@@ -418,7 +418,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                 <div id="previewPanel" class="panel panel-default">
                     <div class="panel-body">
                         <h2>Details</h2>
-                        <p id="monDetails"></p>
+                        <div id="monDetails"></div>
                         <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
                             <i class="fa fa-pencil" aria-hidden="true"> Change Content</i>
                         </button>
