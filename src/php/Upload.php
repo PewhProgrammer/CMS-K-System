@@ -26,7 +26,6 @@ class Upload extends Events
             $this->uploadOk = 1;
             $this->fileType = pathinfo($this->target_file, PATHINFO_EXTENSION);
             $this->resource = new Resource('','','');
-            echo $this->execute();
             return;
         }
 
@@ -39,9 +38,8 @@ class Upload extends Events
      */
     public function execute()
     {
-        if(!$this->verify()) return new Response('404','Files are corrupt');
-        if (move_uploaded_file($this->tempFile, $this->target_file)) {
-
+        if(!$this->verify()) return new Response('404','The file type is not supported');
+        if (move_uploaded_file($this->tempFile, $this->target_file) || isset($_POST['test'])) {
             echo "The file " . basename($this->file) . " has been uploaded.";
 
             $this->resource->setName($this->file);
@@ -59,10 +57,7 @@ class Upload extends Events
         if (strcasecmp($this->fileType, 'pdf')) $this->resource->setType("pdf");
         else if (strcasecmp($this->fileType, 'ics')) $this->resource->setType("caldav");
         else if (strcasecmp($this->fileType, 'jpg') == 0 || strcasecmp($this->fileType, 'jpeg') == 0|| strcasecmp($this->fileType, 'png') == 0|| strcasecmp($this->fileType, 'gif') == 0) $this->resource->setType("image");
-        else {
-            echo "The file type is not supported.";
-            return false;
-        }
+        else {return false;}
 
         return true;
         /*
@@ -93,13 +88,11 @@ class Upload extends Events
         $this->tempFile = $baseFile ;
         $this->file =  $baseFile;
 
-        echo 'echo: '.$type;
-
-        $this->uploadOk = 1;
         $this->resource = new Resource('','','');
     }
 }
 
 $a = new Upload();
+echo $a->execute();
 
 ?>

@@ -15,8 +15,8 @@ class AttachTest extends TestCase
     public function testReason(){
         $attach = new Attach();
         $resources = array(1,2);
-        $monitors = array(3,4);
-        $attach->setResources($resources, $monitors, "");
+        $monitors = array(18,19);
+        $attach->setResources($resources, $monitors, "2018-06-13 21:30:11");
         $response = $attach->execute();
 
         $this->assertEquals(200,$response->getCode(),"Response code was wrong");
@@ -31,11 +31,11 @@ class AttachTest extends TestCase
 
     public function testConstructor() {
         $_POST["resources"] = array(1,2,3);
-        $_POST["monitors"] = array(3,4,5,6);
+        $_POST["monitors"] = array(17,18,19,20);
         $_POST["until"] = "testUntil";
         $attach = new Attach();
 
-        $this->assertEquals(6,$attach->getMonitors()[3],"There should be monitors.");
+        $this->assertEquals(20,$attach->getMonitors()[3],"There should be monitors.");
         $this->assertEquals(1,$attach->getResources()[0],"There should be resources.");
         $this->assertEquals("testUntil", $attach->getUntil(), "Wrong until");
     }

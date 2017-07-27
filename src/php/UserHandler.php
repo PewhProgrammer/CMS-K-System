@@ -1,7 +1,7 @@
 <?php
 
 require_once("Events.php");
-include "User.php";
+include_once("User.php");
 
 class UserHandler extends Events
 {
@@ -52,7 +52,8 @@ class UserHandler extends Events
         $result = $this->query->getQuery();
 
         if (mysqli_num_rows($result) == 1) {
-            if(!$result->fetch_array()['session_id']) {
+            if(!$result->fetch_array()['session_id'] || (session_status()!=PHP_SESSION_ACTIVE)) {
+                session_destroy();
                 session_start();
                 session_regenerate_id(true);
                 $t=session_id();

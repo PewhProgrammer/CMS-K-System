@@ -11,7 +11,6 @@ class newMonitor extends Events
         //Check if keys exists
         if (isset($_POST["mID"])) {
             $this->mID = $_POST["mID"];
-            echo $this->execute();
             return;
         }
     }
@@ -22,6 +21,7 @@ class newMonitor extends Events
      */
     public function execute()
     {
+        if(!$this->verify()) return new Response('404','verification went wrong');
         if(isset($_POST['name'])){
             $this->query = new Query("UPDATE monitors SET `name`='".$_POST['name']."', `new` = 0 WHERE `mID`=".$_POST['mID']);
             $this->query->getQuery();
@@ -43,10 +43,10 @@ class newMonitor extends Events
      */
     protected function verify()
     {
-        // TODO: Implement verify() method.
+        return isset($_POST["mID"]) || isset($_POST['name']) ;
     }
 }
 
 $a = new newMonitor();
-
+echo $a->execute();
 ?>

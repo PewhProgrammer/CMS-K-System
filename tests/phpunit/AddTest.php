@@ -19,6 +19,11 @@ class AddTest extends \PHPUnit\Framework\TestCase
         $response = $add->execute();
 
         $this->assertEquals(200,$response->getCode(),"Response code was wrong");
+
+        $query = new Query("DELETE FROM resources WHERE name = 'google'");
+        $query->executeQuery();
+        $response = $query->getResponse();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
     }
 
     public function testAddNewLabel(){
@@ -39,5 +44,10 @@ class AddTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("Test.txt", $add->getResource()->getName(), "Wrong resource name");
         $this->assertEquals("NoType", $add->getResource()->getType(), "Wrong resource name");
         $this->assertEquals("C:\Users\Thinh-Laptop\Desktop\Test.txt", $add->getResource()->getData(), "Wrong resource name");
+
+        $query = new Query("DELETE FROM resources WHERE name = 'Test.txt'");
+        $query->executeQuery();
+        $response = $query->getResponse();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
     }
 }
