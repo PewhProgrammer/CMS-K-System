@@ -19,6 +19,9 @@ class Add extends Events
         } else if(isset($_POST["newLabel"])) {
             echo $this->addNewLabel();
             return;
+        } else if(isset($_POST["lID"]) && isset($_POST["mID"])) {
+            echo $this->addLabelToMonitor();
+            return;
         }
     }
 
@@ -43,6 +46,12 @@ class Add extends Events
 
     public function addNewLabel() {
         $this->query = new Query("INSERT INTO labels (name,custom) VALUES ('".$_POST['newLabel']."','1')");
+        $this->query->getQuery();
+        return $this->query->getResponse();
+    }
+
+    public function addLabelToMonitor() {
+        $this->query = new Query("INSERT INTO monitorhaslabel (mID,lID) VALUES (".$_POST['mID'].",".$_POST['lID'].")");
         $this->query->getQuery();
         return $this->query->getResponse();
     }

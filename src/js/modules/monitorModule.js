@@ -29,6 +29,7 @@
             var selectTrigger = false;
             var select = $("#selectAllDescription");
             var monitorParam = "" + $.getParameterByName('m');
+            var selectedID;
 
             base.$el.find(".monitor_overview").each(function () {
                 monitors++;
@@ -39,7 +40,18 @@
                     selected++;
                 }
 
-                //console.log(selected);
+            });
+
+            $(".labelOption").on('click', function() {
+                var lID = $(this).parent().find("p").html();
+                $.post('../php/add.php', {
+                    mID: selectedID,
+                    lID: lID
+                }).done(function (data) {
+                    location.reload();
+                }).fail(function () {
+                    console.log("New MonitorName failed");
+                });
             });
 
             for(var i = 0; i < monitors; i++) {
@@ -88,8 +100,9 @@
                         base.$el.find(".monitor_overview").each(function () {
                             if ($(this).find("input").is(":checked")) {
                                 var monID = $(this).find(".monitorID").html();
+                                selectedID =  monID;
                                 var monName = $(this).find(".monitorName").html();
-                                var name = "Name: <span style='font-weight: normal'>" + monName + "</span> <i id='editNameButton' class='glyphicon glyphicon-pencil'></i><br><br>";
+                                var name = "Name: <span class='detailsName' style='font-weight: normal'>" + monName + "</span> <i id='editNameButton' class='glyphicon glyphicon-pencil'></i><br><br>";
                                 var id = "Monitor ID: <span style='font-weight: normal'>" + monID + "</span><br><br>";
                                 var until ='';
                                 var date = $(this).find("input").attr("data-until");
