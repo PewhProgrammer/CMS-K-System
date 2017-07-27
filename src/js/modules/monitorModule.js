@@ -147,8 +147,11 @@
 
                                 $("#monDetails").html(name + id + res + until + lab);
 
-                                for(var j = 4; i < classList.length; i++) {
+                                //console.log('class Length: ' + classList.length);
+                                for(var j = 4; j < classList.length; j++) {
+                                    console.log('class Length: ' + "#removeLabelID"+j);
                                     $("#removeLabelID"+j).on('click', function() {
+                                        var labelSelector = $(this);
                                         var labelName = $(this).parent().text();
                                         $("#addLabel").find("li").each(function() {
                                             if($(this).find("a").text() === labelName) {
@@ -158,7 +161,8 @@
                                                     lID: $(this).find("p").text()
                                                 }).done(function (data) {
                                                     console.log("successful");
-                                                    $("#removeLabelID"+j).parent().css('display', 'none');
+                                                    labelSelector.parent().css('display', 'none');
+                                                    //console.log("#removeLabelID"+j);
                                                     //location.reload();
                                                 }).fail(function () {
                                                     console.log("Deleting label from monitor failed");
