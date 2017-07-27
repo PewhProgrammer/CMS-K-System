@@ -30,14 +30,11 @@
             base.module = options;
 
             console.log("MensaBusModule loaded");
-            base.$el.html('<div id="MensaBusPlan"></div>');
 
             if(base.module === "mensa") {
-                base.$el.html('<div id="mensa_panel"></div>');
                 console.log("gathering Mensa data");
                 base.getMensaData();
             } else if(base.module === "bus") {
-                base.$el.html('<div id="bus_panel"></div>');
                 console.log("gathering Bus data");
                 base.getBusData();
             }

@@ -161,12 +161,14 @@
                 }
 
                 if (base.types["bus"]){
+                    console.log("bus");
                     var $bus = $('<div id="mensa_panel"></div>');
                     appendContent($bus);
                     //init bus
                     base.$content.MensaBusModule("bus");
                 }
                 if (base.types["mensa"]){
+                    console.log("mensa");
                     var $mensa = $('<div id="bus_panel"></div>');
                     appendContent($mensa);
                     //init mensa
