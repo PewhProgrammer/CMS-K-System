@@ -175,6 +175,8 @@
                     base.$content.MensaBusModule("mensa");
                 }
 
+                //$(".failureDiv").hide();
+
                 //switching between multiple content
                 if (base.contentArr.length > 1) {
                     clearTimeout(base.tOut); //stop previous timeout
