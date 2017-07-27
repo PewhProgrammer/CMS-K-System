@@ -62,16 +62,16 @@ CREATE TABLE IF NOT EXISTS `monitorhaslabel` (
 --
 
 INSERT INTO `monitorhaslabel` (`mID`, `lID`) VALUES
-(1, 2),
-(2, 2),
-(3, 2),
-(4, 2),
-(5, 2),
-(6, 2),
-(7, 2),
-(8, 2),
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
 (9, 2),
-(10, 1),
+(10, 2),
 (11, 2),
 (12, 2),
 (13, 2),
@@ -120,8 +120,14 @@ CREATE TABLE IF NOT EXISTS `monitorhasresource` (
 --
 
 INSERT INTO `monitorhasresource` (`mID`, `rID`, `until`) VALUES
-(1, 1, '2018-06-13 19:30:11'),
-(2, 2, '2018-06-13 19:30:11');
+(1, 0, '2018-06-13 19:30:11'),
+(2, 1, '2018-06-13 19:30:11'),
+(3, 2, '2018-06-13 19:30:11'),
+(4, 3, '2018-06-13 19:30:11'),
+(5, 4, '2018-06-13 19:30:11'),
+(6, 5, '2018-06-13 19:30:11'),
+(7, 6, '2018-06-13 19:30:11');
+
 
 -- --------------------------------------------------------
 
@@ -149,11 +155,11 @@ INSERT INTO `monitors` (`mID`, `name`, `mac`, `new`) VALUES
 (6, 'Showroom-6', '',FALSE ),
 (7, 'Showroom-7', '',FALSE ),
 (8, 'Building plan/people - 1', '',FALSE ),
-(9, 'Building plan/people - 2', '',FALSE ),
-(10, 'Info - 1', '',FALSE ),
-(11, 'Info - 2', '',FALSE ),
-(12, 'Info - 3', '',FALSE ),
-(13, 'Info - 4', '',FALSE ),
+(9, 'Info - 1', '',FALSE ),
+(10, 'Info - 2', '',FALSE ),
+(11, 'Info - 3', '',FALSE ),
+(12, 'Info - 4', '',FALSE ),
+(13, 'Info - 5', '',FALSE ),
 (14, 'Kitchen - 1', '',FALSE ),
 (15, 'Office', '',FALSE ),
 (16, 'Kitchen - 2', '',FALSE ),
@@ -184,7 +190,10 @@ INSERT INTO `resources` (`rID`, `name`, `type`, `data`, `created_by`) VALUES
 (0, 'Bus Plan', 'bus', '', 1),
 (1, 'Mensa Plan', 'mensa', '', 1),
 (2, 'W3Schools Website', 'website', 'https://www.w3schools.com/', 1),
-(3, 'Overview Slides', 'pdf', 'https://www.st.cs.uni-saarland.de/edu/se/2017/files/slides/Overview.pdf', 1);
+(3, 'Overview Slides', 'pdf', 'https://www.st.cs.uni-saarland.de/edu/se/2017/files/slides/Overview.pdf', 1),
+(4, 'Elephant', 'image', 'http://wallpaper-gallery.net/images/image/image-13.jpg', 1),
+(5, 'RSS Sample Feed', 'rss', 'http://www.feedforall.com/blog-feed.xml', 1),
+(6, 'Calendar Holiday', 'caldav', 'http://www.calendarlabs.com/templates/ical/US-Holidays.ics',1);
 
 -- --------------------------------------------------------
 
