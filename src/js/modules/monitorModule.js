@@ -136,7 +136,7 @@
                                     labels += "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i>"
                                         + classList[i] ;
                                     //console.log(customLabel[i-4]+" und " + 0);
-                                    if(customLabel[i-4] !== '0'){
+                                    if(customLabel[i-3] !== '0'){
                                         labels += "<div id='removeLabelID"+i+"' class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div>";
                                     }
                                     labels += "</div>";
