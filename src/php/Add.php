@@ -42,7 +42,7 @@ class Add extends Events
     }
 
     public function addNewLabel() {
-        $this->query = new Query("INSERT INTO labels (name) VALUES ('".$_POST['newLabel']."')");
+        $this->query = new Query("INSERT INTO labels (name,custom) VALUES ('".$_POST['newLabel']."','1')");
         $this->query->getQuery();
         return $this->query->getResponse();
     }

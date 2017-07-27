@@ -437,7 +437,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <ul class="dropdown-menu" style="width: 200px;">
                                 <? $label = $labelQuery->getQuery();
                                 while ($row = $label->fetch_assoc()) { ?>
-                                    <li><a href="#"><?echo $row["name"]?></a><p style="display: none"><? echo $row["lID"] ?></p></li>
+                                    <?if($row["custom"]):?><li><a href="#"><?echo $row["name"]?></a><p style="display: none"><? echo $row["lID"] ?></p></li> <?php endif; ?>
                                <? } ?>
                                 <li>
                                     <input class="form-control" style="display: inline-block; float: left; width: 80%" placeholder="New Label..." name="newlabel" type="text" autofocus>
