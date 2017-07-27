@@ -433,7 +433,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <h2>Details</h2>
                         <div id="monDetails"></div>
                         <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> Change Content
+                            Change Content
                         </button>
                         <div class="dropup">
                             <button id='buttonAddLabel' class="btn btn-primary btn-large dropdown-toggle" type="button" data-toggle="dropdown">Add Label
@@ -446,7 +446,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                     <?php endif; ?>
                                <? } ?>
                                 <li>
-                                    <input class="form-control" style="display: inline-block; float: left; width: 80%" placeholder="New Label..." name="newlabel" type="text" autofocus>
+                                    <input id='labelNameInput' class="form-control" style="display: inline-block; float: left; width: 80%" placeholder="New Label..." name="newlabel" type="text" autofocus>
                                     <button id="submitLabelButton" class="btn btn-primary" type="submit" method="post"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                 </li>
                             </ul>

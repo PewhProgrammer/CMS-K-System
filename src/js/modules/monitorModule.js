@@ -369,7 +369,9 @@
             }
 
             $("#submitLabelButton").click(function(e) {
-
+                if($('#labelNameInput').text().length < 1){
+                    return;
+                }
                var newLabel = $(this).parent().find("input").val();
                console.log("processing addLabel " + newLabel);
                 $.post('../php/add.php', {
