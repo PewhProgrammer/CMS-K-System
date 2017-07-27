@@ -8,6 +8,11 @@
 </head>
 
 <body id="monitorBody" style="height: 100%; width: 100%; position: absolute;">
+<!-- <div class="failureDiv">
+    <div class="bs-callout bs-callout-warning">
+        <h4 id="bs-header">This monitor cannot display the attached content properly</h4><p>Go to the admin panel <code class="highlighter-rouge">/admin</code> to attach a different content !</p>
+    </div>
+</div> -->
 <div class="content" style="height: 100%;width: 100%;">
 </div>
 
