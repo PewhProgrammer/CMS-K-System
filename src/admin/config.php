@@ -179,7 +179,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                 src=""
                                 frameborder="1"
                                 scrolling="yes"
-                                sandbox="allow-forms allow-scripts">
+                                sandbox="allow-forms allow-scripts"
+                               >
                             <p>Your browser does not support iframes.</p></iframe>
                         <!-- /Preview -->
 

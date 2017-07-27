@@ -33,6 +33,14 @@
                         base.$noPreviewFrame.hide();
                         base.$previewFrame.show();
                         base.$previewFrame.attr("src", resData);
+
+                        if (resType === 'pdf'){
+                            base.$previewFrame.removeAttr("sandbox");
+                        }
+                        else{ //prevents forwarding
+                            base.$previewFrame.attr("sandbox", "allow-forms allow-scripts");
+                        }
+
                     }
                     else{
                         base.$previewFrame.hide();
