@@ -184,7 +184,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $resUntil = $resUntilQuery->getQuery();?>
                                                     <li class="monLi filter Ground Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
-                                                            <input type="checkbox" name="m"  value="<? echo $row["mID"] ?>" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" id="monInput-<?echo $countMonitors?>">
+                                                            <?$monClass = $monClassQuery->getQuery(); ?>
+                                                            <input type="checkbox" name="m" data-label="<? while($label = $monClass->fetch_assoc()){ echo $label["custom"];?> <?}?>"  value="<? echo $row["mID"] ?>" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" id="monInput-<?echo $countMonitors?>">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
                                                                 <? $counter = $resCount->fetch_assoc();
                                                                 if ($counter["counter"] > 1) { ?>
