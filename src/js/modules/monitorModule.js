@@ -115,10 +115,15 @@
                                 //find labels of the element
                                 var labels = "";
                                 var classList = $(this).parent().attr("class").split(" ");
+                                var customLabel = $(this).find("input").attr("data-label").split(" ");
                                 for(var i = 4; i < classList.length-1; i++) {
                                     labels = labels + "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i>"
-                                        + classList[i]
-                                        + "<div id='removeLabelID"+i+"' class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div></div>";
+                                        + classList[i] ;
+                                    //console.log(customLabel[i-4]+" und " + 0);
+                                    if(customLabel[i-4] !== '0'){
+                                        labels += "<div id='removeLabelID"+i+"' class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div></div>";
+                                    }
+
                                 }
                                 var lab = "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
 
