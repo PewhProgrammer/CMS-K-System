@@ -343,6 +343,7 @@
                 $.post('../php/add.php', {
                     newLabel: newLabel
                 }).done(function (data) {
+                    $(".dropdown-menu#addLabel").prepend('<li><a class="labelOption" href="#">'+newLabel+'</a></li>');
                     //location.reload();
                 }).fail(function () {
                     console.log("New Label failed");
