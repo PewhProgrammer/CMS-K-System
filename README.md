@@ -12,7 +12,8 @@ SE Project
 7. Type "npm install" to download the dependencies
 8. Type "grunt run" to trigger the build process
 9. Set the newly created www-folder as root directory for your webserver
-10. Enter localhost on Google Chrome
+10. Set the WSGIPythonPath in the httpd.conf of your server to ".../www/php"
+11. Enter localhost on Google Chrome
 
 Remarks: nodeJS is only needed to create the www-folder. Once built you only need that one to upload to your Apache server.
 
