@@ -154,7 +154,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                     &nbsp;
                     <button id="selectAll" type="submit" class="btn btn-xs btn-primary logout">
-                        <i id="selectAllDescription" class="fa fa-pencil" aria-hidden="true"></i> Select All
+                        <i class="fa fa-pencil" aria-hidden="true"></i><span id="selectAllDescription"> Select All</span>
                     </button>
                 </div>
                 <div class="monitorContainer">
