@@ -43,6 +43,9 @@ class Delete extends Events
             $this->query->executeQuery();
             return $this->query->getResponse();
         } else if(isset($_POST["labID"])) {
+            $this->query = new Query("DELETE FROM monitorhaslabel WHERE lID=".$_POST['labID']);
+            $this->query->executeQuery();
+
             $this->query = new Query("DELETE FROM labels WHERE lID=".$_POST['labID']);
             $this->query->executeQuery();
             return $this->query->getResponse();
