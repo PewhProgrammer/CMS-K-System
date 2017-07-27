@@ -113,11 +113,12 @@
                     return;
                 }
 
-                //append PDF as iFrame to the page
+                //append PDF as canvas to the page
                 for (var i = 0; i < base.types["pdf"]["no"]; i++){
                     console.log("pdf");
-                    var $pdf_iframe = getIFrameObj(base.types["pdf"]["path"][i]);
-                    appendContent($pdf_iframe);
+                    var $pdf = $('<canvas id="pdf" style="margin:auto;display:block;"></canvas>');
+                    appendContent($pdf);
+                    base.$content.pdfModule({path: base.types["pdf"]["path"][i]});
                 }
 
                 //append websites as iFrame to the page

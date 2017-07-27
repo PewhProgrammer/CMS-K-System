@@ -22,6 +22,7 @@
 
 <script src="./libs/jquery.rss.js"></script>
 <script src="./libs/jquery.colorbox.js"></script>
+<script src="./libs/pdf.js"></script>
 <script src="./js/modules.min.js"></script>
 <script src="./js/main.js"></script>
 
