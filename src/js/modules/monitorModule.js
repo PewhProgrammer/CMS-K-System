@@ -117,7 +117,7 @@
                                 var classList = $(this).parent().attr("class").split(" ");
                                 var customLabel = $(this).find("input").attr("data-label").split(" ");
                                 for(var i = 4; i < classList.length-1; i++) {
-                                    labels = labels + "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i>"
+                                    labels += "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i>"
                                         + classList[i] ;
                                     //console.log(customLabel[i-4]+" und " + 0);
                                     if(customLabel[i-4] !== '0'){
