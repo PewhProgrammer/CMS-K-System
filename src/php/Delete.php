@@ -39,7 +39,7 @@ class Delete extends Events
 
             return $this->query->getResponse();
         } else if(isset($_POST["mID"])) {
-            $this->query = new Query("DELETE FROM monitorhaslabel WHERE mID=".$this->id."AND lID=".$_POST["lID"]);
+            $this->query = new Query("DELETE FROM monitorhaslabel WHERE mID=".$_POST['mID']." AND lID=".$_POST['lID']);
             $this->query->executeQuery();
             return $this->query->getResponse();
         }
@@ -56,7 +56,8 @@ class Delete extends Events
         {
             $this->id = $_POST["id"];
             return true;
-        } else if (isset($_POST["mID"])){
+        } else if (isset($_POST["mID"]))
+        {
             $this->id = $_POST["mID"];
             return true;
         }

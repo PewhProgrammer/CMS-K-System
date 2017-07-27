@@ -133,13 +133,15 @@
                                 for(var j = 5; i < classList.length; i++) {
                                     $("#removeLabelID"+j).on('click', function() {
                                         var labelName = $(this).parent().text();
-                                        $(this).parent().parent().parent().parent().find("li").each(function() {
+                                        $("#labelDropUp").find("li").each(function() {
                                             if($(this).find("a").text() === labelName) {
+                                                console.log("mID: " + selectedID + " lID: " + $(this).find("p").text());
                                                 $.post('../php/delete.php', {
-                                                    mID: monID,
+                                                    mID: selectedID,
                                                     lID: $(this).find("p").text()
                                                 }).done(function (data) {
-                                                    location.reload();
+                                                    console.log("successful");
+                                                    //location.reload();
                                                 }).fail(function () {
                                                     console.log("Deleting label from monitor failed");
                                                 });

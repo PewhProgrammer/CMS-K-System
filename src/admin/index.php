@@ -438,7 +438,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <div class="dropup">
                             <button class="btn btn-primary btn-large dropdown-toggle" type="button" data-toggle="dropdown">Add Label
                                 <span class="caret"></span></button>
-                            <ul class="dropdown-menu" style="width: 200px;">
+                            <ul class="dropdown-menu" id="labelDropUp" style="width: 200px;">
                                 <? $label = $labelQuery->getQuery();
                                 while ($row = $label->fetch_assoc()) { ?>
                                     <?if($row["custom"]):?><li><a class="labelOption" href="#"><?echo $row["name"]?></a><p style="display: none"><? echo $row["lID"] ?></p></li> <?php endif; ?>
