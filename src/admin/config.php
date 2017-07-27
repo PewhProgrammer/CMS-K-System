@@ -173,7 +173,8 @@ a clean and intuitive system to manage the monitors at CISPA">
 
                             <!-- Preview -->
                         <h3>Preview</h3>
-                        <h5 id="previewResource">lol</h5>
+                        <h5 id="previewResource"></h5>
+                        <div id="noPreview">No preview available for this file type.</div>
                         <iframe id="previewFrame"
                                 src=""
                                 frameborder="1"

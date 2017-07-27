@@ -20,20 +20,25 @@
             // Access to jQuery and DOM versions of element
             base.el = el;
             base.$el = jQuery(el);
+            base.$previewFrame = $("iframe#previewFrame");
+            base.$noPreviewFrame = $("#noPreview");
 
-            base.$el.css("background-color", "white");
-
-            $("#resourceTable ").find("input").change(function () {
+            $("#resourceTable").find("input").change(function () {
                 if (this.checked) {
                     var resType = $(this).attr("data-resType");
                     var resData = $(this).attr("data-resData");
                     //console.log(resType);
 
-                    if(resType === 'pdf' || resType === 'image'){
-                        $("iframe#previewFrame").attr("src",resData);
-                    }else if(resType === 'website' || resType === 'rss'){
-                        $("iframe#previewFrame").attr("src",resData);
+                    if(resType === 'pdf' || resType === 'image' || resType === 'rss' || resType === 'website'){
+                        base.$noPreviewFrame.hide();
+                        base.$previewFrame.show();
+                        base.$previewFrame.attr("src",resData);
                     }
+                    else{
+                        base.$previewFrame.hide();
+                        base.$noPreviewFrame.show();
+                    }
+
                 $("#previewResource").text($(this).val());
                 }
             });
