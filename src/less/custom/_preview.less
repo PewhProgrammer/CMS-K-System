@@ -18,6 +18,10 @@
     }
     #addLabel{
       li {
+        .labelOption{
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
         input{
           display: inline-block;
           float: left;
@@ -31,6 +35,24 @@
 
       }
     }
+  }
+  .labelbox{
+    span{
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 150px;
+      white-space: nowrap;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .detailsName{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 200px;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
   }
   #continueConfig{
     margin-top: 15px;

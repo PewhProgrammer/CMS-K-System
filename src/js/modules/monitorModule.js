@@ -134,8 +134,8 @@
                                 var customLabel = $(this).find("input").attr("data-label").split(" ");
                                 for(var i = 3; i < classList.length-1; i++) {
                                     if(classList[i] === '') continue;
-                                    labels += "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i>"
-                                        + classList[i] ;
+                                    labels += "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i><span>"
+                                        + classList[i] +'</span>';
                                     //console.log(customLabel[i-3]+" und " + 0);
                                     if(customLabel[i-3] !== '0'){
                                         labels += "<div id='removeLabelID"+i+"' class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div>";
