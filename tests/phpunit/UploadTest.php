@@ -30,13 +30,29 @@ class UploadTest extends TestCase
         $response = $query->getResponse();
         $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
 
-        $upload->initTestData('ics','maikelele.ics','maikelele.jpg');
+        $upload->initTestData('ics','maikelele.ics','maikelele.ics');
         $response = $upload->execute();
-        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong: ".$response->getMsg());
 
         $upload->initTestData('pdf','maikelele.pdf','maikelele.pdf');
         $response = $upload->execute();
-        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+
+        $upload->initTestData('jpeg','maikelele.jpeg','maikelele.jpeg');
+        $response = $upload->execute();
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+
+        $upload->initTestData('gif','maikelele.gif','maikelele.gif');
+        $response = $upload->execute();
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+
+        $upload->initTestData('png','maikelele.png','maikelele.png');
+        $response = $upload->execute();
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+
+        $upload->initTestData('unknown','maikelele.jpeg','maikelele.jpeg');
+        $response = $upload->execute();
+        $this->assertEquals(404,$response->getCode(),"Response code was wrong: ".$response->getMsg());
     }
 
     public function testConstructor(){

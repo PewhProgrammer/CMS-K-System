@@ -13,7 +13,7 @@ session_start();
  */
 
 class ConnectionFactory{
-    private static $factory;
+    private static $factory = null;
 
     public static function getFactory(){
         if (!self::$factory) {

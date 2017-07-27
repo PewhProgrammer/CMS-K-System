@@ -13,6 +13,7 @@
       <file>ContentManagerTest.php</file>
       <file>ConnectionFactoryTest.php</file>
       <file>NewMonitorTest.php</file>
+<file>UpdateTest.php</file>
     </testsuite>
   </testsuites>
 <filter>
@@ -29,6 +30,7 @@
 	<file>../../src/php/ContentManager.php</file>
 	<file>../../src/php/NewMonitor.php</file>
 	<file>../../src/php/ConnectionFactory.php</file>
+<file>../../src/php/Update.php</file>
   </whitelist>
 </filter>
 </phpunit>
