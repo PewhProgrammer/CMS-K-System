@@ -130,7 +130,7 @@
                                 //find labels of the element
                                 var labels = "";
                                 var classList = $(this).parent().attr("class").split(" ");
-                                console.log('classes: ' + classList);
+                                //console.log('classes: ' + classList);
                                 var customLabel = $(this).find("input").attr("data-label").split(" ");
                                 for(var i = 3; i < classList.length-1; i++) {
                                     if(classList[i] === '') continue;
@@ -149,13 +149,13 @@
 
                                 //console.log('class Length: ' + classList.length);
                                 for(var j = 4; j < classList.length; j++) {
-                                    console.log('class Length: ' + "#removeLabelID"+j);
+                                    //console.log('class Length: ' + "#removeLabelID"+j);
                                     $("#removeLabelID"+j).on('click', function() {
                                         var labelSelector = $(this);
                                         var labelName = $(this).parent().text();
                                         $("#addLabel").find("li").each(function() {
                                             if($(this).find("a").text() === labelName) {
-                                                console.log("mID: " + selectedID + " lID: " + $(this).find("p").text());
+                                                //console.log("mID: " + selectedID + " lID: " + $(this).find("p").text());
                                                 $.post('../php/delete.php', {
                                                     mID: selectedID,
                                                     lID: $(this).find("p").text()
@@ -369,11 +369,11 @@
             }
 
             $("#submitLabelButton").click(function(e) {
-                if($('#labelNameInput').text().length < 1){
+                if($('#labelNameInput').val().length < 1){
                     return;
                 }
                var newLabel = $(this).parent().find("input").val();
-               console.log("processing addLabel " + newLabel);
+               //console.log("processing addLabel " + newLabel);
                 $.post('../php/add.php', {
                     newLabel: newLabel
                 }).done(function (data) {
