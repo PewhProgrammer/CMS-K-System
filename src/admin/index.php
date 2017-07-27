@@ -90,7 +90,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <a href="#" class='unregisteredMonitors' id="newMon-<? echo $row['mID']?>" data-value="<? echo $row['mID']?>" data-time="<? echo $row['new']?>">
                                 <div>
                                     <i class="fa fa-television fa-fw"> </i> New monitor with id <? echo $row['mID']?>
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <span class="pull-right text-muted small"></span>
                                 </div>
                             </a>
                         </li>
@@ -144,7 +144,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         </button>
                         <ul class="dropdown-menu pull-right" role="menu">
                             <li><a id="filterAll" href="#">Show all</a></li>
-                            <li class="divider"></li>
+                            <li class="divider" style="height:3px"></li>
                             <? while($row = $label->fetch_assoc()){ ?>
                                 <li>
                                 <a class="filter option" id="filterLabel-<? echo $row["lID"] ?>"><? echo $row["name"] ?></a>
