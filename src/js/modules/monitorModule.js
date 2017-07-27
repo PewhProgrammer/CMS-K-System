@@ -54,6 +54,19 @@
                 });
             });
 
+            $("#addLabel").find("li").each(function() {
+               $(this).find("i").click(function() {
+                   var labID = $(this).parent().find("p").text();
+                   $.post('../php/delete.php', {
+                       labID: labID
+                   }).done(function (data) {
+                       location.reload();
+                   }).fail(function () {
+                       console.log("Deleting Label failed");
+                   });
+               })
+            });
+
             for(var i = 0; i < monitors; i++) {
                 $("#monInput-"+i).change(function() {
                     var monitorSelector = $(".monitor_overview:visible input") ;
@@ -106,7 +119,6 @@
                                 var id = "Monitor ID: <span style='font-weight: normal'>" + monID + "</span><br><br>";
                                 var until ='';
                                 var date = $(this).find("input").attr("data-until");
-                                console.log(date);
                                 if(date !== undefined && date.split('-')[0] < '2030' && date.split('-')[0] >= '2017'){
                                     until = 'until Date: <span style="font-weight: normal">' + $(this).find("input").attr("data-until") + '</span><br><br>';
                                 }
