@@ -3,7 +3,7 @@
 SE Project
 
 ## Instructions
-1. Install node (download from website)
+1. Install nodeJS (https://nodejs.org/dist/v6.11.1/node-v6.11.1-x64.msi)
 2. Install grunt-cli (npm install -g grunt-cli)
 3. Type "npm install"
 4. MAMP already has python installed, set the folder with exe as env path
