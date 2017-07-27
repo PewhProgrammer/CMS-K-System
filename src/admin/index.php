@@ -182,7 +182,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $resType = $resTypeQuery->getQuery();
                                                     $resUntilQuery = new Query("SELECT until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resUntil = $resUntilQuery->getQuery();?>
-                                                    <li class="monLi filter Ground Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                                    <li class="monLi Ground Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?> filter" >
                                                         <label class="monitor_overview">
                                                             <?$monClass = $monClassQuery->getQuery(); ?>
                                                             <input type="checkbox" name="m" data-label="<? while($label = $monClass->fetch_assoc()){ echo $label["custom"];?> <?}?>"  value="<? echo $row["mID"] ?>" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" id="monInput-<?echo $countMonitors?>">
@@ -248,8 +248,8 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             $resType = $resTypeQuery->getQuery();
                                             $resUntilQuery = new Query("SELECT until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                             $resUntil = $resUntilQuery->getQuery();?>
-                                                <li class="monLi filter 1st Floor <? while ($label = $monClass->fetch_assoc()) {
-                                                    echo $label["name"]; ?> <? } ?>">
+                                                <li class="monLi 1st Floor <? while ($label = $monClass->fetch_assoc()) {
+                                                    echo $label["name"]; ?> <? } ?> filter">
                                                     <label class="monitor_overview">
                                                         <?$monClass = $monClassQuery->getQuery(); ?>
                                                         <input type="checkbox" name="m" data-label="<? while($label = $monClass->fetch_assoc()){ echo $label["custom"];?> <?}?>" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" value="<? echo $row["mID"] ?>"
@@ -317,7 +317,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $resType = $resTypeQuery->getQuery();
                                                     $resUntilQuery = new Query("SELECT until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resUntil = $resUntilQuery->getQuery();?>
-                                                <li class="monLi filter 2nd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                                <li class="monLi 2nd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?> filter" >
                                                         <label class="monitor_overview">
                                                             <?$monClass = $monClassQuery->getQuery(); ?>
                                                             <input type="checkbox" name="m" data-label="<? while($label = $monClass->fetch_assoc()){ echo $label["custom"];?> <?}?>" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
@@ -382,7 +382,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $resType = $resTypeQuery->getQuery();
                                                     $resUntilQuery = new Query("SELECT until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resUntil = $resUntilQuery->getQuery();?>
-                                                <li class="monLi filter 3rd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
+                                                <li class="monLi 3rd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>filter" >
                                                         <label class="monitor_overview">
                                                             <?$monClass = $monClassQuery->getQuery(); ?>
                                                             <input type="checkbox" name="m" data-label="<? while($label = $monClass->fetch_assoc()){ echo $label["custom"];?> <?}?>" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
