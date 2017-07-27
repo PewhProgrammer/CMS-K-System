@@ -40,8 +40,6 @@ class Upload extends Events
     {
         if(!$this->verify()) return new Response('404','The file type is not supported');
         if (move_uploaded_file($this->tempFile, $this->target_file) || isset($_POST['test'])) {
-            echo "The file " . basename($this->file) . " has been uploaded.";
-
             $this->resource->setName($this->file);
             $this->resource->setData($this->target_dir . $this->resource->getName());
             $query = new Query("INSERT INTO resources (name, type, data) VALUES ('" . $this->resource->getName() . "', '" . $this->resource->getType() . "', '" . $this->resource->getData() . "')");
@@ -54,6 +52,8 @@ class Upload extends Events
 
     protected function verify()
     {
+        if($this->fileType == null) return false;
+
         if (strcasecmp($this->fileType, 'pdf') == 0) $this->resource->setType("pdf");
         else if (strcasecmp($this->fileType, 'ics') == 0) $this->resource->setType("caldav");
         else if (strcasecmp($this->fileType, 'jpg') == 0 || strcasecmp($this->fileType, 'jpeg') == 0|| strcasecmp($this->fileType, 'png') == 0|| strcasecmp($this->fileType, 'gif') == 0) $this->resource->setType("image");

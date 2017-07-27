@@ -12,7 +12,7 @@ class ConnectionFactoryTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testErrors(){
-        $cF = new ConnectionFactory();
+        $cF = ConnectionFactory::getFactory();
 
         $_POST['lock'] = true;
         try{

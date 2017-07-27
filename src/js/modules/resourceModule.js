@@ -41,13 +41,19 @@
                 dictDefaultMessage: "Click or drag files on top of this field",
                 acceptedFiles: "image/jpeg,.png,.gif,.pdf,.ics",
                 addRemoveLinks: true,
+                success: function(file, response){
+                    console.log(JSON.parse(response)['code']);
+                    base.$success.find("p").text('Upload successful. The page will refresh itself now...');
+                    base.$success.show();
+                },
                 init: function() {
                     var myDropzone = this;
                     base.$submitButton.on("click", function() {
                         myDropzone.processQueue();
                     });
-                    myDropzone.on("complete", function(file) {
+                    myDropzone.on("complete", function(file,response) {
 
+                        //console.log(response);
                         if(!file['accepted']) return;
                         myDropzone.removeFile(file);
                         base.$fileForm.hide();
@@ -58,6 +64,8 @@
                             location.reload();
                         }, 2000);
                     });
+
+
                 }
             };
 

@@ -20,7 +20,6 @@ class Update extends Events
         if(isset($_POST["monID"]) && isset($_POST["newName"])) {
             $this->monID = $_POST["monID"];
             $this->newName = $_POST["newName"];
-            echo $this->execute();
             return;
         }
     }
@@ -30,9 +29,10 @@ class Update extends Events
      */
     public function execute()
     {
+        if(!$this->verify()) return new Response('404','Verification went wrong');
         $this->query = new Query("UPDATE monitors SET name='".$this->newName."' WHERE mID=".$this->monID);
         $this->query->getQuery();
-        if($this->query->getResponse()->getCode() <> '200') return $this->query->getResponse();
+        return $this->query->getResponse();
     }
 
     /**
@@ -47,5 +47,5 @@ class Update extends Events
 }
 
 $a = new Update();
-
+echo $a->execute();
 ?>
