@@ -6,7 +6,7 @@ SE Project
 1. Install MAMP as webserver (http://downloads4.mamp.info/MAMP-PRO-WINDOWS/releases/3.3.1/MAMP_MAMP_PRO_3.3.1.exe)
 2. Set python environment path in your system ('C:\MAMP\bin\python\bin\' if using MAMPs python)
 3. Download pip (https://bootstrap.pypa.io/get-pip.py) and install it (python get-pip.py) (already installed if you're using Python 2 >=2.7.9 or Python 3 >=3.4)
-4. Go to '\python\Scripts' and run 'pip install beautifulsoup4 python_dateutil urllib'
+4. Go to '\python\Scripts' and run 'pip install beautifulsoup4 python_dateutil urllib flask'
 5. Install nodeJS (https://nodejs.org/dist/v6.11.1/node-v6.11.1-x64.msi)
 6. Install grunt-cli (npm install -g grunt-cli)
 7. Type "npm install" to download the dependencies
