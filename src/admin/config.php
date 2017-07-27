@@ -174,16 +174,12 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <!-- Preview -->
                         <h3>Preview</h3>
                         <h5 id="previewResource">lol</h5>
-                        <iframe id="previewFrame" style="overflow: hidden; height: 50%;
-                                width: 100%;"
-                                height="100%"
-                                width="100%"
+                        <iframe id="previewFrame"
                                 src=""
                                 frameborder="1"
                                 scrolling="yes"
                                 sandbox="allow-forms allow-scripts">
                             <p>Your browser does not support iframes.</p></iframe>
-                        <!-- <a href="http://placeholder.com"><img style="margin-left:28%;margin-bottom: 5%" src="http://via.placeholder.com/140x240"></a> -->
                         <!-- /Preview -->
 
                         <button style="margin-left:35%" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confModal"
