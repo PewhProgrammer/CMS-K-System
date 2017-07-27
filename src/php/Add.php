@@ -33,19 +33,18 @@ class Add extends Events
         $this->query->getQuery();
         if($this->query->getResponse()->getCode() <> '200') return $this->query->getResponse();
 
-        /*$url = $this->resource->getData();
+        $url = $this->resource->getData();
         $header = get_headers($url, 1);
         //echo $header["X-Frame-Options"];
-        return new Response('200',$header["X-Frame-Options"]);*/
+        return new Response('200',$header["X-Frame-Options"]);
 
-        return $this->query->getResponse();
+        //return $this->query->getResponse();
     }
 
     public function addNewLabel() {
         $this->query = new Query("INSERT INTO labels (name) VALUES ('".$_POST['newLabel']."')");
         $this->query->getQuery();
         return $this->query->getResponse();
-        if($this->query->getResponse()->getCode() <> '200') return $this->query->getResponse();
     }
 
     public function setResource($res){
