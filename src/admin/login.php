@@ -31,7 +31,7 @@ include_once('../php/UserHandler.php'); ?>
                                 <input class="form-control" placeholder="Password" name="password" type="password" value="">
                             </div>
                             <?php if(isset($_GET['error'])){?>
-                                <h4 class="panel text-danger"><?php echo "You are logged in elsewhere. Please check";?></h4>
+                                <h4 class="panel text-danger"><?php echo "You are logged in elsewhere/Session expired. Please check";?></h4>
                             <?php } unset($_GET['error']);
                             foreach (UserHandler::$errors as $error): ?>
                                 <h4 class="panel text-danger"><?php echo $error; ?></h4>
