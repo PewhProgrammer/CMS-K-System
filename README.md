@@ -7,9 +7,9 @@ SE Project
 2. Install nodeJS (https://nodejs.org/dist/v6.11.1/node-v6.11.1-x64.msi)
 3. Install grunt-cli (npm install -g grunt-cli)
 4. Type "npm install" to download the dependencies
-5. Set 'C:\MAMP\bin\python\bin\' as environment path in your system (if using MAMP python)
-6. Download pip (https://bootstrap.pypa.io/get-pip.py) and install it (python get-pip.py) (pip is already installed if you're using Python 2 >=2.7.9 or Python 3 >=3.4)
-7. install packages in Scripts folder(pip install beautifulsoup4, python_dateutil, urllib)
+5. Set python environment path in your system ('C:\MAMP\bin\python\bin\' if using MAMPs python)
+6. Download pip (https://bootstrap.pypa.io/get-pip.py) and install it (python get-pip.py) (already installed if you're using Python 2 >=2.7.9 or Python 3 >=3.4)
+7. Go to '\python\Scripts' and run 'pip install beautifulsoup4 python_dateutil urllib'
 
 
 ## Technology Stack
