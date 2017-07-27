@@ -60,7 +60,7 @@ class UserHandler extends Events
                 $query2 = new Query("UPDATE users SET session_id='".$t."' WHERE name='" .$this->user->getUsername(). "'");
                 $result3= $query2->getQuery();
                 $_SESSION['user'] = $this->user->getUsername();
-                setcookie('sess',$t,time() + (1800), "/");
+                setcookie('sess',$t,time() + (3600), "/");
                 if (!$this->testData)
                     header('location:./index.php');
             } else{
