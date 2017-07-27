@@ -181,8 +181,10 @@ CREATE TABLE IF NOT EXISTS `resources` (
 --
 
 INSERT INTO `resources` (`rID`, `name`, `type`, `data`, `created_by`) VALUES
-(1, 'W3Schools Website', 'website', 'https://www.w3schools.com/', 1),
-(2, 'Overview Slides', 'pdf', 'https://www.st.cs.uni-saarland.de/edu/se/2017/files/slides/Overview.pdf', 1);
+(0, 'Bus Plan', 'bus', '', 1),
+(1, 'Mensa Plan', 'mensa', '', 1),
+(2, 'W3Schools Website', 'website', 'https://www.w3schools.com/', 1),
+(3, 'Overview Slides', 'pdf', 'https://www.st.cs.uni-saarland.de/edu/se/2017/files/slides/Overview.pdf', 1);
 
 -- --------------------------------------------------------
 

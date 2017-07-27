@@ -8,7 +8,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-require '../../src/php/attach.php';
+require '../../src/php/Attach.php';
 
 class AttachTest extends TestCase
 {

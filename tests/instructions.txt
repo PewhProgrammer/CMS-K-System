@@ -13,4 +13,4 @@ For PHPUnit Tests:
 - Fix for db error: copy the file in 'MAMP/conf/<yourphpversion>/php.ini' to 'MAMP/bin/php/<yourphpversion>/'
 
 In case you want to execute the tests with code coverage, you'll need to set up xdebug on your computer. Follow this tutorial. https://xdebug.org/docs/install
-execute command prompt > phpunit --coverage-html test/ --testsuite suite
+Then execute command prompt > phpunit --coverage-html test/ --testsuite suite

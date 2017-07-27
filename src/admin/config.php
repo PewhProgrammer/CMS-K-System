@@ -1,5 +1,5 @@
 <?php
-require '../php/dbquery.php';
+require '../php/Query.php';
 
 session_start();
 $chk = new Query("SELECT * FROM users WHERE name='" .$_SESSION['user']. "'");
@@ -131,6 +131,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                         <i class="fa fa-rss"></i>
                                                      <? } else if ($row["type"] == "caldav") { ?>
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    <? } else if ($row["type"] == "bus") { ?>
+                                                        <i class="fa fa-bus" aria-hidden="true"></i>
+                                                    <? } else if ($row["type"] == "mensa") { ?>
+                                                        <i class="fa fa-cutlery" aria-hidden="true"></i>
                                                     <? } else {?>
                                                         <i class="fa fa-file-o"></i>
                                                     <? } ?>
@@ -140,7 +144,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                 </label>
                                             </td>
                                             <td><? echo $row["type"] ?></td>
-                                            <td> <i class="fa fa-trash-o" data-id="<? echo $row["rID"] ?>"></i></td>
+                                            <td> <? if($row["type"] <> 'bus' && $row["type"] <> 'mensa')  :?><i class="fa fa-trash-o" data-id="<? echo $row["rID"] ?>"></i> <?php endif; ?></td>
                                         </tr>
                                         <? } ?>
                                     </tbody>
@@ -163,7 +167,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                             <? while($row = $monitors->fetch_assoc()){ ?>
                         <li style="display:none" class="selectedMonitor <? echo $row["mID"] ?>"><span><? echo $row["name"] ?></span>
                         </li>
-                                <? $countMonitors++; }?>
+                                <? }?>
                         </ul>
 
 
@@ -279,7 +283,7 @@ a clean and intuitive system to manage the monitors at CISPA">
 
 
                         <div id="fileForm">
-                            <form id="droppy" action="../php/upload.php" class="dropzone"></form>
+                            <form id="droppy" action="../php/Upload.php" class="dropzone"></form>
                         </div>
                     </div>
 

@@ -178,11 +178,12 @@
                         else resourceResponse = resourceResponse.replace(/^/,'https://');
                         var fType = (fileType === 1) ? 'website' : 'rss';
                         if(fileType === 3) fType = 'caldav';
-                        $.post('../php/add.php', {
+                        $.post('../php/Add.php', {
                             name: resourceResponse,
                             type: fType,
                             path: resourceResponse
                         }).done(function (data) {
+                            console.log("request processed.");
                             base.$urlForm.hide();
                             base.$el.modal("hide");
                             var readTime = 1000;

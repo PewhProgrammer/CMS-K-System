@@ -39,7 +39,7 @@
                     selected++;
                 }
 
-                console.log(selected);
+                //console.log(selected);
             });
 
             for(var i = 0; i < monitors; i++) {
@@ -110,6 +110,8 @@
                         $("#previewPanel").find("p").html("horizontal: <span style='font-weight: normal'>" + horizontal
                             + "</span><br><br>vertical: <span style='font-weight: normal'>" + vertical + "</span>");
                     }
+
+                    //console.log('over');
                 });
             }
 
@@ -238,7 +240,7 @@
                     }
                 });
                 if(!filterOn){
-                    console.log("entry");
+                    //console.log("entry");
                     $(".monLi").addClass("filter");
                     refreshSelectButton();
                     return false;

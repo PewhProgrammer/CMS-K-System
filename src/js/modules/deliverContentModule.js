@@ -54,7 +54,7 @@
                                         '<button id="addMonitor" type="button" class="btn btn-default" data-dismiss="modal">add Monitor</button>'+
                                         '</div>');
                                     $("#addMonitor").on('click',function(){
-                                        var url = "../php/newMonitor.php";
+                                        var url = "../php/NewMonitor.php";
                                         $.post(url, {mID: base.mID})
                                             .done(function (data) {
                                                 console.log(data);

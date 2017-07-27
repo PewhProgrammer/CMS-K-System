@@ -1,5 +1,5 @@
 <?php
-require '../php/dbquery.php';
+require '../php/Query.php';
 
 session_start();
 $chk = new Query("SELECT * FROM users WHERE name='" .$_SESSION['user']. "'");
@@ -201,6 +201,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                         <i class="fa fa-rss"></i>
                                                                     <? } else if ($type["type"] == "caldav") { ?>
                                                                         <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                    <? } else if ($type["type"] == "mensa") { ?>
+                                                                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                                                    <? } else if ($type["type"] == "bus") { ?>
+                                                                        <i class="fa fa-bus" aria-hidden="true"></i>
                                                                     <? } ?>
                                                                     <p class="resourceContent"><?echo $type["name"].", "?></p>
                                                                 <? } else { ?>
@@ -262,7 +266,11 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                 <? } else if ($type["type"] == "rss") { ?>
                                                                     <i class="fa fa-rss"></i>
                                                                 <? } else if ($type["type"] == "caldav") { ?>
-                                                                    <i class="fa fa-rss"></i>
+                                                                    <i class="fa fa-calendar"></i>
+                                                                <? } else if ($type["type"] == "mensa") { ?>
+                                                                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                                                <? } else if ($type["type"] == "bus") { ?>
+                                                                    <i class="fa fa-bus" aria-hidden="true"></i>
                                                                 <? } ?>
                                                                 <p class="resourceContent"><? echo $type["name"] . ", " ?></p>
                                                             <? } else { ?>
@@ -321,6 +329,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                         <i class="fa fa-rss"></i>
                                                                     <? } else if ($type["type"] == "caldav") { ?>
                                                                         <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                    <? } else if ($type["type"] == "mensa") { ?>
+                                                                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                                                    <? } else if ($type["type"] == "bus") { ?>
+                                                                        <i class="fa fa-bus" aria-hidden="true"></i>
                                                                     <? } ?>
                                                                     <p class="resourceContent"><?echo $type["name"].", "?></p>
                                                                 <? } else { ?>
@@ -379,6 +391,10 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                                         <i class="fa fa-rss"></i>
                                                                     <? } else if ($type["type"] == "caldav") { ?>
                                                                         <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                    <? } else if ($type["type"] == "mensa") { ?>
+                                                                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                                                    <? } else if ($type["type"] == "bus") { ?>
+                                                                        <i class="fa fa-bus" aria-hidden="true"></i>
                                                                     <? } ?>
                                                                     <p class="resourceContent"><?echo $type["name"].", "?></p>
                                                                 <? } else { ?>

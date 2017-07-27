@@ -7,7 +7,7 @@
  */
 
 
-require_once('../../src/php/server_login.php');
+require_once('../../src/php/UserHandler.php');
 require_once('../../src/php/User.php');
 
 use PHPUnit\Framework\TestCase;
