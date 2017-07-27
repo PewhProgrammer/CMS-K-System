@@ -39,7 +39,7 @@
 
             function postRequest(){
 
-                console.log('baseID: ' +base.mID);
+                //console.log('baseID: ' +base.mID);
                 if(base.mID !== undefined){
                     $.post("../php/ContentManager.php", {mID: base.mID})
                         .done(function (data) {
@@ -57,13 +57,13 @@
                                         var url = "../php/NewMonitor.php";
                                         $.post(url, {mID: base.mID})
                                             .done(function (data) {
-                                                console.log(data);
+                                                //console.log(data);
                                                 location.reload();
                                                 //window.location.replace('index.php?attach=success');
                                             })
                                             .fail(function (data) {
-                                                console.log('it failed');
-                                                console.log(data);
+                                                console.log('It failed');
+                                                //console.log(data);
                                                 // failed
                                             });
                                     });
