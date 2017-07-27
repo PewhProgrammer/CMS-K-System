@@ -14,6 +14,8 @@ SE Project
 9. Set the newly created www-folder as root directory for your webserver
 10. Enter localhost on Google Chrome
 
+Remarks: nodeJS is only needed to create the www-folder. Once built you only need that one to upload to your Apache server.
+
 ## Technology Stack
 
 * [jQuery]
