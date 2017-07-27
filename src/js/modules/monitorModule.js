@@ -88,9 +88,15 @@
                         base.$el.find(".monitor_overview").each(function () {
                             if ($(this).find("input").is(":checked")) {
                                 var monID = $(this).find(".monitorID").html();
-
-                                var name = "Name: <span style='font-weight: normal'>" + $(this).find(".monitorName").html() + "</span> <i id='editNameButton' class='glyphicon glyphicon-pencil'></i><br><br>";
+                                var monName = $(this).find(".monitorName").html();
+                                var name = "Name: <span style='font-weight: normal'>" + monName + "</span> <i id='editNameButton' class='glyphicon glyphicon-pencil'></i><br><br>";
                                 var id = "Monitor ID: <span style='font-weight: normal'>" + monID + "</span><br><br>";
+                                var until ='';
+                                var date = $(this).find("input").attr("data-until");
+                                console.log(date);
+                                if(date !== undefined && date.split('-')[0] < '2030' && date.split('-')[0] >= '2017'){
+                                    until = 'until Date: <span style="font-weight: normal">' + $(this).find("input").attr("data-until") + '</span><br><br>';
+                                }
                                 var res = "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span><br><br>";
 
                                 //find labels of the element
@@ -103,7 +109,7 @@
                                 }
                                 var lab = "Labels: <span style='font-weight: normal'>"+ labels +"</span>"
 
-                                $("#monDetails").html(name + id + res + lab);
+                                $("#monDetails").html(name + id + res + until + lab);
 
                                 for(var j = 4; i < classList.length-1; i++) {
                                     $("#removeLabelID"+j).click(function() {
@@ -125,7 +131,7 @@
 
                                 $("#editNameButton").click(function() {
                                     var editName = "<p style='float: left; margin-right: 10px;'>Name: </p><span style='font-weight: normal'>"
-                                        + "<input id='newMonName' class='form-control' placeholder='New Name...' name='newmonname' type='text' autofocus>"
+                                        + "<input id='newMonName' class='form-control' placeholder='"+ monName +"' name='newmonname' type='text' autofocus>"
                                         + "<button id='submitNewMonName' class='btn btn-primary' type='submit' method='post'><i class='glyphicon glyphicon-pencil' aria-hidden='true'></i></button>" + "</span><br><br>";
                                     $("#monDetails").html(editName + id + res + lab);
 

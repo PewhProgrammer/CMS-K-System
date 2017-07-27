@@ -30,7 +30,7 @@ $firstFloor = $floorReq2->getQuery();
 $floorReq3 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 5 AND new = 0");
 $secondFloor = $floorReq3->getQuery();
 
-$floorReq4 = new Query("SELECT mID, name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6 AND new = 0");
+$floorReq4 = new Query("SELECT mID,name FROM monitors NATURAL JOIN monitorhaslabel WHERE lID = 6 AND new = 0");
 $thirdFloor = $floorReq4->getQuery();
 
 //Retrieves all possible labels
@@ -178,11 +178,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resCount = $resCountQuery->getQuery();
-                                                    $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
-                                                    $resType = $resTypeQuery->getQuery();?>
+                                                    $resTypeQuery = new Query("SELECT name, type, until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                    $resType = $resTypeQuery->getQuery();
+                                                    $resUntilQuery = new Query("SELECT until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                    $resUntil = $resUntilQuery->getQuery();?>
                                                     <li class="monLi filter Ground Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
-                                                            <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                            <input type="checkbox" name="m"  value="<? echo $row["mID"] ?>" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" id="monInput-<?echo $countMonitors?>">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
                                                                 <? $counter = $resCount->fetch_assoc();
                                                                 if ($counter["counter"] > 1) { ?>
@@ -242,11 +244,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                             $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = " . $row["mID"]);
                                             $resCount = $resCountQuery->getQuery();
                                             $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = " . $row["mID"]);
-                                            $resType = $resTypeQuery->getQuery(); ?>
+                                            $resType = $resTypeQuery->getQuery();
+                                            $resUntilQuery = new Query("SELECT until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                            $resUntil = $resUntilQuery->getQuery();?>
                                                 <li class="monLi filter 1st Floor <? while ($label = $monClass->fetch_assoc()) {
                                                     echo $label["name"]; ?> <? } ?>">
                                                     <label class="monitor_overview">
-                                                        <input type="checkbox" name="m" value="<? echo $row["mID"] ?>"
+                                                        <input type="checkbox" name="m" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" value="<? echo $row["mID"] ?>"
                                                                id="monInput-<? echo $countMonitors ?>">
                                                         <i class="fa fa-television fa-4x" aria-hidden="true">
                                                             <? $counter = $resCount->fetch_assoc();
@@ -307,11 +311,13 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $monClass = $monClassQuery->getQuery();
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resCount = $resCountQuery->getQuery();
-                                                    $resTypeQuery = new Query("SELECT name, type FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
-                                                    $resType = $resTypeQuery->getQuery();?>
+                                                    $resTypeQuery = new Query("SELECT name, type, until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                    $resType = $resTypeQuery->getQuery();
+                                                    $resUntilQuery = new Query("SELECT until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                    $resUntil = $resUntilQuery->getQuery();?>
                                                 <li class="monLi filter 2nd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
-                                                            <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                            <input type="checkbox" name="m" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
                                                                 <? $counter = $resCount->fetch_assoc();
                                                                 if ($counter["counter"] > 1) { ?>
@@ -370,10 +376,12 @@ a clean and intuitive system to manage the monitors at CISPA">
                                                     $resCountQuery = new Query("SELECT COUNT(mID) AS counter FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
                                                     $resCount = $resCountQuery->getQuery();
                                                     $resTypeQuery = new Query("SELECT name, type, until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
-                                                    $resType = $resTypeQuery->getQuery();?>
+                                                    $resType = $resTypeQuery->getQuery();
+                                                    $resUntilQuery = new Query("SELECT until FROM resources NATURAL JOIN monitorhasresource WHERE mID = ".$row["mID"]);
+                                                    $resUntil = $resUntilQuery->getQuery();?>
                                                 <li class="monLi filter 3rd Floor <? while($label = $monClass->fetch_assoc()){ echo $label["name"];?> <?}?>" >
                                                         <label class="monitor_overview">
-                                                            <input type="checkbox" name="m" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
+                                                            <input type="checkbox" name="m" data-until="<?echo $resUntil->fetch_assoc()['until'] ?>" value="<? echo $row["mID"] ?>" id="monInput-<?echo $countMonitors?>">
                                                             <i class="fa fa-television fa-4x" aria-hidden="true">
                                                                 <? $counter = $resCount->fetch_assoc();
                                                                 if ($counter["counter"] > 1) { ?>
