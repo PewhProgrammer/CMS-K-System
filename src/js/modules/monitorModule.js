@@ -122,7 +122,7 @@
                                 var until ='';
                                 var date = $(this).find("input").attr("data-until");
                                 if(date !== undefined && date.split('-')[0] < '2030' && date.split('-')[0] >= '2017'){
-                                    until = 'until Date: <span style="font-weight: normal">' + $(this).find("input").attr("data-until") + '</span><br><br>';
+                                    until = 'Until Date: <span style="font-weight: normal">' + $(this).find("input").attr("data-until") + '</span><br><br>';
                                 }
                                 var res = "Attached resource(s): <span style='font-weight: normal'>" + $(this).find(".resourceContent").html().slice(0, -2) + "</span><br><br>";
 

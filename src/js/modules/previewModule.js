@@ -32,7 +32,7 @@
                     if(resType === 'pdf' || resType === 'image' || resType === 'rss' || resType === 'website'){
                         base.$noPreviewFrame.hide();
                         base.$previewFrame.show();
-                        base.$previewFrame.attr("src",resData);
+                        base.$previewFrame.attr("src", resData);
                     }
                     else{
                         base.$previewFrame.hide();
