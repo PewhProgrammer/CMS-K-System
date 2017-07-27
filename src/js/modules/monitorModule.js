@@ -62,7 +62,8 @@
                    $.post('../php/delete.php', {
                        labID: labID
                    }).done(function (data) {
-                       location.reload();
+                       //location.reload();
+                       window.location.replace('index.php?m='+base.$monID+"&m=addLabel");
                    }).fail(function () {
                        console.log("Deleting Label failed");
                    });
@@ -135,7 +136,7 @@
                                     if(classList[i] === '') continue;
                                     labels += "<div class='labelbox'><i class='fa fa-tag aria-hidden=true'></i>"
                                         + classList[i] ;
-                                    //console.log(customLabel[i-4]+" und " + 0);
+                                    //console.log(customLabel[i-3]+" und " + 0);
                                     if(customLabel[i-3] !== '0'){
                                         labels += "<div id='removeLabelID"+i+"' class='labelRemoveBox'><i class='fa fa-times aria-hidden=true'></i></div>";
                                     }
@@ -146,7 +147,7 @@
 
                                 $("#monDetails").html(name + id + res + until + lab);
 
-                                for(var j = 5; i < classList.length; i++) {
+                                for(var j = 4; i < classList.length; i++) {
                                     $("#removeLabelID"+j).on('click', function() {
                                         var labelName = $(this).parent().text();
                                         $("#addLabel").find("li").each(function() {
@@ -178,7 +179,8 @@
                                             monID: base.$monID,
                                             newName: $("#newMonName").val()
                                         }).done(function (data) {
-                                            location.reload();
+                                            window.location.replace('index.php?m='+base.$monID);
+                                            //location.reload();
                                         }).fail(function () {
                                             console.log("New MonitorName failed");
                                         });
