@@ -30,11 +30,12 @@ class ConnectionFactory{
     private $lock = false;
 
     public function getConnection(){
-        while($this->lock){
+        while($this->lock || isset($_POST['lock'])){
             sleep(1);
+            if(isset($_POST['lock'])) break;
         }
         $this->lock = true;
-        if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
+        if (!function_exists('mysqli_init') && !extension_loaded('mysqli') || isset($_POST['nomysql'])) {
             echo 'We don\'t have mysqli!';
             $this->lock=false;
             return null;
@@ -42,7 +43,7 @@ class ConnectionFactory{
 
         if (is_null($this->db))
             $this->db = new mysqli($this->servername, $this->username, $this->password,$this->dbname);
-        if ($this->db->connect_error) {
+        if ($this->db->connect_error || isset($_POST['lock'])) {
             $this->lock=false;
             throw new Exception("Connect Error ("
                 . $this->db->connect_errno

@@ -2,15 +2,19 @@
 
 SE Project
 
-## Instructions
-1. Install nodeJS (https://nodejs.org/dist/v6.11.1/node-v6.11.1-x64.msi)
-2. Install grunt-cli (npm install -g grunt-cli)
-3. Type "npm install"
-4. MAMP already has python installed, set the folder with exe as env path
-5. install pip(download get-pip.py from website)
-6. install packages in Scripts folder(pip install beautifulsoup4, python_dateutil, urllib)
+## Setting up the webserver
+1. Install MAMP as webserver (http://downloads4.mamp.info/MAMP-PRO-WINDOWS/releases/3.3.1/MAMP_MAMP_PRO_3.3.1.exe)
+2. Set python environment path in your system ('C:\MAMP\bin\python\bin\' if using MAMPs python)
+3. Download pip (https://bootstrap.pypa.io/get-pip.py) and install it (python get-pip.py) (already installed if you're using Python 2 >=2.7.9 or Python 3 >=3.4)
+4. Go to '\python\Scripts' and run 'pip install beautifulsoup4 python_dateutil urllib'
+5. Install nodeJS (https://nodejs.org/dist/v6.11.1/node-v6.11.1-x64.msi)
+6. Install grunt-cli (npm install -g grunt-cli)
+7. Type "npm install" to download the dependencies
+8. Type "grunt run" to trigger the build process
+9. Set the newly created www-folder as root directory for your webserver
+10. Enter localhost on Google Chrome
 
-We use MAMP for the local webserver.
+Remarks: nodeJS is only needed to create the www-folder. Once built you only need that one to upload to your Apache server.
 
 ## Technology Stack
 

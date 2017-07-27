@@ -65,7 +65,7 @@ class Query {
     }
 
     /*function sanitize($conn, $input){
-        return $conn->real_escape_string($input);
+        return mysqli_real_escape_string($conn, $input);
     }*/
 
     /**

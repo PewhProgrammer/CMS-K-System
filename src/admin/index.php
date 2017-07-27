@@ -1,6 +1,7 @@
 <?php
 require '../php/Query.php';
 
+if(session_status()!=PHP_SESSION_ACTIVE)
 session_start();
 $chk = new Query("SELECT * FROM users WHERE name='" .$_SESSION['user']. "'");
 $res=$chk->getQuery();

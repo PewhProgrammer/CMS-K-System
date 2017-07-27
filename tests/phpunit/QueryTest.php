@@ -11,4 +11,23 @@ use PHPUnit\Framework\TestCase;
 class QueryTest extends TestCase
 {
 
+    public function testWrongSQLFormat(){
+
+        $query = new Query('INSERT INTO bla');
+        try {
+            $query->executeQuery();
+            self::fail();
+        } catch (Exception $e) {
+            echo 'Exception caught: ',  $e->getMessage(), "\n";
+        }
+
+        try {
+            $query->getQuery();
+            self::fail();
+        } catch (Exception $e) {
+            echo 'Exception caught: ',  $e->getMessage(), "\n";
+        }
+
+
+    }
 }

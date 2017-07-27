@@ -8,25 +8,27 @@
       <file>QueryTest.php</file>
       <file>ResponseTest.php</file>
       <file>UploadTest.php</file>
-      <file>UserHandlerTest.php</file>
       <file>UserTest.php</file>
       <file>ResourceTest.php</file>
       <file>ContentManagerTest.php</file>
+      <file>ConnectionFactoryTest.php</file>
+      <file>NewMonitorTest.php</file>
     </testsuite>
   </testsuites>
 <filter>
   <whitelist processUncoveredFilesFromWhitelist="true">
-	<file>../../src/php/add.php</file>
-	<file>../../src/php/attach.php</file>
-	<file>../../src/php/delete.php</file>
-	<file>../../src/php/dbquery.php</file>
-	<file>../../src/php/upload.php</file>
+	<file>../../src/php/Add.php</file>
+	<file>../../src/php/Attach.php</file>
+	<file>../../src/php/Delete.php</file>
+	<file>../../src/php/Query.php</file>
+	<file>../../src/php/Upload.php</file>
 	<file>../../src/php/User.php</file>
 	<file>../../src/php/Resource.php</file>
-	<file>../../src/php/ServerWrapper.php</file>
+	<file>../../src/php/Events.php</file>
 	<file>../../src/php/Response.php</file>
 	<file>../../src/php/ContentManager.php</file>
-	<file>../../src/php/server_login.php</file>
+	<file>../../src/php/NewMonitor.php</file>
+	<file>../../src/php/ConnectionFactory.php</file>
   </whitelist>
 </filter>
 </phpunit>

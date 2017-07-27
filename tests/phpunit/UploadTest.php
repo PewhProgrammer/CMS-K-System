@@ -17,15 +17,24 @@ class UploadTest extends TestCase
         $response = $upload->execute();
         $this->assertEquals(404,$response->getCode(),"Response code was wrong");
 
-        $upload->initTestData('jpg','C:\Users\Thinh-Laptop\Desktop\Test.jpg','C:\Users\Thinh-Laptop');
+        $_POST['test'] = true;
+
+        $upload->initTestData('jpg','C:\Users\Thinh-Laptop\Desktop\Test.jpg','../uploads/Test.jpg');
         $response = $upload->execute();
+        $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
+
+        $_POST['test'] = null;
+
+        $query = new Query("DELETE FROM resources WHERE name = '../uploads/Test.jpg'");
+        $query->executeQuery();
+        $response = $query->getResponse();
         $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
 
         $upload->initTestData('ics','maikelele.ics','maikelele.jpg');
         $response = $upload->execute();
         $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
 
-        $upload->initTestData('pdf','maikelele.pdf','maikelele.jpg');
+        $upload->initTestData('pdf','maikelele.pdf','maikelele.pdf');
         $response = $upload->execute();
         $this->assertEquals(200,$response->getCode(),"Response code was wrong: ".$response->getMsg());
     }
