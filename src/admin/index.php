@@ -154,7 +154,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                     </div>
                     &nbsp;
                     <button id="selectAll" type="submit" class="btn btn-xs btn-primary logout">
-                        <i id="selectAllDescription" class="fa fa-pencil" aria-hidden="true">  Select All</i>
+                        <i id="selectAllDescription" class="fa fa-pencil" aria-hidden="true"></i> Select All
                     </button>
                 </div>
                 <div class="monitorContainer">
@@ -429,7 +429,7 @@ a clean and intuitive system to manage the monitors at CISPA">
                         <h2>Details</h2>
                         <div id="monDetails"></div>
                         <button id="editButton" type="submit" onclick="$('#monitorForm').submit()" class="btn btn-large btn-primary logout" href="#">
-                            <i class="fa fa-pencil" aria-hidden="true"> Change Content</i>
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Change Content
                         </button>
                         <div class="dropup">
                             <button class="btn btn-primary btn-large dropdown-toggle" type="button" data-toggle="dropdown">Add Label

@@ -198,7 +198,7 @@
             }
 
             function switching(arr, pos){
-                console.log("switching over following content:" + arr + pos);
+                console.log("switching over following content:" + arr.toString() + pos);
 
                 var $prev = null,
                     $next = null,
@@ -212,9 +212,8 @@
                 }
                 $next = arr[pos];
 
-                if (isSlideshow($prev)){
-                    $.colorbox.close();
-                }
+
+                $.colorbox.close();
                 $prev.hide();
 
                 if (isSlideshow($next)){
