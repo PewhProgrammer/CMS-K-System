@@ -41,7 +41,6 @@ class Query {
         } else {
             $this->setResponse(404,'SQLQuery format error: '.$this->query);
         }
-
     }
 
     function executeQuery(){
@@ -64,9 +63,9 @@ class Query {
         ConnectionFactory::getFactory()->closeConnection();
     }
 
-    /*function sanitize($conn, $input){
+    function sanitize($conn, $input){
         return mysqli_real_escape_string($conn, $input);
-    }*/
+    }
 
     /**
      * @return mixed
