@@ -187,7 +187,7 @@
                                             newName: $("#newMonName").val()
                                         }).done(function (data) {
                                             window.location.replace('index.php?m='+base.$monID);
-                                            //location.reload();
+                                            ///location.reload();
                                         }).fail(function () {
                                             console.log("New MonitorName failed");
                                         });
@@ -261,7 +261,8 @@
             //FILTERING OF ALL LABELS
             var filterChecked = {};
             $(".filter.option").each(function(index){
-                filterChecked['filterLabel-'+(index+1)] = "";
+                filterChecked[$(this).attr("id")] = "";
+                console.log($(this).attr("id"));
             });
 
             $(".filter").on("click" ,function(){
@@ -322,9 +323,9 @@
                 var filterOn = false;
                 $(".filter.option").each(function(index){
 
-                    if(filterChecked['filterLabel-'+(index+1)] !== ""){
+                    if(filterChecked[$(this).attr("id")] !== ""){
                         filterOn = true;
-                        var monitorSelector = $('.'+$('#filterLabel-'+(index+1)).text().replace(" Floor",".Floor").replace(/ /g,''));
+                        var monitorSelector = $('.'+$('#'+$(this).attr("id")).text().replace(" Floor",".Floor").replace(/ /g,''));
                         monitorSelector.addClass('filter');
                     }
                 });
