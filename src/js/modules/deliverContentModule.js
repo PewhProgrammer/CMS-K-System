@@ -179,7 +179,7 @@
                 //switching between multiple content
                 if (base.contentArr.length > 1) {
                     clearTimeout(base.tOut); //stop previous timeout
-                    switching(base.contentArr, 0);
+                    switchingContent(base.contentArr, 0);
                 }
                 else { //only single content
                     base.contentArr[0].show();
@@ -198,7 +198,7 @@
                 base.$content.append($obj);
             }
 
-            function switching(arr, pos){
+            function switchingContent(arr, pos){
                 console.log("switching over following content:" + arr.toString() + pos);
 
                 var $prev = null,
@@ -227,7 +227,7 @@
 
                base.tOut = setTimeout(function(){
                     var newPos = (arr.length-1 > pos)? ++pos : 0; //limit positions to array
-                    switching(arr, newPos);
+                    switchingContent(arr, newPos);
                 }, interval * 1000);
             }
 
