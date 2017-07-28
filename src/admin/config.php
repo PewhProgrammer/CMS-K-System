@@ -5,15 +5,15 @@ if(session_status()!=PHP_SESSION_ACTIVE)
 session_start();
 $chk = new Query("SELECT * FROM users WHERE name='" .$_SESSION['user']. "'");
 $res=$chk->getQuery();
-$sess = $res->fetch_array()['session_id'];
+$sess = $res->fetch_array();
 if(!isset($_SESSION['user'])) {
     header('location: login.php');
     exit();
-}elseif ($sess!=$_COOKIE['sess']){
+}elseif ($sess['session_id']!=$_COOKIE['sess']){
     setcookie('sess','val',time()-(120),"/");
     session_unset();
     session_destroy();
-    header('location: login.php?error=1');
+    header('location: login.php?error='.$sess['uID']);
 }
 
 else {

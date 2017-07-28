@@ -5,6 +5,7 @@
  * Date: 6/26/2017
  * Time: 10:55 PM
  */
+require '../php/Query.php';
 include_once('../php/UserHandler.php'); ?>
 
 <!DOCTYPE html>
@@ -31,8 +32,10 @@ include_once('../php/UserHandler.php'); ?>
                                 <input class="form-control" placeholder="Password" name="password" type="password" value="">
                             </div>
                             <?php if(isset($_GET['error'])){?>
-                                <h4 class="panel text-danger"><?php echo "You are logged in elsewhere/Session expired. Please check";?></h4>
-                            <?php } unset($_GET['error']);
+                                <h4 class="panel text-danger"><?php echo "You have logged in elsewhere. "?><br><br><?php echo "Please enter your credentials again to log out previous session";?></h4>
+                                <?php $query2 = new Query("UPDATE users SET attempt=1 WHERE uID='" .$_GET['error']. "'");
+                                      $result3= $query2->getQuery();
+                                 } unset($_GET['error']);
                             foreach (UserHandler::$errors as $error): ?>
                                 <h4 class="panel text-danger"><?php echo $error; ?></h4>
                             <?php endforeach;?>
