@@ -128,23 +128,6 @@
                     appendContent($website_iframe);
                 }
 
-                //append images as slideshow to the page
-                for (var k = 0; k < base.types["image"]["no"]; k++){
-                    console.log("images");
-                    if (k === 0){ //exec code only once at the first iteration
-                        var $slideshow = $('<div id="slideshow"></div>');
-                    }
-
-                    $slideshow.append('<a class="slideshowElements"  href="'+ base.types["image"]["path"][k] +'" title="SlideshowItem">item</a>');
-
-                    if (k === base.types["image"]["no"]-1){ //exec code only once at the last iteration
-                        appendContent($slideshow);
-                        $slideshow.children().colorbox(base.colorboxOptions);
-                    }
-
-                }
-                console.log(base.contentArr);
-
                 for (var l = 0; l < base.types["rss"]["no"]; l++){
                     console.log("rss");
                     var $rss = $('<div id="rss-feeds"></div>');
@@ -173,6 +156,22 @@
                     appendContent($mensa);
                     //init mensa
                     base.$content.MensaBusModule("mensa");
+                }
+
+                //append images as slideshow to the page
+                for (var k = 0; k < base.types["image"]["no"]; k++){
+                    console.log("images");
+                    if (k === 0){ //exec code only once at the first iteration
+                        var $slideshow = $('<div id="slideshow"></div>');
+                    }
+
+                    $slideshow.append('<a class="slideshowElements"  href="'+ base.types["image"]["path"][k] +'" title="SlideshowItem">item</a>');
+
+                    if (k === base.types["image"]["no"]-1){ //exec code only once at the last iteration
+                        appendContent($slideshow);
+                        $slideshow.children().colorbox(base.colorboxOptions);
+                    }
+
                 }
 
                 //$(".failureDiv").hide();
@@ -219,6 +218,7 @@
                 $prev.hide();
 
                 if (isSlideshow($next)){
+                    console.log("isSlideshow", $next.children());
                     $next.children().colorbox(base.colorboxOptions);
                     interval = base.types["image"]["no"] * base.interval;
                 }
