@@ -42,10 +42,10 @@ Remarks: nodeJS is only needed to create the www-folder. Once built you only nee
 
 ## Authors
 
-* **Jonas Mohr** - *Ongoing work*
-* **Esha chatterjee** - *Ongoing work*
-* **Ba Thinh Tran** - *Ongoing work*
-* **Marc Schubhan** - *Ongoing work*
+* **Jonas Mohr** - *Completed work*
+* **Esha chatterjee** - *Completed work*
+* **Ba Thinh Tran** - *Completed work*
+* **Marc Schubhan** - *Completed work*
 
 See also the list of 
 [contributors](https://repos.se.cispa.saarland/ezekiel_soremekun/projectp002-multimedia-infostream-kiosksystem/settings/members) 
