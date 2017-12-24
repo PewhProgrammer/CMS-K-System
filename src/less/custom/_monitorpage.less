@@ -1,0 +1,179 @@
+/* Side notes for calling out things
+-------------------------------------------------- */
+
+/* Base styles (regardless of theme) */
+.bs-callout {
+  margin: 20px 20px 20px 20px;
+  padding: 15px 30px 15px 15px;
+  border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+  background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-danger {
+  background-color: #fcf2f2;
+  border-color: #dFb5b4;
+}
+.bs-callout-warning {
+  background-color: #fafef7;
+  border-color: #f1e801;
+}
+.bs-callout-info {
+  background-color: #f0f7fd;
+  border-color: #d0e3f0;
+}
+
+#mensa_panel, #bus_panel{
+  background-color: white;
+  font-size: 12pt;
+  font-family: "Avenir Next", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+.hide-scroll {
+  overflow: hidden;
+}
+
+.viewport {
+  overflow: auto;
+  max-height: 100%;
+  margin-right: -100px;
+  padding-right: 100px;
+  width: 1920px;
+  height: 1080px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #186474;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  font-size: 32px;
+  margin: 0;
+  height: 38px;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.bus {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.bus:nth-child(odd) {
+  background-color: rgb(255, 255, 255);
+}
+.bus:nth-child(even) {
+  background-color: rgb(224, 224, 224);
+}
+
+.bus-timing {
+  text-align: center;
+  width: 400px;
+  float: left;
+}
+
+.bus-time {
+  font-size: 28px;
+}
+
+.bus-delay {
+  font-size: 16px;
+  color: #a00;
+}
+
+.bus-route {
+  float: left;
+  padding-left: 200px;
+}
+
+.bus-line {
+  color: #04566E;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.bus-destination {
+  font-size: 32px;
+}
+
+
+.counter {
+  padding: 8px;
+}
+
+.counter-title {
+  font-size: 40px;
+}
+
+.counter-description {
+  font-size: 32px;
+  font-style: italic;
+  padding-left: 16px;
+}
+
+.pricing {
+  float: right;
+  font-size: 12px;
+  font-style: italic;
+  color: #04566E;
+  text-align: right;
+}
+
+.pricing > * {
+  padding: 1px;
+  display: inline;
+}
+
+.pricing-key {
+  text-transform: uppercase;
+}
+
+.meal {
+  padding: 8px;
+  font-size: 24px;
+}
+
+.meal-category {
+  padding-right: 8px;
+}
+
+.component {
+  display: inline;
+  font-size: 16px;
+  font-style: italic;
+  color: #04566E;
+}
+
+.component:after {
+  content: ", ";
+}
+
+.component:last-child:after {
+  content: "";
+}
+
+#rss-feeds{
+  padding: 10px;
+}
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpunit>
+  <testsuites>
+    <testsuite name="suite">
+      <file>AddTest.php</file>
+      <file>DeleteTest.php</file>
+      <file>AttachTest.php</file>
+      <file>QueryTest.php</file>
+      <file>ResponseTest.php</file>
+      <file>UploadTest.php</file>
+      <file>UserTest.php</file>
+      <file>ResourceTest.php</file>
+      <file>ContentManagerTest.php</file>
+      <file>ConnectionFactoryTest.php</file>
+      <file>NewMonitorTest.php</file>
+<file>UpdateTest.php</file>
+    </testsuite>
+  </testsuites>
+<filter>
+  <whitelist processUncoveredFilesFromWhitelist="true">
+	<file>../../src/php/Add.php</file>
+	<file>../../src/php/Attach.php</file>
+	<file>../../src/php/Delete.php</file>
+	<file>../../src/php/Query.php</file>
+	<file>../../src/php/Upload.php</file>
+	<file>../../src/php/User.php</file>
+	<file>../../src/php/Resource.php</file>
+	<file>../../src/php/Events.php</file>
+	<file>../../src/php/Response.php</file>
+	<file>../../src/php/ContentManager.php</file>
+	<file>../../src/php/NewMonitor.php</file>
+	<file>../../src/php/ConnectionFactory.php</file>
+<file>../../src/php/Update.php</file>
+  </whitelist>
+</filter>
+</phpunit>

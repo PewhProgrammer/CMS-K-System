@@ -1,0 +1,16 @@
+For Selenium Tests:
+
+- install the "Selenium IDE" add-on for Firefox
+- install the "Selenium IDE: Flow Control" for Firefox (this prevents a bug on newer Firefox versions)
+- Open the selenium add-on via firefox by clicking on 'Extras/Selenium' on the navigation bar
+- Open a testsuit file of your choice in the Selenium add-on from the "/tests/selenium/" folder. For example click on File > Open. Select the file 'tests/selenium/loginAndLogout'
+
+For PHPUnit Tests:
+
+- choose CLI Interpreter for php: File > Settings > Languages&Frameworks > PHP. Select the Path to your php.exe
+- Integrate PHPUnit into PHPStorm: File > Settings > Languages&Frameworks > PHP > PHPUnit. Then select 'Path to phpunit.phar' and choose the path to 'tests/phpunit.phar'.
+  After applying the changes, the system will re-index the structure and you'll have autocompletion on phpunit test classes.
+- Fix for db error: copy the file in 'MAMP/conf/<yourphpversion>/php.ini' to 'MAMP/bin/php/<yourphpversion>/'
+
+In case you want to execute the tests with code coverage, you'll need to set up xdebug on your computer. Follow this tutorial. https://xdebug.org/docs/install
+Then execute command prompt > phpunit --coverage-html test/ --testsuite suite
