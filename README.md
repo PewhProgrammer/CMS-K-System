@@ -1,6 +1,8 @@
 # CMS-K and K-Screens
 
-SE Project
+In lights of the software engineering course, we had to develop a content management system for one of our customers at [CISCPA](https://cispa.saarland/de/). The system is being used to manage the monitor dynamic contents across the whole building and works with various API's to deliver bus and mensa plans for the current day.
+
+![Alt text](CMS-K.png?raw=true "Showimage of the content management system")
 
 ## Setting up the webserver
 1. Install MAMP as webserver (http://downloads4.mamp.info/MAMP-PRO-WINDOWS/releases/3.3.1/MAMP_MAMP_PRO_3.3.1.exe)
